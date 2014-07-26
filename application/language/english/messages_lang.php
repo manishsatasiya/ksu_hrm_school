@@ -539,6 +539,8 @@ $lang['inactive_workshop_sub'] = 'Inactive Workshop';
 $lang['workshop_type_sub'] = 'Workshop Type';
 $lang['contractors_sub'] = 'Contractors';
 $lang['duties_sub'] = 'Duties';
+$lang['department_sub'] = 'Department';
+$lang['nationality_sub'] = 'Nationality';
 
 
 
@@ -668,6 +670,14 @@ $lang['list_contractors'] = 'Contractors';
 $lang['add_duties'] = 'Add Duties';
 $lang['edit_duties'] = 'Edit Duties';
 $lang['list_duties'] = 'Duties';
+
+$lang['add_department'] = 'Add Department';
+$lang['edit_department'] = 'Edit Department';
+$lang['list_department'] = 'Department';
+
+$lang['add_nationality'] = 'Add Nationality';
+$lang['edit_nationality'] = 'Edit Nationality';
+$lang['list_nationality'] = 'Nationality';
 
 $lang['add_new'] = 'Add New';
 /*
