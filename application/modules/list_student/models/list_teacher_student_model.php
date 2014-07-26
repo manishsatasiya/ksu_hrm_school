@@ -44,7 +44,7 @@ class List_Teacher_Student_model extends CI_Model {
         $this->db->join('course_section','course_class.section_id = course_section.section_id','left');  
         
 		$this->db->where('users.user_roll_id','3');       
-		$this->db->where('users.active','1');       
+		//$this->db->where('users.active','1');       
 		if($campus_id > 0) {
 			$this->db->where('users.campus_id = '.$campus_id);
 		}
@@ -381,7 +381,7 @@ class List_Teacher_Student_model extends CI_Model {
         $this->db->join('course_section','course_class.section_id = course_section.section_id','left');  
 
     	$this->db->where('users.user_roll_id','3');
-    	$this->db->where('users.active','1');  
+    	//$this->db->where('users.active','1');  
 		
 		if($this->session->userdata('ca_lead_teacher') > 0)
 		{

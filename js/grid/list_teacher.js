@@ -20,7 +20,22 @@ $(document).ready( function () {
        						"bSearchable": false,
        						"bSortable": false,
        						"fnRender": function (oObj) {
-								return '<a href="list_teacher/add/'+oObj.aData[6]+'" data-target="#myModal" data-toggle="modal" class="modal-link"><i class="fa fa-edit"></i></a>';
+								var actionstr = "";
+								actionstr += '<div class="btn-group">';
+								//actionstr += '<button class="btn btn-mini btn-primary btn-demo-space">OPTIONS</button>';
+								actionstr += '<button class="btn-axn" data-toggle="dropdown">';
+								//actionstr += '<span class="caret"></span>';
+								actionstr += '<a class="fa fa-gear"></a>';
+								actionstr += '</button>';
+								actionstr += '<ul class="dropdown-menu">';
+								actionstr += '<li><a href="list_teacher/add/'+oObj.aData[parseInt(table_total_col-1)]+'" data-target="#myModal" data-toggle="modal" class="modal-link">Edit</a></li>';
+								actionstr += '<li><a href="list_user/edit_profile/'+oObj.aData[parseInt(table_total_col-1)]+'">View Profile</a></li>';
+								actionstr += '</ul>';
+								actionstr += '</div>';
+								
+								return actionstr;
+								
+								//return '<a href="list_teacher/add/'+oObj.aData[6]+'" data-target="#myModal" data-toggle="modal" class="modal-link"><i class="fa fa-edit"></i></a>';
 							}
 						}
 		            	
