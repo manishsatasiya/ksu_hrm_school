@@ -1,0 +1,53 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class MY_Controller extends CI_Controller
+{
+	public $arrAction;
+    public function __construct()
+    {
+        parent::__construct();
+		 $this->output->enable_profiler(FALSE);
+        if (Settings_model::$db_config['disable_all'] == 1 && $this->session->userdata('role_id') != 1 && $this->uri->segment(2) != "login") {
+            $this->session->sess_destroy();
+            redirect('site_offline');
+        }
+        $this->load->helper('general_function');
+        $this->load->helper('grid_function');
+		
+        check_access();
+        
+        $controller_name = "";
+        $controller_name = $this->router->fetch_class();
+
+		$this->arrAction = get_priviledge_action($controller_name);
+    }
+
+    /**
+     *
+     * process_partial: load the default view when no view exists in the current theme's views folder
+     *
+     * send_username: send the username to the member e-mail
+     * @param $name string the name of the partial
+     * @param $path the path to the correct view file
+     *
+     */
+
+    public function process_partial($name, $path) {
+        if (file_exists(APPPATH .'views/themes/'. Settings_model::$db_config['default_theme'] .'/'. $path .'.php')) {
+            $this->template->set_partial($name, 'themes/'. Settings_model::$db_config['default_theme'] .'/'. $path);
+        }else{
+            $this->template->set_partial($name, 'themes/default/'. $path);
+        }
+    }
+
+    public function process_template_build($path, $data = null) {
+        if (file_exists(APPPATH .'views/themes/'. Settings_model::$db_config['default_theme'] .'/'. $path .'.php')) {
+            $this->template->build('themes/'. Settings_model::$db_config['default_theme'] .'/'. $path, $data);
+        }else{
+            $this->template->build('themes/default/'. $path, $data);
+        }
+    }
+
+}
+/* End of file MY_Controller.php */
+/* Location: ./application/core/MY_Controller.php */

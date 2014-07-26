@@ -1,0 +1,183 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * ColVis styles
+ */
+.ColVis { 
+	left: 71px;
+    margin-right: 10px;
+    position: absolute;
+	}
+.dataTables_wrapper.form-inline { position:relative;}
+.ColVis + .btn-success { }
+.TableTools .TableTools_Button span { background:none; padding:0px;}
+.ColVis_Button {
+	position: relative;
+	float: left;
+	line-height:30px;
+	height: 30px;
+	padding:0 5px;
+/*	border: 1px solid #d0d0d0;*/
+	cursor: pointer;
+	*cursor: hand;
+}
+.ColVis_Button span {display:block; padding:0 5px;}
+.ColVis_Button .custom-checkbox {}
+.ColVis_Button .custom-checkbox input[type="checkbox"] { display:none;}
+.ColVis_Button .custom-checkbox label.checked:before {
+	background-color: #0090D9;
+    border: 1px solid #0090D9;
+	}
+.ColVis_Button .custom-checkbox label.checked:after {
+	content: "\F00C";
+    font-family: 'FontAwesome';
+	color:#ffffff;
+	display: inline-block;
+    font-size: 11px;
+    height: 16px;
+    left:9px;
+    position: absolute;
+    top:0px;
+    transition: border 0.2s linear 0s, color 0.2s linear 0s;
+    width: 16px;
+	}
+.ColVis_Button .custom-checkbox label:before {
+	background-color: #FFFFFF;
+    border: 1px solid #C2C6CB;
+    border-radius: 3px;
+    content: "";
+    display: inline-block;
+    height: 17px;
+    left:6px;
+    margin-right: 10px;
+    position: absolute;
+    top:2px;
+    transition: border 0.2s linear 0s, color 0.2s linear 0s;
+    width: 17px;
+	}
+
+.ColVis_Button.Base {
+	border: 1px solid #E5E9EC;
+    height: 36px;
+    padding: 3px 10px 30px 12px;
+    text-align: center;
+    transition: all 0.2s ease-out 0s;
+    width: 40px;
+	text-align:center;
+	border-radius:3px;
+	 -webkit-transition: all .2s ease-out;
+	 -moz-transition: all .2s ease-out;
+	 -o-transition: all .2s ease-out;
+	 transition: all .2s ease-out;
+	}
+.ColVis_Button.Base span:before {
+	content: "\f0ce";}
+.ColVis_Button.Base span {
+	display: inline-block;
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+	font-size:14px;
+	}
+	.ColVis_Button.Base:hover {	
+	opacity:0.7;
+	filter:alpha(opacity=70); /* For IE8 and earlier */}
+
+
+	
+button.ColVis_Button::-moz-focus-inner { 
+	border: none !important;
+	padding: 0;
+}
+.ColVis_title{
+	padding:0 35px
+	
+	}
+.ColVis_text_hover {
+	border: 1px solid #999;
+	background-color: #f0f0f0;
+}
+
+div.ColVis_collectionBackground {
+	background-color: black;
+	z-index: 1100;
+}
+
+div.ColVis_collection {
+	position: absolute;
+	float: left;
+	right:0px;
+	background-color: #f3f3f3;
+	padding:6px 0 0 0;
+	border: 1px solid #ccc;
+	z-index:999999;
+	margin-top:-1px;
+}
+
+div.ColVis_collection button.ColVis_Button {
+	background-color: white;
+	width: 100%;
+	float: none;
+	margin-bottom: 2px;
+}
+
+div.ColVis_catcher {
+	position: absolute;
+	z-index: 1101;
+}
+
+
+
+button.ColVis_Button {
+	text-align: left;
+}
+
+div.ColVis_collection button.ColVis_Button:hover {
+	border: 1px solid #999;
+	background-color: #f0f0f0;
+}
+
+span.ColVis_radio {
+	display: inline-block;
+	width: 20px;
+}
+.TableTools_Button .custom-checkbox label {display:block; margin-left:20px; cursor:pointer;}
+
+
+/* Smartphones (portrait and landscape) ----------- */
+@media all and (max-width: 600px) and (min-width: 240px) {
+div.dataTables_filter {
+    float:none; text-align:left; padding-bottom:10px;
+}
+div.dataTables_filter label {
+	display:inline-block;
+}
+.dataTables_length { display:inline-block;}
+}
+
+/* Smartphones (portrait and landscape) ----------- */
+@media all and (max-width:768px) and (min-width: 240px){}
+/* Smartphones (portrait and landscape) ----------- */
+@media all and (max-width:1024px) and (min-width:767px) {
+.row {
+    margin-left: -15px;
+    margin-right:0px !important;
+}
+.col-md-4 {
+    width: 33.3333%;
+}
+.col-md-8 {
+    width: 66.6667%;
+}
+.col-md-9 {
+    width: 75%;
+}
+
+.export_to_excel form .col-md-10 {
+    float: right;
+}
+.col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
+    float: left;
+}
+
+
+}
