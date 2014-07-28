@@ -1,5 +1,6 @@
 var asInitVals = new Array();
 $(document).ready( function () {
+	$('#grid_contracted_summary').bind('processing',function(e, oSettings, bShow){showHideDatatableProcessing(bShow)});
 	dTable=	$('#grid_contracted_summary').dataTable({
 		bJQueryUI:false,
 		bProcessing:true,

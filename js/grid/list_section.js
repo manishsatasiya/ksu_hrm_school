@@ -1,5 +1,6 @@
 $(document).ready( function () {
-	 	dTable = $('#grid_section').dataTable({
+	$('#grid_section').bind('processing',function(e, oSettings, bShow){showHideDatatableProcessing(bShow)});
+	dTable = $('#grid_section').dataTable({
 			bJQueryUI:false,
 			bProcessing:true,
 			bServerSide: true,

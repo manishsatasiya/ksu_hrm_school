@@ -1,4 +1,5 @@
 $(document).ready( function () {
+	$('#grid_grade_type_exam').bind('processing',function(e, oSettings, bShow){showHideDatatableProcessing(bShow)});
 	dTable =	$('#grid_grade_type_exam').dataTable({
 		bJQueryUI:false,
 		bProcessing:true,

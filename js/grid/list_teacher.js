@@ -1,4 +1,5 @@
 $(document).ready( function () {
+	$('#grid_student').bind('processing',function(e, oSettings, bShow){showHideDatatableProcessing(bShow)});
 	dTable = $('#grid_student').dataTable({
 		bJQueryUI:false,
 		bProcessing:true,

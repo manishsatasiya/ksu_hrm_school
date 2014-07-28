@@ -1,5 +1,6 @@
 var asInitVals = new Array();
 $(document).ready( function () {
+	$('#grid_course_class').bind('processing',function(e, oSettings, bShow){showHideDatatableProcessing(bShow)});
 	dTable=	$('#grid_course_class').dataTable({
 		bJQueryUI:false,
 		bProcessing:true,

@@ -1,5 +1,6 @@
 var asInitVals = new Array();
 $(document).ready( function () {
+	$('#grid_nationality').bind('processing',function(e, oSettings, bShow){showHideDatatableProcessing(bShow)});
 	dTable=	$('#grid_nationality').dataTable({
 		bJQueryUI:false,
 		bProcessing:true,

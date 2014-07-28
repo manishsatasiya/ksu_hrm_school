@@ -707,6 +707,13 @@ function showErrorMsg(msg){
 		showCloseButton: true
 	});
 }
+function showHideDatatableProcessing(showhide)
+{
+	if(showhide == true){
+		$(".dataTable tbody").html('<div style="text-align: center;width: auto;position: absolute;margin-left: 500px;"><i style="display:inline-block;" class="fa fa-spinner fa fa-6x fa-spin" id="animate-icon"></i></div>');
+		$(".dataTables_processing").html('');
+	}
+}
 /********  LOGIN LOGOUT PAGE ********************/
 $(function(){
 
