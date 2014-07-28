@@ -58,7 +58,7 @@
 					<!-- BEGIN NOTIFICATION CENTER -->
 					<!--<a href="#" class="dropdown-toggle" id="my-task-list" data-placement="bottom" data-content="" data-toggle="dropdown" data-original-title="">-->
 						<div class="user-details"> 
-							<div class="username"><?php echo $this->session->userdata('username');  ?> &nbsp; &nbsp;</div>						
+							<div class="username">Welcome, <?php echo $this->session->userdata('first_name');  ?> &nbsp; &nbsp;</div>						
 						</div> 
 						<!--<div class="iconset top-down-arrow"></div>-->
 					<!--</a>-->

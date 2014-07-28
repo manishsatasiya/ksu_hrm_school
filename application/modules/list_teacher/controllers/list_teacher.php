@@ -89,7 +89,7 @@ class List_teacher extends Private_Controller {
         $per_page = Settings_model::$db_config['members_per_page'];
         $data = $this->list_teacher_student_model->get_teacher($per_page, $offset, $order_by, $sort_order, $search_data);
         if (empty($data)) {
-            redirect("/list_teacher");
+            //redirect("/list_teacher");
         }else{
             $content_data['members'] = $data;
         }

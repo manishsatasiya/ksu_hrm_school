@@ -266,7 +266,8 @@ class Add_employee extends Private_Controller {
 					}
 								
 					//$this->session->set_flashdata('message', $errors);
-					redirect('add_employee');
+					//redirect('add_employee');
+					redirect('/company_employee');
 				}						
 			}
 			

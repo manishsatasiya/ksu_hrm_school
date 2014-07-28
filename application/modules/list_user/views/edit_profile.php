@@ -873,7 +873,7 @@ print form_hidden('user_id', $user_data->user_unique_id);
                         </div>
                         <div class="col-md-6">
                           <?php print form_label('Revelant experience', 'teaching_experience',array('class'=>'form-label')); ?>
-                          <?php print form_input(array('name' => 'teaching_experience', 'id' => 'teaching_experience', 'value' => ($user_data)?$user_data->first_name:$this->session->flashdata('teaching_experience'), 'class' => 'form-control ','placeholder' => 'Revelant experience')); ?>
+                          <?php print form_input(array('name' => 'teaching_experience', 'id' => 'teaching_experience', 'value' => ($user_data)?$user_data->teaching_experience:$this->session->flashdata('teaching_experience'), 'class' => 'form-control ','placeholder' => 'Revelant experience')); ?>
                           <span>(years)</span> </div>
                       </div>
                       <!--row 2.5 end-->
@@ -962,7 +962,7 @@ print form_hidden('user_id', $user_data->user_unique_id);
                         </div>
                         <div class="col-md-4">
                           <?php print form_label('CV Confirmed', 'cv_confirm_1',array('class'=>'form-label')); ?>
-                          <?php print form_dropdown('cv_confirm_1',array(''=>'CV Confirmed','1'=> 'Yes','2'=>'No'),(isset($user_data->cv_confirm_1))?$user_data->cv_confirm_1:$this->session->flashdata('cv_confirm_1'),'id="cv_confirm_1" class="select2 form-control"'); ?>
+                          <?php print form_dropdown('cv_confirm_1',array(''=>'Select','1'=> 'Yes','2'=>'No'),(isset($user_data->cv_confirm_1))?$user_data->cv_confirm_1:$this->session->flashdata('cv_confirm_1'),'id="cv_confirm_1" class="select2 form-control"'); ?>
                         </div>
                       </div>
                       <!--row 5.3 end-->
@@ -1003,7 +1003,7 @@ print form_hidden('user_id', $user_data->user_unique_id);
                         </div>
                         <div class="col-md-4">
                           <?php print form_label('CV Confirmed', 'cv_confirm_2',array('class'=>'form-label')); ?>
-                          <?php print form_dropdown('cv_confirm_2',array(''=>'CV Confirmed','1'=> 'Yes','2'=>'No'),(isset($user_data->cv_confirm_2))?$user_data->cv_confirm_2:$this->session->flashdata('cv_confirm_2'),'id="cv_confirm_2" class="select2 form-control"'); ?>
+                          <?php print form_dropdown('cv_confirm_2',array(''=>'Select','1'=> 'Yes','2'=>'No'),(isset($user_data->cv_confirm_2))?$user_data->cv_confirm_2:$this->session->flashdata('cv_confirm_2'),'id="cv_confirm_2" class="select2 form-control"'); ?>
                         </div>
                       </div>
                       <!--row 5.3b end-->
