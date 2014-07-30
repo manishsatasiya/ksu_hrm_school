@@ -607,7 +607,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 		}
 
     	$content_data = array();
-		$content_data['user_profile_status'] = $this->user_profile_status();
+		$content_data['user_profile_status'] = user_profile_status();
 		$content_data['other_user_roll'] = get_other_user_roll();
 		$content_data['other_user_list'] = get_other_user_list();
 		$content_data['nationality_list'] = get_nationality_list();
@@ -853,7 +853,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 		$content_data = array();
 		$content_data['user_documents'] = $user_documents;
 		$content_data['user_permossion'] = $user_permossion;
-		$content_data['user_profile_status'] = $this->user_profile_status();
+		$content_data['user_profile_status'] = user_profile_status();
 		$content_data['other_user_roll'] = get_other_user_roll();
 		$content_data['other_user_list'] = get_other_user_list();
 		$content_data['nationality_list'] = get_nationality_list();
@@ -876,11 +876,7 @@ $this->template->set_partial('sidebar', 'sidebar');
         $this->template->set_partial('footer', 'footer');
         $this->template->build('edit_profile', $content_data);
     }
-	
-	public function user_profile_status() {
-		return array('' => 'Select Status','0'=>'In-active','1'=>'Active','2'=>'Blocked','3'=>'Pending Approval','4'=>'Declined');
-	}	
-	
+		
 	public function add_qualifications($user_id,$id = null){
     	$content_data['qualifications_list'] = get_qualifications_list();
     			

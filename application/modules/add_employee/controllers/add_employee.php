@@ -281,7 +281,7 @@ class Add_employee extends Private_Controller {
     	$content_data = array();
 		$content_data['user_id'] = $user_id;
 		$content_data['user_data'] = $user_data;
-		$content_data['user_profile_status'] = $this->user_profile_status();
+		$content_data['user_profile_status'] = user_profile_status();
 		$content_data['other_user_roll'] = get_other_user_roll();
 		$content_data['other_user_list'] = get_other_user_list();
 		$content_data['nationality_list'] = get_nationality_list();
@@ -298,10 +298,6 @@ class Add_employee extends Private_Controller {
         $this->template->set_partial('footer', 'footer');
         $this->template->build('add_employee', $content_data);
     }
-	
-	public function user_profile_status() {
-		return array('1'=>'New employee added by contractor','2'=>'New employee deleted by AHR','3'=>'AHR rejects employee','4'=>'Interview unsuccessful','5'=>'Successful','6'=>'Ready for timetable','7'=>'Suspended','8'=>'Dismissed','9'=>'Resigned','10'=>'Other');
-	}	
 		
 }
 
