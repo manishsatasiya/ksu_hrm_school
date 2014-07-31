@@ -43,6 +43,7 @@ class Add_employee extends Private_Controller {
 							'birth_date'       => date('Y-m-d',strtotime($this->input->post('birth_date'))),
 							'cell_phone'       => $this->input->post('cell_phone'),
 							'language_known'       => $this->input->post('language_known'),
+							'personal_email'       => $this->input->post('personal_email'),
 							'updated_date' => date('Y-m-d H:i:s')
 						);
 				grid_data_updates($user_data,'users', 'user_id',$user_id);		
@@ -94,6 +95,7 @@ class Add_employee extends Private_Controller {
 							'birth_date'       => date('Y-m-d',strtotime($this->input->post('birth_date'))),
 							'cell_phone'       => $this->input->post('cell_phone'),
 							'language_known'       => $this->input->post('language_known'),
+							'personal_email'       => $this->input->post('personal_email'),
 							'created_date' => date('Y-m-d H:i:s')
 						);
 					$user_id = grid_add_data($user_data,'users');

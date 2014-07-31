@@ -51,11 +51,17 @@
                     </div>
                   </div>
                   
-                  <!--row 5 start-->
                   <div class="row form-row">
                     <div class="col-md-12">
                       <?php print form_label('Email', 'email',array('class'=>'form-label')); ?>
                       <?php print form_input(array('name' => 'email', 'id' => 'email', 'value' => ($user_data)?$user_data->email:$this->session->flashdata('email'), 'class' => 'form-control ','placeholder' => 'email@example.com')); ?>
+                    </div>
+                  </div>
+                  
+                  <div class="row form-row">
+                    <div class="col-md-12">
+                      <?php print form_label('Personal Email', 'email',array('class'=>'form-label')); ?>
+                      <?php print form_input(array('name' => 'personal_email', 'id' => 'personal_email', 'value' => ($user_data)?$user_data->personal_email:$this->session->flashdata('personal_email'), 'class' => 'form-control ','placeholder' => '')); ?>
                     </div>
                   </div>
                   
