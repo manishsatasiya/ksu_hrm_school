@@ -22,7 +22,7 @@
                     </div>
                   </div>
                   <?php 
-				  if($this->session->userdata('contractor') > 0){ ?>
+				  if($user_id == 0){ ?>
 					  <script>
                       $(document).ready(function(){
                         $('#status').prop('readonly', true);
