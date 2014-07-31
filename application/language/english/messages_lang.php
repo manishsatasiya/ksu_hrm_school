@@ -474,7 +474,10 @@ $lang['role_sub'] = 'Role';
 
 $lang['list_role'] = 'Role';
 
-$lang['staff_user_sub'] = 'Staff';
+$lang['staff_user_sub'] = 'New Employee';
+$lang['interviews_sub'] = 'Interviews';
+$lang['all_active_staff_sub'] = 'All Active Staff';
+$lang['all_inactive_staff_sub'] = 'All Inactive Staff';
 $lang['contracted_numbers'] = 'Contracted Numbers';
 $lang['contracted_summary'] = 'Contracted Summary';
 $lang['add_company_employee'] = 'Add Company Employee';
@@ -642,7 +645,10 @@ $lang['list_grade_type_exam_sub'] = 'List Grade Type Exam';
 
 $lang['list_grade_range_sub'] = 'List Grade Range';
 
-$lang['list_user'] = 'List Staff';
+$lang['list_user'] = 'New Employee';
+$lang['list_interviews'] = 'Interviews';
+$lang['list_active_staff'] = 'All Active Staff';
+$lang['list_inactive_staff'] = 'All Inactive Staff';
 
 $lang['submit_attendance_lang'] = 'Submit Attendance';
 
@@ -1700,7 +1706,10 @@ $lang['role_p_role'] = 'Role';
 
  */
 
-$lang['user_p_heading'] = 'List Staff';
+$lang['user_p_heading'] = 'New Employee';
+$lang['user_p_interviews_heading'] = 'Interviews';
+$lang['user_p_active_heading'] = 'All Active staff';
+$lang['user_p_inactive_heading'] = 'All inactive staff';
 
 $lang['user_p_role'] = 'Role';
 
