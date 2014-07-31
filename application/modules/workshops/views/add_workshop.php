@@ -47,7 +47,7 @@ print form_open('workshops/add/'.$workshop_id, array('id' => 'add_workshop_form_
 		<div class="col-md-6">
 			<div class="form_label2"><?php print form_label('Date', 'reg_start_date'); ?></div>
 			<div class="input-append success date col-md-10 col-lg-6 no-padding">
-				<?php print form_input(array('name' => 'start_date', 'id' => 'reg_start_date', 'value' => ($rowdata)?date('m/d/Y',strtotime($rowdata->start_date)):$this->session->flashdata('start_date'), 'class' => 'form-control qtip_start_date')); ?>
+				<?php print form_input(array('name' => 'start_date', 'id' => 'reg_start_date', 'value' => ($rowdata)?date('D, d M Y',strtotime($rowdata->start_date)):$this->session->flashdata('start_date'), 'class' => 'form-control qtip_start_date')); ?>
 				<span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
 			</div>
 		</div>

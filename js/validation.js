@@ -900,11 +900,11 @@ $(document).ready(function() {
 	{
 		$(function() {
 			$( "#reg_start_date" ).datepicker({
-				changeMonth: true,
-				changeYear: true,
-				yearRange: 'c-50:c+0'
+				format: 'D dd MM yyyy'
 			});
 		});
+		
+		$('#reg_time').timepicker({});
 	}
 	
 	$("#add_workshop_form_datatable").validate({

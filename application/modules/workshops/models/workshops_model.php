@@ -173,7 +173,7 @@ class Workshops_model extends CI_Model {
 		$workshops = array();
 		$this->db->select('workshop_id,title,start_date',FALSE);
         $this->db->from('workshops');
-		$this->db->where('workshops.status', 1);
+		//$this->db->where('workshops.status', 1);
 		$query = $this->db->get();
 		if($query->num_rows() > 0) {
 			$workshops_data = $query->result_array();
@@ -290,6 +290,30 @@ class Workshops_model extends CI_Model {
     	}
     	return false;
     }
+	
+	function get_attendee_user_list() {
+		$this->db->select('*');
+		$this->db->from('users');
+		$this->db->where_not_in('users.user_roll_id',array('1','3','4'));
+		
+		if(($this->session->userdata('campus_id') > 0 || $this->session->userdata('campus') != ""))
+		{
+			if($this->session->userdata('campus_id') > 0)
+				$this->db->where('users.campus_id',$this->session->userdata('campus_id'));
+			else if($this->session->userdata('campus') != "")
+				$this->db->where('users.campus',$this->session->userdata('campus'));
+		}
+				
+		$this->db->order_by('first_name', 'ASC');	
+		$query = $this->db->get();
+		$student_data = $query->result_array();
+		$student_arr = array();
+		$student_arr[0] = '--Select--';
+		foreach ($student_data as $_student_data){
+			$student_arr[$_student_data['user_id']] = $_student_data['first_name'];
+		}
+		return $student_arr;
+	}
 }
 
 /* End of file workshops_model.php */
