@@ -1084,18 +1084,25 @@ print form_hidden('user_id', $user_data->user_unique_id);
                           <?php print form_label('Interview Details', '',array('class'=>'form-label')); ?>
                         </div>
                         <div class="col-md-6">
-                          <?php print form_input(array('name' => 'interviewee1', 'id' => 'interviewee1', 'value' => ($user_data)?$user_data->interviewee1:$this->session->flashdata('interviewee1'), 'class' => 'form-control','placeholder' => 'Interview 1')); ?>
+                          <?php //print form_input(array('name' => 'interviewee1', 'id' => 'interviewee1', 'value' => ($user_data)?$user_data->interviewee1:$this->session->flashdata('interviewee1'), 'class' => 'form-control','placeholder' => 'Interview 1')); ?>
+                          <?php print form_label('Interviewer 1', 'interviewee1',array('class'=>'form-label')); ?>
+                          <?php print form_dropdown('interviewee1',$other_user_list,($user_data)?$user_data->interviewee1:$this->session->flashdata('interviewee1'),'id="interviewee1" class=""'); ?>
                         </div>
                         <div class="col-md-6">
-                          <?php print form_input(array('name' => 'interviewee2', 'id' => 'interviewee2', 'value' => ($user_data)?$user_data->interviewee2:$this->session->flashdata('interviewee2'), 'class' => 'form-control','placeholder' => 'Interview 2')); ?>
+                          <?php //print form_input(array('name' => 'interviewee2', 'id' => 'interviewee2', 'value' => ($user_data)?$user_data->interviewee2:$this->session->flashdata('interviewee2'), 'class' => 'form-control','placeholder' => 'Interview 2')); ?>
+                          <?php print form_label('Interviewer 2', 'interviewee2',array('class'=>'form-label')); ?>
+                          <?php print form_dropdown('interviewee2',$other_user_list,($user_data)?$user_data->interviewee2:$this->session->flashdata('interviewee2'),'id="interviewee2" class=""'); ?>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                           <div class="input-append success date col-md-10 col-lg-6 no-padding">
                             <?php print form_input(array('name' => 'interview_date', 'id' => 'interview_date', 'value' => ($user_data)?$user_data->interview_date:$this->session->flashdata('interview_date'), 'class' => 'form-control')); ?>
                             <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
                         </div>
-                        <div class="col-md-6">
-                            <?php print form_dropdown('interview_successful',array(''=>'Select Interview Result','1'=> 'Approved','2'=>'Declined'),($user_data)?$user_data->interview_successful:$this->session->flashdata('interview_successful'),'id="interview_successful" class="select2 form-control"'); ?>
+                        <div class="col-md-4">
+                            <?php print form_dropdown('interview_outcome',array(''=>'Select Interview Outcome','1'=> 'Approved','2'=>'Rejected','3'=>'Pending'),($user_data)?$user_data->interview_outcome:$this->session->flashdata('interview_outcome'),'id="interview_successful" class=""'); ?>
+                        </div>
+                        <div class="col-md-4">
+                            <?php print form_dropdown('interview_type',array(''=>'Select Interview Type','1'=> 'Face to face','2'=>'Skype','3'=>'Phone'),($user_data)?$user_data->interview_type:$this->session->flashdata('interview_type'),'id="interview_type" class=""'); ?>
                         </div>
                         <div class="col-md-12">
                             <?php print form_textarea(array('name' => 'interview_notes', 'id' => 'interview_notes', 'value' => ($user_data)?$user_data->interview_notes:$this->session->flashdata('interview_notes'), 'class' => 'form-control ')); ?>

@@ -295,8 +295,9 @@ class List_User_model extends CI_Model {
 															interviewee1,
 															interviewee2,
 															interview_date,
-															interview_successful,
+															interview_outcome,
 															interview_notes,
+															interview_type,
 															updated_at) 
 													VALUES ("'.$user_id.'",
 															"'.$this->input->post('ver_nationality').'",
@@ -306,8 +307,9 @@ class List_User_model extends CI_Model {
 															"'.$this->input->post('interviewee1').'",
 															"'.$this->input->post('interviewee2').'",
 															"'.date('Y-m-d',strtotime($this->input->post('interview_date'))).'",
-															"'.$this->input->post('interview_successful').'",
+															"'.$this->input->post('interview_outcome').'",
 															"'.$this->input->post('interview_notes').'",
+															"'.$this->input->post('interview_type').'",
 															"'.date('Y-m-d H:i:s').'"
 															)
 					  ON DUPLICATE KEY UPDATE ver_nationality="'.$this->input->post('ver_nationality').'",
@@ -317,8 +319,9 @@ class List_User_model extends CI_Model {
 											interviewee1="'.$this->input->post('interviewee1').'",
 											interviewee2="'.$this->input->post('interviewee2').'",
 											interview_date="'.date('Y-m-d',strtotime($this->input->post('interview_date'))).'",
-											interview_successful="'.$this->input->post('interview_successful').'",
+											interview_outcome="'.$this->input->post('interview_outcome').'",
 											interview_notes="'.$this->input->post('interview_notes').'",
+											interview_type="'.$this->input->post('interview_type').'",
 											updated_at="'.date('Y-m-d H:i:s').'"';
 					 
 					 $this->db->query($query);
