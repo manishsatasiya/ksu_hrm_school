@@ -96,6 +96,7 @@ class Add_employee extends Private_Controller {
 							'cell_phone'       => $this->input->post('cell_phone'),
 							'language_known'       => $this->input->post('language_known'),
 							'personal_email'       => $this->input->post('personal_email'),
+							'created_by'       => $this->session->userdata('user_id'),
 							'created_date' => date('Y-m-d H:i:s')
 						);
 					$user_id = grid_add_data($user_data,'users');

@@ -1424,8 +1424,64 @@ function generateElsdId($gender){
 	return $ret;
 }
 
-function user_profile_status() {
-		return array('1'=>'New employee added by contractor','2'=>'New employee deleted by AHR','3'=>'AHR rejects employee (missing documents)','4'=>'AHR rejects employee (does not meet requirements)','5'=>'Pending 1','6'=>'Pending 2','7'=>'Pending 3','8'=>'Pending 4','9'=>'Pre-Approval successful','10'=>'On Hold','11'=>'PY Interview unsuccessful','12'=>'PY Interview successful','13'=>'Ready for timetable','14'=>'Removed from timetable','15'=>'Suspended','16'=>'Dismissed','17'=>'Resigned','18'=>'Contract not renewed by staff','19'=>'Contract not renewed by ELSD','20'=>'Other');
+function user_profile_status($type = "") {
+		$ret = array();
+		
+		if($type == "")
+		{
+			$ret = array('1'=>'New employee added by contractor',
+					 '2'=>'New employee deleted by AHR',
+					 '3'=>'AHR rejects employee (missing documents)',
+					 '4'=>'AHR rejects employee (does not meet requirements)',
+					 '5'=>'Pending 1',
+					 '6'=>'Pending 2',
+					 '7'=>'Pending 3',
+					 '8'=>'Pending 4',
+					 '9'=>'Pre-Approval successful',
+					 '10'=>'On Hold',
+					 '11'=>'PY Interview unsuccessful',
+					 '12'=>'PY Interview successful',
+					 '13'=>'Ready for timetable',
+					 '14'=>'Removed from timetable',
+					 '15'=>'Suspended',
+					 '16'=>'Dismissed',
+					 '17'=>'Resigned',
+					 '18'=>'Contract not renewed by staff',
+					 '19'=>'Contract not renewed by ELSD',
+					 '20'=>'Other');
+		}	
+		else if($type == "newemployee")			 
+		{
+			$ret = array('2'=>'New employee deleted by AHR',
+						 '3'=>'AHR rejects employee (missing documents)',
+						 '4'=>'AHR rejects employee (does not meet requirements)',
+						 '5'=>'Pending 1',
+						 '6'=>'Pending 2',
+						 '7'=>'Pending 3',
+						 '8'=>'Pending 4',
+						 '9'=>'Pre-Approval successful',
+						 '10'=>'On Hold');
+		}
+		else if($type == "interview")			 
+		{
+			$ret = array('11'=>'PY Interview unsuccessful',
+						 '12'=>'PY Interview successful');
+		}
+		else if($type == "activestaff")			 
+		{
+			$ret = array('13'=>'Ready for timetable',
+						 '14'=>'Removed from timetable',
+						 '15'=>'Suspended');
+		}
+		else if($type == "inactivestaff")			 
+		{
+			$ret = array('16'=>'Dismissed',
+						 '17'=>'Resigned',
+						 '18'=>'Contract not renewed by staff',
+						 '19'=>'Contract not renewed by ELSD');
+		}
+		
+		return $ret;
 }
 
 /* End of file general_function_helper.php */

@@ -25,7 +25,7 @@ class Company_employee_model extends CI_Model {
     	$this->db->select('users.*,user_profile.scanner_id,user_profile.scanner_id,user_profile.co_ordinator,user_profile.contractor,user_profile.returning');
     	$this->db->from('users');
     	$this->db->join('user_profile', 'user_profile.user_id = users.user_id','left');
-		$this->db->where_not_in('users.user_roll_id',array('1','3','4'));
+		$this->db->where_not_in('users.user_roll_id',array('1','4'));
 		//$this->db->where('users.status',1);
 		
 		if($this->session->userdata('contractor') > 0){
