@@ -369,7 +369,7 @@ $this->template->set_partial('sidebar', 'sidebar');
             exit();
         }
 
-        $this->list_school_model->update_school($this->input->post('school_id'),$this->input->post('school_name'), $this->input->post('address'), $this->input->post('city'), $this->input->post('state'), $this->input->post('zip'), $this->input->post('area_code'),$this->input->post('phone'),$this->input->post('principal'),$this->input->post('www_address'),$this->input->post('email'),$this->input->post('show_total_grade'),$this->input->post('show_grade_range'),$this->input->post('attendance_time_limit'),$this->input->post('grade_time_limit'));
+        $this->list_school_model->update_school($this->input->post('school_id'),$this->input->post('school_name'), $this->input->post('address'), $this->input->post('city'), $this->input->post('state'), $this->input->post('zip'), $this->input->post('area_code'),$this->input->post('phone'),$this->input->post('principal'),$this->input->post('www_address'),$this->input->post('email'),$this->input->post('show_total_grade'),$this->input->post('show_grade_range'),$this->input->post('attendance_time_limit'),$this->input->post('grade_time_limit'),$this->input->post('min_referee_count'),$this->input->post('min_experience'));
         set_activity_log($this->input->post('school_id'),'update','school','list school');
         $this->session->set_flashdata('message', sprintf($this->lang->line('school_updated'), $this->input->post('school_name'), $this->input->post('school_id')));
         redirect('/list_school/index/'. $order_by .'/'. $sort_order .'/'. $search .'/'. $offset);

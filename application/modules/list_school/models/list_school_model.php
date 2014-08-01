@@ -74,7 +74,7 @@ class List_school_model extends CI_Model {
      *
      */
 
-    public function update_school($school_id, $school_name, $address, $city, $state, $zip, $area_code,$phone,$principal,$www_address,$email,$show_total_grade,$show_grade_range,$attendance_time_limit,$grade_time_limit) {
+    public function update_school($school_id, $school_name, $address, $city, $state, $zip, $area_code,$phone,$principal,$www_address,$email,$show_total_grade,$show_grade_range,$attendance_time_limit,$grade_time_limit,$min_referee_count,$min_experience) {
         // if there are more fields you can turn the data into an array. The reason I don't do this is because it's an extra array in controller List_members.
 
         $data = array(
@@ -93,6 +93,8 @@ class List_school_model extends CI_Model {
 				'show_grade_range'    => $show_grade_range,
 				'attendance_time_limit'    => $attendance_time_limit,
 				'grade_time_limit'    => $grade_time_limit,
+				'min_referee_count'    => $min_referee_count,
+				'min_experience'    => $min_experience,
 				'updated_date'   => date('Y-m-d H:i:s'));
 
        

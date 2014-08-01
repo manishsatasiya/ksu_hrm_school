@@ -31,7 +31,16 @@ print form_open('nationality/add/'.$id, array('id' => 'add_nationality_form_data
 		</div>
 		<div class="clear"></div>
 	</div>
-	
+    <div class="row form-row">
+    	<div class="col-md-6">
+			<div class="form-group">
+			<div class="form_label"><?php print form_label('Accepted nationality', 'native'); ?></div>
+			<div class="controls"><?php  
+				print form_dropdown('accepted',array('No'=>'No','Yes'=>'Yes'),($rowdata)?$rowdata->accepted:'No','id="accepted" class=""'); ?>
+			</div>
+			</div>
+		</div>
+	</div>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

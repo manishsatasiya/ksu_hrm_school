@@ -398,6 +398,22 @@ class List_User_model extends CI_Model {
 		
 		return false;
 	}
+	
+	public function is_accepted_nationality($id) {
+		$this->db->select('accepted');
+    	$this->db->from('countries');
+		$this->db->where('id',$id);
+		$query = $this->db->get();
+    	if($query->num_rows() > 0) {
+    		$data = $query->row();
+			if($data->accepted == 'Yes')
+				return true;
+			else
+				return false;	
+    	}
+		
+		return false;
+	}
 }
 
 /* End of file list_user_model.php */

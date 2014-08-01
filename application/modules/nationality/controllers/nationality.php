@@ -92,10 +92,12 @@ class Nationality extends Private_Controller {
     	if($this->input->post()){
     		$native = $this->input->post('native');
     		$nationality = $this->input->post('nationality');
+			$accepted = $this->input->post('accepted');
 			
 			$data = array();
 			$data['native'] = $native;
 			$data['nationality'] = $nationality;
+			$data['accepted'] = $accepted;
 			
 			$table = 'countries';
     		$wher_column_name = 'id';					

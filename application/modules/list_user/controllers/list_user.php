@@ -14,7 +14,7 @@ class List_user extends Private_Controller {
 		$this->load->model('list_user_model');
 		$this->load->helper('general_function');
 		$this->load->model('add_privilege/privilege_model');
-		
+		$this->load->model('list_school/list_school_model');
     }
 
     /**
@@ -882,6 +882,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 		
 		$cv_reference_data = $this->list_user_model->get_cv_reference($user_id);
 		$cv_reference = array();
+		$cv_reference_count = 0;
 		if($cv_reference_data){
 			$i = 1;
 			foreach($cv_reference_data->result_array() as $_cv_reference_data){
@@ -893,6 +894,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 				$cv_reference['cv_reference_email_'.$i] = $_cv_reference_data['email'];
 				$cv_reference['cv_confirm_'.$i] = $_cv_reference_data['cv_confirm'];
 				$i++;
+				$cv_reference_count++;
 			}
 		}
 		
@@ -943,8 +945,18 @@ $this->template->set_partial('sidebar', 'sidebar');
 		
 		$user_experience_data = $this->list_user_model->get_user_experience($user_id,'certificate');
 		$user_experience = array();
+		$user_experience_count = 0;
 		if($user_experience_data){
 			foreach($user_experience_data->result_array() as $_user_experience_data){
+				$start_date = date(strtotime($_user_experience_data['start_date']));
+				$end_date = date(strtotime($_user_experience_data['end_date']));
+				$interval = $end_date-$start_date;
+				$months = floor($interval / 86400 / 30 );
+				$years = 0;
+				if($months > 0){
+					$years = $months/12;
+				}
+				$user_experience_count = $user_experience_count + $years;
 				$row = array();
 				$row['user_workhistory_id'] = $_user_experience_data['user_workhistory_id'];
 				$row['company'] = $_user_experience_data['company'];
@@ -986,7 +998,32 @@ $this->template->set_partial('sidebar', 'sidebar');
 		$profile_picture = get_profile_pic($user_id);
 		$profile_picture = $profile_picture[150];
 		$content_data['profile_picture'] = $profile_picture;
+	
+		if(isset($user_data->nationality) && isset($user_data->ver_nationality) && $user_data->ver_nationality == 0){
+			$ver_nationality = $this->list_user_model->is_accepted_nationality($user_data->nationality);
+			$user_data->ver_nationality = 2;
+			if($ver_nationality){
+				$user_data->ver_nationality = 1;
+			}
+		}
+		$school_data = $this->list_school_model->get_school_data(1);
+		if(isset($user_data->ver_reference) && $user_data->ver_reference == 0){
 			
+			$min_referee_count = $school_data->min_referee_count;
+			$user_data->ver_reference = 2;
+			if($cv_reference_count >= $min_referee_count){
+				$user_data->ver_reference = 1;
+			}
+		}
+		if(isset($user_data->ver_experience) && $user_data->ver_experience == 0){
+			
+			$min_experience = $school_data->min_experience;
+			$user_data->ver_experience = 2;
+			if($user_experience_count >= $min_experience){
+				$user_data->ver_experience = 1;
+			}
+		}
+		
 		$content_data['user_data'] = $user_data;
 		$content_data['tab_id'] = $tab_id;
 		$content_data['previlage_action'] = get_previlege_action();

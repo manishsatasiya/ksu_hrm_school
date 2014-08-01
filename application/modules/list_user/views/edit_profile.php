@@ -1015,7 +1015,8 @@ print form_hidden('user_id', $user_data->user_unique_id);
                       <div class="row form-row">
                         <div class="col-md-12">
                           <?php print form_label('Nationality', 'ver_nationality',array('class'=>'form-label')); ?>
-                          <?php print form_input(array('name' => 'ver_nationality', 'id' => 'ver_nationality', 'value' => ($user_data)?$user_data->ver_nationality:$this->session->flashdata('ver_nationality'), 'class' => 'form-control','placeholder' => 'Nationality')); ?>
+                          <?php print form_dropdown('ver_nationality',array('1'=>'Verified','2'=>'Un verified'),($user_data)?$user_data->ver_nationality:'','id="ver_nationality" class=""');
+						  //print form_input(array('name' => 'ver_nationality', 'id' => 'ver_nationality', 'value' => ($user_data)?$user_data->ver_nationality:$this->session->flashdata('ver_nationality'), 'class' => 'form-control','placeholder' => 'Nationality')); ?>
                         </div>
                       </div>
                       <!--row 6.1 end-->
@@ -1060,11 +1061,13 @@ print form_hidden('user_id', $user_data->user_unique_id);
                             </div>
                             <div class="col-md-4">
                           <?php print form_label('Experience', 'ver_experience',array('class'=>'form-label')); ?>
-                          <?php print form_input(array('name' => 'ver_experience', 'id' => 'ver_experience', 'value' => ($user_data)?$user_data->ver_experience:$this->session->flashdata('ver_experience'), 'class' => 'form-control','placeholder' => 'Experience')); ?>
+                          <?php print form_dropdown('ver_experience',array('1'=>'Verified','2'=>'Un verified'),($user_data)?$user_data->ver_experience:'','id="ver_experience" class=""');
+						  		//print form_input(array('name' => 'ver_experience', 'id' => 'ver_experience', 'value' => ($user_data)?$user_data->ver_experience:$this->session->flashdata('ver_experience'), 'class' => 'form-control','placeholder' => 'Experience')); ?>
                             </div>
                             <div class="col-md-4">
                           <?php print form_label('References', 'ver_reference',array('class'=>'form-label')); ?>
-                          <?php print form_input(array('name' => 'ver_reference', 'id' => 'ver_reference', 'value' => ($user_data)?$user_data->ver_reference:$this->session->flashdata('ver_reference'), 'class' => 'form-control','placeholder' => 'References')); ?>
+                          <?php print form_dropdown('ver_reference',array('1'=>'Verified','2'=>'Un verified'),($user_data)?$user_data->ver_reference:'','id="ver_reference" class=""');
+						  		//print form_input(array('name' => 'ver_reference', 'id' => 'ver_reference', 'value' => ($user_data)?$user_data->ver_reference:$this->session->flashdata('ver_reference'), 'class' => 'form-control','placeholder' => 'References')); ?>
                             </div>
                       </div>
                       <?php /*?><div class="row form-row">

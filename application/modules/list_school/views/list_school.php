@@ -227,6 +227,19 @@ $(document).ready(function() {
 						</div>
 						<div class="clear"></div>
 					  </div>
+                      
+                      <div class="form-row">
+						<div class="col-md-6">
+							<label class="form_label" for="min_referee_count">Min Referee Count</label>
+						  <div class="input_box_thin"> <?php print form_input(array('name' => 'min_referee_count', 'class' => 'form-control', 'value' => $schools->min_referee_count)); ?> </div>
+						</div>
+						<div class="col-md-6">
+							<label class="form_label" for="reg_last_name">Min Experience</label>
+						  <div class="input_box_thin"><?php print form_input(array('name' => 'min_experience', 'class' => 'form-control', 'value' => $schools->min_experience)); ?></div>
+						</div>
+						<div class="clear"></div>
+					  </div>
+                      
 					 </div>
 					 <div class="form-actions">
 					 <div class="post col-md-12"> 
