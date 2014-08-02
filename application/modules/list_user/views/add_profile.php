@@ -169,8 +169,14 @@
                   	<div class="col-md-6">
                       <?php print form_label('KSU Role', 'user_roll_id',array('class'=>'form-label')); ?>
                       <?php print form_dropdown('user_roll_id',$other_user_roll,'0','id="user_roll_id" class="select2 form-control"'); ?>
-                      <span>The employee's actual role within the ELSD programme</span> </div>
+                      <span>The employee's actual role within the ELSD programme</span>
+                    </div>
+                    <div class="col-md-6">
+					  <?php print form_label('Department', 'department_id',array('class'=>'form-label')); ?>
+                      <?php print form_dropdown('department_id',$department_list,$this->session->flashdata('department_id'),'id="department_id" class="select2 form-control"'); ?>
+                  	 </div>
                   </div>
+                  
                 </div>
                 <div class="tab-pane" id="tab3"> <br>  
                   <h4 class="semi-bold">Step 3 - <span class="light">Work</span></h4>

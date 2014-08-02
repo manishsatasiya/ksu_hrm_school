@@ -638,7 +638,8 @@ $this->template->set_partial('sidebar', 'sidebar');
 						'blood_type'       => $this->input->post('blood_type'),
 						'medical_condition'       => $this->input->post('medical_condition'),
 						'medical_allergies'       => $this->input->post('medical_allergies'),
-						'on_timetable'       => $this->input->post('on_timetable')
+						'on_timetable'       => $this->input->post('on_timetable'),
+						'department_id'       => $this->input->post('department_id')
 					);
 				$profile_id = grid_add_data($profile_data,'user_profile');
 				
@@ -696,6 +697,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 		$content_data['other_user_list'] = get_other_user_list();
 		$content_data['nationality_list'] = get_nationality_list();
 		$content_data['campus_list'] = get_campus_list(1);
+		$content_data['department_list'] = get_department_list();
 		
         $this->template->set_theme(Settings_model::$db_config['default_theme']);
         $this->template->set_layout('school');
@@ -791,7 +793,8 @@ $this->template->set_partial('sidebar', 'sidebar');
 							'blood_type'       => $this->input->post('blood_type'),
 							'medical_condition'       => $this->input->post('medical_condition'),
 							'medical_allergies'       => $this->input->post('medical_allergies'),
-							'on_timetable'       => $this->input->post('on_timetable')
+							'on_timetable'       => $this->input->post('on_timetable'),
+							'department_id'       => $this->input->post('department_id')
 						);
 						
 					grid_data_updates($profile_data,'user_profile', 'user_id',$user_id);
@@ -994,6 +997,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 		$content_data['other_user_list'] = get_other_user_list();
 		$content_data['nationality_list'] = get_nationality_list();
 		$content_data['campus_list'] = get_campus_list(1);
+		$content_data['department_list'] = get_department_list();
 		
 		$profile_picture = get_profile_pic($user_id);
 		$profile_picture = $profile_picture[150];
