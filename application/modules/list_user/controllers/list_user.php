@@ -149,8 +149,7 @@ $this->template->set_partial('sidebar', 'sidebar');
     
     	$data = $this->list_teacher_student_model->get_staff_members("newemployee",$per_page, $offset, $order_by, $sort_order, $grid_data['search_data']);
     	$count = $this->list_teacher_student_model->get_staff_members("newemployee",0, 0, "", "", $grid_data['search_data']);
-    	//$count = 10000;
-    	/*
+		/*
     	 * Output
     	*/
     	$output = array(
@@ -163,21 +162,21 @@ $this->template->set_partial('sidebar', 'sidebar');
     	if($data){
     		foreach($data->result_array() AS $result_row){
     			$row = array();
-				$row[] = $result_row['users.user_id'];
-				$row[] = $result_row['users.elsd_id'];
+				$row[] = $result_row['user_id'];
+				$row[] = $result_row['elsd_id'];
 				$row[] = $result_row['staff_name'];
-				$row[] = $result_row['users.email'];
-				$row[] = $result_row['users.personal_email'];
-				$row[] = $result_row['users.work_mobile'];
-				$row[] = $result_row['contractors.contractor'];
-				$row[] = $result_row['users.status'];
-				$row[] = $result_row['user_roll.user_roll_name'];
-				$row[] = $result_row['department.department_name'];
-				$row[] = $result_row['school_campus.campus_name'];
-				$row[] = $result_row['user_profile.scanner_id'];
-				$row[] = $result_row['user_profile.returning'];
-				$row[] = $result_row['users.created_date'];
-				$row[] = $result_row['users.updated_date'];
+				$row[] = $result_row['email'];
+				$row[] = $result_row['personal_email'];
+				$row[] = $result_row['work_mobile'];
+				$row[] = $result_row['contractor'];
+				$row[] = $result_row['status'];
+				$row[] = $result_row['user_roll_name'];
+				$row[] = $result_row['department_name'];
+				$row[] = $result_row['campus_name'];
+				$row[] = $result_row['scanner_id'];
+				$row[] = $result_row['returning'];
+				$row[] = $result_row['created_date'];
+				$row[] = $result_row['updated_date'];
     			$row[] = $result_row["user_id"];
     			$output['aaData'][] = $row;
     		}

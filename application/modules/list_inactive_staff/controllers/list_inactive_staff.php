@@ -123,8 +123,21 @@ $this->template->set_partial('sidebar', 'sidebar');
     	/* Array of database columns which should be read and sent back to DataTables. Use a space where
     	 * you want to insert a non-database field (for example a counter or static image)
     	*/
-    	//$aColumns = array('users.user_id','elsd_id','first_name','scanner_id','gender','email','cell_phone','user_roll_id','co_ordinator','campus','contractor','returning');
-    	$aColumns = array('users.user_id','elsd_id','first_name','user_profile.scanner_id','email');
+    	$aColumns = array('users.user_id',
+						'users.elsd_id',
+						'staff_name',
+						'users.email',
+						'users.personal_email',
+						'users.work_mobile',
+						'contractors.contractor',
+						'users.status',
+						'user_roll.user_roll_name',
+						'department.department_name',
+						'school_campus.campus_name',
+						'user_profile.scanner_id',
+						'user_profile.returning',
+						'users.created_date',
+						'users.updated_date');
     	$grid_data = get_search_data($aColumns);
     	$sort_order = $grid_data['sort_order'];
 		$order_by = $grid_data['order_by'];
@@ -134,10 +147,9 @@ $this->template->set_partial('sidebar', 'sidebar');
     	$per_page =  $grid_data['per_page'];
     	$offset =  $grid_data['offset'];
     
-    	$data = $this->list_teacher_student_model->get_other_user($per_page, $offset, $order_by, $sort_order, $grid_data['search_data']);
-    	$count = $this->list_teacher_student_model->count_all_other_mem($grid_data['search_data']);
-    	//$count = 10000;
-    	/*
+    	$data = $this->list_teacher_student_model->get_staff_members("inactivestaff",$per_page, $offset, $order_by, $sort_order, $grid_data['search_data']);
+    	$count = $this->list_teacher_student_model->get_staff_members("inactivestaff",0, 0, "", "", $grid_data['search_data']);
+		/*
     	 * Output
     	*/
     	$output = array(
@@ -150,19 +162,22 @@ $this->template->set_partial('sidebar', 'sidebar');
     	if($data){
     		foreach($data->result_array() AS $result_row){
     			$row = array();
+    			$row[] = $result_row['user_id'];
+				$row[] = $result_row['elsd_id'];
+				$row[] = $result_row['staff_name'];
+				$row[] = $result_row['email'];
+				$row[] = $result_row['personal_email'];
+				$row[] = $result_row['work_mobile'];
+				$row[] = $result_row['contractor'];
+				$row[] = $result_row['status'];
+				$row[] = $result_row['user_roll_name'];
+				$row[] = $result_row['department_name'];
+				$row[] = $result_row['campus_name'];
+				$row[] = $result_row['scanner_id'];
+				$row[] = $result_row['returning'];
+				$row[] = $result_row['created_date'];
+				$row[] = $result_row['updated_date'];
     			$row[] = $result_row["user_id"];
-				$row[] = $result_row["elsd_id"];
-				$row[] = $result_row["first_name"];
-    			$row[] = $result_row["scanner_id"];
-    			//$row[] = $result_row["gender"];
-    			$row[] = $result_row["email"];
-    			/*$row[] = $result_row["cell_phone"];
-    			$row[] = $result_row["role_name"];
-				$row[] = $result_row["co_ordinator"];
-				$row[] = $result_row["campus"];
-				$row[] = $result_row["contractor"];
-				$row[] = $result_row["returning"];*/
-				$row[] = $result_row["user_id"];
     			$output['aaData'][] = $row;
     		}
     	}
