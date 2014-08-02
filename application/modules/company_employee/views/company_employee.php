@@ -25,16 +25,16 @@ if($this->session->userdata('role_id') != '1' && !in_array("edit",$this->arrActi
 				<tr>
 					<th>DB ID</th>
 					<th>ELSD ID</th>
-					<th><?php echo $this->lang->line('user_p_full_name'); ?> </th>
-					<th>Scan ID</th>
-					<!--<th>Gender</th>-->
-					<th>KSU Email</th>
-					<!--<th>Mobile</th>
-					<th><?php //echo $this->lang->line('user_p_role'); ?></th>
-					<th>Line Manager</th>
-					<th><?php //echo $this->lang->line('user_p_campus'); ?></th>
-					<th>Contractor</th>
-					<th>Returning</th>-->
+					<th>Staff Name</th>
+					<th>KSU E-mail</th>
+					<th>Personal E-mail</th>
+					<th>Mobile No</th>
+					<th>Nationality</th>
+					<th>DOB</th>
+					<th>Company</th>
+					<th>Interview Evaluation Form</th>
+					<th>Date Added</th>
+					<th>Last Updated</th>
 					<th><?php echo $this->lang->line('user_p_action'); ?></th>
 				</tr>
 			</thead>
@@ -42,16 +42,16 @@ if($this->session->userdata('role_id') != '1' && !in_array("edit",$this->arrActi
 				<tr>
 					<th>DB ID</th>
 					<th>ELSD ID</th>
-					<th><?php echo $this->lang->line('user_p_full_name'); ?> </th>
-					<th>Scan ID</th>
-					<!--<th>Gender</th>-->
-					<th>KSU Email</th>
-					<!--<th>Mobile</th>
-					<th><?php //echo $this->lang->line('user_p_role'); ?></th>
-					<th>Line Manager</th>
-					<th><?php //echo $this->lang->line('user_p_campus'); ?></th>
-					<th>Contractor</th>
-					<th>Returning</th>-->
+					<th>Staff Name</th>
+					<th>KSU E-mail</th>
+					<th>Personal E-mail</th>
+					<th>Mobile No</th>
+					<th>Nationality</th>
+					<th>DOB</th>
+					<th>Company</th>
+					<th>Interview Evaluation Form</th>
+					<th>Date Added</th>
+					<th>Last Updated</th>
 					<th><?php echo $this->lang->line('user_p_action'); ?></th>
 				</tr>
 			</tfoot>

@@ -11,7 +11,7 @@ if($this->session->userdata('role_id') != '1' && !in_array("edit",$this->arrActi
 }
 ?>
 </script>
-<script type="text/javascript" src="<?php print base_url(); ?>js/grid/list_user.js?t=newv"></script>
+<script type="text/javascript" src="<?php print base_url(); ?>js/grid/list_interviews.js"></script>
 <div id="admin">
 <?php 
 if($this->session->userdata('role_id') == '1' || in_array("add",$this->arrAction))
@@ -53,16 +53,21 @@ if($this->session->userdata('role_id') == '1' || in_array("add",$this->arrAction
 				<tr>
 					<th>DB ID</th>
 					<th>ELSD ID</th>
-					<th><?php echo $this->lang->line('user_p_full_name'); ?> </th>
-					<th>Scan ID</th>
-					<!--<th>Gender</th>-->
-					<th>KSU Email</th>
-					<!--<th>Mobile</th>
-					<th><?php //echo $this->lang->line('user_p_role'); ?></th>
-					<th>Line Manager</th>
-					<th><?php //echo $this->lang->line('user_p_campus'); ?></th>
-					<th>Contractor</th>
-					<th>Returning</th>-->
+					<th>Staff Name</th>
+					<th>KSU E-mail</th>
+					<th>Personal E-mail</th>
+					<th>Mobile No</th>
+					<th>Nationality</th>
+					<th>DOB</th>
+                    <th>Company</th>
+                    <th>Interview Evaluation Form</th>
+                    <th>Interview Date</th>
+                    <th>Interviewer 1</th>
+                    <th>Interviewer 2</th>
+					<th>Interview Type</th>
+					<th>Outcome</th>
+                    <th>Date Added</th>
+					<th>Last Updated</th>
 					<th><?php echo $this->lang->line('user_p_action'); ?></th>
 				</tr>
 			</thead>
@@ -70,16 +75,21 @@ if($this->session->userdata('role_id') == '1' || in_array("add",$this->arrAction
 				<tr>
 					<th>DB ID</th>
 					<th>ELSD ID</th>
-					<th><?php echo $this->lang->line('user_p_full_name'); ?> </th>
-					<th>Scan ID</th>
-					<!--<th>Gender</th>-->
-					<th>KSU Email</th>
-					<!--<th>Mobile</th>
-					<th><?php //echo $this->lang->line('user_p_role'); ?></th>
-					<th>Line Manager</th>
-					<th><?php //echo $this->lang->line('user_p_campus'); ?></th>
-					<th>Contractor</th>
-					<th>Returning</th>-->
+					<th>Staff Name</th>
+					<th>KSU E-mail</th>
+					<th>Personal E-mail</th>
+					<th>Mobile No</th>
+					<th>Nationality</th>
+					<th>DOB</th>
+                    <th>Company</th>
+                    <th>Interview Evaluation Form</th>
+                    <th>Interview Date</th>
+                    <th>Interviewer 1</th>
+                    <th>Interviewer 2</th>
+					<th>Interview Type</th>
+					<th>Outcome</th>
+                    <th>Date Added</th>
+					<th>Last Updated</th>
 					<th><?php echo $this->lang->line('user_p_action'); ?></th>
 				</tr>
 			</tfoot>

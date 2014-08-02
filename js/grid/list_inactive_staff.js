@@ -4,7 +4,7 @@ $(document).ready( function () {
 		bJQueryUI:false,
 		bProcessing:true,
 		bServerSide: true,
-		sAjaxSource: "list_user/index_json",
+		sAjaxSource: "list_inactive_staff/index_json",
 		"sDom": 'fCl<"clear">rtip',
 		"oColVis": {
 			"aiExclude": [table_total_col-1]
