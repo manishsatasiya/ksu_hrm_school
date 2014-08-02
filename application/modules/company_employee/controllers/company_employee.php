@@ -41,7 +41,7 @@ $this->template->set_partial('sidebar', 'sidebar');
         $this->template->build('company_employee', $content_data);
     }
     
-    public function index_json($order_by = "username", $sort_order = "asc", $search = "all", $offset = 0) {
+    public function index_json($order_by = "elsd_id", $sort_order = "asc", $search = "all", $offset = 0) {
     	/* Array of database columns which should be read and sent back to DataTables. Use a space where
     	 * you want to insert a non-database field (for example a counter or static image)
     	*/
