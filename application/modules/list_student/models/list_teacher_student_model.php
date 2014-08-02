@@ -150,6 +150,34 @@ class List_Teacher_Student_model extends CI_Model {
     		!empty($search_data['contractor']) ? $data['contractor'] = $search_data['contractor'] : "";
 			!empty($search_data['returning']) ? $data['returning'] = $search_data['returning'] : "";
     	}
+		
+		$strQueryIntType = "";
+		$strQueryIntOutCome = "";
+		$arrIntType = get_interview_type();
+		$arrIntOutCome = get_interview_outcome();
+		
+		foreach($arrIntType AS $key=>$val)
+		{
+			if($key != "")
+				$strQueryIntType .= " WHEN $key THEN '$val' ";
+		}
+		
+		if($strQueryIntType != "")
+		{
+			$strQueryIntType = " CASE user_verifications.interview_type $strQueryIntType  ELSE 'N/A' END ";
+		}
+		
+		foreach($arrIntOutCome AS $key=>$val)
+		{
+			if($key != "")
+				$strQueryIntOutCome .= " WHEN $key THEN '$val' ";
+		}
+		
+		if($strQueryIntOutCome != "")
+		{
+			$strQueryIntOutCome = " CASE user_verifications.interview_outcome $strQueryIntOutCome  ELSE 'N/A' END ";
+		}
+		
     	$this->db->select('users.user_id,
 						  users.elsd_id,
 						  CONCAT(users.first_name," ",users.middle_name," ",users.last_name) AS staff_name,
@@ -165,12 +193,12 @@ class List_Teacher_Student_model extends CI_Model {
 						  department.department_name,
 						  user_profile.scanner_id,
 						  user_profile.returning,
-						  user_verifications.interviewee1,
-						  user_verifications.interviewee2,
+						  CONCAT(intr1.first_name," ",intr1.middle_name," ",intr1.last_name) AS interviewer1,
+						  CONCAT(intr2.first_name," ",intr2.middle_name," ",intr2.last_name) AS interviewer2,
 						  user_verifications.interview_date,
-						  user_verifications.interview_notes,
-						  user_verifications.interview_outcome,
-						  user_verifications.interview_type,
+						  user_verifications.interview_notes,'.
+						  $strQueryIntOutCome.' AS interview_outcome,'.
+						  $strQueryIntType.' AS interview_type,
 						  (SELECT COUNT(*) FROM profile_certificate WHERE certificate_type = 10 AND user_id = users.user_id) AS interview_eva_found,
 						  (SELECT certificate_file FROM profile_certificate WHERE certificate_type = 10 AND user_id = users.user_id) AS interview_eva_form_link,	
 						  users.created_date,
@@ -179,6 +207,8 @@ class List_Teacher_Student_model extends CI_Model {
     	$this->db->from('users');
 		$this->db->join('user_profile', 'user_profile.user_id = users.user_id','left');
 		$this->db->join('user_verifications', 'user_verifications.user_id = users.user_id','left');
+		$this->db->join('users AS intr1', 'user_verifications.interviewee1 = intr1.user_id','left');
+		$this->db->join('users AS intr2', 'user_verifications.interviewee2 = intr2.user_id','left');
 		$this->db->join('school_campus', 'school_campus.campus_id = users.campus_id','left');
 		$this->db->join('user_roll', 'user_roll.user_roll_id = users.user_roll_id','left');
 		$this->db->join('department', 'department.id = user_profile.department_id','left');

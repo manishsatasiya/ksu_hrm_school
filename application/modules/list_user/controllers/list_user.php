@@ -713,6 +713,8 @@ $this->template->set_partial('sidebar', 'sidebar');
 		$content_data['nationality_list'] = get_nationality_list();
 		$content_data['campus_list'] = get_campus_list(1);
 		$content_data['department_list'] = get_department_list();
+		$content_data['interview_outcome_list'] = get_interview_outcome();
+		$content_data['interview_type_list'] = get_interview_type();
 		
         $this->template->set_theme(Settings_model::$db_config['default_theme']);
         $this->template->set_layout('school');
@@ -1013,6 +1015,8 @@ $this->template->set_partial('sidebar', 'sidebar');
 		$content_data['nationality_list'] = get_nationality_list();
 		$content_data['campus_list'] = get_campus_list(1);
 		$content_data['department_list'] = get_department_list();
+		$content_data['interview_outcome_list'] = get_interview_outcome();
+		$content_data['interview_type_list'] = get_interview_type();
 		
 		$profile_picture = get_profile_pic($user_id);
 		$profile_picture = $profile_picture[150];

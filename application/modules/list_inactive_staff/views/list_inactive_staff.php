@@ -11,7 +11,7 @@ if($this->session->userdata('role_id') != '1' && !in_array("edit",$this->arrActi
 }
 ?>
 </script>
-<script type="text/javascript" src="<?php print base_url(); ?>js/grid/list_user.js?t=newv"></script>
+<script type="text/javascript" src="<?php print base_url(); ?>js/grid/list_inactive_staff.js?t=newv"></script>
 <div id="admin">
 <?php 
 if($this->session->userdata('role_id') == '1' || in_array("add",$this->arrAction))

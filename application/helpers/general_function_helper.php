@@ -1484,6 +1484,16 @@ function user_profile_status($type = "") {
 		return $ret;
 }
 
+function get_interview_outcome()
+{
+	return array(''=>'Select Interview Outcome','1'=> 'Approved','2'=>'Rejected','3'=>'Pending');
+}
+
+function get_interview_type()
+{
+	return array(''=>'Select Interview Type','1'=> 'Face to face','2'=>'Skype','3'=>'Phone');
+}
+
 function get_department_list() {
 		$ci =& get_instance();
 		$ci->db->select('*');

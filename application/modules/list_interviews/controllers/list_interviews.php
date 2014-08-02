@@ -174,13 +174,17 @@ $this->template->set_partial('sidebar', 'sidebar');
 				$row[] = $result_row['nationality'];
 				$row[] = $result_row['birth_date'];
 				$row[] = $result_row['contractor'];
-				$row[] = $result_row['interview_eva_found'];
-				$row[] = $result_row['interview_eva_form_link'];
+				if($result_row['interview_eva_found'] > 0)
+					$row[] = $result_row['interview_eva_form_link'];
+				else	
+					$row[] = "N/A";
 				$row[] = $result_row['interview_date'];
 				$row[] = $result_row['interviewer1'];
 				$row[] = $result_row['interviewer2'];
 				$row[] = $result_row['interview_type'];
 				$row[] = $result_row['interview_outcome'];
+				$row[] = $result_row['created_date'];
+				$row[] = $result_row['updated_date'];
 				$row[] = $result_row["user_id"];
     			$output['aaData'][] = $row;
     		}

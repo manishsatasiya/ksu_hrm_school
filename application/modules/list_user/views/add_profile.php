@@ -426,10 +426,10 @@
                         <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
                     </div>
                     <div class="col-md-4">
-                    	<?php print form_dropdown('interview_outcome',array(''=>'Select Interview Outcome','1'=> 'Approved','2'=>'Rejected','3'=>'Pending'),$this->session->flashdata('interview_outcome'),'id="interview_outcome" class=""'); ?>
+                    	<?php print form_dropdown('interview_outcome',$interview_outcome_list,$this->session->flashdata('interview_outcome'),'id="interview_outcome" class=""'); ?>
                     </div>
                     <div class="col-md-4">
-                            <?php print form_dropdown('interview_type',array(''=>'Select Interview Type','1'=> 'Face to face','2'=>'Skype','3'=>'Phone'),$this->session->flashdata('interview_type'),'id="interview_type" class=""'); ?>
+                            <?php print form_dropdown('interview_type',$interview_type_list,$this->session->flashdata('interview_type'),'id="interview_type" class=""'); ?>
                         </div>
                     <div class="col-md-12">
                     	<?php print form_textarea(array('name' => 'interview_notes', 'id' => 'interview_notes', 'value' => $this->session->flashdata('interview_notes'), 'class' => 'form-control no-boarder')); ?>

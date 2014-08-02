@@ -11,23 +11,18 @@ $(document).ready( function () {
         },
 		aoColumns: [
 						null ,
-						{"sName": "elsd_id"},
-		            	{"sName": "first_name"},
+						{"sName": "users.elsd_id"},
+		            	{"sName": "staff_name"},
 		            	{"sName": "email"},
 		            	{"sName": "personal_email"},
-		            	{"sName": "cell_phone"},
+		            	{"sName": "work_mobile"},
 		            	{"sName": "nationality"},
 						{"sName": "birth_date"},
 						{"sName": "contractor"},
-						{"sName": "campus"},
-						{"sName": "contractor"},
-						{"sName": "ID",
-       						"bSearchable": false,
-       						"bSortable": false,
-						},
+						null,
 						{"sName": "interview_date"},
-						{"sName": "interviewee1"},
-						{"sName": "interviewee2"},
+						{"sName": "interviewer1"},
+						{"sName": "interviewer2"},
 						{"sName": "interview_type"},
 						{"sName": "interview_outcome"},
 						{"sName": "created_date"},
@@ -78,6 +73,7 @@ $(document).ready( function () {
 					 null,
 	                 null,
 	                 null,
+	                 null,
 	                 null
 	            ]
         });	
@@ -106,55 +102,8 @@ $(document).ready( function () {
                         	null,
                         	null,
                         	null,
-                        	/*{
-                        		indicator: 'Saving ...',
-    							tooltip: 'Click to edit name',
-    							type: 'text',
-    							submit:'Save changes'
-                        	},
-                        	{
-                        		indicator: 'Saving ...',
-    							tooltip: 'Click to edit username',
-    							type: 'text',
-    							submit:'Save changes'
-                        	},
-                        	{
-                        		indicator: 'Saving ...',
-    							tooltip: 'Click to edit password',
-    							type: 'text',
-    							submit:'Save changes',
-    							cssclass:"required"	
-                        	},
-							{
-                        		tooltip: 'Click to select roll',
-                       			loadtext: 'loading...',
-			                    type: 'select',
-					           	onblur: 'cancel',
-								submit: 'Save',
-                        		loadurl: 'list_user/get_listbox/other_user_roll',
-								loadtype: 'GET'
-                        	},
-                        	{
-                        		indicator: 'Saving ...',
-    							tooltip: 'Click to edit email',
-    							type: 'text',
-    							submit:'Save changes'
-                        	},
-                        	{
-                        		tooltip: 'Click to select campus',
-                       			loadtext: 'loading...',
-			                    type: 'select',
-					           	onblur: 'cancel',
-								submit: 'Save',
-                        		loadurl: 'list_course_class/get_listbox/campus',
-								loadtype: 'GET'
-                        	},
-                        	{
-                        		indicator: 'Saving ...',
-    							tooltip: 'Click to edit cell phone',
-    							type: 'text',
-    							submit:'Save changes'
-                        	},*/
+                        	null,
+                        	null,
                         	null
                        ],
 			fnShowError:function(message, action){

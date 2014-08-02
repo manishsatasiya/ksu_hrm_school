@@ -12,15 +12,15 @@ $(document).ready( function () {
 		aoColumns: [
 						null ,
 						{"sName": "elsd_id"},
-		            	{"sName": "first_name"},
+		            	{"sName": "staff_name"},
 		            	{"sName": "email"},
 		            	{"sName": "personal_email"},
-		            	{"sName": "cell_phone"},
+		            	{"sName": "work_mobile"},
 		            	{"sName": "contractor"},
-						{"sName": "active"},
-						{"sName": "user_roll_id"},
-						{"sName": "department_id"},
-						{"sName": "campus"},
+						{"sName": "status"},
+						{"sName": "user_roll_name"},
+						{"sName": "department_name"},
+						{"sName": "campus_name"},
 						{"sName": "scanner_id"},
 						{"sName": "returning"},
 						{"sName": "created_date"},
@@ -98,55 +98,6 @@ $(document).ready( function () {
                         	null,
                         	null,
                         	null,
-                        	/*{
-                        		indicator: 'Saving ...',
-    							tooltip: 'Click to edit name',
-    							type: 'text',
-    							submit:'Save changes'
-                        	},
-                        	{
-                        		indicator: 'Saving ...',
-    							tooltip: 'Click to edit username',
-    							type: 'text',
-    							submit:'Save changes'
-                        	},
-                        	{
-                        		indicator: 'Saving ...',
-    							tooltip: 'Click to edit password',
-    							type: 'text',
-    							submit:'Save changes',
-    							cssclass:"required"	
-                        	},
-							{
-                        		tooltip: 'Click to select roll',
-                       			loadtext: 'loading...',
-			                    type: 'select',
-					           	onblur: 'cancel',
-								submit: 'Save',
-                        		loadurl: 'list_user/get_listbox/other_user_roll',
-								loadtype: 'GET'
-                        	},
-                        	{
-                        		indicator: 'Saving ...',
-    							tooltip: 'Click to edit email',
-    							type: 'text',
-    							submit:'Save changes'
-                        	},
-                        	{
-                        		tooltip: 'Click to select campus',
-                       			loadtext: 'loading...',
-			                    type: 'select',
-					           	onblur: 'cancel',
-								submit: 'Save',
-                        		loadurl: 'list_course_class/get_listbox/campus',
-								loadtype: 'GET'
-                        	},
-                        	{
-                        		indicator: 'Saving ...',
-    							tooltip: 'Click to edit cell phone',
-    							type: 'text',
-    							submit:'Save changes'
-                        	},*/
                         	null
                        ],
 			fnShowError:function(message, action){
