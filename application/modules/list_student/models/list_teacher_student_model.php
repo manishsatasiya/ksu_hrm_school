@@ -113,36 +113,7 @@ class List_Teacher_Student_model extends CI_Model {
     		!empty($search_data['contractor']) ? $data['contractor'] = $search_data['contractor'] : "";
 			!empty($search_data['returning']) ? $data['returning'] = $search_data['returning'] : "";
     	}
-    	$this->db->select('users.user_id,
-						  users.elsd_id,
-						  CONCAT(users.first_name,' ',users.middle_name,' ',users.last_name) AS staff_name,
-						  users.email,
-						  users.personal_email,
-						  users.work_mobile,
-						  users.birth_date,
-						  users.status,
-						  users.user_roll_id,
-						  users.campus_id,
-
-						  user_profile.contractor - profile
-						  user_profile.nationality - profile
-						  user_profile.scanner_id
-						  user_profile.returning
-						  
-						  user_verifications.interviewee1,
-						  user_verifications.interviewee2,
-						  user_verifications.interview_date,
-						  user_verifications.interview_notes,
-						  user_verifications.interview_outcome,
-						  user_verifications.interview_type,
-
-
-						  profile_certificate - table, certificate_type = 10
-
-						  users.created_date
-						  users.updated_date
-
-						 ');
+    	$this->db->select('users.*,user_profile.scanner_id,user_profile.scanner_id,user_profile.co_ordinator,user_profile.contractor,user_profile.returning, user_roll.user_roll_name as role_name');
     	$this->db->from('users');
     	$this->db->where_not_in('users.user_roll_id',array('1','3','4'));
     	$this->db->where_not_in('users.status',array('1'));

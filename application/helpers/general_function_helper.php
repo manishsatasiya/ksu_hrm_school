@@ -1484,5 +1484,20 @@ function user_profile_status($type = "") {
 		return $ret;
 }
 
+function get_department_list() {
+		$ci =& get_instance();
+		$ci->db->select('*');
+		$ci->db->from('department');
+		$ci->db->order_by('department_name', 'ASC');	
+		$query = $ci->db->get();
+		$student_data = $query->result_array();
+		$student_arr = array();
+		$student_arr[0] = '--Select--';
+		foreach ($student_data as $student_datas){
+			$student_arr[$student_datas['id']] = $student_datas['department_name'];
+		}
+		return $student_arr;
+	}
+
 /* End of file general_function_helper.php */
 /* Location: ./application/helpers/general_function_helper.php */ 
