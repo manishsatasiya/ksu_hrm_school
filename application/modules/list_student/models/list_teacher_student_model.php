@@ -113,47 +113,98 @@ class List_Teacher_Student_model extends CI_Model {
     		!empty($search_data['contractor']) ? $data['contractor'] = $search_data['contractor'] : "";
 			!empty($search_data['returning']) ? $data['returning'] = $search_data['returning'] : "";
     	}
-    	$this->db->select('users.user_id,
-						  users.elsd_id,
-						  CONCAT(users.first_name,' ',users.middle_name,' ',users.last_name) AS staff_name,
-						  users.email,
-						  users.personal_email,
-						  users.work_mobile,
-						  users.birth_date,
-						  users.status,
-						  users.user_roll_id,
-						  users.campus_id,
-
-						  user_profile.contractor - profile
-						  user_profile.nationality - profile
-						  user_profile.scanner_id
-						  user_profile.returning
-						  
-						  user_verifications.interviewee1,
-						  user_verifications.interviewee2,
-						  user_verifications.interview_date,
-						  user_verifications.interview_notes,
-						  user_verifications.interview_outcome,
-						  user_verifications.interview_type,
-
-
-						  profile_certificate - table, certificate_type = 10
-
-						  users.created_date
-						  users.updated_date
-
-						 ');
+    	$this->db->select('users.*,user_profile.scanner_id,user_profile.scanner_id,user_profile.co_ordinator,user_profile.contractor,user_profile.returning, user_roll.user_roll_name as role_name');
     	$this->db->from('users');
-    	$this->db->where_not_in('users.user_roll_id',array('1','3','4'));
-    	$this->db->where_not_in('users.status',array('1'));
-    	$this->db->join('user_roll', 'user_roll.user_roll_id = users.user_roll_id','left');
 		$this->db->join('user_profile', 'user_profile.user_id = users.user_id','left');
+		$this->db->join('user_verifications', 'user_verifications.user_id = users.user_id','left');
+		$this->db->join('school_campus', 'school_campus.campus_id = users.campus_id','left');
+		$this->db->join('user_roll', 'user_roll.user_roll_id = users.user_roll_id','left');
+		$this->db->join('contractors', 'contractors.id = user_profile.contractor','left');
+		$this->db->join('countries', 'countries.id = user_profile.nationality','left');
+		$this->db->where_not_in('users.user_roll_id',array('1','3','4'));
+    	$this->db->where_not_in('users.status',array('1'));
+    	
     	!empty($data) ? $this->db->like($data) : "";
     	$this->db->order_by($order_by, $sort_order);
     	$this->db->limit($limit, $offset);
     
     	$query = $this->db->get();
 
+    	if($query->num_rows() > 0) {
+    		return $query;
+    	}
+    }
+
+	public function get_staff_members($type="",$limit = 0, $offset = 0, $order_by = "username", $sort_order = "asc", $search_data) {
+    	if (!empty($search_data)) {
+    		!empty($search_data['user_id']) ? $data['user_id'] = $search_data['user_id'] : "";
+    		!empty($search_data['first_name']) ? $data['first_name'] = $search_data['first_name'] : "";
+    		!empty($search_data['elsd_id']) ? $data['elsd_id'] = $search_data['elsd_id'] : "";
+    		!empty($search_data['scanner_id']) ? $data['scanner_id'] = $search_data['scanner_id'] : "";
+    		!empty($search_data['gender']) ? $data['gender'] = $search_data['gender'] : "";
+    		!empty($search_data['email']) ? $data['email'] = $search_data['email'] : "";
+    		!empty($search_data['mobile']) ? $data['mobile'] = $search_data['mobile'] : "";
+    		!empty($search_data['user_roll_name']) ? $data['user_roll_name'] = $search_data['user_roll_name'] : "";
+			!empty($search_data['co_ordinator']) ? $data['co_ordinator'] = $search_data['co_ordinator'] : "";
+    		!empty($search_data['campus']) ? $data['campus'] = $search_data['campus'] : "";
+    		!empty($search_data['contractor']) ? $data['contractor'] = $search_data['contractor'] : "";
+			!empty($search_data['returning']) ? $data['returning'] = $search_data['returning'] : "";
+    	}
+    	$this->db->select('users.user_id,
+						  users.elsd_id,
+						  CONCAT(users.first_name," ",users.middle_name," ",users.last_name) AS staff_name,
+						  users.email,
+						  users.personal_email,
+						  users.work_mobile,
+						  users.birth_date,
+						  users.status,
+						  user_roll.user_roll_name,
+						  school_campus.campus_name,
+						  contractors.contractor,
+						  countries.nationality,
+						  user_profile.scanner_id,
+						  user_profile.returning,
+						  user_verifications.interviewee1,
+						  user_verifications.interviewee2,
+						  user_verifications.interview_date,
+						  user_verifications.interview_notes,
+						  user_verifications.interview_outcome,
+						  user_verifications.interview_type,
+						  (SELECT COUNT(*) FROM profile_certificate WHERE certificate_type = 10 AND user_id = users.user_id) AS interview_eva_found,
+						  (SELECT certificate_file FROM profile_certificate WHERE certificate_type = 10 AND user_id = users.user_id) AS interview_eva_form_link,	
+						  users.created_date,
+						  users.updated_date
+						 ',FALSE);
+    	$this->db->from('users');
+		$this->db->join('user_profile', 'user_profile.user_id = users.user_id','left');
+		$this->db->join('user_verifications', 'user_verifications.user_id = users.user_id','left');
+		$this->db->join('school_campus', 'school_campus.campus_id = users.campus_id','left');
+		$this->db->join('user_roll', 'user_roll.user_roll_id = users.user_roll_id','left');
+		$this->db->join('contractors', 'contractors.id = user_profile.contractor','left');
+		$this->db->join('countries', 'countries.id = user_profile.nationality','left');
+		$this->db->where_not_in('users.user_roll_id',array('1','4'));
+		
+		if($type != "")
+		{
+			$arrTempStatus = user_profile_status($type);
+			$arrStatus = array_keys($arrTempStatus);
+			
+			if(count($arrStatus) > 0)
+				$this->db->where_not_in('users.status',$arrStatus);
+    	}
+		
+    	!empty($data) ? $this->db->like($data) : "";
+    	$this->db->order_by($order_by, $sort_order);
+		
+		if($limit > 0)
+			$this->db->limit($limit, $offset);
+    
+    	$query = $this->db->get();
+		echo $this->db->last_query();	
+		
+		if($limit == 0)
+			return $query->num_rows();
+			
     	if($query->num_rows() > 0) {
     		return $query;
     	}

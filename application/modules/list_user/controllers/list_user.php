@@ -134,8 +134,8 @@ $this->template->set_partial('sidebar', 'sidebar');
     	$per_page =  $grid_data['per_page'];
     	$offset =  $grid_data['offset'];
     
-    	$data = $this->list_teacher_student_model->get_other_user($per_page, $offset, $order_by, $sort_order, $grid_data['search_data']);
-    	$count = $this->list_teacher_student_model->count_all_other_mem($grid_data['search_data']);
+    	$data = $this->list_teacher_student_model->get_staff_members("newemployee",$per_page, $offset, $order_by, $sort_order, $grid_data['search_data']);
+    	$count = $this->list_teacher_student_model->get_staff_members("newemployee",0, 0, "", "", $grid_data['search_data']);
     	//$count = 10000;
     	/*
     	 * Output
