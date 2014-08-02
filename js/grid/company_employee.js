@@ -19,8 +19,6 @@ $(document).ready( function () {
 		            	{"sName": "nationality"},
 						{"sName": "birth_date"},
 						{"sName": "contractor"},
-						{"sName": "campus"},
-						{"sName": "contractor"},
 						{"sName": "ID",
        						"bSearchable": false,
        						"bSortable": false,
