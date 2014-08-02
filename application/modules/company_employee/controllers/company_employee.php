@@ -56,7 +56,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 						'users.birth_date',
 						'contractors.contractor',
 						'interview_eva_found',
-						'interview_eva_form_link'
+						'interview_eva_form_link',
 						'users.created_date',
 						'users.updated_date');
 						
