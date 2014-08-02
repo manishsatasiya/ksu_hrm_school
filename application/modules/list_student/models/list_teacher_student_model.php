@@ -162,6 +162,7 @@ class List_Teacher_Student_model extends CI_Model {
 						  school_campus.campus_name,
 						  contractors.contractor,
 						  countries.nationality,
+						  department.department_name,
 						  user_profile.scanner_id,
 						  user_profile.returning,
 						  user_verifications.interviewee1,
@@ -180,6 +181,7 @@ class List_Teacher_Student_model extends CI_Model {
 		$this->db->join('user_verifications', 'user_verifications.user_id = users.user_id','left');
 		$this->db->join('school_campus', 'school_campus.campus_id = users.campus_id','left');
 		$this->db->join('user_roll', 'user_roll.user_roll_id = users.user_roll_id','left');
+		$this->db->join('department', 'department.id = user_profile.department_id','left');
 		$this->db->join('contractors', 'contractors.id = user_profile.contractor','left');
 		$this->db->join('countries', 'countries.id = user_profile.nationality','left');
 		$this->db->where_not_in('users.user_roll_id',array('1','4'));
@@ -190,17 +192,19 @@ class List_Teacher_Student_model extends CI_Model {
 			$arrStatus = array_keys($arrTempStatus);
 			
 			if(count($arrStatus) > 0)
-				$this->db->where_not_in('users.status',$arrStatus);
+				$this->db->where_in('users.status',$arrStatus);
     	}
 		
     	!empty($data) ? $this->db->like($data) : "";
-    	$this->db->order_by($order_by, $sort_order);
+		
+		if($order_by != "")
+			$this->db->order_by($order_by, $sort_order);
 		
 		if($limit > 0)
 			$this->db->limit($limit, $offset);
     
     	$query = $this->db->get();
-		echo $this->db->last_query();	
+		//echo $this->db->last_query();	
 		
 		if($limit == 0)
 			return $query->num_rows();
