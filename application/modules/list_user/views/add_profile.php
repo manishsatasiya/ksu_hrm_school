@@ -375,7 +375,8 @@
                   <div class="row form-row">
                     <div class="col-md-12">
                       <?php print form_label('Nationality', 'ver_nationality',array('class'=>'form-label')); ?>
-                      <?php print form_input(array('name' => 'ver_nationality', 'id' => 'ver_nationality', 'value' => $this->session->flashdata('ver_nationality'), 'class' => 'form-control','placeholder' => 'Nationality')); ?>
+                      <?php print form_dropdown('ver_nationality',array('1'=>'Verified','2'=>'Un verified'),'','id="ver_nationality" class=""');
+					        //print form_input(array('name' => 'ver_nationality', 'id' => 'ver_nationality', 'value' => $this->session->flashdata('ver_nationality'), 'class' => 'form-control','placeholder' => 'Nationality')); ?>
                     </div>
                   </div>
                   <!--row 6.1 end-->
@@ -389,15 +390,17 @@
                   <?php */?>
                   	<div class="col-md-4">
 					  <?php print form_label('Degree Comments', 'degree_comments',array('class'=>'form-label')); ?>
-                      <?php print form_input(array('name' => 'degree_comments', 'id' => 'degree_comments', 'value' => ($user_data)?$user_data->degree_comments:$this->session->flashdata('degree_comments'), 'class' => 'form-control','placeholder' => 'Degree Comments')); ?>
+                      <?php print form_input(array('name' => 'degree_comments', 'id' => 'degree_comments', 'value' => $this->session->flashdata('degree_comments'), 'class' => 'form-control','placeholder' => 'Degree Comments')); ?>
                     </div>
                     <div class="col-md-4">
                       <?php print form_label('Experience', 'ver_experience',array('class'=>'form-label')); ?>
-                      <?php print form_input(array('name' => 'ver_experience', 'id' => 'ver_experience', 'value' => $this->session->flashdata('ver_experience'), 'class' => 'form-control','placeholder' => 'Experience')); ?>
+                      <?php print form_dropdown('ver_experience',array('1'=>'Verified','2'=>'Un verified'),'','id="ver_experience" class=""');
+					  		//print form_input(array('name' => 'ver_experience', 'id' => 'ver_experience', 'value' => $this->session->flashdata('ver_experience'), 'class' => 'form-control','placeholder' => 'Experience')); ?>
                     </div>
                     <div class="col-md-4">
                       <?php print form_label('References', 'ver_reference',array('class'=>'form-label')); ?>
-                      <?php print form_input(array('name' => 'ver_reference', 'id' => 'ver_reference', 'value' => $this->session->flashdata('ver_reference'), 'class' => 'form-control','placeholder' => 'References')); ?>
+                      <?php print form_dropdown('ver_reference',array('1'=>'Verified','2'=>'Un verified'),'','id="ver_reference" class=""');
+					  		//print form_input(array('name' => 'ver_reference', 'id' => 'ver_reference', 'value' => $this->session->flashdata('ver_reference'), 'class' => 'form-control','placeholder' => 'References')); ?>
                     </div>
                   </div>  
                   <!--row 6.2 end-->
@@ -408,19 +411,26 @@
                       <?php print form_label('Interview Details', '',array('class'=>'form-label')); ?>
                     </div>
                     <div class="col-md-6">
-                      <?php print form_input(array('name' => 'interviewee1', 'id' => 'interviewee1', 'value' => $this->session->flashdata('interviewee1'), 'class' => 'form-control','placeholder' => 'Interview 1')); ?>
+                      <?php //print form_input(array('name' => 'interviewee1', 'id' => 'interviewee1', 'value' => $this->session->flashdata('interviewee1'), 'class' => 'form-control','placeholder' => 'Interview 1')); ?>
+                      <?php print form_label('Interviewer 1', 'interviewee1',array('class'=>'form-label')); ?>
+                      <?php print form_dropdown('interviewee1',$other_user_list,$this->session->flashdata('interviewee1'),'id="interviewee1" class=""'); ?>
                     </div>
                     <div class="col-md-6">
-                      <?php print form_input(array('name' => 'interviewee2', 'id' => 'interviewee2', 'value' => $this->session->flashdata('interviewee2'), 'class' => 'form-control','placeholder' => 'Interview 2')); ?>
+                      <?php //print form_input(array('name' => 'interviewee2', 'id' => 'interviewee2', 'value' => $this->session->flashdata('interviewee2'), 'class' => 'form-control','placeholder' => 'Interview 2')); ?>
+                      <?php print form_label('Interviewer 2', 'interviewee2',array('class'=>'form-label')); ?>
+                      <?php print form_dropdown('interviewee2',$other_user_list,$this->session->flashdata('interviewee2'),'id="interviewee2" class=""'); ?>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                       <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                        <?php print form_input(array('name' => 'interview_date', 'id' => 'interview_date', 'value' => $this->session->flashdata('interview_date'), 'class' => 'form-control')); ?>
+                        <?php print form_input(array('name' => 'interview_date', 'id' => 'interview_date', 'value' => $this->session->flashdata('interview_date'), 'class' => 'form-control','placeholder' => 'Interview date')); ?>
                         <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
                     </div>
-                    <div class="col-md-6">
-                    	<?php print form_dropdown('interview_successful',array(''=>'Select Interview Result','1'=> 'Approved','2'=>'Declined'),'','id="interview_successful" class="select2 form-control"'); ?>
+                    <div class="col-md-4">
+                    	<?php print form_dropdown('interview_outcome',array(''=>'Select Interview Outcome','1'=> 'Approved','2'=>'Rejected','3'=>'Pending'),$this->session->flashdata('interview_outcome'),'id="interview_outcome" class=""'); ?>
                     </div>
+                    <div class="col-md-4">
+                            <?php print form_dropdown('interview_type',array(''=>'Select Interview Type','1'=> 'Face to face','2'=>'Skype','3'=>'Phone'),$this->session->flashdata('interview_type'),'id="interview_type" class=""'); ?>
+                        </div>
                     <div class="col-md-12">
                     	<?php print form_textarea(array('name' => 'interview_notes', 'id' => 'interview_notes', 'value' => $this->session->flashdata('interview_notes'), 'class' => 'form-control no-boarder')); ?>
                     </div>

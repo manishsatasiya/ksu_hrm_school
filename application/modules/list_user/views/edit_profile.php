@@ -1099,11 +1099,11 @@ print form_hidden('user_id', $user_data->user_unique_id);
                         </div>
                         <div class="col-md-4">
                           <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                            <?php print form_input(array('name' => 'interview_date', 'id' => 'interview_date', 'value' => ($user_data)?$user_data->interview_date:$this->session->flashdata('interview_date'), 'class' => 'form-control')); ?>
+                            <?php print form_input(array('name' => 'interview_date', 'id' => 'interview_date', 'value' => ($user_data)?$user_data->interview_date:$this->session->flashdata('interview_date'), 'class' => 'form-control','placeholder' => 'Interview date')); ?>
                             <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
                         </div>
                         <div class="col-md-4">
-                            <?php print form_dropdown('interview_outcome',array(''=>'Select Interview Outcome','1'=> 'Approved','2'=>'Rejected','3'=>'Pending'),($user_data)?$user_data->interview_outcome:$this->session->flashdata('interview_outcome'),'id="interview_successful" class=""'); ?>
+                            <?php print form_dropdown('interview_outcome',array(''=>'Select Interview Outcome','1'=> 'Approved','2'=>'Rejected','3'=>'Pending'),($user_data)?$user_data->interview_outcome:$this->session->flashdata('interview_outcome'),'id="interview_outcome" class=""'); ?>
                         </div>
                         <div class="col-md-4">
                             <?php print form_dropdown('interview_type',array(''=>'Select Interview Type','1'=> 'Face to face','2'=>'Skype','3'=>'Phone'),($user_data)?$user_data->interview_type:$this->session->flashdata('interview_type'),'id="interview_type" class=""'); ?>
