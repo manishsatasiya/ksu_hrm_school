@@ -604,7 +604,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 								$html .= '</tr>';
 								$html .= '<tr>';
 									$html .= '<td colspan="2" align="center">';
-									$html .= '<input type="submit" name="submit" value="Submit With / Without a reason">';
+									$html .= '<input class="btn btn-success" type="submit" name="submit" value="Submit With / Without a reason">';
 									$html .= '</td>';
 								$html .= '</tr>';
 							$html .= '</table>';

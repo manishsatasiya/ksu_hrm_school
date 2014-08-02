@@ -338,8 +338,7 @@
        <div class="info-box educatn-info">
         <div class="row">
           <div class="col-md-12">
-          <div class="sub-title">PMA Details</div>
-          <h4>PD Workshops: <?php echo count($user_data->user_workshop); ?></h4>
+          <div class="sub-title">PMA Details <div class="pull-right">PD Workshops: <?php echo count($user_data->user_workshop); ?></div></div>
           <ul>
             <?php
             if(!empty($user_data->user_workshop))

@@ -780,7 +780,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 							$html .= '</tr>';
 							$html .= '<tr>';
 								$html .= '<td colspan="2" align="center">';
-								$html .= '<input type="submit" name="submit" value="Add">';
+								$html .= '<input class="btn btn-success" type="submit" name="submit" value="Add">';
 								$html .= '</td>';
 							$html .= '</tr>';
 						$html .= '</table>';
