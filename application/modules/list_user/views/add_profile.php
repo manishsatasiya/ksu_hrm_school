@@ -245,7 +245,7 @@
                       <?php print form_dropdown('contractor',array(''=>'Select Contractor','1'=> 'ICEAT','2'=>'EdEx','3'=>'KSU'),'','id="contractor" class="select2 form-control"'); ?>
                     </div>
                     <div class="col-md-4">
-                      <?php print form_label('Location', 'campus_id',array('class'=>'form-label')); ?>
+                      <?php print form_label('Campus', 'campus_id',array('class'=>'form-label')); ?>
                       <?php print form_dropdown('campus_id',$campus_list,'','id="campus_id" class="select2 form-control"'); ?>
                     </div>
                     <div class="col-md-4">

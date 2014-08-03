@@ -97,7 +97,7 @@
                 </li>
                 <li>
                     <div class="col-md-6">Contractor: <?php echo $user_data->contractor_name; ?></div>
-                    <div class="col-md-6">Location: <?php echo $user_data->campus_name; ?></div>
+                    <div class="col-md-6">Campus: <?php echo $user_data->campus_name; ?></div>
                 </li>
                 <li class="line-mangr">Line Manager: <?php echo $user_data->line_manager; ?></li>
                 </ul>
@@ -888,7 +888,7 @@ print form_hidden('user_id', $user_data->user_unique_id);
                           <?php print form_dropdown('contractor',array(''=>'Select Contractor','1'=> 'ICEAT','2'=>'EdEx','3'=>'KSU'),($user_data)?$user_data->contractor:$this->session->flashdata('contractor'),'id="contractor" class="select2 form-control"'); ?>
                         </div>
                         <div class="col-md-4">
-                          <?php print form_label('Location', 'campus_id',array('class'=>'form-label')); ?>
+                          <?php print form_label('Campus', 'campus_id',array('class'=>'form-label')); ?>
                           <?php print form_dropdown('campus_id',$campus_list,($user_data)?$user_data->campus_id.'j':$this->session->flashdata('campus_id'),'id="campus_id" class="select2 form-control"'); ?>
                         </div>
                         <div class="col-md-4">
