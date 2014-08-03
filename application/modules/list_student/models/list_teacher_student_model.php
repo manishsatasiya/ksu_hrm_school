@@ -138,23 +138,36 @@ class List_Teacher_Student_model extends CI_Model {
 	public function get_staff_members($type="",$limit = 0, $offset = 0, $order_by = "username", $sort_order = "asc", $search_data) {
     	if (!empty($search_data)) {
     		!empty($search_data['user_id']) ? $data['user_id'] = $search_data['user_id'] : "";
-    		!empty($search_data['first_name']) ? $data['first_name'] = $search_data['first_name'] : "";
-    		!empty($search_data['elsd_id']) ? $data['elsd_id'] = $search_data['elsd_id'] : "";
-    		!empty($search_data['scanner_id']) ? $data['scanner_id'] = $search_data['scanner_id'] : "";
-    		!empty($search_data['gender']) ? $data['gender'] = $search_data['gender'] : "";
+			!empty($search_data['elsd_id']) ? $data['elsd_id'] = $search_data['elsd_id'] : "";
+    		!empty($search_data['staff_name']) ? $data['CONCAT(users.first_name," ",users.middle_name," ",users.last_name)'] = $search_data['staff_name'] : "";
     		!empty($search_data['email']) ? $data['email'] = $search_data['email'] : "";
-    		!empty($search_data['mobile']) ? $data['mobile'] = $search_data['mobile'] : "";
+    		!empty($search_data['personal_email']) ? $data['personal_email'] = $search_data['personal_email'] : "";
     		!empty($search_data['user_roll_name']) ? $data['user_roll_name'] = $search_data['user_roll_name'] : "";
-			!empty($search_data['co_ordinator']) ? $data['co_ordinator'] = $search_data['co_ordinator'] : "";
-    		!empty($search_data['campus']) ? $data['campus'] = $search_data['campus'] : "";
-    		!empty($search_data['contractor']) ? $data['contractor'] = $search_data['contractor'] : "";
+    		!empty($search_data['campus_name']) ? $data['campus_name'] = $search_data['campus_name'] : "";
+    		!empty($search_data['contractor']) ? $data['contractors.contractor'] = $search_data['contractor'] : "";
+			!empty($search_data['nationality']) ? $data['countries.nationality'] = $search_data['nationality'] : "";
+    		!empty($search_data['department_name']) ? $data['department.department_name'] = $search_data['department_name'] : "";
+    		!empty($search_data['scanner_id']) ? $data['scanner_id'] = $search_data['scanner_id'] : "";
 			!empty($search_data['returning']) ? $data['returning'] = $search_data['returning'] : "";
     	}
 		
+		$strQueryAllStatus = "";
 		$strQueryIntType = "";
 		$strQueryIntOutCome = "";
+		$arrAllStatus = user_profile_status();
 		$arrIntType = get_interview_type();
 		$arrIntOutCome = get_interview_outcome();
+		
+		foreach($arrAllStatus AS $key=>$val)
+		{
+			if($key != "")
+				$strQueryAllStatus .= " WHEN $key THEN '$val' ";
+		}
+		
+		if($strQueryAllStatus != "")
+		{
+			$strQueryAllStatus = " CASE users.status $strQueryAllStatus  ELSE 'N/A' END ";
+		}
 		
 		foreach($arrIntType AS $key=>$val)
 		{
@@ -183,16 +196,16 @@ class List_Teacher_Student_model extends CI_Model {
 						  CONCAT(users.first_name," ",users.middle_name," ",users.last_name) AS staff_name,
 						  users.email,
 						  users.personal_email,
-						  users.work_mobile,
-						  users.birth_date,
-						  users.status,
+						  users.cell_phone,
+						  users.birth_date,'.
+						  $strQueryAllStatus.' AS status,
 						  user_roll.user_roll_name,
 						  school_campus.campus_name,
 						  contractors.contractor,
 						  countries.nationality,
 						  department.department_name,
 						  user_profile.scanner_id,
-						  user_profile.returning,
+						  IF(user_profile.returning = 1,"Yes","No") AS returning,
 						  CONCAT(intr1.first_name," ",intr1.middle_name," ",intr1.last_name) AS interviewer1,
 						  CONCAT(intr2.first_name," ",intr2.middle_name," ",intr2.last_name) AS interviewer2,
 						  user_verifications.interview_date,
@@ -226,6 +239,18 @@ class List_Teacher_Student_model extends CI_Model {
     	}
 		
     	!empty($data) ? $this->db->like($data) : "";
+		
+		if(($this->session->userdata('campus_id') > 0 || $this->session->userdata('campus') != ""))
+		{
+			if($this->session->userdata('campus_id') > 0)
+				$this->db->where('users.campus_id',$this->session->userdata('campus_id'));
+			else if($this->session->userdata('campus') != "")
+				$this->db->where('users.campus',$this->session->userdata('campus'));	
+		}
+        
+		if($this->session->userdata('contractor') > 0){
+			$this->db->where('user_profile.contractor',$this->session->userdata('contractor'));
+		}
 		
 		if($order_by != "")
 			$this->db->order_by($order_by, $sort_order);

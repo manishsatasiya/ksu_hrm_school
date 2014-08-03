@@ -15,7 +15,7 @@ $(document).ready( function () {
 		            	{"sName": "staff_name"},
 		            	{"sName": "email"},
 		            	{"sName": "personal_email"},
-		            	{"sName": "work_mobile"},
+		            	{"sName": "cell_phone"},
 		            	{"sName": "nationality"},
 						{"sName": "birth_date"},
 						{"sName": "contractor"},

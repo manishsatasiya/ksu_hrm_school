@@ -128,7 +128,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 						'staff_name',
 						'users.email',
 						'users.personal_email',
-						'users.work_mobile',
+						'users.cell_phone',
 						'contractors.contractor',
 						'users.status',
 						'user_roll.user_roll_name',
@@ -167,7 +167,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 				$row[] = $result_row['staff_name'];
 				$row[] = $result_row['email'];
 				$row[] = $result_row['personal_email'];
-				$row[] = $result_row['work_mobile'];
+				$row[] = $result_row['cell_phone'];
 				$row[] = $result_row['contractor'];
 				$row[] = $result_row['status'];
 				$row[] = $result_row['user_roll_name'];
