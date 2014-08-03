@@ -33,6 +33,7 @@ class Add_employee extends Private_Controller {
 			$username = $this->input->post('email');
 			
 			if($user_id > 0) {
+				$this->list_user_model->profile_update_log($user_id,$this->input->post('status'));
 				$user_data = array(
 							'status'       => $this->input->post('status'),
 							'first_name'       => $this->input->post('first_name'),

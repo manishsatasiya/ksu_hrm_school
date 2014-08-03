@@ -764,6 +764,8 @@ $this->template->set_partial('sidebar', 'sidebar');
 					redirect('list_user/edit_profile/'.$user_id);
 					//exit();
 				}else {
+					$this->list_user_model->profile_update_log($user_id,$this->input->post('status'));
+					
 					$old_roll_id = $this->list_user_model->get_user_roll($user_id);
 					$user_data = array(
 							'status'       => $this->input->post('status'),
