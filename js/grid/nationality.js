@@ -14,6 +14,7 @@ $(document).ready( function () {
 		            	{"sName": "id"},
 						{"sName": "nationality"},
 						{"sName": "native"},
+						{"sName": "accepted"},
 						{	"sName": "ID",
        						"bSearchable": false,
        						"bSortable": false,
@@ -32,7 +33,6 @@ $(document).ready( function () {
         aoColumns: [ 
 				null,
 				{ type: "text" },
-				null,
 				null,
 				null,
 				null

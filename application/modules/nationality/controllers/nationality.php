@@ -69,10 +69,12 @@ class Nationality extends Private_Controller {
 				$id = $result_row["id"];
 				$nationality = $result_row["nationality"];
 				$native = $result_row["native"];
-				
+				$accepted = $result_row["accepted"];
+								
 				$row[] = $id;
 				$row[] = $nationality;
     			$row[] = $native;
+				$row[] = $accepted;
     			$row[] = $id;
 				$output['aaData'][] = $row;
     		}
