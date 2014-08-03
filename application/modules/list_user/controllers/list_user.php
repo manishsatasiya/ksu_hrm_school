@@ -611,7 +611,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 			}else {
 				$elsd_id = generateElsdId($this->input->post('gender'));
 				$user_data = array(
-						'active'       => $this->input->post('status'),
+						'status'       => $this->input->post('status'),
 						'first_name'       => $this->input->post('first_name'),
 						'middle_name'       => $this->input->post('middle_name'),
 						'last_name'       => $this->input->post('last_name'),
@@ -766,7 +766,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 				}else {
 					$old_roll_id = $this->list_user_model->get_user_roll($user_id);
 					$user_data = array(
-							'active'       => $this->input->post('status'),
+							'status'       => $this->input->post('status'),
 							'first_name'       => $this->input->post('first_name'),
 							'middle_name'       => $this->input->post('middle_name'),
 							'last_name'       => $this->input->post('last_name'),

@@ -697,7 +697,7 @@ print form_hidden('user_id', $user_data->user_unique_id);
                       <div class="row form-row">
                         <div class="col-md-4">
                           <?php print form_label('Status', 'status',array('class'=>'form-label')); ?>
-                          <?php print form_dropdown('status',$user_profile_status,($user_data)?$user_data->active:$this->session->flashdata('status'),'id="status" class="select2 form-control"'); ?>
+                          <?php print form_dropdown('status',$user_profile_status,($user_data)?$user_data->status:$this->session->flashdata('status'),'id="status" class="select2 form-control"'); ?>
                         </div>
                         <div class="col-md-4">
                           <?php print form_label('Gender', 'gender',array('class'=>'form-label')); ?>
