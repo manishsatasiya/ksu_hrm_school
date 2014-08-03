@@ -60,16 +60,16 @@ $(document).ready( function () {
 					 { type: "text" },
 	        		 { type: "text" },
 	                 { type: "text" },
-	                 { type: "text" },
+	                 null,
 	                 { type: "text" },
 	                 null,
 	                 { type: "text" },
 					 { type: "text" },
 	                 { type: "text" },
-	                 { type: "text" },
-					 { type: "text" },
-	                 { type: "text" },
-	                 { type: "text" },
+	                 null,
+					 null,
+	                 null,
+	                 null,
 	                 null
 	            ]
         });	
