@@ -213,7 +213,7 @@ class List_Teacher_Student_model extends CI_Model {
 						  $strQueryIntOutCome.' AS interview_outcome,'.
 						  $strQueryIntType.' AS interview_type,
 						  (SELECT COUNT(*) FROM profile_certificate WHERE certificate_type = 10 AND user_id = users.user_id) AS interview_eva_found,
-						  (SELECT certificate_file FROM profile_certificate WHERE certificate_type = 10 AND user_id = users.user_id) AS interview_eva_form_link,	
+						  (SELECT GROUP_CONCAT(certificate_file) FROM profile_certificate WHERE certificate_type = 10 AND user_id = users.user_id) AS interview_eva_form_link,	
 						  users.created_date,
 						  users.updated_date
 						 ',FALSE);
