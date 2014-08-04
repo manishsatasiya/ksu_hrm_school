@@ -6638,7 +6638,7 @@ border-bottom-left-radius: 2px;
 
 
 /*** Data-table customization **/
-.dataTables_wrapper.form-inline { overflow:hidden;}
+.dataTables_wrapper.form-inline {overflow:auto;}
 .pagination ul > li {
 	display:inline-block;
 	padding-left: 0px;
