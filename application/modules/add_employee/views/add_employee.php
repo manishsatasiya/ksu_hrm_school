@@ -4,17 +4,13 @@
   <div class="col-md-12">
     <div class="grid simple ">
       <div class="grid-title"><h4><?php if($user_id > 0){echo 'Edit';}else{ echo 'Add New';} ?><span class="semi-bold"> Employee</span></h4></div>
-      <div class="grid-body ">
-        
-        	
+      <div class="grid-body ">        	
           <?php print form_open_multipart('add_employee', array('id' => 'add_employee','name'=>'add_employee')) ."\r\n"; ?>
-            
             	<?php
 				if ($this->session->flashdata('message')) {
 					print "<br><div class=\"alert alert-error\">". $this->session->flashdata('message') ."</div>";
 				}
 				?>
-              
                   <div class="row form-row">
                     <div class="col-md-12">
                       <?php print form_label('Status', 'status',array('class'=>'form-label')); ?>
@@ -112,11 +108,40 @@
                   </div>
                   
                   <?php
-				  if($user_id == 0){ ?>
+				   ?>
                   <h4 class="semi-bold">Reference <input type="button" id="add_reference_div" class="btn btn-primary" value="Add" /></h4>
-                  <ol id="references"></ol>
+                  <ol id="references">
+                  	<?php
+					if(!empty($user_data->cv_reference))
+					{ 
+						foreach($user_data->cv_reference as $cv_reference)
+						{ ?>
+                        	<li>
+                              <div class="row form-row">
+                                <div class="col-md-3">
+                                  <label class="form-label">Company Name</label>
+                                  <input type="text" name="cv_reference[company_name][]" value="<?php echo $cv_reference['company_name']; ?>" class="form-control"  />
+                                </div>
+                                <div class="col-md-3">
+                                  <label class="form-label">Referee Name</label>
+                                  <input type="text" name="cv_reference[name][]" value="<?php echo $cv_reference['name']; ?>" class="form-control"  />
+                                </div>
+                                <div class="col-md-3">
+                                  <label class="form-label">Email Address</label>
+                                  <input type="text" name="cv_reference[email][]" value="<?php echo $cv_reference['email']; ?>" class="form-control"  />
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="form-label">&nbsp;</label>
+                                    <input type="button" id="" class="btn btn-danger " onclick="javasctipt:deleteMulBox(this);" value="Delete" />
+                                </div>
+                              </div>
+                          </li>
+                        <?php
+						}
+					} ?>
+                  </ol>
                   <div class="hide" id="reference_main_sample">
-                       <li>
+                     <li>
                        	  <div class="row form-row">
                             <div class="col-md-3">
                               <label class="form-label">Company Name</label>
@@ -139,7 +164,58 @@
                   </div>
                   
                   <h4 class="semi-bold">Employment History <input type="button" id="add_experience_div" class="btn btn-primary" value="Add" /></h4>
-                  <ol id="experiences"></ol>
+                  <ol id="experiences">
+                  	<?php
+					if(!empty($user_data->user_experience))
+					{ 
+						foreach($user_data->user_experience as $experience)
+						{ ?>
+                        <li>
+                       		<div class="row form-row">
+                                <div class="col-md-1 pull-right">
+                                    <input type="button" id="" class="btn btn-danger " onclick="javasctipt:deleteMulBox(this);" value="Delete" />
+                                </div>
+                       		</div>
+                            <div class="row form-row">
+                                <div class="col-md-6">
+                                    <div class="form_label2"><?php print form_label('Company', 'company'); ?></div>
+                                    <div class="input_box_thin"><?php print form_input(array('name' => 'experience[company][]', 'id' => 'company', 'value' => $experience['company'], 'class' => 'form-control')); ?></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form_label2"><?php print form_label('Position', 'position'); ?></div>
+                                    <div class="input_box_thin"><?php print form_input(array('name' => 'experience[position][]', 'id' => 'position', 'value' => $experience['position'], 'class' => 'form-control')); ?></div>
+                                </div>	
+                                <div class="clear"></div>
+                            </div>
+                            
+                            <div class="row form-row">
+                                <div class="col-md-6">
+                                    <div class="form_label2"><?php print form_label('Start date', 'start_date'); ?></div>
+                                    <div class="input-append success date col-md-10 no-padding">	
+                                        <?php print form_input(array('name' => 'experience[start_date][]', 'id' => 'date', 'value' => $experience['start_date'], 'class' => 'form-control')); ?>
+                                        <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form_label2"><?php print form_label('End Date', 'end_date'); ?></div>
+                                    <div class="input-append success date col-md-10 no-padding">	
+                                        <?php print form_input(array('name' => 'experience[end_date][]', 'id' => 'date', 'value' => $experience['end_date'], 'class' => 'form-control')); ?>
+                                        <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="row form-row">
+                                <div class="col-md-12">
+                                    <div class="form_label2"><?php print form_label('Reason for Leaving', 'departure_reason'); ?></div>
+                                    <div class="input_box_thin"><?php print form_input(array('name' => 'experience[departure_reason][]', 'id' => 'departure_reason', 'value' => $experience['departure_reason'], 'class' => 'form-control')); ?></div>
+                                </div>
+                            </div>
+                       </li>
+                    <?php
+						}
+					} ?>    
+                  </ol>
                   <div class="hide" id="experience_main_sample">
                        <li>
                        		<div class="row form-row">
@@ -186,7 +262,37 @@
                   </div>
                   
                   <h4 class="semi-bold">Certificates <input type="button" class="btn btn-primary" id="add_certificate_div" value="Add" /></h4>
-                  <ol id="certificates"></ol>
+                  <ol id="certificates">
+                  	<?php
+					if(!empty($user_data->user_certificate))
+					{ 
+						foreach($user_data->user_certificate as $certificate)
+						{ ?>
+                         <li>
+                              <div class="row form-row">
+                                <div class="col-md-4">
+                                    <div class="form_label2"><?php print form_label('Certificate', 'certificate_id'); ?></div>
+                                    <div class="input_box_thin"><?php  
+                                        print form_dropdown('certificates[certificate_id][]',$certificate_list,$certificate['qualification_id'],'id="certificate_id" class=""'); 
+                                    ?></div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form_label2"><?php print form_label('Date', 'date');?></div>
+                                    <div class="input-append success date col-md-10 no-padding">	
+                                        <?php print form_input(array('name' => 'certificates[date][]', 'id' => 'date', 'value' => $certificate['date'], 'class' => 'form-control')); ?>
+                                        <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">&nbsp;</label>
+                                    <input type="button" id="" class="btn btn-danger " onclick="javasctipt:deleteMulBox(this);" value="Delete" />
+                                </div>
+                              </div>
+                          </li>
+                        <?php
+						}
+					} ?>
+                  </ol>
                   <div class="hide" id="certificate_main_sample">
                        <li>
                        	  <div class="row form-row">
@@ -212,7 +318,52 @@
                   </div>
                   
                   <h4 class="semi-bold">Qualification <input type="button" class="btn btn-primary" id="add_qualification_div" value="Add" /></h4>
-                  <ol id="qualifications"></ol>
+                  <ol id="qualifications">
+                  	<?php
+					if(!empty($user_data->user_qualification))
+					{ 
+						foreach($user_data->user_qualification as $qualification)
+						{ ?>
+                        <li>
+                       		<div class="row form-row">
+                                <div class="col-md-1 pull-right">
+                                    <input type="button" id="" class="btn btn-danger " onclick="javasctipt:deleteMulBox(this);" value="Delete" />
+                                </div>
+                       		</div>
+                            
+                            <div class="row form-row">
+                                <div class="col-md-6">
+                                    <div class="form_label2"><?php print form_label('Qualification', 'qualification_id'); ?></div>
+                                    <div class="input_box_thin"><?php  
+                                        print form_dropdown('qualifications[qualification_id][]',$qualifications_list,$qualification['qualification_id'],'id="qualification_id" class="formselect"'); 
+                                    ?></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form_label2"><?php print form_label('English Related', 'subject_related'); ?></div>
+                                    <div class="input_box_thin"><?php print form_dropdown('qualifications[subject_related][]',array(''=>'Select','0'=>'No','1'=>'Yes'),$qualification['subject_related'],'id="subject_related" class="formselect"'); ?></div>
+                                </div>	
+                                <div class="clear"></div>
+                            </div>
+                            
+                            <div class="row form-row">
+                                <div class="col-md-6">
+                                    <div class="form_label2"><?php print form_label('Subject', 'subject'); ?></div>
+                                    <div class="input_box_thin"><?php print form_input(array('name' => 'qualifications[subject][]', 'id' => 'subject', 'value' => $qualification['subject'], 'class' => 'form-control')); ?></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form_label2"><?php print form_label('Date', 'date'); ?></div>
+                                    <div class="input-append success date col-md-10 no-padding">	
+                                        <?php print form_input(array('name' => 'qualifications[date][]', 'id' => 'date', 'value' => $qualification['date'], 'class' => 'form-control')); ?>
+                                        <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </li>
+                         <?php
+						}
+					} ?>
+                  </ol>
                   <div class="hide" id="qualification_main_sample">
                   		<li>
                        		<div class="row form-row">
@@ -258,43 +409,163 @@
                   		<div class="col-md-6">
                     		<label>Photo</label>
                             <input type="file" name="photo[]" id="photo" class="form-control input-sm" accept="image/jpg|image/jpeg|image/png|application/pdf" multiple>
+                            <?php
+							if(isset($user_documents["1"]) && count($user_documents["1"]) > 0)
+							{
+								foreach($user_documents["1"] as $_document_id => $_document) {
+							?>
+								<a href="<?php print base_url().$_document; ?>" target="_blank"> <!--<i class="fa fa-picture-o"></i>-->
+									<img src="<?php print base_url().$_document; ?>" width="100" />
+								</a>
+								<a class="btn-delet" title="Delete" href="<?php print base_url()?>list_user/delete_profile_document/<?php echo $user_data->user_unique_id?>/1/<?php echo $_document_id; ?>"><i class="fa fa-trash-o"></i></a>
+                                <input type="checkbox" name="delete_document[1][]" value="<?php echo $_document_id; ?>" />
+							<?php
+								}
+							}
+							?>
                         </div>
                         <div class="col-md-6">
                         	<label>Passport</label>
                             <input type="file" name="passport[]" id="passport" class="form-control input-sm" accept="image/jpg|image/jpeg|image/png|application/pdf" multiple>
+                            <?php
+							if(isset($user_documents["2"]) && count($user_documents["2"]) > 0)
+							{
+								foreach($user_documents["2"] as $_document_id => $_document) {
+							?>
+								<div>
+								<a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-book"></i></a>
+								<a class="btn-delet" title="Delete" href="<?php print base_url()?>list_user/delete_profile_document/<?php echo $user_data->user_unique_id?>/2/<?php echo $_document_id; ?>"><i class="fa fa-trash-o"></i></a>
+                                <input type="checkbox" name="delete_document[2][]" value="<?php echo $_document_id; ?>" />
+								</div>
+							<?php
+								}
+							}
+							?>
                         </div>
                         <div class="col-md-6">
                         	<label>CV</label>
                             <input type="file" name="cv[]" id="cv" class="form-control input-sm" accept="image/jpg|image/jpeg|image/png|application/pdf" multiple>
+                            <?php
+							if(isset($user_documents["9"]) && count($user_documents["9"]) > 0)
+							{
+								foreach($user_documents["9"] as $_document_id => $_document) {
+							?>
+								<div>
+								<a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-file-text"></i></a>
+								<a class="btn-delet" title="Delete" href="<?php print base_url()?>list_user/delete_profile_document/<?php echo $user_data->user_unique_id?>/10/<?php echo $_document_id; ?>"><i class="fa fa-trash-o"></i></a>
+                                <input type="checkbox" name="delete_document[9][]" value="<?php echo $_document_id; ?>" />
+								</div>
+							<?php
+								}
+							}
+							?>
                         </div>
                         <div class="col-md-6">
                     		<label>Degree Certificate</label>
                             <input type="file" name="Degree_Certificate[]" id="Degree_Certificate" class="form-control input-sm" accept="image/jpg|image/jpeg|image/png|application/pdf" multiple>
+                            <?php
+							if(isset($user_documents["3"]) && count($user_documents["3"]) > 0)
+							{
+								foreach($user_documents["3"] as $_document_id => $_document) {
+							?>
+								<div>
+								<a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-file-text"></i></a>
+								<input type="checkbox" name="delete_document[3][]" value="<?php echo $_document_id; ?>" />
+								</div>
+							<?php
+								}
+							}
+							?>
                         </div>
                         <div class="col-md-6">
                         	<label>Master Certificate</label>
                             <input type="file" name="Master_Certificate[]" id="Master_Certificate" class="form-control input-sm" accept="image/jpg|image/jpeg|image/png|application/pdf" multiple>
+                            <?php
+							if(isset($user_documents["4"]) && count($user_documents["4"]) > 0)
+							{
+								foreach($user_documents["4"] as $_document_id => $_document) {
+							?>
+								<div>
+								<a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-file-text"></i></a>
+								<input type="checkbox" name="delete_document[4][]" value="<?php echo $_document_id; ?>" />
+								</div>
+							<?php
+								}
+							}
+							?>
                         </div>
                         <div class="col-md-6">
-                        	<label>Phd Certificate</label>
+                        	<label>PHD Certificate</label>
                             <input type="file" name="Phd_Certificate[]" id="Phd_Certificate" class="form-control input-sm" accept="image/jpg|image/jpeg|image/png|application/pdf" multiple>
+                            <?php
+							if(isset($user_documents["5"]) && count($user_documents["5"]) > 0)
+							{
+								foreach($user_documents["5"] as $_document_id => $_document) {
+							?>
+								<div>
+								<a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-file-text"></i></a>
+								<input type="checkbox" name="delete_document[5][]" value="<?php echo $_document_id; ?>" />
+								</div>
+							<?php
+								}
+							}
+							?>
                         </div>
                         <div class="col-md-6">
                     		<label>Teaching Certificate</label>
                             <input type="file" name="Teaching_Certificate[]" id="Teaching_Certificate" class="form-control input-sm" accept="image/jpg|image/jpeg|image/png|application/pdf" multiple>
+                            <?php
+							if(isset($user_documents["6"]) && count($user_documents["6"]) > 0)
+							{
+								foreach($user_documents["6"] as $_document_id => $_document) {
+							?>
+								<div>
+								<a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-file-text"></i></a>
+								<input type="checkbox" name="delete_document[6][]" value="<?php echo $_document_id; ?>" />
+								</div>
+							<?php
+								}
+							}
+							?>
                         </div>
                         <div class="col-md-6">
                         	<label>Other Certificate</label>
                             <input type="file" name="Other_Certificate[]" id="Other_Certificate" class="form-control input-sm" accept="image/jpg|image/jpeg|image/png|application/pdf" multiple>
+                            <?php
+							if(isset($user_documents["8"]) && count($user_documents["8"]) > 0)
+							{
+								foreach($user_documents["8"] as $_document_id => $_document) {
+							?>
+								<div>
+								<a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-file-text"></i></a>
+								<input type="checkbox" name="delete_document[8][]" value="<?php echo $_document_id; ?>" />
+								</div>
+							<?php
+								}
+							}
+							?>
                         </div>
                         <div class="col-md-6">
                         	<label>Interview evaluation form</label>
                             <input type="file" name="interview_evaluation_form[]" id="interview_evaluation_form" class="form-control input-sm" accept="image/jpg|image/jpeg|image/png|application/pdf" multiple>
+                            <?php
+							if(isset($user_documents["10"]) && count($user_documents["10"]) > 0)
+							{
+								foreach($user_documents["10"] as $_document_id => $_document) {
+							?>
+								<div>
+								<a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-file-text"></i></a>
+								<input type="checkbox" name="delete_document[10][]" value="<?php echo $_document_id; ?>" />
+								</div>
+							<?php
+								}
+							}
+							?>
                         </div>
                   </div>
                   
                   <?php
-				  } ?>
+				   ?>
                   <div class="form-actions">
                   		<div class="pull-right">
                         	<?php print form_hidden('user_id', $user_id); ?>
@@ -305,8 +576,14 @@
           <?php
 		  		print form_close() ."\r\n";
 			?>
-
-        
+			<script>
+			var add_default_box = true;
+			<?php 
+			if($user_id > 0){ ?>
+				add_default_box = false;
+				<?php
+			}?>
+        	</script>
       </div>
     </div>
   </div>

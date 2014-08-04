@@ -55,6 +55,160 @@ class Add_employee extends Private_Controller {
 						);						
 				grid_data_updates($profile_data,'user_profile', 'user_id',$user_id);
 				
+				grid_delete('user_cv_reference','user_id',$user_id);
+				$cv_reference = $this->input->post('cv_reference');
+				$cv_reference_count = count($cv_reference['company_name']);
+				if($cv_reference_count > 1){
+					for($i=0;$i < $cv_reference_count -1;$i++){
+						$company_name = $cv_reference['company_name'][$i];
+						$name = $cv_reference['name'][$i];
+						$email = $cv_reference['email'][$i];
+						
+						$user_cv_reference = array(
+							'user_id'       => $user_id,
+							'company_name'       => $company_name,
+							'name'       => $name,
+							'email'       => $email
+						);
+						grid_add_data($user_cv_reference,'user_cv_reference');
+					}
+				}
+				
+				grid_delete('user_workhistory','user_id',$user_id);
+				$experience = $this->input->post('experience');
+				$experience_count = count($experience['company']);
+				if($experience_count > 1){
+					for($i=0;$i < $experience_count -1;$i++){
+						$company = $experience['company'][$i];
+						$position = $experience['position'][$i];
+						$start_date = date('Y-m-d',strtotime($experience['start_date'][$i]));
+						$end_date = date('Y-m-d',strtotime($experience['end_date'][$i]));
+						$departure_reason = $experience['departure_reason'][$i];
+						$created_at = date('Y-m-d H:i:s');
+						
+						$user_workhistory = array(
+							'user_id'       => $user_id,
+							'company'       => $company,
+							'position'       => $position,
+							'start_date'       => $start_date,
+							'end_date'       => $end_date,
+							'departure_reason'       => $departure_reason,
+							'created_at'       => $created_at
+						);
+						grid_add_data($user_workhistory,'user_workhistory');
+					}
+				}
+				
+				grid_delete('user_qualification','user_id',$user_id);
+				$certificates = $this->input->post('certificates');
+				$certificates_count = count($certificates['certificate_id']);
+				if($certificates_count > 1){
+					for($i=0;$i < $certificates_count -1;$i++){
+						$certificate_id = $certificates['certificate_id'][$i];
+						$date = date('Y-m-d',strtotime($certificates['date'][$i]));
+						$created_at = date('Y-m-d H:i:s');
+						
+						$user_certificate = array(
+							'user_id'       => $user_id,
+							'type'       => 'certificate',
+							'qualification_id'       => $certificate_id,
+							'date'       => $date,
+							'created_at'       => $created_at
+						);
+						grid_add_data($user_certificate,'user_qualification');
+					}
+				}
+				
+				$qualifications = $this->input->post('qualifications');
+				$qualifications_count = count($qualifications['qualification_id']);
+				if($qualifications_count > 1){
+					for($i=0;$i < $qualifications_count -1;$i++){
+						$qualification_id = $qualifications['qualification_id'][$i];
+						$subject_related = $qualifications['subject_related'][$i];
+						$subject = $qualifications['subject'][$i];
+						$date = date('Y-m-d',strtotime($qualifications['date'][$i]));
+						$created_at = date('Y-m-d H:i:s');
+						
+						$user_qualification = array(
+							'user_id'       => $user_id,
+							'type'       => 'qualification',
+							'qualification_id'       => $qualification_id,
+							'date'       => $date,
+							'subject_related'       => $subject_related,
+							'subject'       => $subject,
+							'created_at'       => $created_at
+						);
+						grid_add_data($user_qualification,'user_qualification');
+					}
+				}
+				
+				$arrCertificateType = getCertificateType();
+				$curr_dir = str_replace("\\","/",getcwd()).'/';
+				//upload and update the file
+				$config['upload_path'] = $curr_dir.'uploads/'.$user_id.'/';
+				
+				$config['allowed_types'] = 'jpg|jpeg|pdf|png|xlsx|doc|zip|docx|csv';
+				
+				$config['overwrite'] = true;
+				$config['remove_spaces'] = true;
+				$config['max_size']	= '2048';// in KB
+			
+				//load upload library
+				$this->load->library('upload', $config);
+				
+				$dir_exist = true; // flag for checking the directory exist or not
+				if(!is_dir($curr_dir.'uploads/'.$user_id))
+				{
+					mkdir($curr_dir.'uploads/'.$user_id, 0777, true);
+					$dir_exist = true; // dir not exist
+				}
+				$data = array();
+				$errors = "";
+				if($dir_exist)
+				{
+					foreach($_FILES as $field => $files)
+					{
+						if(count($files['name']) >0)
+						{
+							$file_names = array();
+							foreach($files['name'] as $file_name) {
+								$file_names[] = $field.'_'.$file_name;
+							}
+							$config['file_name'] = $file_names;
+							$this->upload->initialize($config);
+							if($this->upload->do_multi_upload($field))
+							{
+								$data[$field] = $this->upload->get_multi_upload_data();
+							}else{
+								$errors .= str_replace("_"," ",$field).': '.$this->upload->display_errors()."<br>";
+							}
+							
+						}
+					}
+				}
+				
+				if(is_array($data) && count($data) > 0)
+				{
+					$table = 'profile_certificate';
+							
+					foreach($data AS $certificate_type=>$arrFiles)
+					{
+						if(isset($arrCertificateType[$certificate_type]) && count($arrFiles) > 0)
+						{
+							foreach($arrFiles as $file_data) {
+								$certificate_file = 'uploads/'.$user_id.'/'.$file_data["file_name"];
+								
+								$data_document['user_id'] = $user_id;
+								$data_document['certificate_type'] = $arrCertificateType[$certificate_type];
+								$data_document['certificate_file'] = $certificate_file;
+								
+								//$this->list_user_model->delete_user_document($user_id,$certificate_type);
+								grid_add_data($data_document,$table);
+							}
+						}
+					}
+				}
+				
 				if($this->input->post('status') == 3) {
 					//$this->load->module('email_template');
 					//$this->email_template->send_email('pankaj.bhakhar9@gmail.com',array());
@@ -278,13 +432,90 @@ class Add_employee extends Private_Controller {
 			redirect('/company_employee');
 		}
 		
-		$user_data = array();
+		$user_data = $user_documents = array();
 		if($user_id > 0){
 			$user_data = $this->add_employee_model->get_employee_data($user_id);
+
+			$cv_reference_data = $this->list_user_model->get_cv_reference($user_id);
+			$cv_reference = array();
+			if($cv_reference_data){
+				$i = 1;
+				foreach($cv_reference_data->result_array() as $_cv_reference_data){
+					$row = array();
+					$row['referance_id'] = $_cv_reference_data['referance_id'];
+					$row['company_name'] = $_cv_reference_data['company_name'];
+					$row['name'] = $_cv_reference_data['name'];
+					$row['position'] = $_cv_reference_data['position'];
+					$row['contact_number'] = $_cv_reference_data['contact_number'];
+					$row['email'] = $_cv_reference_data['email'];
+					$row['cv_confirm'] = $_cv_reference_data['cv_confirm'];
+					
+					$cv_reference[] = $row;
+				}
+			}
+			
+			$user_experience_data = $this->list_user_model->get_user_experience($user_id);
+			$user_experience = array();
+			$user_experience_count = 0;
+			if($user_experience_data){
+				foreach($user_experience_data->result_array() as $_user_experience_data){
+					$start_date = date(strtotime($_user_experience_data['start_date']));
+					$end_date = date(strtotime($_user_experience_data['end_date']));
+					$interval = $end_date-$start_date;
+					$months = floor($interval / 86400 / 30 );
+					$years = 0;
+					if($months > 0){
+						$years = $months/12;
+					}
+					$user_experience_count = $user_experience_count + $years;
+					$row = array();
+					$row['user_workhistory_id'] = $_user_experience_data['user_workhistory_id'];
+					$row['company'] = $_user_experience_data['company'];
+					$row['position'] = $_user_experience_data['position'];
+					$row['start_date'] = date("d M Y",strtotime($_user_experience_data['start_date']));
+					$row['end_date'] = date("d M Y",strtotime($_user_experience_data['end_date']));
+					$row['departure_reason'] = $_user_experience_data['departure_reason'];
+					
+					$user_experience[] = $row;
+				}
+			}
+			
+			$user_certificate_data = $this->list_user_model->get_user_quali_certi($user_id,'certificate');
+			$user_certificate = array();
+			if($user_certificate_data){
+				foreach($user_certificate_data->result_array() as $_user_certificate_data){
+					$row = array();
+					$row['user_qualification_id'] = $_user_certificate_data['user_qualification_id'];
+					$row['qualification_id'] = $_user_certificate_data['qualification_id'];
+					$row['date'] = date("d M Y",strtotime($_user_certificate_data['date']));
+					
+					$user_certificate[] = $row;
+				}
+			}
+			
+			$user_qualification_data = $this->list_user_model->get_user_quali_certi($user_id,'qualification');
+			$user_qualification = array();
+			if($user_qualification_data){
+				foreach($user_qualification_data->result_array() as $_user_qualification_data){
+					$row = array();
+					$row['user_qualification_id'] = $_user_qualification_data['user_qualification_id'];
+					$row['subject'] = $_user_qualification_data['subject'];
+					$row['qualification_id'] = $_user_qualification_data['qualification_id'];
+					$row['date'] = date("d M Y",strtotime($_user_qualification_data['date']));
+					$row['accredited'] = $_user_qualification_data['accredited'];
+					$row['in_class'] = $_user_qualification_data['in_class'];
+					$row['subject_related'] = $_user_qualification_data['subject_related'];
+					$user_qualification[] = $row;
+				}
+			}
+			
+			$user_data = (object) array_merge((array)$user_data,array('user_qualification'=>$user_qualification,'cv_reference'=>$cv_reference),array('user_certificate'=>$user_certificate),array('user_experience'=>$user_experience));
+			$user_documents = $this->list_user_model->get_user_documents($user_id);
 		}	
     	$content_data = array();
 		$content_data['user_id'] = $user_id;
 		$content_data['user_data'] = $user_data;
+		$content_data['user_documents'] = $user_documents;
 		$content_data['user_profile_status'] = user_profile_status();
 		$content_data['other_user_roll'] = get_other_user_roll();
 		$content_data['other_user_list'] = get_other_user_list();

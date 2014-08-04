@@ -1601,6 +1601,26 @@ $(document).ready(function() {
 		}
 	});
 	
+	$("#add_department_form_datatable").validate({
+		submitHandler: function(form) {
+			//form.submit();
+			jQuery(form).ajaxSubmit({
+				success: function(data){
+					$('#myModal').delay(1000).modal('hide');
+					parent.reload_datatable();
+				}
+			});
+		},
+		rules: {
+			department_name:{				
+				required:true
+			}			
+		},
+		messages: {
+			duties: "Please enter department name"
+		}
+	});
+	
 });
 
 function check_edit_school_form(id){

@@ -965,7 +965,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 			}
 		}
 		
-		$user_experience_data = $this->list_user_model->get_user_experience($user_id,'certificate');
+		$user_experience_data = $this->list_user_model->get_user_experience($user_id);
 		$user_experience = array();
 		$user_experience_count = 0;
 		if($user_experience_data){
@@ -990,6 +990,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 				$user_experience[] = $row;
 			}
 		}
+		
 		$user_workshop_data = $this->list_user_model->get_user_workshop($user_id);
 		$user_workshop = array();
 		if($user_workshop_data){

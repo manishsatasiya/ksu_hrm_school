@@ -605,22 +605,25 @@ $(document).ready(function(){
 		$('#add_reference_div').click(function(){
 			addReferenceBox();
 		});
-		addReferenceBox();
 		
 		$('#add_experience_div').click(function(){
 			addExperienceBox();
 		});
-		addExperienceBox();
 		
 		$('#add_certificate_div').click(function(){
 			addCertificateBox();
 		});
-		addCertificateBox();
 		
 		$('#add_qualification_div').click(function(){
 			addQualificationBox();
 		});
-		addQualificationBox();
+		
+		if(add_default_box){
+			addReferenceBox();
+			addExperienceBox();
+			addCertificateBox();
+			addQualificationBox();
+		}
 	}
 });
 
