@@ -11,6 +11,8 @@ class List_enable_week extends Private_Controller {
 		$this->load->helper('general_function');
         $this->load->library('form_validation');
         $this->load->model('list_school_year/list_school_year_model');
+		$this->load->model('list_school/list_school_model');
+		
     }
 
     /**
@@ -160,7 +162,10 @@ class List_enable_week extends Private_Controller {
         $content_data['offset'] = $offset;
         $content_data['order_by'] = $order_by;
         $content_data['sort_order'] = $sort_order;
-
+		
+		$school_data = $this->list_school_model->get_school_data(1);
+		$content_data['elsd_year'] = $school_data->elsd_year;
+        $content_data['elsd_number'] = $school_data->elsd_number;	
         // set pagination config data
         $config['uri_segment'] = '7';
         $config['base_url'] = $base_url;
@@ -233,6 +238,14 @@ $this->template->set_partial('sidebar', 'sidebar');
     	if($result){
     		redirect("/list_enable_week");
     	}
+	}
+	
+	public function elsd_id_setting() {
+		$elsd_year = $_POST["elsd_year"];
+		$elsd_number = $_POST["elsd_number"];
+		
+		$result = $this->list_school_year_model->save_elsd_id_setting($elsd_year,$elsd_number);
+    	redirect("/list_enable_week");
 	}
 }
 

@@ -297,6 +297,22 @@ class List_school_year_model extends CI_Model {
         $this->db->from('attendance_week_activation_time');
         return $this->db->get();
 	}
+	
+	public function save_elsd_id_setting($elsd_year,$elsd_number) {
+
+    	$data = array(
+				'elsd_year' => $elsd_year,
+				'elsd_number' => $elsd_number,
+				'elsd_flag' => 1);
+    	
+		$this->db->where('school_id', 1);
+		$this->db->update('school', $data);
+		   
+    	if($this->db->affected_rows() == 1) {
+    		return true;
+    	}
+    	return false;
+    }
 }
 
 /* End of file list_school_year_model.php */

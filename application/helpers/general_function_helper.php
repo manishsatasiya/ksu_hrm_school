@@ -1406,22 +1406,38 @@ function getCertificateType($get_name = false){
 
 function generateElsdId($gender){
 	$ci =& get_instance();
-	$ci->db->select('SUBSTR(elsd_id,4) as elddt',FALSE);
-	$ci->db->from('users');
-	$ci->db->where('gender', $gender);
-	$ci->db->order_by('elddt', 'DESC');
-	$ci->db->limit(1);	
-	$query = $ci->db->get();		 
-	$row = $query->row();
-	//$ci->db->last_query();
-	$elddt = "";
-	if(isset($row->elddt))
-		$elddt = $row->elddt;
-	$ret = '';
-	if($elddt == ''){
-		$ret = $gender.date('y').'0001';
+	
+	$school_settings = array();
+	$ci->db->select('*')->from('school')->where('school_id', 1);
+	$query = $ci->db->get();
+	if($query->num_rows() == 1) {
+		$school_settings = $query->row();
+	}
+	
+	if(isset($school_settings->elsd_flag) && $school_settings->elsd_flag == 1){
+		$ret = $gender.$school_settings->elsd_year.$school_settings->elsd_number;
+		
+		$data = array('elsd_flag' => 0);
+		$ci->db->where('school_id', 1);
+		$ci->db->update('school', $data);
 	}else{
-		$ret = $gender.date('y').($elddt+1);
+		$ci->db->select('SUBSTR(elsd_id,4) as elddt',FALSE);
+		$ci->db->from('users');
+		$ci->db->where('gender', $gender);
+		$ci->db->order_by('elddt', 'DESC');
+		$ci->db->limit(1);	
+		$query = $ci->db->get();		 
+		$row = $query->row();
+		//$ci->db->last_query();
+		$elddt = "";
+		if(isset($row->elddt))
+			$elddt = $row->elddt;
+		$ret = '';
+		if($elddt == ''){
+			$ret = $gender.$school_settings->elsd_year.$school_settings->elsd_number;
+		}else{
+			$ret = $gender.$school_settings->elsd_year.($elddt+1);
+		}
 	}
 	return $ret;
 }

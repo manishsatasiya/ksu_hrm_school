@@ -136,6 +136,32 @@
       </div>
     </div>
     <!-- search box 3 end -->
+    
+    <div id="searchbox" class="graderpt_search_box dataTables_wrapper">
+      <h5>ELSD ID Settings</h5>
+      <div class="row">
+        <div class="col-md-12">
+          <?php print form_open('list_enable_week/elsd_id_setting') ."\r\n"; ?>
+          <div class="row form-row">
+            <div class="col-md-6">
+              <div class="col-md-4">Year</div>
+              <div class="col-md-6">
+              	<?php print form_input(array('name' => 'elsd_year', 'id' => 'elsd_year', 'class' => 'admin_input form-control', 'value'=>$elsd_year)); ?>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="col-md-4">Number</div>
+              <div class="col-md-6">
+              	<?php print form_input(array('name' => 'elsd_number', 'id' => 'elsd_number', 'class' => 'admin_input form-control', 'value'=>$elsd_number)); ?>
+              </div>
+            </div>
+            <div class="col-md-12"> <?php print form_submit(array('name' => 'add_submit', 'id' => 'add_submit', 'value' => 'Add', 'class' => 'input_submit btn btn-success')) ."\r\n";?> 
+            </div>
+          </div>
+          <?php print form_close() ."\r\n"; ?> </div>
+      </div>
+    </div>
+    
     <div class="grid simple">
       <div class="grid-title">
         <h4><?php echo $this->lang->line('enable_week_p_heading'); ?></h4>
