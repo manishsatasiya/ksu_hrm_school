@@ -34,7 +34,9 @@ $(document).ready( function () {
 								actionstr += '<i class="fa fa-gear"></i>';
 								actionstr += '</button>';
 								actionstr += '<ul class="dropdown-menu">';
+								if(edit_flag == 1)
 								actionstr += '<li><a href="add_employee/index/'+oObj.aData[parseInt(table_total_col-1)]+'">Edit</a></li>';
+								if(edit_profile_flag == 1)
 								actionstr += '<li><a href="list_user/edit_profile/'+oObj.aData[parseInt(table_total_col-1)]+'">View Profile</a></li>';
 								/*actionstr += '<li class="divider"></li>';
 								actionstr += '<li><a href="#" onclick=dt_delete("users","user_id",'+oObj.aData[parseInt(table_total_col-1)]+'); class="text-error bold">Delete Profile <i class="fa fa-times-circle"></i></a></li>';*/
