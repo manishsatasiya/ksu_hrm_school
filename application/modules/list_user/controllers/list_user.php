@@ -691,7 +691,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 						'interviewee1'       => $this->input->post('interviewee1'),
 						'interviewee2'       => $this->input->post('interviewee2'),
 						'interview_date'       => date('Y-m-d',strtotime($this->input->post('interview_date'))),
-						'interview_successful'       => $this->input->post('interview_successful'),
+						'interview_outcome'       => $this->input->post('interview_outcome'),
 						'interview_notes'       => $this->input->post('interview_notes'),
 						'updated_at'       => date('Y-m-d H:i:s')
 					);
@@ -1084,6 +1084,8 @@ $this->template->set_partial('sidebar', 'sidebar');
 			$accredited = $this->input->post('accredited');
 			$in_class = $this->input->post('in_class');
     		$date = $this->input->post('date');
+			$institute = $this->input->post('institute');
+    		$graduation_year = $this->input->post('graduation_year');
     		
 			$data = array();
 			$data['user_id'] = $user_id;
@@ -1094,6 +1096,8 @@ $this->template->set_partial('sidebar', 'sidebar');
 			$data['accredited'] = $accredited;
 			$data['in_class'] = $in_class;
 			$data['date'] = date('Y-m-d',strtotime($date));
+			$data['institute'] = $institute;
+			$data['graduation_year'] = date('Y',strtotime($graduation_year));
 			$error = "";
     		$error_seperator = "<br>";
 			$table = 'user_qualification';

@@ -626,11 +626,6 @@ $(document).ready(function(){
 		}
 	}
 	
-	$("#date_year").datepicker( {
-		format: " yyyy",
-		viewMode: "years", 
-		minViewMode: "years"
-	});
 });
 
 function addReferenceBox(){

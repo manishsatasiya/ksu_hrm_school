@@ -1458,6 +1458,12 @@ $(document).ready(function() {
 			$(this).removeClass('error');
 			$(this).next('span.error').remove();
 		});
+		
+		$("#date_year").datepicker( {
+			format: " yyyy",
+			viewMode: "years", 
+			minViewMode: "years"
+		});
 	});
 	
 	var $add_emp_validator = $("#add_employee").validate({

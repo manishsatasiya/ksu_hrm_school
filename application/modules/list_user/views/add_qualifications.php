@@ -37,6 +37,20 @@ print form_open('list_user/add_qualifications/'.$user_id.'/'.$id, array('id' => 
 		<div class="clear"></div>
 	</div>
     <div class="row form-row">
+        <div class="col-md-6">
+            <div class="form_label2"><?php print form_label('Institute', 'institute'); ?></div>
+            <div class="input_box_thin"><?php print form_input(array('name' => 'institute', 'id' => 'institute', 'value' => ($rowdata)?$rowdata->institute:$this->session->flashdata('institute'), 'class' => 'form-control')); ?></div>
+        </div>
+        <div class="col-md-6">
+            <div class="form_label2"><?php print form_label('Graduation year', 'graduation_year'); ?></div>
+            <div class="input-append success date col-md-10 no-padding">	
+                <?php print form_input(array('name' => 'graduation_year', 'id' => 'date_year', 'value' => ($rowdata)?date('Y',strtotime($rowdata->graduation_year)):$this->session->flashdata('graduation_year'), 'class' => 'form-control')); ?>
+                <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="row form-row">
     	<div class="col-md-4">
 			<div class="form_label2"><?php print form_label('Accredited', 'accredited'); ?></div>
             <?php $checked = (isset($rowdata->accredited) && $rowdata->accredited == '1') ? true:false; ?>
