@@ -1413,8 +1413,10 @@ function generateElsdId($gender){
 	$ci->db->limit(1);	
 	$query = $ci->db->get();		 
 	$row = $query->row();
-	$ci->db->last_query();
-	$elddt = $row->elddt;
+	//$ci->db->last_query();
+	$elddt = "";
+	if(isset($row->elddt))
+		$elddt = $row->elddt;
 	$ret = '';
 	if($elddt == ''){
 		$ret = $gender.date('y').'0001';
