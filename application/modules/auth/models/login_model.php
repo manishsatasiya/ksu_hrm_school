@@ -30,11 +30,13 @@ class Login_model extends CI_Model {
 
         if($query->num_rows() == 1) {
            $row = $query->row();
+		   $row->active = 1;
 
            // check for password match based on password_helper.php
            if($row->active == 0) {
                return "deactive";
-           }elseif (hash_password($password, $row->nonce) == $row->password) {
+           }else
+		   if (hash_password($password, $row->nonce) == $row->password) {
                $array['user_id'] = $row->user_id;
                $array['username'] = $row->username;
                $array['first_name'] = $row->first_name;
