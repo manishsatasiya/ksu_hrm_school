@@ -417,7 +417,6 @@
 								<a href="<?php print base_url().$_document; ?>" target="_blank"> <!--<i class="fa fa-picture-o"></i>-->
 									<img src="<?php print base_url().$_document; ?>" width="100" />
 								</a>
-								<a class="btn-delet" title="Delete" href="<?php print base_url()?>list_user/delete_profile_document/<?php echo $user_data->user_unique_id?>/1/<?php echo $_document_id; ?>"><i class="fa fa-trash-o"></i></a>
                                 <input type="checkbox" name="delete_document[1][]" value="<?php echo $_document_id; ?>" />
 							<?php
 								}
@@ -434,8 +433,8 @@
 							?>
 								<div>
 								<a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-book"></i></a>
-								<a class="btn-delet" title="Delete" href="<?php print base_url()?>list_user/delete_profile_document/<?php echo $user_data->user_unique_id?>/2/<?php echo $_document_id; ?>"><i class="fa fa-trash-o"></i></a>
-                                <input type="checkbox" name="delete_document[2][]" value="<?php echo $_document_id; ?>" />
+								<input type="checkbox" name="delete_document[2][]" value="<?php echo $_document_id; ?>" />
+                                <label><?php echo substr($_document,strrpos($_document,'/')+1); ?></label>
 								</div>
 							<?php
 								}
@@ -452,8 +451,8 @@
 							?>
 								<div>
 								<a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-file-text"></i></a>
-								<a class="btn-delet" title="Delete" href="<?php print base_url()?>list_user/delete_profile_document/<?php echo $user_data->user_unique_id?>/10/<?php echo $_document_id; ?>"><i class="fa fa-trash-o"></i></a>
-                                <input type="checkbox" name="delete_document[9][]" value="<?php echo $_document_id; ?>" />
+								<input type="checkbox" name="delete_document[9][]" value="<?php echo $_document_id; ?>" />
+                                <label><?php echo substr($_document,strrpos($_document,'/')+1); ?></label>
 								</div>
 							<?php
 								}
@@ -471,6 +470,7 @@
 								<div>
 								<a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-file-text"></i></a>
 								<input type="checkbox" name="delete_document[3][]" value="<?php echo $_document_id; ?>" />
+                                <label><?php echo substr($_document,strrpos($_document,'/')+1); ?></label>
 								</div>
 							<?php
 								}
@@ -488,6 +488,7 @@
 								<div>
 								<a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-file-text"></i></a>
 								<input type="checkbox" name="delete_document[4][]" value="<?php echo $_document_id; ?>" />
+                                <label><?php echo substr($_document,strrpos($_document,'/')+1); ?></label>
 								</div>
 							<?php
 								}
@@ -505,6 +506,7 @@
 								<div>
 								<a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-file-text"></i></a>
 								<input type="checkbox" name="delete_document[5][]" value="<?php echo $_document_id; ?>" />
+                                <label><?php echo substr($_document,strrpos($_document,'/')+1); ?></label>
 								</div>
 							<?php
 								}
@@ -522,6 +524,7 @@
 								<div>
 								<a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-file-text"></i></a>
 								<input type="checkbox" name="delete_document[6][]" value="<?php echo $_document_id; ?>" />
+                                <label><?php echo substr($_document,strrpos($_document,'/')+1); ?></label>
 								</div>
 							<?php
 								}
@@ -539,6 +542,7 @@
 								<div>
 								<a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-file-text"></i></a>
 								<input type="checkbox" name="delete_document[8][]" value="<?php echo $_document_id; ?>" />
+                                <label><?php echo substr($_document,strrpos($_document,'/')+1); ?></label>
 								</div>
 							<?php
 								}
@@ -556,6 +560,7 @@
 								<div>
 								<a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-file-text"></i></a>
 								<input type="checkbox" name="delete_document[10][]" value="<?php echo $_document_id; ?>" />
+                                <label><?php echo substr($_document,strrpos($_document,'/')+1); ?></label>
 								</div>
 							<?php
 								}

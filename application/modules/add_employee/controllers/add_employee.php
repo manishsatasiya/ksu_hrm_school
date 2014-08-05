@@ -33,6 +33,7 @@ class Add_employee extends Private_Controller {
 			$username = $this->input->post('email');
 			
 			if($user_id > 0) {
+				
 				$this->list_user_model->profile_update_log($user_id,$this->input->post('status'));
 				$user_data = array(
 							'status'       => $this->input->post('status'),
@@ -142,6 +143,18 @@ class Add_employee extends Private_Controller {
 					}
 				}
 				
+				
+				
+				if(isset($_POST['delete_document']) && count($_POST['delete_document']) > 0){
+					foreach($_POST['delete_document'] as $certificate_type=>$certificate_ids){
+						if(count($certificate_ids) > 0){
+							foreach($certificate_ids as $certificate_id){
+								$this->list_user_model->delete_user_document($user_id,$certificate_type,$certificate_id);
+							}
+						}
+					}
+				}
+
 				$arrCertificateType = getCertificateType();
 				$curr_dir = str_replace("\\","/",getcwd()).'/';
 				//upload and update the file
