@@ -625,6 +625,12 @@ $(document).ready(function(){
 			addQualificationBox();
 		}
 	}
+	
+	$("#date_year").datepicker( {
+		format: " yyyy",
+		viewMode: "years", 
+		minViewMode: "years"
+	});
 });
 
 function addReferenceBox(){
@@ -654,6 +660,13 @@ function addQualificationBox(){
 	$('#qualifications #date').each(function() {
 		$(this).datepicker();
 	});
+	$('#qualifications #date_year').each(function() {
+		$(this).datepicker( {
+			format: " yyyy",
+			viewMode: "years", 
+			minViewMode: "years"
+		});
+	});	
 	$('#qualifications .select2-container').each(function() {
 		$(this).remove();
 	});

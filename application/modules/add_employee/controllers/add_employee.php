@@ -128,6 +128,8 @@ class Add_employee extends Private_Controller {
 						$subject_related = $qualifications['subject_related'][$i];
 						$subject = $qualifications['subject'][$i];
 						$date = date('Y-m-d',strtotime($qualifications['date'][$i]));
+						$institute = $qualifications['institute'][$i];
+						$graduation_year = date('Y',strtotime($qualifications['graduation_year'][$i]));
 						$created_at = date('Y-m-d H:i:s');
 						
 						$user_qualification = array(
@@ -137,6 +139,8 @@ class Add_employee extends Private_Controller {
 							'date'       => $date,
 							'subject_related'       => $subject_related,
 							'subject'       => $subject,
+							'institute'       => $institute,
+							'graduation_year'       => $graduation_year,
 							'created_at'       => $created_at
 						);
 						grid_add_data($user_qualification,'user_qualification');
@@ -354,6 +358,8 @@ class Add_employee extends Private_Controller {
 							$subject_related = $qualifications['subject_related'][$i];
 							$subject = $qualifications['subject'][$i];
 							$date = date('Y-m-d',strtotime($qualifications['date'][$i]));
+							$institute = $qualifications['institute'][$i];
+							$graduation_year = date('Y',strtotime($qualifications['graduation_year'][$i]));
 							$created_at = date('Y-m-d H:i:s');
 							
 							$user_qualification = array(
@@ -363,6 +369,8 @@ class Add_employee extends Private_Controller {
 								'date'       => $date,
 								'subject_related'       => $subject_related,
 								'subject'       => $subject,
+								'institute'       => $institute,
+								'graduation_year'       => $graduation_year,
 								'created_at'       => $created_at
 							);
 							grid_add_data($user_qualification,'user_qualification');
@@ -518,6 +526,8 @@ class Add_employee extends Private_Controller {
 					$row['accredited'] = $_user_qualification_data['accredited'];
 					$row['in_class'] = $_user_qualification_data['in_class'];
 					$row['subject_related'] = $_user_qualification_data['subject_related'];
+					$row['institute'] = $_user_qualification_data['institute'];
+					$row['graduation_year'] = $_user_qualification_data['graduation_year'];
 					$user_qualification[] = $row;
 				}
 			}

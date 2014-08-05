@@ -359,6 +359,20 @@
                                 </div>
                                 <div class="clear"></div>
                             </div>
+                            <div class="row form-row">
+                                <div class="col-md-6">
+                                    <div class="form_label2"><?php print form_label('Institute', 'institute'); ?></div>
+                                    <div class="input_box_thin"><?php print form_input(array('name' => 'qualifications[institute][]', 'id' => 'institute', 'value' => $qualification['institute'], 'class' => 'form-control')); ?></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form_label2"><?php print form_label('Graduation year', 'graduation_year'); ?></div>
+                                    <div class="input-append success date col-md-10 no-padding">	
+                                        <?php print form_input(array('name' => 'qualifications[graduation_year][]', 'id' => 'date_year', 'value' => $qualification['graduation_year'], 'class' => 'form-control')); ?>
+                                        <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
                         </li>
                          <?php
 						}
@@ -380,7 +394,7 @@
                                     ?></div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form_label2"><?php print form_label('English Related', 'subject_related'); ?></div>
+                                    <div class="form_label2"><?php print form_label('Subject Related', 'subject_related'); ?></div>
                                     <div class="input_box_thin"><?php print form_dropdown('qualifications[subject_related][]',array(''=>'Select','0'=>'No','1'=>'Yes'),'','id="subject_related" class="formselect"'); ?></div>
                                 </div>	
                                 <div class="clear"></div>
@@ -395,6 +409,20 @@
                                     <div class="form_label2"><?php print form_label('Date', 'date'); ?></div>
                                     <div class="input-append success date col-md-10 no-padding">	
                                         <?php print form_input(array('name' => 'qualifications[date][]', 'id' => 'date', 'value' => '', 'class' => 'form-control')); ?>
+                                        <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="row form-row">
+                                <div class="col-md-6">
+                                    <div class="form_label2"><?php print form_label('Institute', 'institute'); ?></div>
+                                    <div class="input_box_thin"><?php print form_input(array('name' => 'qualifications[institute][]', 'id' => 'institute', 'value' => '', 'class' => 'form-control')); ?></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form_label2"><?php print form_label('Graduation year', 'graduation_year'); ?></div>
+                                    <div class="input-append success date col-md-10 no-padding">	
+                                        <?php print form_input(array('name' => 'qualifications[graduation_year][]', 'id' => 'date_year', 'value' => '', 'class' => 'form-control')); ?>
                                         <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
                                     </div>
                                 </div>
