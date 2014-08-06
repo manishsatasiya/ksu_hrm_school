@@ -1607,6 +1607,26 @@ $(document).ready(function() {
 		}
 	});
 	
+	$("#add_qualification_form_datatable").validate({
+		submitHandler: function(form) {
+			//form.submit();
+			jQuery(form).ajaxSubmit({
+				success: function(data){
+					$('#myModal').delay(1000).modal('hide');
+					parent.reload_datatable();
+				}
+			});
+		},
+		rules: {
+			qualification:{				
+				required:true
+			}			
+		},
+		messages: {
+			duties: "Please enter qualification"
+		}
+	});
+	
 	$("#add_department_form_datatable").validate({
 		submitHandler: function(form) {
 			//form.submit();
