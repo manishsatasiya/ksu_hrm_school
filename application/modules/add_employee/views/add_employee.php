@@ -97,12 +97,43 @@
                       <?php print form_input(array('name' => 'cell_phone', 'id' => 'cell_phone', 'value' => ($user_data)?$user_data->cell_phone:$this->session->flashdata('cell_phone'), 'class' => 'form-control ','placeholder' => 'Mobile Phone')); ?>
                     </div>
                   </div>
-                  
+                  <h4 class="semi-bold">Arrival</h4>
+                  <div class="row form-row">
+                    <div class="col-md-4">
+                      <?php print form_label('Expected arrival date in KSA', 'expected_arrival_date',array('class'=>'form-label')); ?>
+                      <div class="input-append success date col-md-10 col-lg-6 no-padding">
+                      <?php print form_input(array('name' => 'expected_arrival_date', 'id' => 'date', 'value' => ($user_data)?$user_data->expected_arrival_date:$this->session->flashdata('expected_arrival_date'), 'class' => 'form-control ')); ?>
+                      <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
+                    </div>
+                    <div class="col-md-4">
+                      <?php print form_label('First day at PY', 'first_day_at_py',array('class'=>'form-label')); ?>
+                      <div class="input-append success date col-md-10 col-lg-6 no-padding">
+                      <?php print form_input(array('name' => 'first_day_at_py', 'id' => 'date', 'value' => ($user_data)?$user_data->first_day_at_py:$this->session->flashdata('first_day_at_py'), 'class' => 'form-control ','placeholder' => '')); ?>
+                      <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
+                    </div>
+                    <div class="col-md-4">
+                      <?php print form_label('Visa Type', 'visa_type',array('class'=>'form-label')); ?>
+                      <?php print form_dropdown('visa_type',array('employment'=> 'employment','business'=>'business'),($user_data)?$user_data->visa_type:$this->session->flashdata('visa_type'),'id="visa_type" class=""'); ?>
+                    </div>
+                  </div>
+                  <h4 class="semi-bold">3rd Party Verification</h4>
                   <div class="row form-row">
                     <div class="col-md-12">
-                      <?php print form_label('Expected arrival date', 'expected_arrival_date',array('class'=>'form-label')); ?>
+                      <?php print form_label('Company', 'third_party_ver_company',array('class'=>'form-label')); ?>
+                      <?php print form_input(array('name' => 'third_party_ver_company', 'id' => 'third_party_ver_company', 'value' => ($user_data)?$user_data->third_party_ver_company:$this->session->flashdata('third_party_ver_company'), 'class' => 'form-control ')); ?>
+                    </div>
+                  </div>
+                  <div class="row form-row">  
+                    <div class="col-md-6">
+                      <?php print form_label('Date Requested', 'third_party_ver_date_requested',array('class'=>'form-label')); ?>
                       <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                      <?php print form_input(array('name' => 'expected_arrival_date', 'id' => 'date', 'value' => ($user_data)?$user_data->expected_arrival_date:$this->session->flashdata('expected_arrival_date'), 'class' => 'form-control ','placeholder' => 'Expected arrival date')); ?>
+                      <?php print form_input(array('name' => 'third_party_ver_date_requested', 'id' => 'date', 'value' => ($user_data)?$user_data->third_party_ver_date_requested:$this->session->flashdata('third_party_ver_date_requested'), 'class' => 'form-control ','placeholder' => '')); ?>
+                      <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
+                    </div>
+                    <div class="col-md-6">
+                       <?php print form_label('Date Completed', 'third_party_ver_date_completed',array('class'=>'form-label')); ?>
+                      <div class="input-append success date col-md-10 col-lg-6 no-padding">
+                      <?php print form_input(array('name' => 'third_party_ver_date_completed', 'id' => 'date', 'value' => ($user_data)?$user_data->third_party_ver_date_completed:$this->session->flashdata('third_party_ver_date_completed'), 'class' => 'form-control ','placeholder' => '')); ?>
                       <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
                     </div>
                   </div>

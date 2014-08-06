@@ -52,7 +52,12 @@ class Add_employee extends Private_Controller {
 				$profile_data = array(
 							'nationality'       => $this->input->post('nationality'),
 							'marital_status'       => $this->input->post('marital_status'),
-							'expected_arrival_date'       => date('Y-m-d',strtotime($this->input->post('expected_arrival_date')))
+							'expected_arrival_date'       => date('Y-m-d',strtotime($this->input->post('expected_arrival_date'))),
+							'first_day_at_py'       => date('Y-m-d',strtotime($this->input->post('first_day_at_py'))),
+							'visa_type'       => $this->input->post('visa_type'),
+							'third_party_ver_company'       => $this->input->post('third_party_ver_company'),
+							'third_party_ver_date_requested'       => date('Y-m-d',strtotime($this->input->post('third_party_ver_date_requested'))),
+							'third_party_ver_date_completed'       => date('Y-m-d',strtotime($this->input->post('third_party_ver_date_completed')))
 						);						
 				grid_data_updates($profile_data,'user_profile', 'user_id',$user_id);
 				
@@ -284,7 +289,12 @@ class Add_employee extends Private_Controller {
 							'contractor'       => $this->session->userdata('contractor'),
 							'nationality'       => $this->input->post('nationality'),
 							'marital_status'       => $this->input->post('marital_status'),
-							'expected_arrival_date'       => date('Y-m-d',strtotime($this->input->post('expected_arrival_date')))
+							'expected_arrival_date'       => date('Y-m-d',strtotime($this->input->post('expected_arrival_date'))),
+							'first_day_at_py'       => date('Y-m-d',strtotime($this->input->post('first_day_at_py'))),
+							'visa_type'       => $this->input->post('visa_type'),
+							'third_party_ver_company'       => $this->input->post('third_party_ver_company'),
+							'third_party_ver_date_requested'       => date('Y-m-d',strtotime($this->input->post('third_party_ver_date_requested'))),
+							'third_party_ver_date_completed'       => date('Y-m-d',strtotime($this->input->post('third_party_ver_date_completed')))
 						);
 					$profile_id = grid_add_data($profile_data,'user_profile');
 					
