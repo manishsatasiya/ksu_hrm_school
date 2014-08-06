@@ -544,6 +544,7 @@ $lang['contractors_sub'] = 'Contractors';
 $lang['duties_sub'] = 'Duties';
 $lang['department_sub'] = 'Department';
 $lang['nationality_sub'] = 'Nationality';
+$lang['qualification_sub'] = 'Qualification';
 
 
 
@@ -684,6 +685,10 @@ $lang['list_department'] = 'Department';
 $lang['add_nationality'] = 'Add Nationality';
 $lang['edit_nationality'] = 'Edit Nationality';
 $lang['list_nationality'] = 'Nationality';
+
+$lang['add_qualification'] = 'Add Qualification';
+$lang['edit_qualification'] = 'Edit Qualification';
+$lang['list_qualification'] = 'Qualification';
 
 $lang['add_new'] = 'Add New';
 /*
