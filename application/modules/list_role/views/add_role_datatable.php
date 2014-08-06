@@ -14,7 +14,7 @@ print form_open('list_role/add/'.$id, array('id' => 'add_role_form_datatable','n
 	<div class="row form-row">
 		<div class="col-md-6">
 			<div class="form_label2"><?php print form_label($this->lang->line('role_p_role'), 'reg_user_roll_name'); ?></div>
-			<div class="input_box_thin"><?php print form_input(array('name' => 'user_roll_name', 'id' => 'reg_user_roll_name', 'value' => ($rowdata)?$rowdata->user_roll_name:$this->session->flashdata('user_roll_name'), 'class' => 'input_text qtip_user_roll_name')); ?></div>
+			<div class="input_box_thin"><?php print form_input(array('name' => 'user_roll_name', 'id' => 'reg_user_roll_name', 'value' => ($rowdata)?$rowdata->user_roll_name:$this->session->flashdata('user_roll_name'), 'class' => 'form-control qtip_user_roll_name')); ?></div>
 		</div>
 		<div class="col-md-6">
 			<div class="form_label2"><?php print form_label('Is CA Lead?', 'reg_is_ca_lead'); ?></div>
@@ -23,6 +23,16 @@ print form_open('list_role/add/'.$id, array('id' => 'add_role_form_datatable','n
 		</div>
 		<div class="clear"></div>
 	</div>
+    <div class="row form-row">
+    	<div class="col-md-6">
+			<div class="form-group">
+			<div class="form_label"><?php print form_label('Dashboard page', 'dashboard_page'); ?></div>
+			<div class="controls"><?php  
+				print form_dropdown('dashboard_page',list_dashboard_page(),($rowdata)?$rowdata->dashboard_page:'','id="dashboard_page" class=""'); ?>
+			</div>
+			</div>
+		</div>
+      </div>   
 </div>
 <div class="modal-footer">
 	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

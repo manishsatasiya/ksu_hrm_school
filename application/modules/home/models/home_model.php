@@ -211,6 +211,33 @@ class Home_model extends CI_Model {
     	}
 		
 	}
+	
+	public function count_all_student_of_teacher($user_id)
+    {		
+    	$this->db->from('users');
+		$this->db->join('course_class','users.section_id=course_class.section_id','left'); 
+		$this->db->join('course_section', 'course_section.section_id = users.section_id','left');
+    	$this->db->where('users.user_roll_id','4');
+		$this->db->where('course_class.primary_teacher_id',$user_id);        
+				
+    	return $this->db->count_all_results();
+    }
+	
+	public function count_all_course_class_of_teacher($user_id)
+    {
+		$this->db->select('`course_section`.`section_title`');
+    	$this->db->from('course_class');
+		$this->db->where('primary_teacher_id',$user_id);
+		$this->db->join('course_section', 'course_section.section_id = course_class.section_id','left');
+		//$this->db->join('users', 'users.user_id = course_class.primary_teacher_id','left');
+		$this->db->where('is_active = 1');
+       	$query = $this->db->get();
+        
+        if($query->num_rows() > 0) {
+            return $query;
+        }
+		return false;
+    }
 
 }
 

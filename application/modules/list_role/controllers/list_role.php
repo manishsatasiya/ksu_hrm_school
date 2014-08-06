@@ -160,6 +160,7 @@ $this->template->set_partial('sidebar', 'sidebar');
     	if($this->input->post()){
     		$user_roll_name = $this->input->post('user_roll_name');
     		$is_ca_lead = $this->input->post('is_ca_lead');
+			$dashboard_page = $this->input->post('dashboard_page');
     		$error = "";
     		$error_seperator = "<br>";
     		if($id){
@@ -177,6 +178,7 @@ $this->template->set_partial('sidebar', 'sidebar');
     			$data = array();
     			$data['user_roll_name'] = $user_roll_name;
     			$data['is_ca_lead'] = $is_ca_lead;
+				$data['dashboard_page'] = $dashboard_page;
     			$table = 'user_roll';
     			$wher_column_name = 'user_roll_id';
     			set_activity_data_log($id,'Update','Role & User > List Role','List Role',$table,$wher_column_name,$user_id='');
@@ -197,6 +199,7 @@ $this->template->set_partial('sidebar', 'sidebar');
     			$data = array();
     			$data['user_roll_name'] = $user_roll_name;
     			$data['is_ca_lead'] = $is_ca_lead;
+				$data['dashboard_page'] = $dashboard_page;
     			$table = 'user_roll';
     			$wher_column_name = 'user_roll_id';
     			$lastinsertid = grid_add_data($data,$table);

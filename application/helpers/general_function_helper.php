@@ -1527,5 +1527,9 @@ function get_department_list() {
 		return $student_arr;
 	}
 
+function list_dashboard_page(){
+	return array('Text'=>'Text','Normal'=>'Normal','Advance'=>'Advance');
+}	
+
 /* End of file general_function_helper.php */
 /* Location: ./application/helpers/general_function_helper.php */ 

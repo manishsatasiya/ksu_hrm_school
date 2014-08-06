@@ -34,7 +34,7 @@ print form_open('qualification/add/'.$id, array('id' => 'add_qualification_form_
     <div class="row form-row">
     	<div class="col-md-6">
 			<div class="form-group">
-			<div class="form_label"><?php print form_label('show_in_datatable', 'show_in_datatable'); ?></div>
+			<div class="form_label"><?php print form_label('Show in datatable', 'show_in_datatable'); ?></div>
 			<div class="controls"><?php  
 				print form_dropdown('show_in_datatable',array('No'=>'No','Yes'=>'Yes'),($rowdata)?$rowdata->show_in_datatable:'No','id="show_in_datatable" class=""'); ?>
 			</div>
@@ -42,7 +42,7 @@ print form_open('qualification/add/'.$id, array('id' => 'add_qualification_form_
 		</div>
         <div class="col-md-6">
 			<div class="form-group">
-			<div class="form_label"><?php print form_label('datatable_display_order', 'datatable_display_order'); ?></div>
+			<div class="form_label"><?php print form_label('Datatable display order', 'datatable_display_order'); ?></div>
 			<div class="controls"><?php  
 				print form_input(array('name' => 'datatable_display_order', 'id' => 'datatable_display_order', 'value' => ($rowdata)?$rowdata->datatable_display_order:$this->session->flashdata('datatable_display_order'), 'class' => 'form-control')); ?>
 			</div>

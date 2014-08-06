@@ -56,8 +56,8 @@ if($this->session->userdata('role_id') == '1' || in_array("add",$this->arrAction
 						<th style="width:77px">ID</th>
 						<th>qualification</th>
                         <th>type</th>
-                        <th>show_in_datatable</th>
-                        <th>datatable_display_order</th>
+                        <th>Show in datatable</th>
+                        <th>Datatable display order</th>
 						<th style="width:80px"><?php print $this->lang->line('student_p_action'); ?></th>
 					</tr>
 				</thead>
@@ -67,8 +67,8 @@ if($this->session->userdata('role_id') == '1' || in_array("add",$this->arrAction
 						<th style="width:77px">ID</th>
 						<th>qualification</th>
                         <th>type</th>
-                        <th>show_in_datatable</th>
-                        <th>datatable_display_order</th>
+                        <th>Show in datatable</th>
+                        <th>Datatable display order</th>
 						<th style="width:80px"><?php print $this->lang->line('student_p_action'); ?></th>
 					</tr>
 				</tfoot>
