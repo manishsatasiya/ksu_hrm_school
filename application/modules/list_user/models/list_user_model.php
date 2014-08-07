@@ -16,10 +16,11 @@ class List_User_model extends CI_Model {
 		$this->db->join('user_roll', 'user_roll.user_roll_id = users.user_roll_id','left');
 		$this->db->join('contractors', 'contractors.id = user_profile.contractor','left');
 		$this->db->join('school_campus', 'school_campus.campus_id = users.campus_id','left');
-		$this->db->join('users AS c1', 'users.user_id = users.coordinator','left');
+		$this->db->join('users AS c1', 'c1.user_id = users.coordinator','left');
 		$this->db->join('duties', 'duties.user_roll_id = users.user_roll_id','left');
-		$this->db->join('users AS c2', 'users.user_id = users.change_by','left');
+		$this->db->join('users AS c2', 'c2.user_id = users.change_by','left');
 		$this->db->where('users.user_id',$user_id);
+		//$this->db->where('users.user_id',$user_id);
     	$query = $this->db->get();
 		//echo $this->db->last_query();
     	if($query->num_rows() > 0) {

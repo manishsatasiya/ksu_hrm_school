@@ -64,7 +64,7 @@
                 </div>
                 <ul>
                 <li>Full name: <?php echo $user_data->first_name.' '.$user_data->middle_name.' '.$user_data->last_name; ?></li>
-                <li><div class="row"><div class="col-md-4">Dob:</div><div class="col-md-8">Gender: <?php if($user_data->gender == 'M') { echo 'Male'; }elseif($user_data->gender == 'F') { echo 'Female'; } ?></div></div></li>
+                <li><div class="row"><div class="col-md-4">Dob:<?php echo $user_data->birth_date; ?></div><div class="col-md-8">Gender: <?php if($user_data->gender == 'M') { echo 'Male'; }elseif($user_data->gender == 'F') { echo 'Female'; } ?></div></div></li>
                 <li>Nationality: <?php echo $user_data->nationality_name; ?></li>
                 <li>Marital Status: <?php echo $user_data->marital_status; ?></li>
                 <li>Languages: <?php echo $user_data->language_known; ?></li>
@@ -82,8 +82,7 @@
                 <ul>
                 <li class="emply-info1">
                     Position: <?php echo $user_data->user_roll_name; ?> <?php if($user_data->banned_teacher == 1) { echo '<em>( Restricted )</em>';} ?> <?php if($user_data->on_timetable == 1) { echo '- Currently on timetable'; } else { echo '- Not on time table'; } ?><br />
-                    Job Title: <?php echo $user_data->job_title; ?><br />
-                    ECL Access: <?php if($user_data->ecl_access == '2') { echo 'No'; }elseif($user_data->ecl_access == '1') { echo 'Yes'; } ?>
+                    Job Title: <?php echo $user_data->job_title; ?>
                 </li>
                 <li>
                     <div class="col-md-6">Current Year Joining Date:  <?php echo $user_data->cy_joining_date; ?></div>
@@ -110,12 +109,7 @@
                 <div class="sub-title">Duties</div>
                 <ul>
                 <li class="duty-info1">
-                    General duties:<br /><br />
-                    <?php echo $user_data->duties; ?>
-                </li>
-                <li class="duty-info2">
-                    Additional duties:<br /><br />
-                    no extra duties assigned
+                    General duties: <?php echo $user_data->duties; ?>
                 </li>
                 </ul>
             </div>
@@ -127,7 +121,7 @@
             <div class="col-md-12">
                 <div class="sub-title">Departure Details: </div>
                 <ul>
-                <li>Last day of Work: <?php if( $user_data->last_day_of_work == NULL || empty($user_data->last_day_of_work))
+                <li>Last day of Work: <?php if( $user_data->last_day_of_work == NULL || empty($user_data->last_day_of_work) || $user_data->last_day_of_work=='0000-00-00')
                                         echo 'n/a';
                                     else 
                                         echo date("l, d F Y",strtotime($user_data->last_day_of_work));
