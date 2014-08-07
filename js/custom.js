@@ -483,6 +483,10 @@ if(CI.controller_name == 'list_user')
 			yearRange: 'c-50:c+0'
 		});
 	});
+	
+	$('#add_reference_div').click(function(){
+		addReferenceBox();
+	});
 }
 
 if(CI.controller_name == 'add_privilege')
@@ -630,7 +634,6 @@ $(document).ready(function(){
 
 function addReferenceBox(){
 	$('#references').append($('#reference_main_sample').html());
-	//$('#references').append('<li><div class="row form-row" id="reference_main"><div class="col-md-3"><label class="form-label">Company Name</label><input type="text" name="cv_reference_company_name[]" class="form-control" /></div><div class="col-md-3"><label class="form-label">Referee Name</label><input type="text" name="cv_reference_name[]" class="form-control" /></div><div class="col-md-3"><label class="form-label">Email Address</label><input type="text" name="cv_reference_email[]" class="form-control" /></div><div class="col-md-3"><label class="form-label">&nbsp;</label><input type="button" onclick="javasctipt:deleteReferenceBox(this);" id="" value="Delete" /></div></div></li>');
 }
 function addExperienceBox(){
 	$('#experiences').append($('#experience_main_sample').html());

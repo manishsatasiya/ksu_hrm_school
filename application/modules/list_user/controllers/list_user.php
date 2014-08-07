@@ -819,28 +819,24 @@ $this->template->set_partial('sidebar', 'sidebar');
 						
 					grid_data_updates($profile_data,'user_profile', 'user_id',$user_id);
 					
-					$user_cv_reference1 = array(
-								'company_name'       => $this->input->post('cv_reference_company_name_1'),
-								'name'       => $this->input->post('cv_reference_name_1'),
-								'position'       => $this->input->post('cv_reference_position_1'),
-								'contact_number'       => $this->input->post('cv_reference_contact_number_1'),
-								'email'       => $this->input->post('cv_reference_email_1'),
-								'cv_confirm'       => $this->input->post('cv_confirm_1')
-							);
+					grid_delete('user_cv_reference','user_id',$user_id);
+					$cv_reference = $this->input->post('cv_reference');
+					$cv_reference_count = count($cv_reference['company_name']);
+					if($cv_reference_count > 1){
+						for($i=0;$i < $cv_reference_count -1;$i++){
+							$company_name = $cv_reference['company_name'][$i];
+							$name = $cv_reference['name'][$i];
+							$email = $cv_reference['email'][$i];
 							
-					
-					grid_data_updates($user_cv_reference1,'user_cv_reference', 'referance_id',$this->input->post('referance_id_1'));
-					
-					$user_cv_reference2 = array(
-								'company_name'       => $this->input->post('cv_reference_company_name_2'),
-								'name'       => $this->input->post('cv_reference_name_2'),
-								'position'       => $this->input->post('cv_reference_position_2'),
-								'contact_number'       => $this->input->post('cv_reference_contact_number_2'),
-								'email'       => $this->input->post('cv_reference_email_2'),
-								'cv_confirm'       => $this->input->post('cv_confirm_2')
+							$user_cv_reference = array(
+								'user_id'       => $user_id,
+								'company_name'       => $company_name,
+								'name'       => $name,
+								'email'       => $email
 							);
-							
-					grid_data_updates($user_cv_reference2,'user_cv_reference', 'referance_id',$this->input->post('referance_id_2'));
+							grid_add_data($user_cv_reference,'user_cv_reference');
+						}
+					}
 					
 					//$user_verifications = array(
 //							'ver_nationality'       => $this->input->post('ver_nationality'),
@@ -906,17 +902,20 @@ $this->template->set_partial('sidebar', 'sidebar');
 		$cv_reference_data = $this->list_user_model->get_cv_reference($user_id);
 		$cv_reference = array();
 		$cv_reference_count = 0;
+		
 		if($cv_reference_data){
 			$i = 1;
 			foreach($cv_reference_data->result_array() as $_cv_reference_data){
-				$cv_reference['referance_id_'.$i] = $_cv_reference_data['referance_id'];
-				$cv_reference['cv_reference_company_name_'.$i] = $_cv_reference_data['company_name'];
-				$cv_reference['cv_reference_name_'.$i] = $_cv_reference_data['name'];
-				$cv_reference['cv_reference_position_'.$i] = $_cv_reference_data['position'];
-				$cv_reference['cv_reference_contact_number_'.$i] = $_cv_reference_data['contact_number'];
-				$cv_reference['cv_reference_email_'.$i] = $_cv_reference_data['email'];
-				$cv_reference['cv_confirm_'.$i] = $_cv_reference_data['cv_confirm'];
-				$i++;
+				$row = array();
+				$row['referance_id'] = $_cv_reference_data['referance_id'];
+				$row['company_name'] = $_cv_reference_data['company_name'];
+				$row['name'] = $_cv_reference_data['name'];
+				$row['position'] = $_cv_reference_data['position'];
+				$row['contact_number'] = $_cv_reference_data['contact_number'];
+				$row['email'] = $_cv_reference_data['email'];
+				$row['cv_confirm'] = $_cv_reference_data['cv_confirm'];
+				
+				$cv_reference[] = $row;
 				$cv_reference_count++;
 			}
 		}
@@ -1006,7 +1005,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 				$user_workshop[] = $row;
 			}
 		}
-		$user_data = (object) array_merge((array)$user_data,$cv_reference,array('emergency_contacts'=>$emergency_contacts),array('user_qualification'=>$user_qualification),array('user_certificate'=>$user_certificate),array('user_experience'=>$user_experience),array('user_workshop'=>$user_workshop));
+		$user_data = (object) array_merge((array)$user_data,array('emergency_contacts'=>$emergency_contacts),array('user_qualification'=>$user_qualification),array('user_certificate'=>$user_certificate),array('user_experience'=>$user_experience),array('user_workshop'=>$user_workshop),array('cv_reference'=>$cv_reference));
 		$user_permossion = $this->list_user_model->get_user_permossion($user_id);
 		$user_documents = $this->list_user_model->get_user_documents($user_id);
 	

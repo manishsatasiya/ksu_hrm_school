@@ -938,87 +938,59 @@ print form_hidden('user_id', $user_data->user_unique_id);
                     <div class="tab-pane" id="tab5"> <br>
                       <h4 class="semi-bold">Step 5 - <span class="light">Reference</span></h4>
                       <br>
-                      <!--row 5.1 start-->
-                      <div class="row form-row">
-                        <div class="col-md-12">
-                          <?php print form_label('Referee 1', '',array('class'=>'form-label')); ?>
-                          <?php print form_hidden('referance_id_1', (isset($user_data->referance_id_1))?$user_data->referance_id_1:0); ?>
-                        </div>
-                      </div>
-                      <!--row 5.1 end-->
-                      <!--row 5.2 start-->
-                      <div class="row form-row">
-                        <div class="col-md-4">
-                          <?php print form_label('Company Name', 'cv_reference_company_name_1',array('class'=>'form-label')); ?>
-                          <?php print form_input(array('name' => 'cv_reference_company_name_1', 'id' => 'cv_reference_company_name_1', 'value' => (isset($user_data->cv_reference_company_name_1))?$user_data->cv_reference_company_name_1:$this->session->flashdata('cv_reference_company_name_1'), 'class' => 'form-control','placeholder' => 'Company Name')); ?>
-                        </div>
-                        <div class="col-md-4">
-                          <?php print form_label('Referee Name', 'cv_reference_name_1',array('class'=>'form-label')); ?>
-                          <?php print form_input(array('name' => 'cv_reference_name_1', 'id' => 'cv_reference_name_1', 'value' => (isset($user_data->cv_reference_name_1))?$user_data->cv_reference_name_1:$this->session->flashdata('cv_reference_name_1'), 'class' => 'form-control','placeholder' => 'Referee Name')); ?>
-                        </div>
-                        <div class="col-md-4">
-                          <?php print form_label("Referee's Position", 'cv_reference_position_1',array('class'=>'form-label')); ?>
-                          <?php print form_input(array('name' => 'cv_reference_position_1', 'id' => 'cv_reference_position_1', 'value' => (isset($user_data->cv_reference_position_1))?$user_data->cv_reference_position_1:$this->session->flashdata('cv_reference_position_1'), 'class' => 'form-control','placeholder' => "Referee's Position")); ?>
-                        </div>
-                      </div>
-                      <!--row 5.2 end-->
-                      <!--row 5.3 start-->
-                      <div class="row form-row">
-                        <div class="col-md-4">
-                          <?php print form_label('Contact number', 'cv_reference_contact_1',array('class'=>'form-label')); ?>
-                          <?php print form_input(array('name' => 'cv_reference_contact_number_1', 'id' => 'cv_reference_contact_number_1', 'value' => (isset($user_data->cv_reference_contact_number_1))?$user_data->cv_reference_contact_number_1:$this->session->flashdata('cv_reference_contact_number_1'), 'class' => 'form-control','placeholder' => 'Contact number')); ?>
-                        </div>
-                        <div class="col-md-4">
-                          <?php print form_label('Email Address', 'cv_reference_email_1',array('class'=>'form-label')); ?>
-                          <?php print form_input(array('name' => 'cv_reference_email_1', 'id' => 'cv_reference_email_1', 'value' => (isset($user_data->cv_reference_email_1))?$user_data->cv_reference_email_1:$this->session->flashdata('cv_reference_email_1'), 'class' => 'form-control','placeholder' => 'Email Address')); ?>
-                        </div>
-                        <div class="col-md-4">
-                          <?php print form_label('CV Confirmed', 'cv_confirm_1',array('class'=>'form-label')); ?>
-                          <?php print form_dropdown('cv_confirm_1',array(''=>'Select','1'=> 'Yes','2'=>'No'),(isset($user_data->cv_confirm_1))?$user_data->cv_confirm_1:$this->session->flashdata('cv_confirm_1'),'id="cv_confirm_1" class="select2 form-control"'); ?>
-                        </div>
-                      </div>
-                      <!--row 5.3 end-->
-                      <!--row 5.1b start-->
-                      <div class="row form-row">
-                        <div class="col-md-12">
-                          <?php print form_label('Referee 2', '',array('class'=>'form-label')); ?>
-                          <?php print form_hidden('referance_id_2', (isset($user_data->referance_id_2))?$user_data->referance_id_2:0); ?>
-                        </div>
-                      </div>
-                      <!--row 5.1b end-->
-                      <!--row 5.2b start-->
-                      <div class="row form-row">
-                        <div class="col-md-4">
-                          <?php print form_label('Company Name', 'cv_reference_company_name_2',array('class'=>'form-label')); ?>
-                          <?php print form_input(array('name' => 'cv_reference_company_name_2', 'id' => 'cv_reference_company_name_2', 'value' => (isset($user_data->cv_reference_company_name_2))?$user_data->cv_reference_company_name_2:$this->session->flashdata('cv_reference_company_name_2'), 'class' => 'form-control','placeholder' => 'Company Name')); ?>
-                        </div>
-                        <div class="col-md-4">
-                          <?php print form_label('Referee Name', 'cv_reference_name_2',array('class'=>'form-label')); ?>
-                          <?php print form_input(array('name' => 'cv_reference_name_2', 'id' => 'cv_reference_name_2', 'value' => (isset($user_data->cv_reference_name_2))?$user_data->cv_reference_name_2:$this->session->flashdata('cv_reference_name_2'), 'class' => 'form-control','placeholder' => 'Referee Name')); ?>
-                        </div>
-                        <div class="col-md-4">
-                          <?php print form_label("Referee's Position", 'cv_reference_position_2',array('class'=>'form-label')); ?>
-                          <?php print form_input(array('name' => 'cv_reference_position_2', 'id' => 'cv_reference_position_2', 'value' => (isset($user_data->cv_reference_position_2))?$user_data->cv_reference_position_2:$this->session->flashdata('cv_reference_position_2'), 'class' => 'form-control','placeholder' => "Referee's Position")); ?>
-                        </div>
-                      </div>
-                      <!--row 5.2b end-->
-                      
-                      <!--row 5.3b start-->
-                      <div class="row form-row">
-                        <div class="col-md-4">
-                          <?php print form_label('Contact number', 'cv_reference_contact_number_2',array('class'=>'form-label')); ?>
-                          <?php print form_input(array('name' => 'cv_reference_contact_number_2', 'id' => 'cv_reference_contact_number_2', 'value' => (isset($user_data->cv_reference_contact_number_2))?$user_data->cv_reference_contact_number_2:$this->session->flashdata('cv_reference_contact_number_2'), 'class' => 'form-control','placeholder' => 'Contact number')); ?>
-                        </div>
-                        <div class="col-md-4">
-                          <?php print form_label('Email Address', 'cv_reference_email_2',array('class'=>'form-label')); ?>
-                          <?php print form_input(array('name' => 'cv_reference_email_2', 'id' => 'cv_reference_email_2', 'value' => (isset($user_data->cv_reference_email_2))?$user_data->cv_reference_email_2:$this->session->flashdata('cv_reference_email_2'), 'class' => 'form-control','placeholder' => 'Email Address')); ?>
-                        </div>
-                        <div class="col-md-4">
-                          <?php print form_label('CV Confirmed', 'cv_confirm_2',array('class'=>'form-label')); ?>
-                          <?php print form_dropdown('cv_confirm_2',array(''=>'Select','1'=> 'Yes','2'=>'No'),(isset($user_data->cv_confirm_2))?$user_data->cv_confirm_2:$this->session->flashdata('cv_confirm_2'),'id="cv_confirm_2" class="select2 form-control"'); ?>
-                        </div>
-                      </div>
-                      <!--row 5.3b end-->
+                      <input type="button" id="add_reference_div" class="btn btn-primary" value="Add" />
+                      <ol id="references">
+							<?php
+                            if(!empty($user_data->cv_reference))
+                            { 
+                                foreach($user_data->cv_reference as $cv_reference)
+                                { ?>
+                                    <li>
+                                      <div class="row form-row">
+                                        <div class="col-md-3">
+                                          <label class="form-label">Company Name</label>
+                                          <input type="text" name="cv_reference[company_name][]" value="<?php echo $cv_reference['company_name']; ?>" class="form-control"  />
+                                        </div>
+                                        <div class="col-md-3">
+                                          <label class="form-label">Referee Name</label>
+                                          <input type="text" name="cv_reference[name][]" value="<?php echo $cv_reference['name']; ?>" class="form-control"  />
+                                        </div>
+                                        <div class="col-md-3">
+                                          <label class="form-label">Email Address</label>
+                                          <input type="text" name="cv_reference[email][]" value="<?php echo $cv_reference['email']; ?>" class="form-control"  />
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="form-label">&nbsp;</label>
+                                            <input type="button" id="" class="btn btn-danger " onclick="javasctipt:deleteMulBox(this);" value="Delete" />
+                                        </div>
+                                      </div>
+                                  </li>
+                                <?php
+                                }
+                            } ?>
+                          </ol>
+                          <div class="hide" id="reference_main_sample">
+                     <li>
+                       	  <div class="row form-row">
+                            <div class="col-md-3">
+                              <label class="form-label">Company Name</label>
+                              <input type="text" name="cv_reference[company_name][]" class="form-control"  />
+                            </div>
+                            <div class="col-md-3">
+                              <label class="form-label">Referee Name</label>
+                              <input type="text" name="cv_reference[name][]" class="form-control"  />
+                            </div>
+                            <div class="col-md-3">
+                              <label class="form-label">Email Address</label>
+                              <input type="text" name="cv_reference[email][]" class="form-control"  />
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label">&nbsp;</label>
+                                <input type="button" id="" class="btn btn-danger " onclick="javasctipt:deleteMulBox(this);" value="Delete" />
+                            </div>
+                          </div>
+                      </li>
+                  </div>
                     </div>
                     <div class="tab-pane" id="tab6"> <br>
                       <h4 class="semi-bold">Step 6 - <span class="light">Verification</span></h4>
