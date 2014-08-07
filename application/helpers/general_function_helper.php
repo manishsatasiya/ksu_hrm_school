@@ -1498,6 +1498,10 @@ function user_profile_status($type = "") {
 						 '18'=>'Contract not renewed by staff',
 						 '19'=>'Contract not renewed by ELSD');
 		}
+		else if($type == "otherstaff")			 
+		{
+			$ret = array('20'=>'Other');
+		}
 		
 		return $ret;
 }

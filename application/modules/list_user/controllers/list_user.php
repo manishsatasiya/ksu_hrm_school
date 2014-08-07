@@ -573,7 +573,7 @@ $this->template->set_partial('sidebar', 'sidebar');
         exit();
 	}
 	
-	 public function add_profile() {
+	 public function add_profile($other = '') {
 	 	
 		if(isset($_POST['submit']) && $this->input->post('submit') == 'Save') {			
 			$user_id = 0;
@@ -707,6 +707,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 		}
 
     	$content_data = array();
+		$content_data['user_other'] = $other;
 		$content_data['user_profile_status'] = user_profile_status();
 		$content_data['other_user_roll'] = get_other_user_roll();
 		$content_data['other_user_list'] = get_other_user_list();

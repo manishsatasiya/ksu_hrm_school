@@ -9,7 +9,7 @@
       <div class="grid-body ">
         <div class="row">
         	
-          <?php print form_open('list_user/add_profile/', array('id' => 'add_profile','name'=>'add_profile')) ."\r\n"; ?>
+          <?php print form_open('list_user/add_profile', array('id' => 'add_profile','name'=>'add_profile')) ."\r\n"; ?>
             <div id="rootwizard" class="col-md-12">
             	<?php
 				if ($this->session->flashdata('message')) {
@@ -35,8 +35,19 @@
                   <!--row 1 start-->
                   <div class="row form-row">
                     <div class="col-md-4">
+                      <?php 
+					  $user_status = '';
+					  if($user_other == 'other'){ ?>
+						  <script>
+						  $(document).ready(function(){
+							$('#status').prop('readonly', true);
+						  });
+						  </script>
+					  <?php 
+					  	$user_status = 20;
+					  } ?>
                       <?php print form_label('Status', 'status',array('class'=>'form-label')); ?>
-                      <?php print form_dropdown('status',$user_profile_status,'','id="status" class="select2 form-control"'); ?>
+                      <?php print form_dropdown('status',$user_profile_status,$user_status,'id="status" class="select2 form-control"'); ?>
                     </div>
                     <div class="col-md-4">
                       <?php print form_label('Gender', 'gender',array('class'=>'form-label')); ?>

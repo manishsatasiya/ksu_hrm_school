@@ -1,7 +1,7 @@
 <?php 
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class List_active_staff extends Private_Controller {
+class List_other_staff extends Private_Controller {
 
     public function __construct()
     {
@@ -29,8 +29,7 @@ class List_active_staff extends Private_Controller {
      */
 
     public function index($order_by = "username", $sort_order = "asc", $search = "all", $offset = 0) {
-    	
-        $content_data = array();
+    	$content_data = array();
         // set layout data
         $this->template->set_theme(Settings_model::$db_config['default_theme']);
         $this->template->set_layout('school');
@@ -39,7 +38,7 @@ class List_active_staff extends Private_Controller {
         $this->template->set_partial('header', 'header');
 $this->template->set_partial('sidebar', 'sidebar');
         $this->template->set_partial('footer', 'footer');
-        $this->template->build('list_active_staff', $content_data);
+        $this->template->build('list_other_staff', $content_data);
     }
     
     public function index_json($order_by = "username", $sort_order = "asc", $search = "all", $offset = 0) {
@@ -70,8 +69,8 @@ $this->template->set_partial('sidebar', 'sidebar');
     	$per_page =  $grid_data['per_page'];
     	$offset =  $grid_data['offset'];
     
-    	$data = $this->list_teacher_student_model->get_staff_members("activestaff",$per_page, $offset, $order_by, $sort_order, $grid_data['search_data']);
-    	$count = $this->list_teacher_student_model->get_staff_members("activestaff",0, 0, "", "", $grid_data['search_data']);
+    	$data = $this->list_teacher_student_model->get_staff_members("otherstaff",$per_page, $offset, $order_by, $sort_order, $grid_data['search_data']);
+    	$count = $this->list_teacher_student_model->get_staff_members("otherstaff",0, 0, "", "", $grid_data['search_data']);
 		/*
     	 * Output
     	*/
@@ -107,7 +106,7 @@ $this->template->set_partial('sidebar', 'sidebar');
     
     	echo json_encode( $output );
     }
-    
+    	
 }
 
 /* End of file list_user.php */
