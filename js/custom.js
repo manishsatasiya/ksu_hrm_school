@@ -34,16 +34,9 @@ $(document).ready(function(){
 // Profile page start
 if(CI.controller_name == 'profile' || CI.controller_name == 'list_user')
 {
-	/*$(function() {
-		$( "#reg_birth_date" ).datepicker({
-			changeMonth: true,
-			changeYear: true,
-			yearRange: 'c-50:c+0'
-		});
-	});*/
+
 	function changepic(){
-		$("#uploadpic").trigger('click');
-		
+		$("#uploadpic").trigger('click');		
 	}
 	function previewUploadImg(input) {
 		
@@ -190,13 +183,6 @@ if(CI.controller_name == 'list_student')
 //list_teacher START
 if(CI.controller_name == 'list_teacher')
 {
-	$(function() {
-		$( "#reg_birth_date" ).datepicker({
-			changeMonth: true,
-			changeYear: true,
-			yearRange: 'c-50:c+0'
-		});
-	});
 	
 }
 //list_teacher END
@@ -475,15 +461,7 @@ if(CI.controller_name == 'list_role')
 
 
 if(CI.controller_name == 'list_user')
-{
-	$(function() {
-		$( "#reg_birth_date" ).datepicker({
-			changeMonth: true,
-			changeYear: true,
-			yearRange: 'c-50:c+0'
-		});
-	});
-	
+{	
 	$('#add_reference_div').click(function(){
 		addReferenceBox();
 	});
@@ -637,14 +615,14 @@ function addReferenceBox(){
 }
 function addExperienceBox(){
 	$('#experiences').append($('#experience_main_sample').html());
-	$('#experiences #date').each(function() {
-		$(this).datepicker();
+	$('#experiences #show_dp').each(function() {
+		$(this).datepicker({format: 'D dd MM yyyy'});
 	});
 }
 function addCertificateBox(){
 	$('#certificates').append($('#certificate_main_sample').html());
-	$('#certificates #date').each(function() {
-		$(this).datepicker();
+	$('#certificates #show_dp').each(function() {
+		$(this).datepicker({format: 'D dd MM yyyy'});
 	});
 	$('#certificates .select2-container').each(function() {
 		$(this).remove();
@@ -655,8 +633,8 @@ function addCertificateBox(){
 }
 function addQualificationBox(){
 	$('#qualifications').append($('#qualification_main_sample').html());
-	$('#qualifications #date').each(function() {
-		$(this).datepicker();
+	$('#qualifications #show_dp').each(function() {
+		$(this).datepicker({format: 'D dd MM yyyy'});
 	});
 	$('#qualifications #date_year').each(function() {
 		$(this).datepicker( {

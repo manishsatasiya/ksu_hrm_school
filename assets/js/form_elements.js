@@ -52,21 +52,7 @@ $(document).ready(function(){
 
 	  
 
-	  //Date Pickers
-
-	  $('.input-append.date').datepicker({
-
-				autoclose: true,
-
-				todayHighlight: true
-
-	   });
-
-	 
-
-	 $('#dp5').datepicker();
-
-	 
+	  //Date Pickers 
 
 	 $('#sandbox-advance').datepicker({
 

@@ -83,9 +83,9 @@
           <div class="col-md-6">
             <h4></h4>
             <div class="row form-row">					
-              <div class="col-md-6"> <?php print form_label($this->lang->line('pro_p_birthdate'), 'profile_first_name'); ?> 
+              <div class="col-md-6"> <?php print form_label($this->lang->line('pro_p_birthdate'), 'birth_date'); ?> 
 			  	<div class="input-append success date col-md-10 col-lg-6 no-padding">
-                   <?php print form_input(array('name' => 'birth_date', 'id' => 'reg_birth_date', 'value' => $birth_date, 'class' => 'form-control','style'=>'')); ?> 
+                   <?php print form_input(array('name' => 'birth_date', 'id' => 'show_dp', 'value' => make_dp_date($birth_date), 'class' => 'form-control','style'=>'')); ?> 
                     <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
 				</div>
 				

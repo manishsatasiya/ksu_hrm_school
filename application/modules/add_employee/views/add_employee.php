@@ -65,7 +65,7 @@
                     <div class="col-md-12">
                       <?php print form_label('Dob', 'birth_date',array('class'=>'form-label')); ?>
                       <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                        <?php print form_input(array('name' => 'birth_date', 'id' => 'date', 'value' => ($user_data)?date('m/d/Y',strtotime($user_data->birth_date)):$this->session->flashdata('birth_date'), 'class' => 'form-control ','placeholder' => 'Dob')); ?>
+                        <?php print form_input(array('name' => 'birth_date', 'id' => 'show_dp', 'value' => ($user_data)?make_dp_date($user_data->birth_date):$this->session->flashdata('birth_date'), 'class' => 'form-control ','placeholder' => 'Dob')); ?>
                         <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
                     </div>
                   </div>
@@ -102,13 +102,13 @@
                     <div class="col-md-4">
                       <?php print form_label('Expected arrival date in KSA', 'expected_arrival_date',array('class'=>'form-label')); ?>
                       <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                      <?php print form_input(array('name' => 'expected_arrival_date', 'id' => 'date', 'value' => ($user_data)?$user_data->expected_arrival_date:$this->session->flashdata('expected_arrival_date'), 'class' => 'form-control ')); ?>
+                      <?php print form_input(array('name' => 'expected_arrival_date', 'id' => 'show_dp', 'value' => ($user_data)?make_dp_date($user_data->expected_arrival_date):$this->session->flashdata('expected_arrival_date'), 'class' => 'form-control ')); ?>
                       <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
                     </div>
                     <div class="col-md-4">
                       <?php print form_label('First day at PY', 'first_day_at_py',array('class'=>'form-label')); ?>
                       <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                      <?php print form_input(array('name' => 'first_day_at_py', 'id' => 'date', 'value' => ($user_data)?$user_data->first_day_at_py:$this->session->flashdata('first_day_at_py'), 'class' => 'form-control ','placeholder' => '')); ?>
+                      <?php print form_input(array('name' => 'first_day_at_py', 'id' => 'show_dp', 'value' => ($user_data)?make_dp_date($user_data->first_day_at_py):$this->session->flashdata('first_day_at_py'), 'class' => 'form-control ','placeholder' => '')); ?>
                       <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
                     </div>
                     <div class="col-md-4">
@@ -127,13 +127,13 @@
                     <div class="col-md-6">
                       <?php print form_label('Date Requested', 'third_party_ver_date_requested',array('class'=>'form-label')); ?>
                       <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                      <?php print form_input(array('name' => 'third_party_ver_date_requested', 'id' => 'date', 'value' => ($user_data)?$user_data->third_party_ver_date_requested:$this->session->flashdata('third_party_ver_date_requested'), 'class' => 'form-control ','placeholder' => '')); ?>
+                      <?php print form_input(array('name' => 'third_party_ver_date_requested', 'id' => 'show_dp', 'value' => ($user_data)?make_dp_date($user_data->third_party_ver_date_requested):$this->session->flashdata('third_party_ver_date_requested'), 'class' => 'form-control ','placeholder' => '')); ?>
                       <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
                     </div>
                     <div class="col-md-6">
                        <?php print form_label('Date Completed', 'third_party_ver_date_completed',array('class'=>'form-label')); ?>
                       <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                      <?php print form_input(array('name' => 'third_party_ver_date_completed', 'id' => 'date', 'value' => ($user_data)?$user_data->third_party_ver_date_completed:$this->session->flashdata('third_party_ver_date_completed'), 'class' => 'form-control ','placeholder' => '')); ?>
+                      <?php print form_input(array('name' => 'third_party_ver_date_completed', 'id' => 'show_dp', 'value' => ($user_data)?make_dp_date($user_data->third_party_ver_date_completed):$this->session->flashdata('third_party_ver_date_completed'), 'class' => 'form-control ','placeholder' => '')); ?>
                       <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
                     </div>
                   </div>
@@ -223,14 +223,14 @@
                                 <div class="col-md-6">
                                     <div class="form_label2"><?php print form_label('Start date', 'start_date'); ?></div>
                                     <div class="input-append success date col-md-10 no-padding">	
-                                        <?php print form_input(array('name' => 'experience[start_date][]', 'id' => 'date', 'value' => $experience['start_date'], 'class' => 'form-control')); ?>
+                                        <?php print form_input(array('name' => 'experience[start_date][]', 'id' => 'show_dp', 'value' => make_dp_date($experience['start_date']), 'class' => 'form-control')); ?>
                                         <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form_label2"><?php print form_label('End Date', 'end_date'); ?></div>
                                     <div class="input-append success date col-md-10 no-padding">	
-                                        <?php print form_input(array('name' => 'experience[end_date][]', 'id' => 'date', 'value' => $experience['end_date'], 'class' => 'form-control')); ?>
+                                        <?php print form_input(array('name' => 'experience[end_date][]', 'id' => 'show_dp', 'value' => make_dp_date($experience['end_date']), 'class' => 'form-control')); ?>
                                         <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
                                     </div>
                                 </div>
@@ -270,14 +270,14 @@
                                 <div class="col-md-6">
                                     <div class="form_label2"><?php print form_label('Start date', 'start_date'); ?></div>
                                     <div class="input-append success date col-md-10 no-padding">	
-                                        <?php print form_input(array('name' => 'experience[start_date][]', 'id' => 'date', 'value' => '', 'class' => 'form-control')); ?>
+                                        <?php print form_input(array('name' => 'experience[start_date][]', 'id' => 'show_dp', 'value' => '', 'class' => 'form-control')); ?>
                                         <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form_label2"><?php print form_label('End Date', 'end_date'); ?></div>
                                     <div class="input-append success date col-md-10 no-padding">	
-                                        <?php print form_input(array('name' => 'experience[end_date][]', 'id' => 'date', 'value' => '', 'class' => 'form-control')); ?>
+                                        <?php print form_input(array('name' => 'experience[end_date][]', 'id' => 'show_dp', 'value' => '', 'class' => 'form-control')); ?>
                                         <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
                                     </div>
                                 </div>
@@ -310,7 +310,7 @@
                                 <div class="col-md-4">
                                     <div class="form_label2"><?php print form_label('Date', 'date');?></div>
                                     <div class="input-append success date col-md-10 no-padding">	
-                                        <?php print form_input(array('name' => 'certificates[date][]', 'id' => 'date', 'value' => $certificate['date'], 'class' => 'form-control')); ?>
+                                        <?php print form_input(array('name' => 'certificates[date][]', 'id' => 'show_dp', 'value' => make_dp_date($certificate['date']), 'class' => 'form-control')); ?>
                                         <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
                                     </div>
                                 </div>
@@ -336,7 +336,7 @@
                             <div class="col-md-4">
                                 <div class="form_label2"><?php print form_label('Date', 'date');?></div>
                                 <div class="input-append success date col-md-10 no-padding">	
-                                    <?php print form_input(array('name' => 'certificates[date][]', 'id' => 'date', 'value' => '', 'class' => 'form-control')); ?>
+                                    <?php print form_input(array('name' => 'certificates[date][]', 'id' => 'show_dp', 'value' => '', 'class' => 'form-control')); ?>
                                     <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
                                 </div>
                             </div>
@@ -384,7 +384,7 @@
                                 <div class="col-md-6">
                                     <div class="form_label2"><?php print form_label('Date', 'date'); ?></div>
                                     <div class="input-append success date col-md-10 no-padding">	
-                                        <?php print form_input(array('name' => 'qualifications[date][]', 'id' => 'date', 'value' => $qualification['date'], 'class' => 'form-control')); ?>
+                                        <?php print form_input(array('name' => 'qualifications[date][]', 'id' => 'show_dp', 'value' => make_dp_date($qualification['date']), 'class' => 'form-control')); ?>
                                         <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
                                     </div>
                                 </div>
@@ -397,7 +397,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form_label2"><?php print form_label('Graduation year', 'graduation_year'); ?></div>
-                                    <div class="input-append success date col-md-10 no-padding">	
+                                    <div class="input-append success col-md-10 no-padding">	
                                         <?php print form_input(array('name' => 'qualifications[graduation_year][]', 'id' => 'date_year', 'value' => $qualification['graduation_year'], 'class' => 'form-control')); ?>
                                         <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
                                     </div>
@@ -439,7 +439,7 @@
                                 <div class="col-md-6">
                                     <div class="form_label2"><?php print form_label('Date', 'date'); ?></div>
                                     <div class="input-append success date col-md-10 no-padding">	
-                                        <?php print form_input(array('name' => 'qualifications[date][]', 'id' => 'date', 'value' => '', 'class' => 'form-control')); ?>
+                                        <?php print form_input(array('name' => 'qualifications[date][]', 'id' => 'show_dp', 'value' => '', 'class' => 'form-control')); ?>
                                         <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
                                     </div>
                                 </div>
@@ -452,7 +452,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form_label2"><?php print form_label('Graduation year', 'graduation_year'); ?></div>
-                                    <div class="input-append success date col-md-10 no-padding">	
+                                    <div class="input-append success col-md-10 no-padding">	
                                         <?php print form_input(array('name' => 'qualifications[graduation_year][]', 'id' => 'date_year', 'value' => '', 'class' => 'form-control')); ?>
                                         <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
                                     </div>

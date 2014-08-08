@@ -15,7 +15,7 @@ print form_open('schedule/add_appointment/', array('id' => 'add_appointment','na
 		<div class="col-md-6">
 			<div class="form_label2"><?php print form_label('Date', 'date'); ?></div>
 			<div class="input-append success date col-md-10 col-lg-6 no-padding">
-            	<?php print form_input(array('name' => 'date', 'id' => 'date', 'value' => ($rowdata)?date('m/d/Y',strtotime($rowdata->date)):$this->session->flashdata('date'), 'class' => 'form-control ')); ?>
+            	<?php print form_input(array('name' => 'date', 'id' => 'show_dp', 'value' => ($rowdata)?make_dp_date($rowdata->date):$this->session->flashdata('date'), 'class' => 'form-control ')); ?>
                 <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
             </div>            
 		</div>

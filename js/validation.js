@@ -478,13 +478,7 @@ $(document).ready(function() {
 	
 	if(CI.controller_name == 'list_student')
 	{
-		$(function() {
-			$( "#reg_student_schedule_date" ).datepicker({
-				changeMonth: true,
-				changeYear: true,
-				yearRange: 'c-50:c+0'
-			});
-		});
+		
 	}
 		
 	$("#add_teacher_form_datatable").validate({
@@ -822,29 +816,7 @@ $(document).ready(function() {
 	
 	if(CI.controller_name == 'list_user')
 	{
-		$(function() {
-			$( "#reg_birth_date" ).datepicker({
-				changeMonth: true,
-				changeYear: true,
-				yearRange: 'c-50:c+0'
-			});
-		});
-				
-		$(function() {
-			$( "#start_date" ).datepicker({
-				changeMonth: true,
-				changeYear: true,
-				yearRange: 'c-50:c+0'
-			});
-		});
 		
-		$(function() {
-			$( "#end_date" ).datepicker({
-				changeMonth: true,
-				changeYear: true,
-				yearRange: 'c-50:c+0'
-			});
-		});
 	}	
 	$("#add_user_form_datatable").validate({
 		submitHandler: function(form) {
@@ -897,13 +869,7 @@ $(document).ready(function() {
 	});
 	
 	if(CI.controller_name == 'workshops')
-	{
-		$(function() {
-			$( "#reg_start_date" ).datepicker({
-				format: 'D dd MM yyyy'
-			});
-		});
-		
+	{		
 		$('#reg_time').timepicker({});
 	}
 	
@@ -1451,7 +1417,14 @@ $(document).ready(function() {
 	});
 	
 	$(function() {
-		$("#date").datepicker();
+		$("#show_dp").datepicker({
+			format: 'D dd MM yyyy'
+		});
+		$('.input-append.date').datepicker({
+			autoclose: true,
+			format: 'D dd MM yyyy',
+			todayHighlight: true
+	    });
 		$(document).on('change','#date', function (ev) {
 			//alert('fsf');
 			//alert($(this).attr('name'));

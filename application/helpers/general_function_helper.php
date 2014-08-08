@@ -1555,6 +1555,10 @@ function get_department_list() {
 
 function list_dashboard_page(){
 	return array('Text'=>'Text','Normal'=>'Normal','Advance'=>'Advance');
+}
+
+function make_dp_date($date = ''){
+	return date('D, d M Y',strtotime($date));
 }	
 
 /* End of file general_function_helper.php */
