@@ -28,7 +28,7 @@ class List_school_year_model extends CI_Model {
             !empty($search_data['school_year']) ? $data['school_year'] = $search_data['school_year'] : "";
             !empty($search_data['school_year_title']) ? $data['school_year_title'] = $search_data['school_year_title'] : "";
             !empty($search_data['school_type']) ? $data['school_type'] = $search_data['school_type'] : "";
-            
+            !empty($search_data['school_week']) ? $data['school_week'] = $search_data['school_week'] : "";
         }
 		
         $this->db->select('*');

@@ -134,9 +134,12 @@ class Verify_grade extends Private_Controller {
 		$student_user_id = '';
 		if($search_student_id != '')
 		{
+			$search_sec_id = $student_user_id = 0;
 			$student_user_data = $this->list_teacher_student_model->get_student_data_uni_id($search_student_id);
-			$search_sec_id = $student_user_data->section_id;
-			$student_user_id = $student_user_data->user_id;
+			if(!empty($student_user_data)){
+				$search_sec_id = $student_user_data->section_id;
+				$student_user_id = $student_user_data->user_id;
+			}
 			$where1[] = array("course_class.section_id"=>$search_sec_id);
 		}
 		// set content data

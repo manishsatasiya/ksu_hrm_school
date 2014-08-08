@@ -125,7 +125,7 @@ $this->template->set_partial('sidebar', 'sidebar');
     	/* Array of database columns which should be read and sent back to DataTables. Use a space where
     	 * you want to insert a non-database field (for example a counter or static image)
     	*/
-    	$aColumns = array('school_year_id','school_id','school_year','school_year_title','school_type','school_week');
+    	$aColumns = array('school_year_id','school_year.school_id','school_year','school_year_title','school_type','school_week');
     	$grid_data = get_search_data($aColumns);
     	$sort_order = $grid_data['sort_order'];
     	$order_by = $grid_data['order_by'];
