@@ -39,11 +39,10 @@ class Add_employee extends Private_Controller {
 							'status'       => $this->input->post('status'),
 							'first_name'       => $this->input->post('first_name'),
 							'middle_name'       => $this->input->post('middle_name'),
-							'middle_name2'       => $this->input->post('middle_name2'),
 							'last_name'       => $this->input->post('last_name'),
 							'gender'       => $this->input->post('gender'),
 							'email'       => $email,
-							'birth_date'       => make_db_date($this->input->post('birth_date')),
+							'birth_date'       => date('Y-m-d',strtotime($this->input->post('birth_date'))),
 							'cell_phone'       => $this->input->post('cell_phone'),
 							'language_known'       => $this->input->post('language_known'),
 							'personal_email'       => $this->input->post('personal_email'),
@@ -53,12 +52,12 @@ class Add_employee extends Private_Controller {
 				$profile_data = array(
 							'nationality'       => $this->input->post('nationality'),
 							'marital_status'       => $this->input->post('marital_status'),
-							'expected_arrival_date'       => make_db_date($this->input->post('expected_arrival_date')),
-							'first_day_at_py'       => make_db_date($this->input->post('first_day_at_py')),
+							'expected_arrival_date'       => date('Y-m-d',strtotime($this->input->post('expected_arrival_date'))),
+							'first_day_at_py'       => date('Y-m-d',strtotime($this->input->post('first_day_at_py'))),
 							'visa_type'       => $this->input->post('visa_type'),
 							'third_party_ver_company'       => $this->input->post('third_party_ver_company'),
-							'third_party_ver_date_requested'       => make_db_date($this->input->post('third_party_ver_date_requested')),
-							'third_party_ver_date_completed'       => make_db_date($this->input->post('third_party_ver_date_completed'))
+							'third_party_ver_date_requested'       => date('Y-m-d',strtotime($this->input->post('third_party_ver_date_requested'))),
+							'third_party_ver_date_completed'       => date('Y-m-d',strtotime($this->input->post('third_party_ver_date_completed')))
 						);						
 				grid_data_updates($profile_data,'user_profile', 'user_id',$user_id);
 				
@@ -88,8 +87,8 @@ class Add_employee extends Private_Controller {
 					for($i=0;$i < $experience_count -1;$i++){
 						$company = $experience['company'][$i];
 						$position = $experience['position'][$i];
-						$start_date = make_db_date($experience['start_date'][$i]);
-						$end_date = make_db_date($experience['end_date'][$i]);
+						$start_date = date('Y-m-d',strtotime($experience['start_date'][$i]));
+						$end_date = date('Y-m-d',strtotime($experience['end_date'][$i]));
 						$departure_reason = $experience['departure_reason'][$i];
 						$created_at = date('Y-m-d H:i:s');
 						
@@ -112,7 +111,7 @@ class Add_employee extends Private_Controller {
 				if($certificates_count > 1){
 					for($i=0;$i < $certificates_count -1;$i++){
 						$certificate_id = $certificates['certificate_id'][$i];
-						$date = make_db_date($certificates['date'][$i]);
+						$date = date('Y-m-d',strtotime($certificates['date'][$i]));
 						$created_at = date('Y-m-d H:i:s');
 						
 						$user_certificate = array(
@@ -133,7 +132,7 @@ class Add_employee extends Private_Controller {
 						$qualification_id = $qualifications['qualification_id'][$i];
 						$subject_related = $qualifications['subject_related'][$i];
 						$subject = $qualifications['subject'][$i];
-						$date = make_db_date($qualifications['date'][$i]);
+						$date = date('Y-m-d',strtotime($qualifications['date'][$i]));
 						$institute = $qualifications['institute'][$i];
 						$graduation_year = date('Y',strtotime($qualifications['graduation_year'][$i]));
 						$created_at = date('Y-m-d H:i:s');
@@ -265,13 +264,12 @@ class Add_employee extends Private_Controller {
 							'status'       => $this->input->post('status'),
 							'first_name'       => $this->input->post('first_name'),
 							'middle_name'       => $this->input->post('middle_name'),
-							'middle_name2'       => $this->input->post('middle_name2'),
 							'last_name'       => $this->input->post('last_name'),
 							'gender'       => $this->input->post('gender'),
 							'elsd_id'       => $elsd_id,
 							'email'       => $email,
 							'username'       => $username,
-							'birth_date'       => make_db_date($this->input->post('birth_date')),
+							'birth_date'       => date('Y-m-d',strtotime($this->input->post('birth_date'))),
 							'cell_phone'       => $this->input->post('cell_phone'),
 							'language_known'       => $this->input->post('language_known'),
 							'personal_email'       => $this->input->post('personal_email'),
@@ -291,12 +289,12 @@ class Add_employee extends Private_Controller {
 							'contractor'       => $this->session->userdata('contractor'),
 							'nationality'       => $this->input->post('nationality'),
 							'marital_status'       => $this->input->post('marital_status'),
-							'expected_arrival_date'       => make_db_date($this->input->post('expected_arrival_date')),
-							'first_day_at_py'       => make_db_date($this->input->post('first_day_at_py')),
+							'expected_arrival_date'       => date('Y-m-d',strtotime($this->input->post('expected_arrival_date'))),
+							'first_day_at_py'       => date('Y-m-d',strtotime($this->input->post('first_day_at_py'))),
 							'visa_type'       => $this->input->post('visa_type'),
 							'third_party_ver_company'       => $this->input->post('third_party_ver_company'),
-							'third_party_ver_date_requested'       => make_db_date($this->input->post('third_party_ver_date_requested')),
-							'third_party_ver_date_completed'       => make_db_date($this->input->post('third_party_ver_date_completed'))
+							'third_party_ver_date_requested'       => date('Y-m-d',strtotime($this->input->post('third_party_ver_date_requested'))),
+							'third_party_ver_date_completed'       => date('Y-m-d',strtotime($this->input->post('third_party_ver_date_completed')))
 						);
 					$profile_id = grid_add_data($profile_data,'user_profile');
 					
@@ -325,8 +323,8 @@ class Add_employee extends Private_Controller {
 						for($i=0;$i < $experience_count -1;$i++){
 							$company = $experience['company'][$i];
 							$position = $experience['position'][$i];
-							$start_date = make_db_date($experience['start_date'][$i]);
-							$end_date = make_db_date($experience['end_date'][$i]);
+							$start_date = date('Y-m-d',strtotime($experience['start_date'][$i]));
+							$end_date = date('Y-m-d',strtotime($experience['end_date'][$i]));
 							$departure_reason = $experience['departure_reason'][$i];
 							$created_at = date('Y-m-d H:i:s');
 							
@@ -348,7 +346,7 @@ class Add_employee extends Private_Controller {
 					if($certificates_count > 1){
 						for($i=0;$i < $certificates_count -1;$i++){
 							$certificate_id = $certificates['certificate_id'][$i];
-							$date = make_db_date($certificates['date'][$i]);
+							$date = date('Y-m-d',strtotime($certificates['date'][$i]));
 							$created_at = date('Y-m-d H:i:s');
 							
 							$user_certificate = array(
@@ -369,7 +367,7 @@ class Add_employee extends Private_Controller {
 							$qualification_id = $qualifications['qualification_id'][$i];
 							$subject_related = $qualifications['subject_related'][$i];
 							$subject = $qualifications['subject'][$i];
-							$date = make_db_date($qualifications['date'][$i]);
+							$date = date('Y-m-d',strtotime($qualifications['date'][$i]));
 							$institute = $qualifications['institute'][$i];
 							$graduation_year = date('Y',strtotime($qualifications['graduation_year'][$i]));
 							$created_at = date('Y-m-d H:i:s');

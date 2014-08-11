@@ -38,9 +38,9 @@ print form_hidden('gender', $value = 'M');
 	</div>
 	<div class="row form-row">
 		<div class="col-md-4">
-			<div class="form_label2"><?php print form_label($this->lang->line('user_p_birth_date'), 'birth_date'); ?></div>
+			<div class="form_label2"><?php print form_label($this->lang->line('user_p_birth_date'), 'reg_birth_date'); ?></div>
 			<div class="input-append success date col-md-10 no-padding">	
-				<?php print form_input(array('name' => 'birth_date', 'id' => 'show_dp', 'value' => ($rowdata)?make_dp_date($rowdata->birth_date):$this->session->flashdata('birth_date'), 'class' => 'form-control')); ?>
+				<?php print form_input(array('name' => 'birth_date', 'id' => 'reg_birth_date', 'value' => ($rowdata)?$rowdata->birth_date:$this->session->flashdata('birth_date'), 'class' => 'form-control qtip_birth_date')); ?>
 				<span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
 			</div>
 		</div>	

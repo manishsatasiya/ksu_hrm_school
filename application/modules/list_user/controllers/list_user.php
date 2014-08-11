@@ -254,7 +254,7 @@ $this->template->set_partial('sidebar', 'sidebar');
     			$data['city'] = $city;
     			$data['state'] = $state;
     			$data['zip'] = $zip;
-    			$data['birth_date'] = make_db_date($birth_date);
+    			$data['birth_date'] = date('Y-m-d',strtotime($birth_date));
     			$data['birth_place'] = $birth_place;
     			$data['language_known'] = $language_known;
     			$data['work_phone'] = $work_phone;
@@ -303,7 +303,7 @@ $this->template->set_partial('sidebar', 'sidebar');
     			$data['city'] = $city;
     			$data['state'] = $state;
     			$data['zip'] = $zip;
-    			$data['birth_date'] = make_db_date($birth_date);
+    			$data['birth_date'] = date('Y-m-d',strtotime($birth_date));
     			$data['birth_place'] = $birth_place;
     			$data['language_known'] = $language_known;
     			$data['work_phone'] = $work_phone;
@@ -614,14 +614,13 @@ $this->template->set_partial('sidebar', 'sidebar');
 						'status'       => $this->input->post('status'),
 						'first_name'       => $this->input->post('first_name'),
 						'middle_name'       => $this->input->post('middle_name'),
-						'middle_name2'       => $this->input->post('middle_name2'),
 						'last_name'       => $this->input->post('last_name'),
 						'gender'       => $this->input->post('gender'),
 						'elsd_id'       => $elsd_id,
 						'email'       => $email,
 						'username'       => $username,
 						'password'       => $hash_password,
-						'birth_date'       => make_db_date($this->input->post('birth_date')),
+						'birth_date'       => date('Y-m-d',strtotime($this->input->post('birth_date'))),
 						'user_roll_id'       => $this->input->post('user_roll_id'),
 						'campus_id'       => (int)$this->input->post('campus_id'),
 						'coordinator'       => $this->input->post('coordinator'),
@@ -645,8 +644,8 @@ $this->template->set_partial('sidebar', 'sidebar');
 						//'ecl_access'       => $this->input->post('ecl_access'),
 						//'banned_teacher'       => $this->input->post('banned_teacher'),
 						//'responsibilities'       => $this->input->post('responsibilities'),
-						'cy_joining_date'       => make_db_date($this->input->post('cy_joining_date')),
-						'original_start_date'       => make_db_date($this->input->post('original_start_date')),
+						'cy_joining_date'       => date('Y-m-d',strtotime($this->input->post('cy_joining_date'))),
+						'original_start_date'       => date('Y-m-d',strtotime($this->input->post('original_start_date'))),
 						'returning'       => $this->input->post('returning'),
 						'teaching_experience'       => $this->input->post('teaching_experience'),
 						'contractor'       => $this->input->post('contractor'),
@@ -691,7 +690,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 						'ver_reference'       => $this->input->post('ver_reference'),
 						'interviewee1'       => $this->input->post('interviewee1'),
 						'interviewee2'       => $this->input->post('interviewee2'),
-						'interview_date'       => make_db_date($this->input->post('interview_date')),
+						'interview_date'       => date('Y-m-d',strtotime($this->input->post('interview_date'))),
 						'interview_outcome'       => $this->input->post('interview_outcome'),
 						'interview_notes'       => $this->input->post('interview_notes'),
 						'updated_at'       => date('Y-m-d H:i:s')
@@ -740,7 +739,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 							'resignation_resons'       => $this->input->post('resignation_resons'),
 							'departure_notes'       => $this->input->post('departure_notes'),
 							'exit_cleared'       => $this->input->post('exit_cleared'),
-							'last_day_of_work'       => make_db_date($this->input->post('last_day_of_work'))
+							'last_day_of_work'       => date('Y-m-d',strtotime($this->input->post('last_day_of_work')))
 						);
 				grid_data_updates($departure_data,'user_profile', 'user_id',$user_id);
 			}else {	
@@ -773,11 +772,10 @@ $this->template->set_partial('sidebar', 'sidebar');
 							'status'       => $this->input->post('status'),
 							'first_name'       => $this->input->post('first_name'),
 							'middle_name'       => $this->input->post('middle_name'),
-							'middle_name2'       => $this->input->post('middle_name2'),
 							'last_name'       => $this->input->post('last_name'),
 							'gender'       => $this->input->post('gender'),
 							'username'       => $username,
-							'birth_date'       => make_db_date($this->input->post('birth_date')),
+							'birth_date'       => date('Y-m-d',strtotime($this->input->post('birth_date'))),
 							'user_roll_id'       => $this->input->post('user_roll_id'),
 							'campus_id'       => (int)$this->input->post('campus_id'),
 							'coordinator'       => $this->input->post('coordinator'),
@@ -806,8 +804,8 @@ $this->template->set_partial('sidebar', 'sidebar');
 							//'ecl_access'       => $this->input->post('ecl_access'),
 							//'banned_teacher'       => $this->input->post('banned_teacher'),
 							//'responsibilities'       => $this->input->post('responsibilities'),
-							'cy_joining_date'       => make_db_date($this->input->post('cy_joining_date')),
-							'original_start_date'       => make_db_date($this->input->post('original_start_date')),
+							'cy_joining_date'       => date('Y-m-d',strtotime($this->input->post('cy_joining_date'))),
+							'original_start_date'       => date('Y-m-d',strtotime($this->input->post('original_start_date'))),
 							'returning'       => $this->input->post('returning'),
 							'teaching_experience'       => $this->input->post('teaching_experience'),
 							'contractor'       => $this->input->post('contractor'),
@@ -1097,7 +1095,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 			$data['subject'] = $subject;
 			$data['accredited'] = $accredited;
 			$data['in_class'] = $in_class;
-			$data['date'] = make_db_date($date);
+			$data['date'] = date('Y-m-d',strtotime($date));
 			$data['institute'] = $institute;
 			$data['graduation_year'] = date('Y',strtotime($graduation_year));
 			$error = "";
@@ -1136,7 +1134,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 			$data['user_id'] = $user_id;
 			$data['type'] = 'certificate';
 			$data['qualification_id'] = $certificate_id;
-			$data['date'] = make_db_date($date);
+			$data['date'] = date('Y-m-d',strtotime($date));
 				
 			$error = "";
     		$error_seperator = "<br>";
@@ -1177,8 +1175,8 @@ $this->template->set_partial('sidebar', 'sidebar');
 			$data['user_id'] = $user_id;
 			$data['company'] = $company;
 			$data['position'] = $position;
-			$data['start_date'] = make_db_date($start_date);
-			$data['end_date'] = make_db_date($end_date);
+			$data['start_date'] = date('Y-m-d',strtotime($start_date));
+			$data['end_date'] = date('Y-m-d',strtotime($end_date));
 			$data['departure_reason'] = $departure_reason;
 				
 			$error = "";

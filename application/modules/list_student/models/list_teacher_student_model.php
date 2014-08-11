@@ -242,10 +242,10 @@ class List_Teacher_Student_model extends CI_Model {
 		
 		if(($this->session->userdata('campus_id') > 0 || $this->session->userdata('campus') != ""))
 		{
-			if($this->session->userdata('campus_id') > 0){
+			if($this->session->userdata('campus_id') > 0)
 				$this->db->where('users.campus_id',$this->session->userdata('campus_id'));
-				$this->db->or_where('users.campus_id',0);
-			}	
+			else if($this->session->userdata('campus') != "")
+				$this->db->where('users.campus',$this->session->userdata('campus'));	
 		}
         
 		if($this->session->userdata('contractor') > 0){

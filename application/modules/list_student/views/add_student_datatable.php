@@ -58,7 +58,7 @@ print form_hidden('user_id', $value = ($rowdata)?$rowdata->user_id:0);
 			<div class="form-group">
             <div class="form_label2"><?php print form_label($this->lang->line('sch_date'), 'reg_student_schedule_date'); ?></div>
 			<div class="input-append success date col-md-10 no-padding">
-				<?php print form_input(array('name' => 'student_schedule_date', 'id' => 'show_dp', 'value' => ($rowdata)?make_dp_date($rowdata->student_schedule_date):$this->session->flashdata('student_schedule_date'), 'class' => 'form-control qtip_student_schedule_date')); ?>
+				<?php print form_input(array('name' => 'student_schedule_date', 'id' => 'reg_student_schedule_date', 'value' => ($rowdata)?date('m/d/Y',strtotime($rowdata->student_schedule_date)):$this->session->flashdata('student_schedule_date'), 'class' => 'form-control qtip_student_schedule_date')); ?>
 				<span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
 			</div>
 			</div>
