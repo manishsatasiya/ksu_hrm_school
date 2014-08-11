@@ -921,11 +921,17 @@ background: #ECF0F2;
 .accordion-typ1 .collapse.in .panel-body {}
 .accordion-typ1 .table-bordered th {
     background-color: #ffffff;
-    border:1px solid #ECF0F2 !important;
+    border:1px solid #dddddd !important;
 }
+.accordion-typ1 .table-bordered td {
+    border:1px solid #dddddd !important;
+}
+
 .accordion-typ1 table.table tbody tr:nth-child(2n+1) {
-    background: none repeat scroll 0 0 #dddddd !important;
+    background: none repeat scroll 0 0 #ecf0f2 !important;
 }
+.accordion-typ1 table.table tbody tr.label-important { background:#f35958 !important;}
+.table tr.label-important td { color:#ffffff;}
 .panel-body .add_attendance_form{ overflow:auto;}
 .add_attendance_form .table-bordered th,
 .add_grade_form .table-bordered th { padding:8px 5px; font-size:11px; text-align:center;}
@@ -1186,3 +1192,6 @@ border-top:1px solid #dddddd; border-left:1px solid #dddddd; padding:6px !import
 	padding:7px 10px;
 	border:1px solid #bbbbbb;
 	}
+	
+.doc-list {}
+.doc-list a { display:inline-block; vertical-align:middle; margin-bottom:10px;}
