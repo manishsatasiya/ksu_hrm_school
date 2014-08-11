@@ -29,13 +29,16 @@
                     <div class="col-md-12">
                       <?php print form_label('Names', 'names',array('class'=>'form-label')); ?>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                       <?php print form_input(array('name' => 'first_name', 'id' => 'first_name', 'value' => ($user_data)?$user_data->first_name:$this->session->flashdata('first_name'), 'class' => 'form-control ','placeholder' => 'First Name')); ?>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                       <?php print form_input(array('name' => 'middle_name', 'id' => 'middle_name', 'value' => ($user_data)?$user_data->middle_name:$this->session->flashdata('middle_name'), 'class' => 'form-control ','placeholder' => 'Middle Name')); ?>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
+                      <?php print form_input(array('name' => 'middle_name2', 'id' => 'middle_name2', 'value' => ($user_data)?$user_data->middle_name2:$this->session->flashdata('middle_name2'), 'class' => 'form-control ','placeholder' => 'Middle Name 2')); ?>
+                    </div>
+                    <div class="col-md-3">
                       <?php print form_input(array('name' => 'last_name', 'id' => 'last_name', 'value' => ($user_data)?$user_data->last_name:$this->session->flashdata('last_name'), 'class' => 'form-control ','placeholder' => 'Last Name')); ?>
                     </div>
                   </div>

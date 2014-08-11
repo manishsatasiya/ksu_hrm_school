@@ -1558,7 +1558,17 @@ function list_dashboard_page(){
 }
 
 function make_dp_date($date = ''){
+	if($date == '' || $date == '0000-00-00'){
+		return '';
+	}
 	return date('D, d M Y',strtotime($date));
+}
+
+function make_db_date($date = ''){
+	if($date == ''){
+		return '';
+	}
+	return date('Y-m-d',strtotime($date));
 }	
 
 /* End of file general_function_helper.php */
