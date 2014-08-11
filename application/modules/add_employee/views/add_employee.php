@@ -1,6 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
               
-<div class="row">
+
+<div class="row add-employee-pg">
+
   <div class="col-md-12">
     <div class="grid simple ">
       <div class="grid-title"><h4><?php if($user_id > 0){echo 'Edit';}else{ echo 'Add New';} ?><span class="semi-bold"> Employee</span></h4></div>
@@ -29,13 +31,16 @@
                     <div class="col-md-12">
                       <?php print form_label('Names', 'names',array('class'=>'form-label')); ?>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                       <?php print form_input(array('name' => 'first_name', 'id' => 'first_name', 'value' => ($user_data)?$user_data->first_name:$this->session->flashdata('first_name'), 'class' => 'form-control ','placeholder' => 'First Name')); ?>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                       <?php print form_input(array('name' => 'middle_name', 'id' => 'middle_name', 'value' => ($user_data)?$user_data->middle_name:$this->session->flashdata('middle_name'), 'class' => 'form-control ','placeholder' => 'Middle Name')); ?>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
+                      <?php print form_input(array('name' => 'middle_name2', 'id' => 'middle_name2', 'value' => ($user_data)?$user_data->middle_name2:$this->session->flashdata('middle_name2'), 'class' => 'form-control ','placeholder' => 'Middle Name 2')); ?>
+                    </div>
+                    <div class="col-md-3">
                       <?php print form_input(array('name' => 'last_name', 'id' => 'last_name', 'value' => ($user_data)?$user_data->last_name:$this->session->flashdata('last_name'), 'class' => 'form-control ','placeholder' => 'Last Name')); ?>
                     </div>
                   </div>
@@ -65,7 +70,7 @@
                     <div class="col-md-12">
                       <?php print form_label('Dob', 'birth_date',array('class'=>'form-label')); ?>
                       <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                        <?php print form_input(array('name' => 'birth_date', 'id' => 'date', 'value' => ($user_data)?date('m/d/Y',strtotime($user_data->birth_date)):$this->session->flashdata('birth_date'), 'class' => 'form-control ','placeholder' => 'Dob')); ?>
+                        <?php print form_input(array('name' => 'birth_date', 'id' => 'show_dp', 'value' => ($user_data)?make_dp_date($user_data->birth_date):$this->session->flashdata('birth_date'), 'class' => 'form-control ','placeholder' => 'Dob')); ?>
                         <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
                     </div>
                   </div>
@@ -97,18 +102,20 @@
                       <?php print form_input(array('name' => 'cell_phone', 'id' => 'cell_phone', 'value' => ($user_data)?$user_data->cell_phone:$this->session->flashdata('cell_phone'), 'class' => 'form-control ','placeholder' => 'Mobile Phone')); ?>
                     </div>
                   </div>
-                  <h4 class="semi-bold">Arrival</h4>
+
+                  <fieldset>
+                  <legend>Arrival</legend>
                   <div class="row form-row">
                     <div class="col-md-4">
                       <?php print form_label('Expected arrival date in KSA', 'expected_arrival_date',array('class'=>'form-label')); ?>
                       <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                      <?php print form_input(array('name' => 'expected_arrival_date', 'id' => 'date', 'value' => ($user_data)?$user_data->expected_arrival_date:$this->session->flashdata('expected_arrival_date'), 'class' => 'form-control ')); ?>
+                      <?php print form_input(array('name' => 'expected_arrival_date', 'id' => 'show_dp', 'value' => ($user_data)?make_dp_date($user_data->expected_arrival_date):$this->session->flashdata('expected_arrival_date'), 'class' => 'form-control ')); ?>
                       <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
                     </div>
                     <div class="col-md-4">
                       <?php print form_label('First day at PY', 'first_day_at_py',array('class'=>'form-label')); ?>
                       <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                      <?php print form_input(array('name' => 'first_day_at_py', 'id' => 'date', 'value' => ($user_data)?$user_data->first_day_at_py:$this->session->flashdata('first_day_at_py'), 'class' => 'form-control ','placeholder' => '')); ?>
+                      <?php print form_input(array('name' => 'first_day_at_py', 'id' => 'show_dp', 'value' => ($user_data)?make_dp_date($user_data->first_day_at_py):$this->session->flashdata('first_day_at_py'), 'class' => 'form-control ','placeholder' => '')); ?>
                       <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
                     </div>
                     <div class="col-md-4">
@@ -116,7 +123,11 @@
                       <?php print form_dropdown('visa_type',array('employment'=> 'employment','business'=>'business'),($user_data)?$user_data->visa_type:$this->session->flashdata('visa_type'),'id="visa_type" class=""'); ?>
                     </div>
                   </div>
-                  <h4 class="semi-bold">3rd Party Verification</h4>
+                  </fieldset>
+
+                  
+                  <fieldset>
+                  <legend>3rd Party Verification </legend>
                   <div class="row form-row">
                     <div class="col-md-12">
                       <?php print form_label('Company', 'third_party_ver_company',array('class'=>'form-label')); ?>
@@ -127,20 +138,25 @@
                     <div class="col-md-6">
                       <?php print form_label('Date Requested', 'third_party_ver_date_requested',array('class'=>'form-label')); ?>
                       <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                      <?php print form_input(array('name' => 'third_party_ver_date_requested', 'id' => 'date', 'value' => ($user_data)?$user_data->third_party_ver_date_requested:$this->session->flashdata('third_party_ver_date_requested'), 'class' => 'form-control ','placeholder' => '')); ?>
+                      <?php print form_input(array('name' => 'third_party_ver_date_requested', 'id' => 'show_dp', 'value' => ($user_data)?make_dp_date($user_data->third_party_ver_date_requested):$this->session->flashdata('third_party_ver_date_requested'), 'class' => 'form-control ','placeholder' => '')); ?>
                       <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
                     </div>
                     <div class="col-md-6">
                        <?php print form_label('Date Completed', 'third_party_ver_date_completed',array('class'=>'form-label')); ?>
                       <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                      <?php print form_input(array('name' => 'third_party_ver_date_completed', 'id' => 'date', 'value' => ($user_data)?$user_data->third_party_ver_date_completed:$this->session->flashdata('third_party_ver_date_completed'), 'class' => 'form-control ','placeholder' => '')); ?>
+                      <?php print form_input(array('name' => 'third_party_ver_date_completed', 'id' => 'show_dp', 'value' => ($user_data)?make_dp_date($user_data->third_party_ver_date_completed):$this->session->flashdata('third_party_ver_date_completed'), 'class' => 'form-control ','placeholder' => '')); ?>
                       <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
                     </div>
                   </div>
-                  
+
+                   </fieldset>
+
                   <?php
 				   ?>
-                  <h4 class="semi-bold">Reference <input type="button" id="add_reference_div" class="btn btn-primary" value="Add" /></h4>
+
+                  <fieldset>
+                  <legend> Reference <input type="button" id="add_reference_div" class="btn btn-primary" value="Add" /></legend>
+
                   <ol id="references">
                   	<?php
 					if(!empty($user_data->cv_reference))
@@ -193,8 +209,15 @@
                           </div>
                       </li>
                   </div>
-                  
-                  <h4 class="semi-bold">Employment History <input type="button" id="add_experience_div" class="btn btn-primary" value="Add" /></h4>
+
+                  </fieldset>
+
+                  <fieldset>
+                  <legend>
+                  	Employment History <input type="button" id="add_experience_div" class="btn btn-primary" value="Add" />
+                  </legend>
+                   
+
                   <ol id="experiences">
                   	<?php
 					if(!empty($user_data->user_experience))
@@ -203,7 +226,9 @@
 						{ ?>
                         <li>
                        		<div class="row form-row">
-                                <div class="col-md-1 pull-right">
+
+                                <div class="col-md-2 pull-right">
+
                                     <input type="button" id="" class="btn btn-danger " onclick="javasctipt:deleteMulBox(this);" value="Delete" />
                                 </div>
                        		</div>
@@ -223,14 +248,14 @@
                                 <div class="col-md-6">
                                     <div class="form_label2"><?php print form_label('Start date', 'start_date'); ?></div>
                                     <div class="input-append success date col-md-10 no-padding">	
-                                        <?php print form_input(array('name' => 'experience[start_date][]', 'id' => 'date', 'value' => $experience['start_date'], 'class' => 'form-control')); ?>
+                                        <?php print form_input(array('name' => 'experience[start_date][]', 'id' => 'show_dp', 'value' => make_dp_date($experience['start_date']), 'class' => 'form-control')); ?>
                                         <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form_label2"><?php print form_label('End Date', 'end_date'); ?></div>
                                     <div class="input-append success date col-md-10 no-padding">	
-                                        <?php print form_input(array('name' => 'experience[end_date][]', 'id' => 'date', 'value' => $experience['end_date'], 'class' => 'form-control')); ?>
+                                        <?php print form_input(array('name' => 'experience[end_date][]', 'id' => 'show_dp', 'value' => make_dp_date($experience['end_date']), 'class' => 'form-control')); ?>
                                         <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
                                     </div>
                                 </div>
@@ -250,7 +275,9 @@
                   <div class="hide" id="experience_main_sample">
                        <li>
                        		<div class="row form-row">
-                                <div class="col-md-1 pull-right">
+
+                                <div class="col-md-2 pull-right">
+
                                     <input type="button" id="" class="btn btn-danger " onclick="javasctipt:deleteMulBox(this);" value="Delete" />
                                 </div>
                        		</div>
@@ -270,14 +297,14 @@
                                 <div class="col-md-6">
                                     <div class="form_label2"><?php print form_label('Start date', 'start_date'); ?></div>
                                     <div class="input-append success date col-md-10 no-padding">	
-                                        <?php print form_input(array('name' => 'experience[start_date][]', 'id' => 'date', 'value' => '', 'class' => 'form-control')); ?>
+                                        <?php print form_input(array('name' => 'experience[start_date][]', 'id' => 'show_dp', 'value' => '', 'class' => 'form-control')); ?>
                                         <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form_label2"><?php print form_label('End Date', 'end_date'); ?></div>
                                     <div class="input-append success date col-md-10 no-padding">	
-                                        <?php print form_input(array('name' => 'experience[end_date][]', 'id' => 'date', 'value' => '', 'class' => 'form-control')); ?>
+                                        <?php print form_input(array('name' => 'experience[end_date][]', 'id' => 'show_dp', 'value' => '', 'class' => 'form-control')); ?>
                                         <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
                                     </div>
                                 </div>
@@ -291,8 +318,14 @@
                             </div>
                        </li>
                   </div>
+				 </fieldset>	
                   
-                  <h4 class="semi-bold">Certificates <input type="button" class="btn btn-primary" id="add_certificate_div" value="Add" /></h4>
+
+                 <fieldset>
+                  <legend> 
+                  	Certificates <input type="button" class="btn btn-primary" id="add_certificate_div" value="Add" />
+                  </legend>
+
                   <ol id="certificates">
                   	<?php
 					if(!empty($user_data->user_certificate))
@@ -310,7 +343,7 @@
                                 <div class="col-md-4">
                                     <div class="form_label2"><?php print form_label('Date', 'date');?></div>
                                     <div class="input-append success date col-md-10 no-padding">	
-                                        <?php print form_input(array('name' => 'certificates[date][]', 'id' => 'date', 'value' => $certificate['date'], 'class' => 'form-control')); ?>
+                                        <?php print form_input(array('name' => 'certificates[date][]', 'id' => 'show_dp', 'value' => make_dp_date($certificate['date']), 'class' => 'form-control')); ?>
                                         <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
                                     </div>
                                 </div>
@@ -336,7 +369,7 @@
                             <div class="col-md-4">
                                 <div class="form_label2"><?php print form_label('Date', 'date');?></div>
                                 <div class="input-append success date col-md-10 no-padding">	
-                                    <?php print form_input(array('name' => 'certificates[date][]', 'id' => 'date', 'value' => '', 'class' => 'form-control')); ?>
+                                    <?php print form_input(array('name' => 'certificates[date][]', 'id' => 'show_dp', 'value' => '', 'class' => 'form-control')); ?>
                                     <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
                                 </div>
                             </div>
@@ -347,8 +380,15 @@
                           </div>
                       </li>
                   </div>
+                  </fieldset>
+
                   
-                  <h4 class="semi-bold">Qualification <input type="button" class="btn btn-primary" id="add_qualification_div" value="Add" /></h4>
+
+                  <fieldset>
+                  <legend> 
+                  	Qualification <input type="button" class="btn btn-primary" id="add_qualification_div" value="Add" />
+                  </legend>
+
                   <ol id="qualifications">
                   	<?php
 					if(!empty($user_data->user_qualification))
@@ -357,7 +397,9 @@
 						{ ?>
                         <li>
                        		<div class="row form-row">
-                                <div class="col-md-1 pull-right">
+
+                                <div class="col-md-2 pull-right">
+
                                     <input type="button" id="" class="btn btn-danger " onclick="javasctipt:deleteMulBox(this);" value="Delete" />
                                 </div>
                        		</div>
@@ -384,7 +426,7 @@
                                 <div class="col-md-6">
                                     <div class="form_label2"><?php print form_label('Date', 'date'); ?></div>
                                     <div class="input-append success date col-md-10 no-padding">	
-                                        <?php print form_input(array('name' => 'qualifications[date][]', 'id' => 'date', 'value' => $qualification['date'], 'class' => 'form-control')); ?>
+                                        <?php print form_input(array('name' => 'qualifications[date][]', 'id' => 'show_dp', 'value' => make_dp_date($qualification['date']), 'class' => 'form-control')); ?>
                                         <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
                                     </div>
                                 </div>
@@ -397,7 +439,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form_label2"><?php print form_label('Graduation year', 'graduation_year'); ?></div>
-                                    <div class="input-append success date col-md-10 no-padding">	
+                                    <div class="input-append success col-md-10 no-padding">	
                                         <?php print form_input(array('name' => 'qualifications[graduation_year][]', 'id' => 'date_year', 'value' => $qualification['graduation_year'], 'class' => 'form-control')); ?>
                                         <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
                                     </div>
@@ -412,7 +454,9 @@
                   <div class="hide" id="qualification_main_sample">
                   		<li>
                        		<div class="row form-row">
-                                <div class="col-md-1 pull-right">
+
+                                <div class="col-md-2 pull-right">
+
                                     <input type="button" id="" class="btn btn-danger " onclick="javasctipt:deleteMulBox(this);" value="Delete" />
                                 </div>
                        		</div>
@@ -439,7 +483,7 @@
                                 <div class="col-md-6">
                                     <div class="form_label2"><?php print form_label('Date', 'date'); ?></div>
                                     <div class="input-append success date col-md-10 no-padding">	
-                                        <?php print form_input(array('name' => 'qualifications[date][]', 'id' => 'date', 'value' => '', 'class' => 'form-control')); ?>
+                                        <?php print form_input(array('name' => 'qualifications[date][]', 'id' => 'show_dp', 'value' => '', 'class' => 'form-control')); ?>
                                         <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
                                     </div>
                                 </div>
@@ -452,7 +496,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form_label2"><?php print form_label('Graduation year', 'graduation_year'); ?></div>
-                                    <div class="input-append success date col-md-10 no-padding">	
+                                    <div class="input-append success col-md-10 no-padding">	
                                         <?php print form_input(array('name' => 'qualifications[graduation_year][]', 'id' => 'date_year', 'value' => '', 'class' => 'form-control')); ?>
                                         <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
                                     </div>
@@ -461,10 +505,15 @@
                             </div>
                         </li>    	
                   </div>
+                  </fieldset>
+
                   
-                  <h4 class="semi-bold">Documents</h4>
-                  
-                  <div class="row form-row">
+
+                  <fieldset>
+                  <legend> Documents</legend>
+					<div><em>*Please tick checkbox for delet documents</em></div>
+                 <div class="row form-row doc-list">
+
                   		<div class="col-md-6">
                     		<label>Photo</label>
                             <input type="file" name="photo[]" id="photo" class="form-control input-sm" accept="image/jpg|image/jpeg|image/png|application/pdf" multiple>
@@ -491,9 +540,10 @@
 								foreach($user_documents["2"] as $_document_id => $_document) {
 							?>
 								<div>
-								<a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-book"></i></a>
+								<a href="<?php print base_url().$_document; ?>" target="_blank">
+                                	<i class="fa fa-book"></i> <?php echo substr($_document,strrpos($_document,'/')+1); ?>
+                                </a>
 								<input type="checkbox" name="delete_document[2][]" value="<?php echo $_document_id; ?>" />
-                                <label><?php echo substr($_document,strrpos($_document,'/')+1); ?></label>
 								</div>
 							<?php
 								}
@@ -509,11 +559,12 @@
 								foreach($user_documents["9"] as $_document_id => $_document) {
 							?>
 								<div>
-								<a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-file-text"></i></a>
+								<a href="<?php print base_url().$_document; ?>" target="_blank">
+                                 <i class="fa fa-file-text"></i> <?php echo substr($_document,strrpos($_document,'/')+1); ?>
+                                </a>
 								<input type="checkbox" name="delete_document[9][]" value="<?php echo $_document_id; ?>" />
-                                <label><?php echo substr($_document,strrpos($_document,'/')+1); ?></label>
-								</div>
-							<?php
+                                </div>
+								<?php
 								}
 							}
 							?>
@@ -527,9 +578,10 @@
 								foreach($user_documents["3"] as $_document_id => $_document) {
 							?>
 								<div>
-								<a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-file-text"></i></a>
+								<a href="<?php print base_url().$_document; ?>" target="_blank"> 
+                                	<i class="fa fa-file-text"></i> <?php echo substr($_document,strrpos($_document,'/')+1); ?>
+                                </a>
 								<input type="checkbox" name="delete_document[3][]" value="<?php echo $_document_id; ?>" />
-                                <label><?php echo substr($_document,strrpos($_document,'/')+1); ?></label>
 								</div>
 							<?php
 								}
@@ -545,9 +597,10 @@
 								foreach($user_documents["4"] as $_document_id => $_document) {
 							?>
 								<div>
-								<a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-file-text"></i></a>
+								<a href="<?php print base_url().$_document; ?>" target="_blank"> 
+                                	<i class="fa fa-file-text"></i> <?php echo substr($_document,strrpos($_document,'/')+1); ?>
+                                </a>
 								<input type="checkbox" name="delete_document[4][]" value="<?php echo $_document_id; ?>" />
-                                <label><?php echo substr($_document,strrpos($_document,'/')+1); ?></label>
 								</div>
 							<?php
 								}
@@ -563,10 +616,12 @@
 								foreach($user_documents["5"] as $_document_id => $_document) {
 							?>
 								<div>
-								<a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-file-text"></i></a>
+								<a href="<?php print base_url().$_document; ?>" target="_blank"> 
+                                	<i class="fa fa-file-text"></i> <?php echo substr($_document,strrpos($_document,'/')+1); ?>
+                               </a>
 								<input type="checkbox" name="delete_document[5][]" value="<?php echo $_document_id; ?>" />
-                                <label><?php echo substr($_document,strrpos($_document,'/')+1); ?></label>
-								</div>
+                               </div>
+
 							<?php
 								}
 							}
@@ -581,9 +636,10 @@
 								foreach($user_documents["6"] as $_document_id => $_document) {
 							?>
 								<div>
-								<a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-file-text"></i></a>
+								<a href="<?php print base_url().$_document; ?>" target="_blank"> 
+                                	<i class="fa fa-file-text"></i> <?php echo substr($_document,strrpos($_document,'/')+1); ?>
+                                </a>
 								<input type="checkbox" name="delete_document[6][]" value="<?php echo $_document_id; ?>" />
-                                <label><?php echo substr($_document,strrpos($_document,'/')+1); ?></label>
 								</div>
 							<?php
 								}
@@ -599,9 +655,10 @@
 								foreach($user_documents["8"] as $_document_id => $_document) {
 							?>
 								<div>
-								<a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-file-text"></i></a>
+								<a href="<?php print base_url().$_document; ?>" target="_blank"> 
+                                	<i class="fa fa-file-text"></i> <?php echo substr($_document,strrpos($_document,'/')+1); ?>
+                               </a>
 								<input type="checkbox" name="delete_document[8][]" value="<?php echo $_document_id; ?>" />
-                                <label><?php echo substr($_document,strrpos($_document,'/')+1); ?></label>
 								</div>
 							<?php
 								}
@@ -617,9 +674,10 @@
 								foreach($user_documents["10"] as $_document_id => $_document) {
 							?>
 								<div>
-								<a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-file-text"></i></a>
+								<a href="<?php print base_url().$_document; ?>" target="_blank"> 
+                                	<i class="fa fa-file-text"></i> <?php echo substr($_document,strrpos($_document,'/')+1); ?>
+                                </a>
 								<input type="checkbox" name="delete_document[10][]" value="<?php echo $_document_id; ?>" />
-                                <label><?php echo substr($_document,strrpos($_document,'/')+1); ?></label>
 								</div>
 							<?php
 								}
@@ -627,7 +685,9 @@
 							?>
                         </div>
                   </div>
-                  
+
+                  </fieldset>
+
                   <?php
 				   ?>
                   <div class="form-actions">

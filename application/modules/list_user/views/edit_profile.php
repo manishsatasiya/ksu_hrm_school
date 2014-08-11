@@ -716,13 +716,16 @@ print form_hidden('user_id', $user_data->user_unique_id);
                         <div class="col-md-12">
                           <?php print form_label('Names', 'names',array('class'=>'form-label')); ?>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                           <?php print form_input(array('name' => 'first_name', 'id' => 'first_name', 'value' => ($user_data)?$user_data->first_name:$this->session->flashdata('first_name'), 'class' => 'form-control ','placeholder' => 'First Name')); ?>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                           <?php print form_input(array('name' => 'middle_name', 'id' => 'middle_name', 'value' => ($user_data)?$user_data->middle_name:$this->session->flashdata('middle_name'), 'class' => 'form-control ','placeholder' => 'Middle Name')); ?>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
+                          <?php print form_input(array('name' => 'middle_name2', 'id' => 'middle_name2', 'value' => ($user_data)?$user_data->middle_name2:$this->session->flashdata('middle_name2'), 'class' => 'form-control ','placeholder' => 'Middle Name 2')); ?>
+                        </div>
+                        <div class="col-md-3">
                           <?php print form_input(array('name' => 'last_name', 'id' => 'last_name', 'value' => ($user_data)?$user_data->last_name:$this->session->flashdata('last_name'), 'class' => 'form-control ','placeholder' => 'Last Name')); ?>
                         </div>
                       </div>
@@ -748,7 +751,7 @@ print form_hidden('user_id', $user_data->user_unique_id);
                         <div class="col-md-4">
                           <?php print form_label('Dob', 'birth_date',array('class'=>'form-label')); ?>
                           <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                            <?php print form_input(array('name' => 'birth_date', 'id' => 'birth_date', 'value' => ($user_data)?date('m/d/Y',strtotime($user_data->birth_date)):$this->session->flashdata('birth_date'), 'class' => 'form-control ','placeholder' => 'Dob')); ?>
+                            <?php print form_input(array('name' => 'birth_date', 'id' => 'show_dp', 'value' => ($user_data)?make_dp_date($user_data->birth_date):$this->session->flashdata('birth_date'), 'class' => 'form-control ','placeholder' => 'Dob')); ?>
                             <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
                         </div>
                         <div class="col-md-4">
@@ -813,7 +816,7 @@ print form_hidden('user_id', $user_data->user_unique_id);
                         <div class="col-md-6">
                           <?php print form_label('Original Joining Date', 'original_start_date',array('class'=>'form-label')); ?>
                           <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                            <?php print form_input(array('name' => 'original_start_date', 'id' => 'original_start_date', 'value' => ($user_data)?$user_data->original_start_date:$this->session->flashdata('original_start_date'), 'class' => 'form-control')); ?>
+                            <?php print form_input(array('name' => 'original_start_date', 'id' => 'show_dp', 'value' => ($user_data)?make_dp_date($user_data->original_start_date):$this->session->flashdata('original_start_date'), 'class' => 'form-control')); ?>
                             <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
                         </div>
                        </div>
@@ -866,7 +869,7 @@ print form_hidden('user_id', $user_data->user_unique_id);
                         <div class="col-md-6">
                           <?php print form_label('Joining Date', 'cy_joining_date',array('class'=>'form-label')); ?>
                           <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                            <?php print form_input(array('name' => 'cy_joining_date', 'id' => 'cy_joining_date', 'value' => ($user_data)?$user_data->cy_joining_date:$this->session->flashdata('cy_joining_date'), 'class' => 'form-control','placeholder' => 'Joining Date')); ?>
+                            <?php print form_input(array('name' => 'cy_joining_date', 'id' => 'show_dp', 'value' => ($user_data)?make_dp_date($user_data->cy_joining_date):$this->session->flashdata('cy_joining_date'), 'class' => 'form-control','placeholder' => 'Joining Date')); ?>
                             <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
                         </div>
                       </div>
@@ -1073,7 +1076,7 @@ print form_hidden('user_id', $user_data->user_unique_id);
                         </div>
                         <div class="col-md-4">
                           <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                            <?php print form_input(array('name' => 'interview_date', 'id' => 'interview_date', 'value' => ($user_data)?$user_data->interview_date:$this->session->flashdata('interview_date'), 'class' => 'form-control','placeholder' => 'Interview date')); ?>
+                            <?php print form_input(array('name' => 'interview_date', 'id' => 'show_dp', 'value' => ($user_data)?make_dp_date($user_data->interview_date):$this->session->flashdata('interview_date'), 'class' => 'form-control','placeholder' => 'Interview date')); ?>
                             <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
                         </div>
                         <div class="col-md-4">
@@ -1150,7 +1153,7 @@ print form_hidden('user_id', $user_data->user_unique_id);
                     <div class="col-md-5"><?php print form_label('Last day of work', 'last_day_of_work',array('class'=>'form-label')); ?></div>
                     <div class="col-md-5">
                         <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                            <?php print form_input(array('name' => 'last_day_of_work', 'id' => 'last_day_of_work', 'value' => ($user_data)?date('m/d/Y',strtotime($user_data->last_day_of_work)):$this->session->flashdata('last_day_of_work'), 'class' => 'form-control ')); ?>
+                            <?php print form_input(array('name' => 'last_day_of_work', 'id' => 'show_dp', 'value' => ($user_data)?make_dp_date($user_data->last_day_of_work):$this->session->flashdata('last_day_of_work'), 'class' => 'form-control ')); ?>
                             <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
                         </div>
                     </div>

@@ -64,13 +64,16 @@
                     <div class="col-md-12">
                       <?php print form_label('Names', 'names',array('class'=>'form-label')); ?>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                       <?php print form_input(array('name' => 'first_name', 'id' => 'first_name', 'value' => $this->session->flashdata('first_name'), 'class' => 'form-control no-boarder','placeholder' => 'First Name')); ?>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                       <?php print form_input(array('name' => 'middle_name', 'id' => 'middle_name', 'value' => $this->session->flashdata('middle_name'), 'class' => 'form-control no-boarder','placeholder' => 'Middle Name')); ?>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
+                      <?php print form_input(array('name' => 'middle_name2', 'id' => 'middle_name2', 'value' => $this->session->flashdata('middle_name2'), 'class' => 'form-control no-boarder','placeholder' => 'Middle Name 2')); ?>
+                    </div>
+                    <div class="col-md-3">
                       <?php print form_input(array('name' => 'last_name', 'id' => 'last_name', 'value' => $this->session->flashdata('last_name'), 'class' => 'form-control no-boarder','placeholder' => 'Last Name')); ?>
                     </div>
                   </div>
@@ -102,7 +105,7 @@
                     <div class="col-md-6">
                       <?php print form_label('Dob', 'birth_date',array('class'=>'form-label')); ?>
                       <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                        <?php print form_input(array('name' => 'birth_date', 'id' => 'birth_date', 'value' => $this->session->flashdata('birth_date'), 'class' => 'form-control ','placeholder' => 'Dob')); ?>
+                        <?php print form_input(array('name' => 'birth_date', 'id' => 'show_dp', 'value' => $this->session->flashdata('birth_date'), 'class' => 'form-control ','placeholder' => 'Dob')); ?>
                         <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
                     </div>
                   </div>
@@ -172,7 +175,7 @@
                       <div class="col-md-6">
                           <?php print form_label('Original Joining Date', 'original_start_date',array('class'=>'form-label')); ?>
                           <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                            <?php print form_input(array('name' => 'original_start_date', 'id' => 'original_start_date', 'value' => $this->session->flashdata('original_start_date'), 'class' => 'form-control')); ?>
+                            <?php print form_input(array('name' => 'original_start_date', 'id' => 'show_dp', 'value' => $this->session->flashdata('original_start_date'), 'class' => 'form-control')); ?>
                             <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
                         </div>
                   </div>
@@ -229,7 +232,7 @@
                     <div class="col-md-6">
                       <?php print form_label('Joining Date', 'cy_joining_date',array('class'=>'form-label')); ?>
                       <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                        <?php print form_input(array('name' => 'cy_joining_date', 'id' => 'cy_joining_date', 'value' => $this->session->flashdata('cy_joining_date'), 'class' => 'form-control','placeholder' => 'Joining Date')); ?>
+                        <?php print form_input(array('name' => 'cy_joining_date', 'id' => 'show_dp', 'value' => $this->session->flashdata('cy_joining_date'), 'class' => 'form-control','placeholder' => 'Joining Date')); ?>
                         <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
                     </div>
                     
@@ -433,7 +436,7 @@
                     </div>
                     <div class="col-md-4">
                       <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                        <?php print form_input(array('name' => 'interview_date', 'id' => 'interview_date', 'value' => $this->session->flashdata('interview_date'), 'class' => 'form-control','placeholder' => 'Interview date')); ?>
+                        <?php print form_input(array('name' => 'interview_date', 'id' => 'show_dp', 'value' => $this->session->flashdata('interview_date'), 'class' => 'form-control','placeholder' => 'Interview date')); ?>
                         <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
                     </div>
                     <div class="col-md-4">
