@@ -1193,5 +1193,24 @@ border-top:1px solid #dddddd; border-left:1px solid #dddddd; padding:6px !import
 	border:1px solid #bbbbbb;
 	}
 	
-.doc-list {}
-.doc-list a { display:inline-block; vertical-align:middle; margin-bottom:10px;}
+.add-employee-pg {}	
+.add-employee-pg fieldset {
+    border:1px solid #e5e9ec;
+    margin: 0 0 20px 0;
+    min-width: 0;
+    padding:15px;
+}
+.add-employee-pg fieldset legend {
+	margin:0px !important;
+	width:auto;
+	border:none !important;
+	padding:0 10px;
+	}
+.add-employee-pg fieldset ol {
+	margin:0px;
+	padding:0px;
+	}
+.add-employee-pg fieldset ol li{}
+
+.add-employee-pg .doc-list {}
+.add-employee-pg .doc-list a { display:inline-block; vertical-align:middle; margin-bottom:10px;}

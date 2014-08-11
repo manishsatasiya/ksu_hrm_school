@@ -1,6 +1,8 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
               
-<div class="row">
+
+<div class="row add-employee-pg">
+
   <div class="col-md-12">
     <div class="grid simple ">
       <div class="grid-title"><h4><?php if($user_id > 0){echo 'Edit';}else{ echo 'Add New';} ?><span class="semi-bold"> Employee</span></h4></div>
@@ -100,7 +102,9 @@
                       <?php print form_input(array('name' => 'cell_phone', 'id' => 'cell_phone', 'value' => ($user_data)?$user_data->cell_phone:$this->session->flashdata('cell_phone'), 'class' => 'form-control ','placeholder' => 'Mobile Phone')); ?>
                     </div>
                   </div>
-                  <h4 class="semi-bold">Arrival</h4>
+
+                  <fieldset>
+                  <legend>Arrival</legend>
                   <div class="row form-row">
                     <div class="col-md-4">
                       <?php print form_label('Expected arrival date in KSA', 'expected_arrival_date',array('class'=>'form-label')); ?>
@@ -119,7 +123,11 @@
                       <?php print form_dropdown('visa_type',array('employment'=> 'employment','business'=>'business'),($user_data)?$user_data->visa_type:$this->session->flashdata('visa_type'),'id="visa_type" class=""'); ?>
                     </div>
                   </div>
-                  <h4 class="semi-bold">3rd Party Verification</h4>
+                  </fieldset>
+
+                  
+                  <fieldset>
+                  <legend>3rd Party Verification </legend>
                   <div class="row form-row">
                     <div class="col-md-12">
                       <?php print form_label('Company', 'third_party_ver_company',array('class'=>'form-label')); ?>
@@ -140,10 +148,15 @@
                       <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
                     </div>
                   </div>
-                  
+
+                   </fieldset>
+
                   <?php
 				   ?>
-                  <h4 class="semi-bold">Reference <input type="button" id="add_reference_div" class="btn btn-primary" value="Add" /></h4>
+
+                  <fieldset>
+                  <legend> Reference <input type="button" id="add_reference_div" class="btn btn-primary" value="Add" /></legend>
+
                   <ol id="references">
                   	<?php
 					if(!empty($user_data->cv_reference))
@@ -196,8 +209,15 @@
                           </div>
                       </li>
                   </div>
-                  
-                  <h4 class="semi-bold">Employment History <input type="button" id="add_experience_div" class="btn btn-primary" value="Add" /></h4>
+
+                  </fieldset>
+
+                  <fieldset>
+                  <legend>
+                  	Employment History <input type="button" id="add_experience_div" class="btn btn-primary" value="Add" />
+                  </legend>
+                   
+
                   <ol id="experiences">
                   	<?php
 					if(!empty($user_data->user_experience))
@@ -206,7 +226,9 @@
 						{ ?>
                         <li>
                        		<div class="row form-row">
-                                <div class="col-md-1 pull-right">
+
+                                <div class="col-md-2 pull-right">
+
                                     <input type="button" id="" class="btn btn-danger " onclick="javasctipt:deleteMulBox(this);" value="Delete" />
                                 </div>
                        		</div>
@@ -253,7 +275,9 @@
                   <div class="hide" id="experience_main_sample">
                        <li>
                        		<div class="row form-row">
-                                <div class="col-md-1 pull-right">
+
+                                <div class="col-md-2 pull-right">
+
                                     <input type="button" id="" class="btn btn-danger " onclick="javasctipt:deleteMulBox(this);" value="Delete" />
                                 </div>
                        		</div>
@@ -294,8 +318,14 @@
                             </div>
                        </li>
                   </div>
+				 </fieldset>	
                   
-                  <h4 class="semi-bold">Certificates <input type="button" class="btn btn-primary" id="add_certificate_div" value="Add" /></h4>
+
+                 <fieldset>
+                  <legend> 
+                  	Certificates <input type="button" class="btn btn-primary" id="add_certificate_div" value="Add" />
+                  </legend>
+
                   <ol id="certificates">
                   	<?php
 					if(!empty($user_data->user_certificate))
@@ -350,8 +380,15 @@
                           </div>
                       </li>
                   </div>
+                  </fieldset>
+
                   
-                  <h4 class="semi-bold">Qualification <input type="button" class="btn btn-primary" id="add_qualification_div" value="Add" /></h4>
+
+                  <fieldset>
+                  <legend> 
+                  	Qualification <input type="button" class="btn btn-primary" id="add_qualification_div" value="Add" />
+                  </legend>
+
                   <ol id="qualifications">
                   	<?php
 					if(!empty($user_data->user_qualification))
@@ -360,7 +397,9 @@
 						{ ?>
                         <li>
                        		<div class="row form-row">
-                                <div class="col-md-1 pull-right">
+
+                                <div class="col-md-2 pull-right">
+
                                     <input type="button" id="" class="btn btn-danger " onclick="javasctipt:deleteMulBox(this);" value="Delete" />
                                 </div>
                        		</div>
@@ -415,7 +454,9 @@
                   <div class="hide" id="qualification_main_sample">
                   		<li>
                        		<div class="row form-row">
-                                <div class="col-md-1 pull-right">
+
+                                <div class="col-md-2 pull-right">
+
                                     <input type="button" id="" class="btn btn-danger " onclick="javasctipt:deleteMulBox(this);" value="Delete" />
                                 </div>
                        		</div>
@@ -464,10 +505,15 @@
                             </div>
                         </li>    	
                   </div>
+                  </fieldset>
+
                   
-                  <h4 class="semi-bold">Documents</h4>
-                  
-                  <div class="row form-row">
+
+                  <fieldset>
+                  <legend> Documents</legend>
+					<div><em>*Please tick checkbox for delet documents</em></div>
+                 <div class="row form-row doc-list">
+
                   		<div class="col-md-6">
                     		<label>Photo</label>
                             <input type="file" name="photo[]" id="photo" class="form-control input-sm" accept="image/jpg|image/jpeg|image/png|application/pdf" multiple>
@@ -494,9 +540,10 @@
 								foreach($user_documents["2"] as $_document_id => $_document) {
 							?>
 								<div>
-								<a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-book"></i></a>
+								<a href="<?php print base_url().$_document; ?>" target="_blank">
+                                	<i class="fa fa-book"></i> <?php echo substr($_document,strrpos($_document,'/')+1); ?>
+                                </a>
 								<input type="checkbox" name="delete_document[2][]" value="<?php echo $_document_id; ?>" />
-                                <label><?php echo substr($_document,strrpos($_document,'/')+1); ?></label>
 								</div>
 							<?php
 								}
@@ -512,11 +559,12 @@
 								foreach($user_documents["9"] as $_document_id => $_document) {
 							?>
 								<div>
-								<a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-file-text"></i></a>
+								<a href="<?php print base_url().$_document; ?>" target="_blank">
+                                 <i class="fa fa-file-text"></i> <?php echo substr($_document,strrpos($_document,'/')+1); ?>
+                                </a>
 								<input type="checkbox" name="delete_document[9][]" value="<?php echo $_document_id; ?>" />
-                                <label><?php echo substr($_document,strrpos($_document,'/')+1); ?></label>
-								</div>
-							<?php
+                                </div>
+								<?php
 								}
 							}
 							?>
@@ -530,9 +578,10 @@
 								foreach($user_documents["3"] as $_document_id => $_document) {
 							?>
 								<div>
-								<a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-file-text"></i></a>
+								<a href="<?php print base_url().$_document; ?>" target="_blank"> 
+                                	<i class="fa fa-file-text"></i> <?php echo substr($_document,strrpos($_document,'/')+1); ?>
+                                </a>
 								<input type="checkbox" name="delete_document[3][]" value="<?php echo $_document_id; ?>" />
-                                <label><?php echo substr($_document,strrpos($_document,'/')+1); ?></label>
 								</div>
 							<?php
 								}
@@ -548,9 +597,10 @@
 								foreach($user_documents["4"] as $_document_id => $_document) {
 							?>
 								<div>
-								<a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-file-text"></i></a>
+								<a href="<?php print base_url().$_document; ?>" target="_blank"> 
+                                	<i class="fa fa-file-text"></i> <?php echo substr($_document,strrpos($_document,'/')+1); ?>
+                                </a>
 								<input type="checkbox" name="delete_document[4][]" value="<?php echo $_document_id; ?>" />
-                                <label><?php echo substr($_document,strrpos($_document,'/')+1); ?></label>
 								</div>
 							<?php
 								}
@@ -566,10 +616,12 @@
 								foreach($user_documents["5"] as $_document_id => $_document) {
 							?>
 								<div>
-								<a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-file-text"></i></a>
+								<a href="<?php print base_url().$_document; ?>" target="_blank"> 
+                                	<i class="fa fa-file-text"></i> <?php echo substr($_document,strrpos($_document,'/')+1); ?>
+                               </a>
 								<input type="checkbox" name="delete_document[5][]" value="<?php echo $_document_id; ?>" />
-                                <label><?php echo substr($_document,strrpos($_document,'/')+1); ?></label>
-								</div>
+                               </div>
+
 							<?php
 								}
 							}
@@ -584,9 +636,10 @@
 								foreach($user_documents["6"] as $_document_id => $_document) {
 							?>
 								<div>
-								<a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-file-text"></i></a>
+								<a href="<?php print base_url().$_document; ?>" target="_blank"> 
+                                	<i class="fa fa-file-text"></i> <?php echo substr($_document,strrpos($_document,'/')+1); ?>
+                                </a>
 								<input type="checkbox" name="delete_document[6][]" value="<?php echo $_document_id; ?>" />
-                                <label><?php echo substr($_document,strrpos($_document,'/')+1); ?></label>
 								</div>
 							<?php
 								}
@@ -602,9 +655,10 @@
 								foreach($user_documents["8"] as $_document_id => $_document) {
 							?>
 								<div>
-								<a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-file-text"></i></a>
+								<a href="<?php print base_url().$_document; ?>" target="_blank"> 
+                                	<i class="fa fa-file-text"></i> <?php echo substr($_document,strrpos($_document,'/')+1); ?>
+                               </a>
 								<input type="checkbox" name="delete_document[8][]" value="<?php echo $_document_id; ?>" />
-                                <label><?php echo substr($_document,strrpos($_document,'/')+1); ?></label>
 								</div>
 							<?php
 								}
@@ -620,9 +674,10 @@
 								foreach($user_documents["10"] as $_document_id => $_document) {
 							?>
 								<div>
-								<a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-file-text"></i></a>
+								<a href="<?php print base_url().$_document; ?>" target="_blank"> 
+                                	<i class="fa fa-file-text"></i> <?php echo substr($_document,strrpos($_document,'/')+1); ?>
+                                </a>
 								<input type="checkbox" name="delete_document[10][]" value="<?php echo $_document_id; ?>" />
-                                <label><?php echo substr($_document,strrpos($_document,'/')+1); ?></label>
 								</div>
 							<?php
 								}
@@ -630,7 +685,9 @@
 							?>
                         </div>
                   </div>
-                  
+
+                  </fieldset>
+
                   <?php
 				   ?>
                   <div class="form-actions">
