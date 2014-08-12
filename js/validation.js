@@ -1522,7 +1522,7 @@ $(document).ready(function() {
 		$("#add_employee #references li,#add_employee #experiences li,#add_employee #certificates li,#add_employee #qualifications li").find('input[type="text"],select').each(function(){
 
 			if(typeof $(this).closest('div.select2-container').html() == 'undefined') {
-				if($(this).val() == ''){
+				if($(this).val() == '' && $(this).attr('id') != "departure_reason"){
 					
 					//$(this).before('<span class="error"><label for="" generated="true" class="error">This field is required.</label></span>');
 					if(!$(this).hasClass('error')){
