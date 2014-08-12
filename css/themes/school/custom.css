@@ -1208,9 +1208,10 @@ border-top:1px solid #dddddd; border-left:1px solid #dddddd; padding:6px !import
 	}
 .add-employee-pg fieldset ol {
 	margin:0px;
-	padding:0px;
+	padding:0px 0 0 20px;
 	}
-.add-employee-pg fieldset ol li{}
+.add-employee-pg fieldset ol li{
+	padding:10px 0px;}
 
 .add-employee-pg .doc-list {}
 .add-employee-pg .doc-list a { display:inline-block; vertical-align:middle; margin-bottom:10px;}
