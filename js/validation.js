@@ -478,7 +478,13 @@ $(document).ready(function() {
 	
 	if(CI.controller_name == 'list_student')
 	{
-		
+		$(function() {
+			$( "#reg_student_schedule_date" ).datepicker({
+				changeMonth: true,
+				changeYear: true,
+				yearRange: 'c-50:c+0'
+			});
+		});
 	}
 		
 	$("#add_teacher_form_datatable").validate({
@@ -816,7 +822,29 @@ $(document).ready(function() {
 	
 	if(CI.controller_name == 'list_user')
 	{
+		$(function() {
+			$( "#reg_birth_date" ).datepicker({
+				changeMonth: true,
+				changeYear: true,
+				yearRange: 'c-50:c+0'
+			});
+		});
+				
+		$(function() {
+			$( "#start_date" ).datepicker({
+				changeMonth: true,
+				changeYear: true,
+				yearRange: 'c-50:c+0'
+			});
+		});
 		
+		$(function() {
+			$( "#end_date" ).datepicker({
+				changeMonth: true,
+				changeYear: true,
+				yearRange: 'c-50:c+0'
+			});
+		});
 	}	
 	$("#add_user_form_datatable").validate({
 		submitHandler: function(form) {
@@ -869,7 +897,13 @@ $(document).ready(function() {
 	});
 	
 	if(CI.controller_name == 'workshops')
-	{		
+	{
+		$(function() {
+			$( "#reg_start_date" ).datepicker({
+				format: 'D dd MM yyyy'
+			});
+		});
+		
 		$('#reg_time').timepicker({});
 	}
 	
@@ -1417,14 +1451,7 @@ $(document).ready(function() {
 	});
 	
 	$(function() {
-		$("#show_dp").datepicker({
-			format: 'D dd MM yyyy'
-		});
-		$('.input-append.date').datepicker({
-			autoclose: true,
-			format: 'D dd MM yyyy',
-			todayHighlight: true
-	    });
+		$("#date").datepicker();
 		$(document).on('change','#date', function (ev) {
 			//alert('fsf');
 			//alert($(this).attr('name'));
@@ -1460,11 +1487,18 @@ $(document).ready(function() {
 			birth_date: {
 		      required: true,
 		    },
+		    expected_arrival_date: {
+		      required: true,
+		    },
 			nationality: {
 			  //required: true,
 		      comboboxNotNone: true,
 		    },
-			cell_phone: {
+		    visa_type: {
+			  //required: true,
+		      comboboxNotNone: true,
+		    },
+		    cell_phone: {
 		      required: true,
 		    }
 		  },
@@ -1475,7 +1509,9 @@ $(document).ready(function() {
 			gender:"Please select gender",
 			username:"Please enter email",
 			birth_date:"Please select birthdate",
+			expected_arrival_date:"Please Select Expected Arrival Date",
 			nationality:"Please select nationality",
+			visa_type:"Please select visa type",
 			cell_phone:"Please enter mobile"
 		  },
 		  errorPlacement: function(label, element) {

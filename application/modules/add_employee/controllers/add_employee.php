@@ -36,13 +36,13 @@ class Add_employee extends Private_Controller {
 				
 				$this->list_user_model->profile_update_log($user_id,$this->input->post('status'));
 				$user_data = array(
-							'status'       => $this->input->post('status'),
+							/*'status'       => $this->input->post('status'),*/
 							'first_name'       => $this->input->post('first_name'),
 							'middle_name'       => $this->input->post('middle_name'),
 							'middle_name2'       => $this->input->post('middle_name2'),
 							'last_name'       => $this->input->post('last_name'),
 							'gender'       => $this->input->post('gender'),
-							'email'       => $email,
+							/*'email'       => $email,*/
 							'birth_date'       => make_db_date($this->input->post('birth_date')),
 							'cell_phone'       => $this->input->post('cell_phone'),
 							'language_known'       => $this->input->post('language_known'),

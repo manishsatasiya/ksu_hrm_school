@@ -49,13 +49,13 @@ $this->template->set_partial('sidebar', 'sidebar');
     	$aColumns = array('users.user_id',
 						'users.elsd_id',
 						'staff_name',
+						'users.status',
 						'users.email',
 						'users.personal_email',
 						'users.cell_phone',
+						'contractors.contractor',
 						'countries.nationality',
 						'users.birth_date',
-						'contractors.contractor',
-						'interview_eva_found',
 						'interview_eva_form_link',
 						'users.created_date',
 						'users.updated_date');
@@ -88,12 +88,13 @@ $this->template->set_partial('sidebar', 'sidebar');
 				$row[] = $result_row['user_id'];
 				$row[] = $result_row['elsd_id'];
 				$row[] = $result_row['staff_name'];
+				$row[] = $result_row['status'];
 				$row[] = $result_row['email'];
 				$row[] = $result_row['personal_email'];
 				$row[] = $result_row['cell_phone'];
+				$row[] = $result_row['contractor'];
 				$row[] = $result_row['nationality'];
 				$row[] = $result_row['birth_date'];
-				$row[] = $result_row['contractor'];
 				if($result_row['interview_eva_found'] > 0)
 					$row[] = $result_row['interview_eva_form_link'];
 				else	

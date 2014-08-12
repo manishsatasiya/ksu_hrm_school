@@ -20,13 +20,13 @@
                     </div>
                   </div>
                   <?php 
-				  if($user_id == 0){ ?>
+				  //if($user_id == 0){ ?>
 					  <script>
                       $(document).ready(function(){
                         $('#status').prop('readonly', true);
                       });
                       </script>
-                  <?php } ?>
+                  <?php //} ?>
                   <div class="row form-row">
                     <div class="col-md-12">
                       <?php print form_label('Names', 'names',array('class'=>'form-label')); ?>
@@ -54,8 +54,8 @@
                   
                   <div class="row form-row">
                     <div class="col-md-12">
-                      <?php print form_label('Email', 'email',array('class'=>'form-label')); ?>
-                      <?php print form_input(array('name' => 'email', 'id' => 'email', 'value' => ($user_data)?$user_data->email:$this->session->flashdata('email'), 'class' => 'form-control ','placeholder' => 'email@example.com')); ?>
+                      <?php print form_label('KSU Email', 'email',array('class'=>'form-label')); ?>
+                      <?php print form_input(array('name' => 'email', 'id' => 'email', 'value' => ($user_data)?$user_data->email:$this->session->flashdata('email'), 'class' => 'form-control ','placeholder' => 'email@example.com','readonly'=>'true')); ?>
                     </div>
                   </div>
                   
@@ -120,7 +120,7 @@
                     </div>
                     <div class="col-md-4">
                       <?php print form_label('Visa Type', 'visa_type',array('class'=>'form-label')); ?>
-                      <?php print form_dropdown('visa_type',array('employment'=> 'employment','business'=>'business'),($user_data)?$user_data->visa_type:$this->session->flashdata('visa_type'),'id="visa_type" class=""'); ?>
+                      <?php print form_dropdown('visa_type',array(''=> 'Select','employment'=> 'employment','business'=>'business'),($user_data)?$user_data->visa_type:$this->session->flashdata('visa_type'),'id="visa_type" class=""'); ?>
                     </div>
                   </div>
                   </fieldset>

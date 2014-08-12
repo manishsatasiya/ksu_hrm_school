@@ -33,12 +33,13 @@ if($this->session->userdata('role_id') != '1' && !in_array("edit_profile",$this-
 					<th>DB ID</th>
 					<th>ELSD ID</th>
 					<th>Staff Name</th>
+					<th>Status</th>
 					<th>KSU E-mail</th>
 					<th>Personal E-mail</th>
 					<th>Mobile No</th>
+					<th>Company</th>
 					<th>Nationality</th>
 					<th>DOB</th>
-					<th>Company</th>
 					<th>Interview Evaluation Form</th>
 					<th>Date Added</th>
 					<th>Last Updated</th>
@@ -50,9 +51,11 @@ if($this->session->userdata('role_id') != '1' && !in_array("edit_profile",$this-
 					<th>DB ID</th>
 					<th>ELSD ID</th>
 					<th>Staff Name</th>
+					<th>Status</th>
 					<th>KSU E-mail</th>
 					<th>Personal E-mail</th>
 					<th>Mobile No</th>
+					<th>Company</th>
 					<th>Nationality</th>
 					<th>DOB</th>
 					<th>Company</th>
