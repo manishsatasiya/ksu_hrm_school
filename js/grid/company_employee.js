@@ -57,7 +57,7 @@ $(document).ready( function () {
 	                 null,
 					 { type: "text" },
 					 { type: "text" },
-					 null
+					 null,
 	        		 { type: "text" },
 	                 { type: "text" },
 	                 null,

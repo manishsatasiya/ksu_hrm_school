@@ -154,7 +154,7 @@ class List_Teacher_Student_model extends CI_Model {
 		$strQueryAllStatus = "";
 		$strQueryIntType = "";
 		$strQueryIntOutCome = "";
-		$arrAllStatus = user_profile_status();
+		$arrAllStatus = user_profile_status($type);
 		$arrIntType = get_interview_type();
 		$arrIntOutCome = get_interview_outcome();
 		
