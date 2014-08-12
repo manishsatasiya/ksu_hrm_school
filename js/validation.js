@@ -1494,6 +1494,10 @@ $(document).ready(function() {
 			  //required: true,
 		      comboboxNotNone: true,
 		    },
+			worked_at_ksu_before: {
+			  //required: true,
+		      comboboxNotNone: true,
+		    },
 		    cell_phone: {
 		      required: true,
 		    }
@@ -1508,6 +1512,7 @@ $(document).ready(function() {
 			expected_arrival_date:"Please Select Expected Arrival Date",
 			nationality:"Please select nationality",
 			visa_type:"Please select visa type",
+			worked_at_ksu_before:"Please Select Worked at KSU before?",
 			cell_phone:"Please enter mobile"
 		  },
 		  errorPlacement: function(label, element) {

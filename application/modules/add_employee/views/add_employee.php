@@ -108,8 +108,8 @@
                           <?php print form_input(array('name' => 'skype_id', 'id' => 'skype_id', 'value' => ($user_data)?$user_data->skype_id:$this->session->flashdata('skype_id'), 'class' => 'form-control')); ?>
                         </div>
                         <div class="col-md-6">
-                          <?php print form_label('Worked at KSU before', 'worked_at_ksu_before',array('class'=>'form-label')); ?>
-                          <?php print form_dropdown('worked_at_ksu_before',array('Yes'=>'Yes','No'=>'No'),($user_data)?$user_data->worked_at_ksu_before:$this->session->flashdata('worked_at_ksu_before'),'id="worked_at_ksu_before" class="select2 form-control" onchange="change_worked_at_ksu_before();"'); ?>
+                          <?php print form_label('Worked at KSU before?', 'worked_at_ksu_before',array('class'=>'form-label')); ?>
+                          <?php print form_dropdown('worked_at_ksu_before',array('0'=>'Select','Yes'=>'Yes','No'=>'No'),($user_data)?$user_data->worked_at_ksu_before:$this->session->flashdata('worked_at_ksu_before'),'id="worked_at_ksu_before" class="select2 form-control" onchange="change_worked_at_ksu_before();"'); ?>
                         </div>
                    </div>
                    <div id="worked_at_ksu_date" class="row form-row">
