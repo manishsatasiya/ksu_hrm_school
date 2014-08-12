@@ -16,7 +16,7 @@
                   <div class="row form-row">
                     <div class="col-md-12">
                       <?php print form_label('Status', 'status',array('class'=>'form-label')); ?>
-                      <?php print form_dropdown('status',$user_profile_status,($user_data)?$user_data->status:$this->session->flashdata('status'),'id="status" class="select2 form-control"'); ?>
+                      <?php echo print form_dropdown('status',$user_profile_status,($user_data)?$user_data->status:$this->session->flashdata('status'),'id="status" class="select2 form-control"'); ?>
                     </div>
                   </div>
                   <?php 
@@ -109,7 +109,7 @@
                     <div class="col-md-4">
                       <?php print form_label('Expected arrival date in KSA', 'expected_arrival_date',array('class'=>'form-label')); ?>
                       <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                      <?php print form_input(array('name' => 'expected_arrival_date', 'id' => 'show_dp', 'value' => ($user_data)?make_dp_date($user_data->expected_arrival_date):$this->session->flashdata('expected_arrival_date'), 'class' => 'form-control ')); ?>
+                      <?php print form_input(array('name' => 'expected_arrival_date', 'id' => 'show_eadt', 'value' => ($user_data)?make_dp_date($user_data->expected_arrival_date):$this->session->flashdata('expected_arrival_date'), 'class' => 'form-control ')); ?>
                       <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
                     </div>
                     <div class="col-md-4">
@@ -120,7 +120,7 @@
                     </div>
                     <div class="col-md-4">
                       <?php print form_label('Visa Type', 'visa_type',array('class'=>'form-label')); ?>
-                      <?php print form_dropdown('visa_type',array(''=> 'Select','employment'=> 'employment','business'=>'business'),($user_data)?$user_data->visa_type:$this->session->flashdata('visa_type'),'id="visa_type" class=""'); ?>
+                      <?php print form_dropdown('visa_type',array('0'=> 'Select','employment'=> 'employment','business'=>'business'),($user_data)?$user_data->visa_type:$this->session->flashdata('visa_type'),'id="visa_type" class=""'); ?>
                     </div>
                   </div>
                   </fieldset>

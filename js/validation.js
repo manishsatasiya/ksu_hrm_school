@@ -1480,10 +1480,6 @@ $(document).ready(function() {
 			gender: {
 		      comboboxNotNone: true
 		    },
-			email: {
-		      required: true,
-		      email: true,
-		    },
 			birth_date: {
 		      required: true,
 		    },
