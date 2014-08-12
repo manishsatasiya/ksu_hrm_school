@@ -1657,6 +1657,18 @@ $(document).ready(function() {
 		}
 	});
 	
+	$("#save_user_status").validate({
+		submitHandler: function(form) {
+			form.submit();
+		},
+		rules: {
+			comment: "required"
+		},
+		messages: {
+			comment: "Please enter your comment"
+		}
+	});
+	
 });
 
 function check_edit_school_form(id){

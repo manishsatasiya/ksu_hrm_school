@@ -664,7 +664,7 @@ print form_hidden('user_id', $user_data->user_unique_id);
             <div class="grid-body ">
             <div class="info-box">
             <div class="row">
-              <?php print form_open('list_user/edit_profile/'.$user_data->user_unique_id.'/6', array('id' => 'edit_profile','name'=>'edit_profile')) ."\r\n"; ?>
+              
                 <div id="edit_rootwizard" class="col-md-12">
                     <?php
                     if ($this->session->flashdata('message')) {
@@ -693,19 +693,39 @@ print form_hidden('user_id', $user_data->user_unique_id);
                           <?php print form_label('Status', 'status',array('class'=>'form-label')); ?>
                           <?php print form_dropdown('status',$user_profile_status,($user_data)?$user_data->status:$this->session->flashdata('status'),'id="status" class="select2 form-control"'); ?>
                           <?php 
-						  if($user_data->status == 20){ ?>
+						 // if($user_data->status == 20){ ?>
 							  <script>
 							  $(document).ready(function(){
 								$('#status').prop('readonly', true);
 							  });
 							  </script>
-						  <?php } ?>
+						  <?php //} ?>
                         </div>
                         <div class="col-md-4">
+                        	<input type="button" id="change_status_button" value="Change Status" />
+                        </div>
+                      </div>
+                      <div class="row form-row" id="status_comment_box" style="display:none;">
+                      	<?php print form_open('list_user/save_user_status/'.$user_data->user_unique_id.'/6', array('id' => 'save_user_status','name'=>'save_user_status')) ."\r\n"; ?>
+                      	<div class="col-md-12">
+                          <?php print form_input(array('name' => 'comment', 'id' => 'comment', 'value' => '', 'class' => 'form-control ','placeholder' => 'Why you want to change the status?')); ?>
+                        </div>
+                        <div class="col-md-6">
+                        	<?php print form_hidden('user_id', ($user_data)?$user_data->user_unique_id:0); ?>
+                            <input type="hidden" name="status_old" id="status_old" value="<?php ($user_data)?$user_data->status:0; ?>" />
+                            <input type="hidden" name="status_new" id="status_new" value="<?php ($user_data)?$user_data->status:0; ?>" />
+                        	<input type="submit" id="save_status" value="Save" />
+                        	<input type="button" id="cancel_status_button" value="Cancel" />
+                        </div>
+                        <?php print form_close() ."\r\n"; ?> 
+                      </div>
+               <?php print form_open('list_user/edit_profile/'.$user_data->user_unique_id.'/6', array('id' => 'edit_profile','name'=>'edit_profile')) ."\r\n"; ?>
+                      <div class="row form-row">  
+                        <div class="col-md-6">
                           <?php print form_label('Gender', 'gender',array('class'=>'form-label')); ?>
                           <?php print form_dropdown('gender',array(''=> 'Select Gender','M'=> 'Male','F'=>'Female'),($user_data)?$user_data->gender:$this->session->flashdata('gender'),'id="gender" class="select2 form-control"'); ?>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                           <?php print form_label('ELSD ID', 'elsd_id',array('class'=>'form-label')); ?>
                           <?php print form_input(array('name' => 'elsd_id', 'id' => 'elsd_id', 'value' => ($user_data)?$user_data->elsd_id:$this->session->flashdata('elsd_id'), 'class' => 'form-control ','placeholder' => 'ELSD ID','readonly'=>'readonly')); ?>
                         </div>

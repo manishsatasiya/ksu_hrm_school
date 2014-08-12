@@ -608,6 +608,14 @@ $(document).ready(function(){
 		}
 	}
 	
+	$('#change_status_button').click(function() {
+		$('select#status').select2('readonly', false);
+		$('div#status_comment_box').slideDown();
+	});
+	$('#cancel_status_button').click(function() {
+		$('#status').select2('readonly', true);
+		$('div#status_comment_box').slideUp();
+	});
 });
 
 function change_worked_at_ksu_before() {
