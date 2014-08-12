@@ -481,7 +481,7 @@ $lang['all_inactive_staff_sub'] = 'All Inactive Staff';
 $lang['contracted_numbers'] = 'Contracted Numbers';
 $lang['contracted_summary'] = 'Contracted Summary';
 $lang['add_company_employee'] = 'Add Company Employee';
-$lang['new_company_employees'] = 'New Company Employees';
+$lang['new_company_employees'] = 'All Company Employees';
 $lang['add_document'] = 'Add Document';
 
 $lang['user_priviledge_sub'] = 'User Privilege';
