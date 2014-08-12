@@ -610,6 +610,15 @@ $(document).ready(function(){
 	
 });
 
+function change_worked_at_ksu_before() {
+	var worked_at_ksu_before = $('select#worked_at_ksu_before').val();
+	if(worked_at_ksu_before == 'Yes'){
+		$('div#worked_at_ksu_date').slideDown();
+	}else {
+		$('div#worked_at_ksu_date').slideUp();
+	}
+}
+
 function addReferenceBox(){
 	$('#references').append($('#reference_main_sample').html());
 }

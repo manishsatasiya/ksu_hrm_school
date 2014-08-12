@@ -58,7 +58,12 @@ class Add_employee extends Private_Controller {
 							'visa_type'       => $this->input->post('visa_type'),
 							'third_party_ver_company'       => $this->input->post('third_party_ver_company'),
 							'third_party_ver_date_requested'       => make_db_date($this->input->post('third_party_ver_date_requested')),
-							'third_party_ver_date_completed'       => make_db_date($this->input->post('third_party_ver_date_completed'))
+							'third_party_ver_date_completed'       => make_db_date($this->input->post('third_party_ver_date_completed')),							
+							'skype_id'       => $this->input->post('skype_id'),
+							'worked_at_ksu_before'       => $this->input->post('worked_at_ksu_before'),
+							'worked_ksu_job_detail'       => $this->input->post('worked_ksu_job_detail'),
+							'worked_ksu_start_date'       => make_db_date($this->input->post('worked_ksu_start_date')),
+							'worked_ksu_end_date'       => make_db_date($this->input->post('worked_ksu_end_date'))
 						);						
 				grid_data_updates($profile_data,'user_profile', 'user_id',$user_id);
 				
@@ -296,7 +301,12 @@ class Add_employee extends Private_Controller {
 							'visa_type'       => $this->input->post('visa_type'),
 							'third_party_ver_company'       => $this->input->post('third_party_ver_company'),
 							'third_party_ver_date_requested'       => make_db_date($this->input->post('third_party_ver_date_requested')),
-							'third_party_ver_date_completed'       => make_db_date($this->input->post('third_party_ver_date_completed'))
+							'third_party_ver_date_completed'       => make_db_date($this->input->post('third_party_ver_date_completed')),							
+							'skype_id'       => $this->input->post('skype_id'),
+							'worked_at_ksu_before'       => $this->input->post('worked_at_ksu_before'),
+							'worked_ksu_job_detail'       => $this->input->post('worked_ksu_job_detail'),
+							'worked_ksu_start_date'       => make_db_date($this->input->post('worked_ksu_start_date')),
+							'worked_ksu_end_date'       => make_db_date($this->input->post('worked_ksu_end_date'))
 						);
 					$profile_id = grid_add_data($profile_data,'user_profile');
 					

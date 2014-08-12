@@ -102,7 +102,39 @@
                       <?php print form_input(array('name' => 'cell_phone', 'id' => 'cell_phone', 'value' => ($user_data)?$user_data->cell_phone:$this->session->flashdata('cell_phone'), 'class' => 'form-control ','placeholder' => 'Mobile Phone')); ?>
                     </div>
                   </div>
-
+				  <div class="row form-row">
+                        <div class="col-md-6">
+                          <?php print form_label('Skype ID', 'skype_id',array('class'=>'form-label')); ?>
+                          <?php print form_input(array('name' => 'skype_id', 'id' => 'skype_id', 'value' => ($user_data)?$user_data->skype_id:$this->session->flashdata('skype_id'), 'class' => 'form-control')); ?>
+                        </div>
+                        <div class="col-md-6">
+                          <?php print form_label('Worked at KSU before', 'worked_at_ksu_before',array('class'=>'form-label')); ?>
+                          <?php print form_dropdown('worked_at_ksu_before',array('Yes'=>'Yes','No'=>'No'),($user_data)?$user_data->worked_at_ksu_before:$this->session->flashdata('worked_at_ksu_before'),'id="worked_at_ksu_before" class="select2 form-control" onchange="change_worked_at_ksu_before();"'); ?>
+                        </div>
+                   </div>
+                   <div id="worked_at_ksu_date" class="row form-row">
+                   		<div class="col-md-12">
+                          <?php print form_label('Worked KSU job detail', 'worked_ksu_job_detail',array('class'=>'form-label')); ?>
+                          <?php print form_input(array('name' => 'worked_ksu_job_detail', 'id' => 'worked_ksu_job_detail', 'value' => ($user_data)?$user_data->worked_ksu_job_detail:$this->session->flashdata('worked_ksu_job_detail'), 'class' => 'form-control')); ?>
+                        </div>
+                        <div class="col-md-6">
+                          <?php print form_label('Worked KSU start date', 'worked_ksu_start_date',array('class'=>'form-label')); ?>
+                          <div class="input-append success date col-md-10 col-lg-6 no-padding">
+                            <?php print form_input(array('name' => 'worked_ksu_start_date', 'id' => 'show_dp', 'value' => ($user_data)?make_dp_date($user_data->worked_ksu_start_date):$this->session->flashdata('worked_ksu_start_date'), 'class' => 'form-control')); ?>
+                            <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
+                        </div>
+                        <div class="col-md-6">
+                          <?php print form_label('Worked KSU end date', 'worked_ksu_end_date',array('class'=>'form-label')); ?>
+                          <div class="input-append success date col-md-10 col-lg-6 no-padding">
+                            <?php print form_input(array('name' => 'worked_ksu_end_date', 'id' => 'show_dp', 'value' => ($user_data)?make_dp_date($user_data->worked_ksu_end_date):$this->session->flashdata('worked_ksu_end_date'), 'class' => 'form-control')); ?>
+                            <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
+                        </div>
+                  </div>
+                  <script>
+				  $(document).ready(function(){
+				  	change_worked_at_ksu_before();
+				  });
+				  </script>
                   <fieldset>
                   <legend>Arrival</legend>
                   <div class="row form-row">

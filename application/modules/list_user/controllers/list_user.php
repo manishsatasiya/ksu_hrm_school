@@ -655,7 +655,12 @@ $this->template->set_partial('sidebar', 'sidebar');
 						'medical_condition'       => $this->input->post('medical_condition'),
 						'medical_allergies'       => $this->input->post('medical_allergies'),
 						'on_timetable'       => $this->input->post('on_timetable'),
-						'department_id'       => $this->input->post('department_id')
+						'department_id'       => $this->input->post('department_id'),
+						'skype_id'       => $this->input->post('skype_id'),
+						'worked_at_ksu_before'       => $this->input->post('worked_at_ksu_before'),
+						'worked_ksu_job_detail'       => $this->input->post('worked_ksu_job_detail'),
+						'worked_ksu_start_date'       => make_db_date($this->input->post('worked_ksu_start_date')),
+						'worked_ksu_end_date'       => make_db_date($this->input->post('worked_ksu_end_date'))
 					);
 				$profile_id = grid_add_data($profile_data,'user_profile');
 				
@@ -816,7 +821,12 @@ $this->template->set_partial('sidebar', 'sidebar');
 							'medical_condition'       => $this->input->post('medical_condition'),
 							'medical_allergies'       => $this->input->post('medical_allergies'),
 							'on_timetable'       => $this->input->post('on_timetable'),
-							'department_id'       => $this->input->post('department_id')
+							'department_id'       => $this->input->post('department_id'),							
+							'skype_id'       => $this->input->post('skype_id'),
+							'worked_at_ksu_before'       => $this->input->post('worked_at_ksu_before'),
+							'worked_ksu_job_detail'       => $this->input->post('worked_ksu_job_detail'),
+							'worked_ksu_start_date'       => make_db_date($this->input->post('worked_ksu_start_date')),
+							'worked_ksu_end_date'       => make_db_date($this->input->post('worked_ksu_end_date'))
 						);
 						
 					grid_data_updates($profile_data,'user_profile', 'user_id',$user_id);
