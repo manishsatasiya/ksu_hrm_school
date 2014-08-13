@@ -29,7 +29,7 @@ print form_open('list_user/add_emergency_contact/'.$user_id.'/'.$id, array('id' 
 			<div class="input_box_thin"><?php print form_input(array('name' => 'contact_number', 'id' => 'contact_number', 'value' => ($rowdata)?$rowdata->contact_number:$this->session->flashdata('contact_number'), 'class' => 'form-control')); ?></div>
 		</div>
 		<div class="col-md-6">
-			<div class="form_label2"><?php print form_label('Alternate Contact Method', 'alternate_contact'); ?></div>
+			<div class="form_label2"><?php print form_label('Email address', 'alternate_contact'); ?></div>
 			<div class="input_box_thin"><?php print form_input(array('name' => 'alternate_contact', 'id' => 'alternate_contact', 'value' => ($rowdata)?$rowdata->alternate_contact:$this->session->flashdata('alternate_contact'), 'class' => 'form-control')); ?></div>
 		</div>
 		<div class="clear"></div>

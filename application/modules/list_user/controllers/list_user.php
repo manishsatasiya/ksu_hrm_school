@@ -660,7 +660,13 @@ $this->template->set_partial('sidebar', 'sidebar');
 						'worked_at_ksu_before'       => $this->input->post('worked_at_ksu_before'),
 						'worked_ksu_job_detail'       => $this->input->post('worked_ksu_job_detail'),
 						'worked_ksu_start_date'       => make_db_date($this->input->post('worked_ksu_start_date')),
-						'worked_ksu_end_date'       => make_db_date($this->input->post('worked_ksu_end_date'))
+						'worked_ksu_end_date'       => make_db_date($this->input->post('worked_ksu_end_date')),
+						'mentor'       => $this->input->post('mentor'),
+						'lesson_observer'       => $this->input->post('lesson_observer'),
+						'buzz_observer'       => $this->input->post('buzz_observer'),
+						'spot_checker'       => $this->input->post('spot_checker'),							
+						'is_line_manager'       => $this->input->post('is_line_manager'),
+						'interviewer'       => $this->input->post('interviewer')
 					);
 				$profile_id = grid_add_data($profile_data,'user_profile');
 				
@@ -699,6 +705,13 @@ $this->template->set_partial('sidebar', 'sidebar');
 						'interview_date'       => make_db_date($this->input->post('interview_date')),
 						'interview_outcome'       => $this->input->post('interview_outcome'),
 						'interview_notes'       => $this->input->post('interview_notes'),
+						'lesson_plan_submitted' => $this->input->post('lesson_plan_submitted'),
+						'lesson_plan_suitable' => $this->input->post('lesson_plan_suitable'),
+						'lesson_plan_comments' => $this->input->post('lesson_plan_comments'),
+						'writing_sample_submitted' => $this->input->post('writing_sample_submitted'),
+						'writing_sample_suitable' => $this->input->post('writing_sample_suitable'),
+						'writing_sample_comments' => $this->input->post('writing_sample_comments'),
+						'demo_lesson_recommended' => $this->input->post('demo_lesson_recommended'),
 						'updated_at'       => date('Y-m-d H:i:s')
 					);
 				
@@ -826,7 +839,13 @@ $this->template->set_partial('sidebar', 'sidebar');
 							'worked_at_ksu_before'       => $this->input->post('worked_at_ksu_before'),
 							'worked_ksu_job_detail'       => $this->input->post('worked_ksu_job_detail'),
 							'worked_ksu_start_date'       => make_db_date($this->input->post('worked_ksu_start_date')),
-							'worked_ksu_end_date'       => make_db_date($this->input->post('worked_ksu_end_date'))
+							'worked_ksu_end_date'       => make_db_date($this->input->post('worked_ksu_end_date')),
+							'mentor'       => $this->input->post('mentor'),
+							'lesson_observer'       => $this->input->post('lesson_observer'),
+							'buzz_observer'       => $this->input->post('buzz_observer'),
+							'spot_checker'       => $this->input->post('spot_checker'),							
+							'is_line_manager'       => $this->input->post('is_line_manager'),
+							'interviewer'       => $this->input->post('interviewer')
 						);
 						
 					grid_data_updates($profile_data,'user_profile', 'user_id',$user_id);
@@ -907,9 +926,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 		
 		$user_data = $this->list_user_model->get_user_profile($user_id);
     	if(!$user_data)
-			redirect('list_user/add_profile');
-		
-		
+			redirect('list_user/add_profile');		
 		
 		$cv_reference_data = $this->list_user_model->get_cv_reference($user_id);
 		$cv_reference = array();
@@ -1018,6 +1035,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 			}
 		}
 		$user_data = (object) array_merge((array)$user_data,array('emergency_contacts'=>$emergency_contacts),array('user_qualification'=>$user_qualification),array('user_certificate'=>$user_certificate),array('user_experience'=>$user_experience),array('user_workshop'=>$user_workshop),array('cv_reference'=>$cv_reference));
+		
 		$user_permossion = $this->list_user_model->get_user_permossion($user_id);
 		$user_documents = $this->list_user_model->get_user_documents($user_id);
 	
@@ -1027,6 +1045,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 		$content_data['user_profile_status'] = user_profile_status();
 		$content_data['other_user_roll'] = get_other_user_roll();
 		$content_data['other_user_list'] = get_other_user_list();
+		$content_data['line_manager_list'] = get_line_manager_list();
 		$content_data['nationality_list'] = get_nationality_list();
 		$content_data['campus_list'] = get_campus_list(1);
 		$content_data['department_list'] = get_department_list();
@@ -1206,6 +1225,41 @@ $this->template->set_partial('sidebar', 'sidebar');
     		exit;
     	}
     	$this->template->build('add_experience', $content_data);
+    }
+	
+	public function add_reference($user_id,$id = null){
+    	    			
+    	$content_data['id'] = $id;
+		$content_data['user_id'] = $user_id;
+    	$rowdata = array();
+    	if($id){
+    		$rowdata = $this->list_user_model->get_reference($id);
+    	}
+    	$content_data['rowdata'] = $rowdata;
+    	if($this->input->post()){
+    		
+			$company_name = $this->input->post('company_name');
+    		$name = $this->input->post('name');
+			$email = $this->input->post('email');
+			    		
+			$data = array();
+			$data['user_id'] = $user_id;
+			$data['company_name'] = $company_name;
+			$data['name'] = $name;
+			$data['email'] = $email;
+				
+			$error = "";
+    		$error_seperator = "<br>";
+			$table = 'user_cv_reference';
+    		$wher_column_name = 'referance_id';
+    		if($id){
+    			grid_data_updates($data,$table,$wher_column_name,$id);
+    		}else{
+    			$lastinsertid = grid_add_data($data,$table);
+    		}
+    		exit;
+    	}
+    	$this->template->build('add_reference', $content_data);
     }
 	
 	public function add_emergency_contact($user_id,$id = null){
@@ -1607,6 +1661,27 @@ $this->template->set_partial('sidebar', 'sidebar');
 		$roll_privilege = $this->list_user_model->get_existing_privilege($user_roll_id);
 		$this->list_user_model->create_single_user_privilege($user_id, $roll_privilege);
 		
+		redirect('list_user/edit_profile/'.$user_id.'/');
+	}
+	
+	public function save_user_status(){
+		$change_by = $this->session->userdata('user_id');
+		
+		$status = $this->input->post('status');
+		$comment = $this->input->post('comment');
+		$user_id = $this->input->post('user_id');
+		$orig_status = $this->input->post('orig_status');
+		
+		$data = array();
+		$data['user_id'] = $user_id;
+		$data['old_status'] = $status;
+		$data['comment'] = $comment;
+		$data['new_status'] = $orig_status;
+		$data['change_by'] = $change_by;
+		$data['updated_at'] = date('Y-m-d H:i:s');
+						
+		$table = 'user_status_log';
+		$lastinsertid = grid_add_data($data,$table);
 		redirect('list_user/edit_profile/'.$user_id.'/');
 	}
 	

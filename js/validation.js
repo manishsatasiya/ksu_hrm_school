@@ -478,13 +478,7 @@ $(document).ready(function() {
 	
 	if(CI.controller_name == 'list_student')
 	{
-		$(function() {
-			$( "#reg_student_schedule_date" ).datepicker({
-				changeMonth: true,
-				changeYear: true,
-				yearRange: 'c-50:c+0'
-			});
-		});
+		
 	}
 		
 	$("#add_teacher_form_datatable").validate({
@@ -822,29 +816,6 @@ $(document).ready(function() {
 	
 	if(CI.controller_name == 'list_user')
 	{
-		$(function() {
-			$( "#reg_birth_date" ).datepicker({
-				changeMonth: true,
-				changeYear: true,
-				yearRange: 'c-50:c+0'
-			});
-		});
-				
-		$(function() {
-			$( "#start_date" ).datepicker({
-				changeMonth: true,
-				changeYear: true,
-				yearRange: 'c-50:c+0'
-			});
-		});
-		
-		$(function() {
-			$( "#end_date" ).datepicker({
-				changeMonth: true,
-				changeYear: true,
-				yearRange: 'c-50:c+0'
-			});
-		});
 	}	
 	$("#add_user_form_datatable").validate({
 		submitHandler: function(form) {
@@ -898,12 +869,6 @@ $(document).ready(function() {
 	
 	if(CI.controller_name == 'workshops')
 	{
-		$(function() {
-			$( "#reg_start_date" ).datepicker({
-				format: 'D dd MM yyyy'
-			});
-		});
-		
 		$('#reg_time').timepicker({});
 	}
 	
@@ -1323,6 +1288,44 @@ $(document).ready(function() {
 		}
 	});
 	
+	$("#add_user_reference").validate({
+		submitHandler: function(form) {
+			jQuery(form).ajaxSubmit({
+				success: function(data){
+					if(data == ''){
+						$('#myModal').delay(1000).modal('hide');
+						location.reload();
+					}else{
+						$(".containerfdfdf").show();
+						$(".containerfdfdf").html(data);
+						$('.containerfdfdf').find('p').css('color', 'red');
+						$('.containerfdfdf').find('p').css('background-image', 'url("images/delete.png")');
+						$('.containerfdfdf').find('p').css('background-repeat', 'no-repeat');
+						$('.containerfdfdf').find('p').css('padding-left', '20px');
+						
+					}
+				}
+			});
+			
+		},
+		rules: {
+			company_name: {
+				required:true
+			},
+			name:{
+				required:true
+			},
+			email:{			
+				required:true
+			}
+		},
+		messages: {
+			company_name: "Please enter company",
+			name: "Please enter name",
+			email: "Please enter email"
+		}
+	});
+	
 	$("#add_emergency_contact").validate({
 		submitHandler: function(form) {
 			jQuery(form).ajaxSubmit({
@@ -1451,7 +1454,14 @@ $(document).ready(function() {
 	});
 	
 	$(function() {
-		$("#date").datepicker();
+		$("#show_dp").datepicker({
+			format: 'D dd MM yyyy'
+		});
+		$('.input-append.date').datepicker({
+			autoclose: true,
+			format: 'D dd MM yyyy',
+			todayHighlight: true
+	    });
 		$(document).on('change','#date', function (ev) {
 			//alert('fsf');
 			//alert($(this).attr('name'));

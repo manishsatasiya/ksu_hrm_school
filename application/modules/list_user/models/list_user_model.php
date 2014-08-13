@@ -23,7 +23,8 @@ class List_User_model extends CI_Model {
 		//$this->db->where('users.user_id',$user_id);
     	$query = $this->db->get();
 		//echo $this->db->last_query();
-    	if($query->num_rows() > 0) {
+    	
+		if($query->num_rows() > 0) {
     		return $query->row();
     	}
 		
@@ -127,6 +128,17 @@ class List_User_model extends CI_Model {
 		$this->db->select('user_workhistory.*');
     	$this->db->from('user_workhistory');
 		$this->db->where('user_workhistory_id',$id);
+		$query = $this->db->get();
+    	if($query->num_rows() > 0) {
+    		return $query->row();
+    	}
+		
+		return false;
+	}
+	public function get_reference($id) {
+		$this->db->select('user_cv_reference.*');
+    	$this->db->from('user_cv_reference');
+		$this->db->where('referance_id',$id);
 		$query = $this->db->get();
     	if($query->num_rows() > 0) {
     		return $query->row();
@@ -299,6 +311,13 @@ class List_User_model extends CI_Model {
 															interview_outcome,
 															interview_notes,
 															interview_type,
+															lesson_plan_submitted,
+															lesson_plan_suitable,
+															lesson_plan_comments,
+															writing_sample_submitted,
+															writing_sample_suitable,
+															writing_sample_comments,
+															demo_lesson_recommended,
 															updated_at) 
 													VALUES ("'.$user_id.'",
 															"'.$this->input->post('ver_nationality').'",
@@ -311,6 +330,13 @@ class List_User_model extends CI_Model {
 															"'.$this->input->post('interview_outcome').'",
 															"'.$this->input->post('interview_notes').'",
 															"'.$this->input->post('interview_type').'",
+															"'.$this->input->post('lesson_plan_submitted').'",
+															"'.$this->input->post('lesson_plan_suitable').'",
+															"'.$this->input->post('lesson_plan_comments').'",
+															"'.$this->input->post('writing_sample_submitted').'",
+															"'.$this->input->post('writing_sample_suitable').'",
+															"'.$this->input->post('writing_sample_comments').'",
+															"'.$this->input->post('demo_lesson_recommended').'",
 															"'.date('Y-m-d H:i:s').'"
 															)
 					  ON DUPLICATE KEY UPDATE ver_nationality="'.$this->input->post('ver_nationality').'",
@@ -323,6 +349,13 @@ class List_User_model extends CI_Model {
 											interview_outcome="'.$this->input->post('interview_outcome').'",
 											interview_notes="'.$this->input->post('interview_notes').'",
 											interview_type="'.$this->input->post('interview_type').'",
+											lesson_plan_submitted="'.$this->input->post('lesson_plan_submitted').'",
+											lesson_plan_suitable="'.$this->input->post('lesson_plan_suitable').'",
+											lesson_plan_comments="'.$this->input->post('lesson_plan_comments').'",
+											writing_sample_submitted="'.$this->input->post('writing_sample_submitted').'",
+											writing_sample_suitable="'.$this->input->post('writing_sample_suitable').'",
+											writing_sample_comments="'.$this->input->post('writing_sample_comments').'",
+											demo_lesson_recommended="'.$this->input->post('demo_lesson_recommended').'",
 											updated_at="'.date('Y-m-d H:i:s').'"';
 					 
 					 $this->db->query($query);
@@ -426,7 +459,7 @@ class List_User_model extends CI_Model {
 		
 		$sql = "insert into users_log(`user_id`, `user_roll_id`, `username`, `password`, `section_id`, `section_title_name`, `email`, `student_uni_id`, `track`, `schedule_date`, `academic_status`, `first_name`, `first_name_arabic`, `middle_name`, `last_name`, `name_suffix`, `address1`, `address2`, `city`, `state`, `zip`, `birth_date`, `birth_place`, `gender`, `language_known`, `work_phone`, `home_phone`, `cell_phone`, `last_login_date`, `login_attempts`, `profile_picture`, `nonce`, `elsd_id`, `coordinator`, `ca_lead_teacher`, `company`, `campus`, `campus_id`, `created_date`, `updated_date`, `active`, `discontinue`, `discontinue_date`, `discontinue_week_id`,`status_old`,`status_new`,`change_by`, `change_date`)
 
-SELECT `user_id`, `user_roll_id`, `username`, `password`, `section_id`, `section_title_name`, `email`, `student_uni_id`, `track`, `schedule_date`, `academic_status`, `first_name`, `first_name_arabic`, `middle_name`, `last_name`, `name_suffix`, `address1`, `address2`, `city`, `state`, `zip`, `birth_date`, `birth_place`, `gender`, `language_known`, `work_phone`, `home_phone`, `cell_phone`, `last_login_date`, `login_attempts`, `profile_picture`, `nonce`, `elsd_id`, `coordinator`, `ca_lead_teacher`, `company`, `campus`, `campus_id`, `created_date`, `updated_date`, `active`, `discontinue`, `discontinue_date`, `discontinue_week_id`,`status`,$new_status,$user_id,'$change_date' FROM `users` WHERE user_id =$id";
+SELECT `user_id`, `user_roll_id`, `username`, `password`, `section_id`, `section_title_name`, `email`, `student_uni_id`, `track`, `schedule_date`, `academic_status`, `first_name`, `first_name_arabic`, `middle_name`, `last_name`, `name_suffix`, `address1`, `address2`, `city`, `state`, `zip`, `birth_date`, `birth_place`, `gender`, `language_known`, `work_phone`, `home_phone`, `cell_phone`, `last_login_date`, `login_attempts`, `profile_picture`, `nonce`, `elsd_id`, `coordinator`, `ca_lead_teacher`, `company`, `campus`, `campus_id`, `created_date`, `updated_date`, `active`, `discontinue`, `discontinue_date`, `discontinue_week_id`,`status`,'$new_status',$user_id,'$change_date' FROM `users` WHERE user_id =$id";
 		$this->db->query($sql);
 		$last_log_id =  $this->db->insert_id();  
 		

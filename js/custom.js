@@ -608,14 +608,62 @@ $(document).ready(function(){
 		}
 	}
 	
-	$('#change_status_button').click(function() {
-		$('select#status').select2('readonly', false);
-		$('div#status_comment_box').slideDown();
+	//$('#status').select2('readonly', true);
+	
+	$('.comment').hide();
+	$('.button-save').hide();
+	$('.button-cancle').hide();
+	
+	//attach click event to buttons
+	$('.button-show').click(function(){
+		
+		/**
+		 * when show button is clicked we call the show plugin
+		 * which scales the box to default size
+		 * You can try other effects from here: http://jqueryui.com/effect/
+		 */
+		$("#box").show("scale", 500); 
+
 	});
-	$('#cancel_status_button').click(function() {
+
+	$('.button-change-status').click(function(){
+		//$("#status").removeAttr("disabled");
+		$('#status').select2('readonly', false);
+	});
+	
+	$('#status').change(function(){
+		if($(this).val() != $("#orig_status").val())
+		{
+			$('.button-change-status').hide("scale", 300);
+			$('.comment').show("scale", 350);
+			$('.button-save').show("scale", 360);
+			$('.button-cancle').show("scale", 370);
+		}
+	});
+	
+	$('.button-cancle').click(function(){
+		$('.comment').hide("scale", 200);
+		$('.button-save').hide("scale", 210);
+		$('.button-cancle').hide("scale", 220);
+		$('.button-change-status').show("scale",250);
+		
+		$('#status').val($("#orig_status").val());
+		//$("#status").attr("disabled", "true");
 		$('#status').select2('readonly', true);
-		$('div#status_comment_box').slideUp();
 	});
+	
+	/*$('.button-save').click(function(){
+		if($('.comment').val() == "")
+		{
+			alert("Please Enter Reason To Update Status");
+			return false;
+		}
+		else
+		{
+			
+		}
+	});*/
+			
 });
 
 function change_worked_at_ksu_before() {
