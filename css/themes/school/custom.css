@@ -1215,3 +1215,6 @@ border-top:1px solid #dddddd; border-left:1px solid #dddddd; padding:6px !import
 
 .add-employee-pg .doc-list {}
 .add-employee-pg .doc-list a { display:inline-block; vertical-align:middle; margin-bottom:10px;}
+
+.editprofile-pg .other-responsiblty {}
+.editprofile-pg  .other-responsiblty label { display:inline-block; vertical-align:middle; cursor:pointer;}

@@ -3095,7 +3095,7 @@ form legend,.form-view legend {
     display: block;
     float: left;
     max-width: 25%;
-    min-width:16.66%;
+    min-width:25%;
     text-align: center;
 	padding-left:0;
 }
