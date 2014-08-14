@@ -632,8 +632,7 @@ print form_hidden('user_id', $user_data->user_unique_id);
                                 <input type="button" id="cancel_status_button" class="button-cancle btn btn-primary" value="Cancel" />
                               </div>
                             </div>
-                            <?php print form_close() ."\r\n"; ?> 
-							<?php print form_open('list_user/edit_profile/'.$user_data->user_unique_id.'/6', array('id' => 'edit_profile','name'=>'edit_profile')) ."\r\n"; ?>
+                            <?php print form_close() ."\r\n"; ?> <?php print form_open('list_user/edit_profile/'.$user_data->user_unique_id.'/6', array('id' => 'edit_profile','name'=>'edit_profile')) ."\r\n"; ?>
                             <div class="row form-row">
                               <div class="col-md-4"> <?php print form_label('Gender', 'gender',array('class'=>'form-label')); ?> <?php print form_dropdown('gender',array(''=> 'Select Gender','M'=> 'Male','F'=>'Female'),($user_data)?$user_data->gender:$this->session->flashdata('gender'),'id="gender" class="select2 form-control"'); ?> </div>
                               <div class="col-md-4"> <?php print form_label('ELSD ID', 'elsd_id',array('class'=>'form-label')); ?> <?php print form_input(array('name' => 'elsd_id', 'id' => 'elsd_id', 'value' => ($user_data)?$user_data->elsd_id:$this->session->flashdata('elsd_id'), 'class' => 'form-control ','placeholder' => 'ELSD ID','readonly'=>'readonly')); ?> </div>
@@ -773,22 +772,43 @@ print form_hidden('user_id', $user_data->user_unique_id);
                           <div class="tab-pane" id="tab4"> <br>
                             <h4 class="semi-bold">Step 4 - <span class="light">Interview Details</span></h4>
                             <br>
-							<div class="row form-row">
-							  <div class="col-md-6"> <?php print form_label('a. Lesson plan submitted', 'lesson_plan_submitted',array('class'=>'form-label')); ?> <?php print form_dropdown('lesson_plan_submitted',array(''=>'Select','Yes'=> 'Yes','No'=>'No'),($user_data)?$user_data->lesson_plan_submitted:$this->session->flashdata('lesson_plan_submitted'),'id="lesson_plan_submitted" class=""'); ?> </div>
+                            <div class="row form-row">
+                              <div class="col-md-6"> <?php print form_label('a. Lesson plan submitted', 'lesson_plan_submitted',array('class'=>'form-label')); ?> <?php print form_dropdown('lesson_plan_submitted',array(''=>'Select','Yes'=> 'Yes','No'=>'No'),($user_data)?$user_data->lesson_plan_submitted:$this->session->flashdata('lesson_plan_submitted'),'id="lesson_plan_submitted" class=""'); ?> </div>
+                              <div class="col-md-6"> <?php print form_label('b. Lesson plan suitable','lesson_plan_suitable',array('class'=>'form-label')); ?> <?php print form_dropdown('lesson_plan_suitable',array(''=>'Select','Yes'=> 'Yes','No'=>'No'),($user_data)?$user_data->lesson_plan_suitable:$this->session->flashdata('lesson_plan_suitable'),'id="lesson_plan_suitable" class=""'); ?> </div>
+                              <div class="col-md-6"> <?php print form_label('c. Lesson plan comments', 'lesson_plan_comments',array('class'=>'form-label')); ?> <?php print form_textarea(array('name' => 'lesson_plan_comments', 'id' => 'lesson_plan_comments', 'value' => ($user_data)?$user_data->lesson_plan_comments:$this->session->flashdata('lesson_plan_comments'), 'class' => 'form-control ')); ?> </div>
                               <div class="col-md-6"> <?php print form_label('d. Writing sample submitted', 'writing_sample_submitted',array('class'=>'form-label')); ?> <?php print form_dropdown('writing_sample_submitted',array(''=>'Select','Yes'=> 'Yes','No'=>'No'),($user_data)?$user_data->writing_sample_submitted:$this->session->flashdata('writing_sample_submitted'),'id="writing_sample_submitted" class=""'); ?> </div>
-                            </div>
-						    <div class="row form-row">
-							  <div class="col-md-6"> <?php print form_label('b. Lesson plan suitable','lesson_plan_suitable',array('class'=>'form-label')); ?> <?php print form_dropdown('lesson_plan_suitable',array(''=>'Select','Yes'=> 'Yes','No'=>'No'),($user_data)?$user_data->lesson_plan_suitable:$this->session->flashdata('lesson_plan_suitable'),'id="lesson_plan_suitable" class=""'); ?> </div>
                               <div class="col-md-6"> <?php print form_label('e. Writing sample suitable', 'writing_sample_suitable',array('class'=>'form-label')); ?> <?php print form_dropdown('writing_sample_suitable',array(''=>'Select','Yes'=> 'Yes','No'=>'No'),($user_data)?$user_data->writing_sample_suitable:$this->session->flashdata('writing_sample_suitable'),'id="writing_sample_suitable" class=""'); ?> </div>
-                            </div>
-						    <div class="row form-row">
-							  <div class="col-md-6"> <?php print form_label('c. Lesson plan comments', 'lesson_plan_comments',array('class'=>'form-label')); ?> <?php print form_textarea(array('name' => 'lesson_plan_comments', 'id' => 'lesson_plan_comments', 'value' => ($user_data)?$user_data->lesson_plan_comments:$this->session->flashdata('lesson_plan_comments'), 'class' => 'form-control ')); ?> </div>
                               <div class="col-md-6"> <?php print form_label('f. Writing sample comments', 'writing_sample_comments',array('class'=>'form-label')); ?> <?php print form_textarea(array('name' => 'writing_sample_comments', 'id' => 'writing_sample_comments', 'value' => ($user_data)?$user_data->writing_sample_comments:$this->session->flashdata('writing_sample_comments'), 'class' => 'form-control ')); ?> </div>
-                            </div>
-						    <div class="row form-row">
-							  <div class="col-md-6"> <?php print form_label('g. Demo lesson recommended', 'demo_lesson_recommended',array('class'=>'form-label')); ?> <?php print form_dropdown('demo_lesson_recommended',array(''=>'Select','Yes'=> 'Yes','No'=>'No'),($user_data)?$user_data->demo_lesson_recommended:$this->session->flashdata('demo_lesson_recommended'),'id="demo_lesson_recommended" class=""'); ?> </div>
-                            </div>
-                            <!--row 6.5 start-->
+                              <div class="col-md-6"> <?php print form_label('g. Demo lesson recommended', 'demo_lesson_recommended',array('class'=>'form-label')); ?> <?php print form_dropdown('demo_lesson_recommended',array(''=>'Select','Yes'=> 'Yes','No'=>'No'),($user_data)?$user_data->demo_lesson_recommended:$this->session->flashdata('demo_lesson_recommended'),'id="demo_lesson_recommended" class=""'); ?> </div>
+                              <div class="col-md-6"> </div>
+                              <!--row 6.2 start-->
+                              <?php
+                            if(!empty($user_data->user_qualification))
+                            {  ?>
+                              <div class="row form-row">
+                                <div class="col-md-12">
+                                  <label class="form-label">Qualification</label>
+                                  <?php
+                                foreach($user_data->user_qualification as $qualification)
+                                { ?>
+                                  <div class="col-md-3"><?php echo $qualification['qualification']; ?></div>
+                                  <div class="col-md-3">
+                                    <?php $checked = (isset($qualification['accredited']) && $qualification['accredited'] == '1') ? true:false; ?>
+                                    <?php print form_checkbox(array('name' => 'qualifications['.$qualification['user_qualification_id'].'][accredited]', 'id' => 'accredited', 'value' => '1', 'checked' => $checked)); ?> <?php print form_label('Accredited', 'accredited'); ?> </div>
+                                  <div class="col-md-3">
+                                    <?php $checked = (isset($qualification['in_class']) && $qualification['in_class'] == '1') ? true:false; ?>
+                                    <?php print form_checkbox(array('name' => 'qualifications['.$qualification['user_qualification_id'].'][in_class]', 'id' => 'in_class', 'value' => '1', 'checked' => $checked)); ?> <?php print form_label('In Class', 'in_class'); ?> </div>
+                                  <div class="col-md-3">
+                                    <?php $checked = (isset($qualification['subject_related']) && $qualification['subject_related'] == '1') ? true:false; ?>
+                                    <?php print form_checkbox(array('name' => 'qualifications['.$qualification['user_qualification_id'].'][subject_related]', 'id' => 'subject_related', 'value' => '1', 'checked' => $checked)); ?> <?php print form_label('Subject Related', 'subject_related'); ?> </div>
+                                  <?php
+                                } ?>
+                                </div>
+                              </div>
+                              <?php
+                            } ?>
+                              <!--row 6.2 END-->
+                              <!--row 6.5 start-->
                               <div class="row form-row">
                                 <div class="col-md-12"> <?php print form_label('Interview Details', '',array('class'=>'form-label')); ?> </div>
                                 <div class="col-md-6">
@@ -817,7 +837,6 @@ print form_hidden('user_id', $user_data->user_unique_id);
                               </li>
                             </ul>
                           <?php print form_close() ."\r\n"; ?>
-                        </div>
                         </div>
                       </div>
                     </div>
