@@ -788,7 +788,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 					
 					$old_roll_id = $this->list_user_model->get_user_roll($user_id);
 					$user_data = array(
-							'status'       => $this->input->post('status'),
+							//'status'       => $this->input->post('status'),
 							'first_name'       => $this->input->post('first_name'),
 							'middle_name'       => $this->input->post('middle_name'),
 							'middle_name2'       => $this->input->post('middle_name2'),

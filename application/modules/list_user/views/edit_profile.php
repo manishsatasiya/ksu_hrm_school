@@ -730,9 +730,6 @@ print form_hidden('user_id', $user_data->user_unique_id);
                               <div class="col-md-4"> <?php print form_label('Line Manager', 'coordinator',array('class'=>'form-label')); ?> <?php print form_dropdown('coordinator',$line_manager_list,($user_data)?$user_data->coordinator:$this->session->flashdata('coordinator'),'id="coordinator" class="select2 form-control"'); ?> </div>
                             </div>
                             <div class="row form-row">
-                              <div class="col-md-6"> <?php print form_label('KSU Role', 'user_roll_id',array('class'=>'form-label')); ?> <?php print form_dropdown('user_roll_id',$other_user_roll,($user_data)?$user_data->user_roll_id:$this->session->flashdata('user_roll_id'),'id="user_roll_id" class="select2 form-control"'); ?> <span>The employee's actual role within the ELSD programme</span> </div>
-                            </div>
-                            <div class="row form-row">
                               <div class="col-md-6"> <?php print form_label('Other Responsibilities', 'other_responsibilities',array('class'=>'form-label')); ?>
                                 <?php $checked = (isset($user_data->mentor) && $user_data->mentor == '1') ? true:false; ?>
                                 <?php print form_checkbox(array('name' => 'mentor', 'id' => 'mentor', 'value' => '1', 'checked' => $checked)); ?> <?php print form_label('Mentor', 'mentor'); ?>
