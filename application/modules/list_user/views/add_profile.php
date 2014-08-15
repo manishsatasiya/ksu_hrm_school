@@ -59,26 +59,37 @@
                   <!--row 1 end-->
                   <!--row 2 start-->
                   <div class="row form-row">
-                    <div class="col-md-12">
-                      <?php print form_label('Names', 'names',array('class'=>'form-label')); ?>
-                    </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
+                    <?php print form_label('First Name', 'names',array('class'=>'form-label')); ?>
                       <?php print form_input(array('name' => 'first_name', 'id' => 'first_name', 'value' => $this->session->flashdata('first_name'), 'class' => 'form-control no-boarder','placeholder' => 'First Name')); ?>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
+                    <?php print form_label('Middle Name 1', 'names',array('class'=>'form-label')); ?>
                       <?php print form_input(array('name' => 'middle_name', 'id' => 'middle_name', 'value' => $this->session->flashdata('middle_name'), 'class' => 'form-control no-boarder','placeholder' => 'Middle Name')); ?>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
+                    <?php print form_label('Middle Name 2', 'names',array('class'=>'form-label')); ?>
                       <?php print form_input(array('name' => 'middle_name2', 'id' => 'middle_name2', 'value' => $this->session->flashdata('middle_name2'), 'class' => 'form-control no-boarder','placeholder' => 'Middle Name 2')); ?>
-                    </div>
-                    <div class="col-md-3">
-                      <?php print form_input(array('name' => 'last_name', 'id' => 'last_name', 'value' => $this->session->flashdata('last_name'), 'class' => 'form-control no-boarder','placeholder' => 'Last Name')); ?>
                     </div>
                   </div>
                   <!--row 2 end-->
                   
                   <!--row 5 start-->
                   <div class="row form-row">
+                  <div class="col-md-4">
+                  <?php print form_label('Last Name', 'names',array('class'=>'form-label')); ?>
+                      <?php print form_input(array('name' => 'last_name', 'id' => 'last_name', 'value' => $this->session->flashdata('last_name'), 'class' => 'form-control no-boarder','placeholder' => 'Last Name')); ?>
+                    </div>
+                    <div class="col-md-4">
+                      <?php print form_label('Nationality', 'nationality',array('class'=>'form-label')); ?>
+                      <?php print form_dropdown('nationality',$nationality_list,'','id="nationality" class="select2 form-control"'); ?>
+                    </div>
+                    <div class="col-md-4">
+                      <?php print form_label('Marital status', 'gender',array('class'=>'form-label')); ?>
+                      <?php print form_dropdown('marital_status',array(''=> 'Select Marital status','Married'=> 'Married','Single'=>'Single'),'','id="marital_status" class="select2 form-control"'); ?>
+                    </div>
+                    </div>
+                    <div class="row form-row">
                     <div class="col-md-4">
                       <?php print form_label('Login Email', 'username',array('class'=>'form-label')); ?>
                       <?php print form_input(array('name' => 'username', 'id' => 'username', 'value' => $this->session->flashdata('username'), 'class' => 'form-control no-boarder','placeholder' => 'email@example.com')); ?>
@@ -91,152 +102,35 @@
                       <?php print form_label('Confirm password', 'password_confirm',array('class'=>'form-label')); ?>
                       <?php print form_password(array('name' => 'password_confirm', 'id' => 'password_confirm', 'value' => $this->session->flashdata('password_confirm'), 'class' => 'form-control','placeholder' => 'Confirm password')); ?>
                     </div>
+                  </div>                  
+                  <div class="row form-row">
+					 <div class="col-md-4">
+                      <?php print form_label('Dob', 'birth_date',array('class'=>'form-label')); ?>
+                      <div class="input-append success date col-md-10 col-lg-10 no-padding">
+                        <?php print form_input(array('name' => 'birth_date', 'id' => 'show_dp', 'value' => $this->session->flashdata('birth_date'), 'class' => 'form-control ','placeholder' => 'Dob')); ?>
+                        <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
+                    </div>
+                     <div class="col-md-4">
+                      <?php print form_label('Personal Email', 'personal_email',array('class'=>'form-label')); ?>
+                      <?php print form_input(array('name' => 'personal_email', 'id' => 'personal_email', 'value' => $this->session->flashdata('personal_email'), 'class' => 'form-control','placeholder' => 'Personal Email')); ?>
+                    </div>
+                    <div class="col-md-4">
+                      <?php print form_label('Mobile Phone', 'cell_phone',array('class'=>'form-label')); ?>
+                      <?php print form_input(array('name' => 'cell_phone', 'id' => 'cell_phone', 'value' => $this->session->flashdata('cell_phone'), 'class' => 'form-control no-boarder','placeholder' => 'Mobile Phone')); ?>
+                    </div>                    
                   </div>
 				  <div class="row form-row">
-				  <div class="col-md-12">
+				  <div class="col-md-4">
 					  <?php print form_label('Skype ID', 'skype_id',array('class'=>'form-label')); ?>
 					  <?php print form_input(array('name' => 'skype_id', 'id' => 'skype_id', 'value' => $this->session->flashdata('skype_id'), 'class' => 'form-control')); ?>
 				   </div>
 				  </div> 
                   <!--row 5 end-->
-                  <!--row 3.1 start-->
-                  <div class="row form-row">
-                    <div class="col-md-6">
-                      <?php print form_label('Mobile Phone', 'cell_phone',array('class'=>'form-label')); ?>
-                      <?php print form_input(array('name' => 'cell_phone', 'id' => 'cell_phone', 'value' => $this->session->flashdata('cell_phone'), 'class' => 'form-control no-boarder','placeholder' => 'Mobile Phone')); ?>
-                    </div>
-                    <div class="col-md-6">
-                      <?php print form_label('Home Number', 'home_phone',array('class'=>'form-label')); ?>
-                      <?php print form_input(array('name' => 'home_phone', 'id' => 'home_phone', 'value' => $this->session->flashdata('home_phone'), 'class' => 'form-control no-boarder','placeholder' => 'Home Number')); ?>
-                    </div>
-                  </div>
-                  <!--row 3.1 end-->
-                  <!--row 3.2 start-->
-                  <div class="row form-row">
-                    <div class="col-md-5">
-                      <?php print form_label('Work Mobile', 'work_mobile',array('class'=>'form-label')); ?>
-                      <?php print form_input(array('name' => 'work_mobile', 'id' => 'work_mobile', 'value' => $this->session->flashdata('work_mobile'), 'class' => 'form-control no-boarder','placeholder' => 'Work Mobile')); ?>
-                    </div>
-                    <div class="col-md-5">
-                      <?php print form_label('Work Number', 'work_phone',array('class'=>'form-label')); ?>
-                      <?php print form_input(array('name' => 'work_phone', 'id' => 'work_phone', 'value' => $this->session->flashdata('work_phone'), 'class' => 'form-control no-boarder','placeholder' => 'Work Number')); ?>
-                    </div>
-                    <div class="col-md-2">
-                      <?php print form_label('Ext', 'work_extention',array('class'=>'form-label')); ?>
-                      <?php print form_input(array('name' => 'work_extention', 'id' => 'work_extention', 'value' => $this->session->flashdata('work_extention'), 'class' => 'form-control no-boarder','placeholder' => 'Ext')); ?>
-                    </div>
-                  </div>
-                  <!--row 3.2 end-->
-                  
-                  <!--row 7 start-->
-                  <div class="row form-row">
-					 <div class="col-md-4">
-                      <?php print form_label('Dob', 'birth_date',array('class'=>'form-label')); ?>
-                      <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                        <?php print form_input(array('name' => 'birth_date', 'id' => 'show_dp', 'value' => $this->session->flashdata('birth_date'), 'class' => 'form-control ','placeholder' => 'Dob')); ?>
-                        <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
-                    </div>
-                    <div class="col-md-4">
-                      <?php print form_label('Nationality', 'nationality',array('class'=>'form-label')); ?>
-                      <?php print form_dropdown('nationality',$nationality_list,'','id="nationality" class="select2 form-control"'); ?>
-                    </div>
-                    <div class="col-md-4">
-                      <?php print form_label('Marital status', 'gender',array('class'=>'form-label')); ?>
-                      <?php print form_dropdown('marital_status',array(''=> 'Select Marital status','Married'=> 'Married','Single'=>'Single'),'','id="marital_status" class="select2 form-control"'); ?>
-                    </div>
-                  </div>
-                  <!--row 7 end-->
                 </div>
                 <div class="tab-pane" id="tab2"> <br>
                   <h4 class="semi-bold">Step 2 - <span class="light">Job details</span></h4>
                   <br>
-                  <div class="row form-row">
-						<div class="col-md-6">
-						  <?php print form_label('Hand Scan ID', 'scanner_id',array('class'=>'form-label')); ?>
-						  <?php print form_input(array('name' => 'scanner_id', 'id' => 'scanner_id', 'value' => $this->session->flashdata('scanner_id'), 'class' => 'form-control no-boarder','placeholder' => 'Hand Scan ID')); ?>
-						</div>
-					   
-						 <div class="col-md-6">
-                          <?php print form_label('Worked at KSU before', 'worked_at_ksu_before',array('class'=>'form-label')); ?>
-                          <?php print form_dropdown('worked_at_ksu_before',array('Yes'=>'Yes','No'=>'No'),$this->session->flashdata('worked_at_ksu_before'),'id="worked_at_ksu_before" class="select2 form-control" onchange="change_worked_at_ksu_before();"'); ?>
-                        </div>
-                      </div>
-                      <div id="worked_at_ksu_date" class="row form-row">
-                      	<div class="col-md-12">
-                          <?php print form_label('Details of previous KSU experience', 'worked_ksu_job_detail',array('class'=>'form-label')); ?>
-                          <?php print form_input(array('name' => 'worked_ksu_job_detail', 'id' => 'worked_ksu_job_detail', 'value' => $this->session->flashdata('worked_ksu_job_detail'), 'class' => 'form-control')); ?>
-                        </div>
-                        <div class="col-md-6">
-                          <?php print form_label('Worked at KSU start date', 'worked_ksu_start_date',array('class'=>'form-label')); ?>
-                          <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                            <?php print form_input(array('name' => 'worked_ksu_start_date', 'id' => 'show_dp', 'value' => $this->session->flashdata('worked_ksu_start_date'), 'class' => 'form-control')); ?>
-                            <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
-                        </div>
-                        <div class="col-md-6">
-                          <?php print form_label('Worked at KSU end date', 'worked_ksu_end_date',array('class'=>'form-label')); ?>
-                          <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                            <?php print form_input(array('name' => 'worked_ksu_end_date', 'id' => 'show_dp', 'value' => $this->session->flashdata('worked_ksu_end_date'), 'class' => 'form-control')); ?>
-                            <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
-                        </div>
-                       </div>
-                  <!--row 3.3 start-->
-                  <div class="row form-row">
-                    <div class="col-md-6">
-                      <?php print form_label('Personal Email', 'personal_email',array('class'=>'form-label')); ?>
-                      <?php print form_input(array('name' => 'personal_email', 'id' => 'personal_email', 'value' => $this->session->flashdata('personal_email'), 'class' => 'form-control','placeholder' => 'Personal Email')); ?>
-                    </div>
-                    <div class="col-md-6">
-                      <?php print form_label('Office / Room #', 'office_no',array('class'=>'form-label')); ?>
-                      <?php print form_input(array('name' => 'office_no', 'id' => 'office_no', 'value' => $this->session->flashdata('office_no'), 'class' => 'form-control','placeholder' => 'Office no')); ?>
-                    </div>
-                  </div>
-                  <!--row 3.3 end-->
-                  <div class="row form-row">
-                      <div class="col-md-4">
-                          <?php print form_label('Job Title', 'job_title',array('class'=>'form-label')); ?>
-                          <?php print form_input(array('name' => 'job_title', 'id' => 'job_title', 'value' => $this->session->flashdata('job_title'), 'class' => 'form-control no-boarder','placeholder' => 'Job Title')); ?>
-                      </div>
-                      <div class="col-md-6">
-                          <?php print form_label('Original Joining Date at KSU', 'original_start_date',array('class'=>'form-label')); ?>
-                          <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                            <?php print form_input(array('name' => 'original_start_date', 'id' => 'show_dp', 'value' => $this->session->flashdata('original_start_date'), 'class' => 'form-control')); ?>
-                            <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
-                        </div>
-                  </div>
-				  
-                  <!--row 2.6 start-->
-                  <div class="row form-row">
-					<div class="col-md-4">
-                      <?php print form_label('Joining Date for academic year', 'cy_joining_date',array('class'=>'form-label')); ?>
-                      <div class="input-append success date col-md-10 col-lg-6 no-padding">
-                        <?php print form_input(array('name' => 'cy_joining_date', 'id' => 'show_dp', 'value' => $this->session->flashdata('cy_joining_date'), 'class' => 'form-control','placeholder' => 'Joining Date')); ?>
-                        <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
-                    </div>
-                    
-                    <div class="col-md-4">
-                      <?php print form_label('Returning Employee', 'returning',array('class'=>'form-label')); ?>
-                      <?php print form_dropdown('returning',array(''=>'Select Returning Teacher','1'=> 'Yes','2'=>'No'),'','id="returning" class="select2 form-control"'); ?>
-                    </div>
-                    <div class="col-md-4">
-                      <?php print form_label('Revelant experience', 'teaching_experience',array('class'=>'form-label')); ?>
-                      <?php print form_input(array('name' => 'teaching_experience', 'id' => 'teaching_experience', 'value' => $this->session->flashdata('teaching_experience'), 'class' => 'form-control no-boarder','placeholder' => 'Revelant experience')); ?>
-                      <span>(years)</span> 
-					</div>
-                  </div>
-                  <!--row 2.6 end-->
-                 
-                  <div class="row form-row">
-                  	<div class="col-md-6">
-                      <?php print form_label('KSU Role', 'user_roll_id',array('class'=>'form-label')); ?>
-                      <?php print form_dropdown('user_roll_id',$other_user_roll,'0','id="user_roll_id" class="select2 form-control"'); ?>
-                      <span>The employee's actual role within the ELSD programme</span>
-                    </div>
-                    <div class="col-md-6">
-					  <?php print form_label('Department', 'department_id',array('class'=>'form-label')); ?>
-                      <?php print form_dropdown('department_id',$department_list,$this->session->flashdata('department_id'),'id="department_id" class="select2 form-control"'); ?>
-                  	 </div>
-                  </div>
-                  <!--row 2.7 start-->
+                   <!--row 2.1 start-->
                   <div class="row form-row">
                     <div class="col-md-4">
                       <?php print form_label('Contractor', 'contractor',array('class'=>'form-label')); ?>
@@ -249,26 +143,144 @@
                     <div class="col-md-4">
                       <?php print form_label('Line Manager', 'coordinator',array('class'=>'form-label')); ?>
                       <?php print form_dropdown('coordinator',$other_user_list,'','id="coordinator" class="select2 form-control"'); ?>
-                      
                     </div>
                   </div>
-                  <!--row 2.7 end-->
-				  <div class="row form-row">
-					  <div class="col-md-6"> <?php print form_label('Other Responsibilities', 'other_responsibilities',array('class'=>'form-label')); ?>
-						<?php print form_checkbox(array('name' => 'mentor', 'id' => 'mentor', 'value' => '1')); ?> <?php print form_label('Mentor', 'mentor'); ?>
-						<?php print form_checkbox(array('name' => 'lesson_observer', 'id' => 'lesson_observer', 'value' => '1')); ?> <?php print form_label('Lesson Observer', 'lesson_observer'); ?>
-						<?php print form_checkbox(array('name' => 'buzz_observer', 'id' => 'buzz_observer', 'value' => '1')); ?> <?php print form_label('Buzz Observer', 'buzz_observer'); ?>
-						<?php print form_checkbox(array('name' => 'spot_checker', 'id' => 'spot_checker', 'value' => '1')); ?> <?php print form_label('Spot Checker', 'spot_checker'); ?>
-						<?php print form_checkbox(array('name' => 'is_line_manager', 'id' => 'is_line_manager', 'value' => '1')); ?> <?php print form_label('Line Manager', 'is_line_manager'); ?>
-						<?php print form_checkbox(array('name' => 'interviewer', 'id' => 'interviewer', 'value' => '1')); ?> <?php print form_label('Interviewer', 'interviewer'); ?> </div>
+                  <!--row 2.1 end-->
+                  <!--row 2.2 Start Department,Revelant experience,Returning Employee-->
+                  	<div class="row form-row">
+                    <div class="col-md-4">
+					  <?php print form_label('Department', 'department_id',array('class'=>'form-label')); ?>
+                      <?php print form_dropdown('department_id',$department_list,$this->session->flashdata('department_id'),'id="department_id" class="select2 form-control"'); ?>
+                  	 </div>
+                    <div class="col-md-4">
+                      <?php print form_label('Revelant experience', 'teaching_experience',array('class'=>'form-label')); ?>
+                      <?php print form_input(array('name' => 'teaching_experience', 'id' => 'teaching_experience', 'value' => $this->session->flashdata('teaching_experience'), 'class' => 'form-control no-boarder','placeholder' => 'Revelant experience')); ?>
+                      <span>(years)</span> 
 					</div>
+                    <div class="col-md-4">
+                      <?php print form_label('Returning Employee', 'returning',array('class'=>'form-label')); ?>
+                      <?php print form_dropdown('returning',array(''=>'Select Returning Teacher','1'=> 'Yes','2'=>'No'),'','id="returning" class="select2 form-control"'); ?>
+                    </div>
+                  </div>
+                  <!--row 2.2 end-->
+                  <!--row 2.3 Start KSU Role,Job Title,Scan ID-->
+                  	<div class="row form-row">
+                  	<div class="col-md-4">
+                      <?php print form_label('KSU Role', 'user_roll_id',array('class'=>'form-label')); ?>
+                      <?php print form_dropdown('user_roll_id',$other_user_roll,'0','id="user_roll_id" class="select2 form-control"'); ?>
+                      <span>The employee's actual role within the ELSD programme</span>
+                    </div>
+                    <div class="col-md-4">
+                          <?php print form_label('Job Title', 'job_title',array('class'=>'form-label')); ?>
+                          <?php print form_input(array('name' => 'job_title', 'id' => 'job_title', 'value' => $this->session->flashdata('job_title'), 'class' => 'form-control no-boarder','placeholder' => 'Job Title')); ?>
+                      </div>  
+                    <div class="col-md-4">
+						  <?php print form_label('Scan ID', 'scanner_id',array('class'=>'form-label')); ?>
+						  <?php print form_input(array('name' => 'scanner_id', 'id' => 'scanner_id', 'value' => $this->session->flashdata('scanner_id'), 'class' => 'form-control no-boarder','placeholder' => 'Hand Scan ID')); ?>
+						</div>                      
+                  </div>
+                  <!--row 2.3 end-->                  
+                   <!--row 2.4 Start  Office / Room #,Work Number,Ext-->
+                   <div class="row form-row">
+                   <div class="col-md-4">
+                      <?php print form_label('Office / Room #', 'office_no',array('class'=>'form-label')); ?>
+                      <?php print form_input(array('name' => 'office_no', 'id' => 'office_no', 'value' => $this->session->flashdata('office_no'), 'class' => 'form-control','placeholder' => 'Office no')); ?>
+                    </div>
+                   	<div class="col-md-4">
+                      <?php print form_label('Work Number', 'work_phone',array('class'=>'form-label')); ?>
+                      <?php print form_input(array('name' => 'work_phone', 'id' => 'work_phone', 'value' => $this->session->flashdata('work_phone'), 'class' => 'form-control no-boarder','placeholder' => 'Work Number')); ?>
+                    </div>
+                    <div class="col-md-4">
+                      <?php print form_label('Ext', 'work_extention',array('class'=>'form-label')); ?>
+                      <?php print form_input(array('name' => 'work_extention', 'id' => 'work_extention', 'value' => $this->session->flashdata('work_extention'), 'class' => 'form-control no-boarder','placeholder' => 'Ext')); ?>
+                    </div>
+                    </div>
+                   <!--row 2.4 end-->                   
+                   <!--row 2.5 Start   Original Joining Date at KSU,Joining Date for academic year -->
+                   <div class="row form-row">
+                   		<div class="col-md-4">
+                          <?php print form_label('Original Joining Date at KSU', 'original_start_date',array('class'=>'form-label')); ?>
+                          <div class="input-append success date col-md-10 col-lg-6 no-padding">
+                            <?php print form_input(array('name' => 'original_start_date', 'id' => 'show_dp', 'value' => $this->session->flashdata('original_start_date'), 'class' => 'form-control')); ?>
+                            <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
+                        </div>
+                        <div class="col-md-4">
+                      <?php print form_label('Joining Date for academic year', 'cy_joining_date',array('class'=>'form-label')); ?>
+                      <div class="input-append success date col-md-10 col-lg-6 no-padding">
+                        <?php print form_input(array('name' => 'cy_joining_date', 'id' => 'show_dp', 'value' => $this->session->flashdata('cy_joining_date'), 'class' => 'form-control','placeholder' => 'Joining Date')); ?>
+                        <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
+                   	  </div>
+                    </div>
+                   <!--row 2.5 end-->
+                    <!--row 2.6 Start  Other Responsibilities -->
+                    	<div class="row form-row other-responsiblty">
+					  <div class="col-md-12"> 
+					  	<?php print form_label('Other Responsibilities', 'other_responsibilities',array('class'=>'form-label')); ?>
+                        </div>
+                        <div class="col-md-4"> 
+                        	<?php print form_checkbox(array('name' => 'mentor', 'id' => 'mentor', 'value' => '1')); ?>
+                            <?php print form_label('Mentor', 'mentor'); ?>
+                        </div>
+                        <div class="col-md-4"> 
+                        	<?php print form_checkbox(array('name' => 'lesson_observer', 'id' => 'lesson_observer', 'value' => '1')); ?>
+                            <?php print form_label('Lesson Observer', 'lesson_observer'); ?>
+                        </div>
+                        <div class="col-md-4"> 
+                        	<?php print form_checkbox(array('name' => 'buzz_observer', 'id' => 'buzz_observer', 'value' => '1')); ?>
+                            <?php print form_label('Buzz Observer', 'buzz_observer'); ?>
+                        </div>
+                        <div class="col-md-4"> 
+                        	<?php print form_checkbox(array('name' => 'spot_checker', 'id' => 'spot_checker', 'value' => '1')); ?>
+                            <?php print form_label('Spot Checker', 'spot_checker'); ?>
+                        </div>
+                        <div class="col-md-4"> 
+                        	<?php print form_checkbox(array('name' => 'is_line_manager', 'id' => 'is_line_manager', 'value' => '1')); ?>
+							<?php print form_label('Line Manager', 'is_line_manager'); ?>
+                        </div>
+                        <div class="col-md-4"> 
+                        	<?php print form_checkbox(array('name' => 'interviewer', 'id' => 'interviewer', 'value' => '1')); ?>
+                            <?php print form_label('Interviewer', 'interviewer'); ?>
+                        </div>
+					</div>
+                    <!--row 2.6 end-->
+                    <!--row 2.7 Start   Worked at KSU before,Worked at KSU start date,Worked at KSU end date -->
+                    	<div class="row form-row">
+                          <div class="col-md-4">
+                          <?php print form_label('Worked at KSU before', 'worked_at_ksu_before',array('class'=>'form-label')); ?>
+                          <?php print form_dropdown('worked_at_ksu_before',array('Yes'=>'Yes','No'=>'No'),$this->session->flashdata('worked_at_ksu_before'),'id="worked_at_ksu_before" class="select2 form-control" onchange="change_worked_at_ksu_before();"'); ?>
+                          </div>
+                          <div id="worked_at_ksu_date">
+                          <div class="col-md-4">
+                          <?php print form_label('Worked at KSU start date', 'worked_ksu_start_date',array('class'=>'form-label')); ?>
+                          <div class="input-append success date col-md-10 col-lg-6 no-padding">
+                            <?php print form_input(array('name' => 'worked_ksu_start_date', 'id' => 'show_dp', 'value' => $this->session->flashdata('worked_ksu_start_date'), 'class' => 'form-control')); ?>
+                            <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
+                        </div>
+                        <div class="col-md-4">
+                          <?php print form_label('Worked at KSU end date', 'worked_ksu_end_date',array('class'=>'form-label')); ?>
+                          <div class="input-append success date col-md-10 col-lg-6 no-padding">
+                            <?php print form_input(array('name' => 'worked_ksu_end_date', 'id' => 'show_dp', 'value' => $this->session->flashdata('worked_ksu_end_date'), 'class' => 'form-control')); ?>
+                            <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
+                        </div>
+                        </div>
+                        </div>
+                    <!--row 2.7 end-->
+                    
+                    <!--row 2.8 Start Details of previous KSU experience -->                  
+                      <div class="row form-row">
+                      	<div class="col-md-12">
+                          <?php print form_label('Details of previous KSU experience', 'worked_ksu_job_detail',array('class'=>'form-label')); ?>
+                          <?php print form_input(array('name' => 'worked_ksu_job_detail', 'id' => 'worked_ksu_job_detail', 'value' => $this->session->flashdata('worked_ksu_job_detail'), 'class' => 'form-control')); ?>
+                        </div>
+                       </div>
+                       <!--row 2.7 end-->				  
 				</div>
                 <div class="tab-pane" id="tab3"> <br>
                   <h4 class="semi-bold">Step 3 - <span class="light">Medical</span></h4>
                   <br>
                   <!--row 4.1 start-->
                   <div class="row form-row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                       <?php print form_label('Blood type', 'blood_type',array('class'=>'form-label')); ?>
                       <?php print form_input(array('name' => 'blood_type', 'id' => 'blood_type', 'value' => $this->session->flashdata('blood_type'), 'class' => 'form-control','placeholder' => 'Blood type')); ?>
                     </div>
@@ -276,20 +288,16 @@
                   <!--row 4.1 end-->
                   <!--row 4.2 start-->
                   <div class="row form-row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                       <?php print form_label('Medical conditions', 'medical_condition',array('class'=>'form-label')); ?>
                       <?php print form_textarea(array('name' => 'medical_condition', 'id' => 'medical_condition', 'value' => $this->session->flashdata('medical_condition'), 'class' => 'form-control no-boarder')); ?>
                     </div>
-                  </div>
-                  <!--row 4.2 end-->
-                  <!--row 4.3 start-->
-                  <div class="row form-row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                       <?php print form_label('Allergies', 'medical_allergies',array('class'=>'form-label')); ?>
                       <?php print form_textarea(array('name' => 'medical_allergies', 'id' => 'medical_allergies', 'value' => $this->session->flashdata('medical_allergies'), 'class' => 'form-control no-boarder')); ?>
                     </div>
                   </div>
-                  <!--row 4.3 end-->
+                  <!--row 4.2 end-->
                 </div>
                 <div class="tab-pane" id="tab4"> <br>
                   <h4 class="semi-bold">Step 4 - <span class="light">Interview Details</span></h4>
@@ -325,7 +333,7 @@
                       <?php print form_dropdown('interviewee2',$other_user_list,$this->session->flashdata('interviewee2'),'id="interviewee2" class=""'); ?>
                     </div>
                     <div class="col-md-4">
-                      <div class="input-append success date col-md-10 col-lg-6 no-padding">
+                      <div class="input-append success date col-md-10 col-lg-10 no-padding">
                         <?php print form_input(array('name' => 'interview_date', 'id' => 'show_dp', 'value' => $this->session->flashdata('interview_date'), 'class' => 'form-control','placeholder' => 'Interview date')); ?>
                         <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
                     </div>
