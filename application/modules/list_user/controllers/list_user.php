@@ -1694,6 +1694,51 @@ $this->template->set_partial('sidebar', 'sidebar');
 		}	
 	}
 	
+	public function get_viewstatuslog_json($user_unique_id,$order_by = "user_status_log.updated_at", $sort_order = "desc", $search = "all", $offset = 0) {
+    	/* Array of database columns which should be read and sent back to DataTables. Use a space where
+    	 * you want to insert a non-database field (for example a counter or static image)
+    	*/
+    	$aColumns = array('user_id','elsd_id','staff_name','oldstatus','newstatus','updated_by','comment','updated_at');
+    	
+    	$grid_data = get_search_data($aColumns);
+    	$sort_order = $grid_data['sort_order'];
+		$order_by = $grid_data['order_by'];
+    	/*
+    	 * Paging
+    	*/
+    	$per_page =  $grid_data['per_page'];
+    	$offset =  $grid_data['offset'];
+
+    	$data = $this->list_user_model->get_viewstatuslog($user_unique_id,$per_page, $offset, $order_by, $sort_order, $grid_data['search_data']);
+    	$count = $this->list_user_model->get_viewstatuslog($user_unique_id,$per_page, $offset, $order_by, $sort_order, $grid_data['search_data'],0,true);
+    
+    	/*
+    	 * Output
+    	*/
+    	$output = array(
+    			"sEcho" => intval($_GET['sEcho']),
+    			"iTotalRecords" => $count,
+    			"iTotalDisplayRecords" => $count,
+    			"aaData" => array()
+    	);
+    
+    	if($data){
+    		foreach($data->result_array() AS $result_row){
+    			$row = array(); 
+				$row[] = $result_row["user_id"];    			
+				$row[] = $result_row["elsd_id"];    			
+				$row[] = $result_row["staff_name"];    			
+				$row[] = $result_row["oldstatus"];    			
+    			$row[] = $result_row["newstatus"]; 
+    			$row[] = $result_row["updated_by"]; 
+    			$row[] = $result_row["comment"];
+    			$row[] = $result_row["updated_at"];
+    			$output['aaData'][] = $row;
+    		}
+    	}
+    
+    	echo json_encode( $output );
+    }
 }
 
 /* End of file list_user.php */

@@ -35,8 +35,8 @@
         <li><a href="#tab2CV"><i class="fa fa-file-o"></i> Qualifications & Employment History </a></li>
         <li><a href="#tab2Workshops"><i class="fa fa-wrench"></i> Workshops </a></li>
         <li><a href="#tab2Observations"><i class="fa fa-lightbulb-o"></i> Observations </a></li>
-        <?php /*?><li><a href="#tab2Permissions"><i class="fa fa-chain"></i> Permissions </a></li><?php */?>
         <li><a href="#tab2Privilege"><i class="fa fa-credit-card"></i> Add Privilege </a></li>
+		<li><a href="#tab2ViewStatusLog"><i class="fa fa-chain"></i> View Status Log </a></li>
         <li style="background:none;">
           <div class="edit-profile-tab"><a href="#tab2Edit" class="btn btn-info">Edit Profile </a></div>
         </li>
@@ -577,6 +577,44 @@ print form_hidden('user_id', $user_data->user_unique_id);
 </script>
                 <!-- privilege forn end-->
               </div>
+            </div>
+          </div>
+        </div>
+		<div class="tab-pane generaltab" id="tab2ViewStatusLog">
+          <div class="grid">
+            <h3 class="userinfo-ttl">View Changed Status Log.</h3>
+            <div class="grid-body ">
+			  <script type="text/javascript">
+			  var user_unique_id = <?=($user_data)?$user_data->user_unique_id:0?>
+			  </script>
+              <script type="text/javascript" src="<?php print base_url(); ?>js/grid/viewstatuslog.js"></script>
+              <table class="table" id="grid_viewstatuslog">
+                <thead>
+                  <tr>
+				    <th>User ID</th>
+                    <th>ELSD ID</th>
+                    <th>Staff Name</th>
+                    <th>OLD Status</th>
+                    <th>New Status</th>
+                    <th>Updated By</th>
+                    <th>Comment</th>
+                    <th>Date/Time</th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th>User ID</th>
+                    <th>ELSD ID</th>
+                    <th>Staff Name</th>
+                    <th>Status</th>
+                    <th>Updated By</th>
+                    <th>Comment</th>
+                    <th>Date/Time</th>
+                  </tr>
+                </tfoot>
+                <tbody>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>

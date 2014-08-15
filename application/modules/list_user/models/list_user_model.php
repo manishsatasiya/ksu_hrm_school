@@ -472,9 +472,57 @@ SELECT `user_id`, `user_roll_id`, `username`, `password`, `section_id`, `section
             return $last_log_id;
         }
         return false;
-
     }
 	
+	public function get_viewstatuslog($user_unique_id,$limit = 0, $offset = 0, $order_by = "username", $sort_order = "asc", $search_data,$campus_id=0,$count = false) 
+	{
+		$arrAllStatus = user_profile_status();
+		$strQueryAllStatus = "";
+		$strQueryAllOldStatus = "";
+		$strQueryAllNewStatus = "";
+		
+		foreach($arrAllStatus AS $key=>$val)
+		{
+			if($key != "")
+			{
+				$strQueryAllStatus .= " WHEN $key THEN '$val' ";
+			}	
+		}
+		
+		if($strQueryAllStatus != "")
+		{
+			$strQueryAllOldStatus = " CASE user_status_log.old_status $strQueryAllStatus  ELSE 'N/A' END ";
+			$strQueryAllNewStatus = " CASE user_status_log.new_status $strQueryAllStatus  ELSE 'N/A' END ";
+		}
+		
+        $this->db->select('user_status_log.user_id,
+						   u1.elsd_id,
+						   CONCAT(u1.first_name," ",u1.middle_name," ",u1.last_name) AS staff_name,'.
+						   $strQueryAllOldStatus.' AS oldstatus,'.
+						   $strQueryAllNewStatus.' AS newstatus,
+						   CONCAT(c1.first_name," ",c1.middle_name," ",c1.last_name) AS updated_by,
+						   comment,
+						   updated_at'
+						  ,FALSE);
+        $this->db->from('user_status_log');  
+        $this->db->join('users AS u1','u1.user_id = user_status_log.user_id','left');  
+        $this->db->join('users AS c1','c1.user_id = user_status_log.change_by','left'); 
+        
+        $this->db->where('user_status_log.user_id', $user_unique_id);
+        $this->db->order_by($order_by, $sort_order);
+		
+		if($count == false)
+        	$this->db->limit($limit, $offset);
+		
+		$query = $this->db->get();
+		
+		if($count == true)
+			return $query->num_rows();
+			
+        if($query->num_rows() > 0) {
+            return $query;
+        }
+    }
 }
 
 /* End of file list_user_model.php */
