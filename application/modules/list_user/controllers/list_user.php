@@ -1128,7 +1128,8 @@ $this->template->set_partial('sidebar', 'sidebar');
 			$data['in_class'] = $in_class;
 			$data['date'] = make_db_date($date);
 			$data['institute'] = $institute;
-			$data['graduation_year'] = date('Y',strtotime($graduation_year));
+			$data['graduation_year'] = $graduation_year;
+			
 			$error = "";
     		$error_seperator = "<br>";
 			$table = 'user_qualification';
@@ -1672,17 +1673,25 @@ $this->template->set_partial('sidebar', 'sidebar');
 		$user_id = $this->input->post('user_id');
 		$orig_status = $this->input->post('orig_status');
 		
-		$data = array();
-		$data['user_id'] = $user_id;
-		$data['old_status'] = $status;
-		$data['comment'] = $comment;
-		$data['new_status'] = $orig_status;
-		$data['change_by'] = $change_by;
-		$data['updated_at'] = date('Y-m-d H:i:s');
-						
-		$table = 'user_status_log';
-		$lastinsertid = grid_add_data($data,$table);
-		redirect('list_user/edit_profile/'.$user_id.'/');
+		$table = 'users';
+		$wher_column_name = 'user_id';
+		if($user_id > 0)
+		{
+			$data['status'] = $status;
+			grid_data_updates($data,$table,$wher_column_name,$user_id);			
+		
+			$data = array();
+			$data['user_id'] = $user_id;
+			$data['old_status'] = $orig_status;
+			$data['comment'] = $comment;
+			$data['new_status'] = $status;
+			$data['change_by'] = $change_by;
+			$data['updated_at'] = date('Y-m-d H:i:s');
+							
+			$table = 'user_status_log';
+			$lastinsertid = grid_add_data($data,$table);
+			redirect('list_user/edit_profile/'.$user_id.'/');
+		}	
 	}
 	
 }

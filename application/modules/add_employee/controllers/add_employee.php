@@ -140,7 +140,7 @@ class Add_employee extends Private_Controller {
 						$subject = $qualifications['subject'][$i];
 						$date = make_db_date($qualifications['date'][$i]);
 						$institute = $qualifications['institute'][$i];
-						$graduation_year = date('Y',strtotime($qualifications['graduation_year'][$i]));
+						$graduation_year = $qualifications['graduation_year'][$i];
 						$created_at = date('Y-m-d H:i:s');
 						
 						$user_qualification = array(
@@ -381,7 +381,7 @@ class Add_employee extends Private_Controller {
 							$subject = $qualifications['subject'][$i];
 							$date = make_db_date($qualifications['date'][$i]);
 							$institute = $qualifications['institute'][$i];
-							$graduation_year = date('Y',strtotime($qualifications['graduation_year'][$i]));
+							$graduation_year = $qualifications['graduation_year'][$i];
 							$created_at = date('Y-m-d H:i:s');
 							
 							$user_qualification = array(

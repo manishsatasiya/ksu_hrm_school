@@ -44,7 +44,7 @@ print form_open('list_user/add_qualifications/'.$user_id.'/'.$id, array('id' => 
         <div class="col-md-6">
             <div class="form_label2"><?php print form_label('Graduation year', 'graduation_year'); ?></div>
             <div class="input-append success col-md-10 no-padding">	
-                <?php print form_input(array('name' => 'graduation_year', 'id' => 'date_year', 'value' => ($rowdata)?date('Y',strtotime($rowdata->graduation_year)):$this->session->flashdata('graduation_year'), 'class' => 'form-control')); ?>
+                <?php print form_input(array('name' => 'graduation_year', 'id' => 'date_year', 'value' => ($rowdata)?$rowdata->graduation_year:$this->session->flashdata('graduation_year'), 'class' => 'form-control')); ?>
                 <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
             </div>
         </div>

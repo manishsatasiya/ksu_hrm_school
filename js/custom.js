@@ -647,7 +647,8 @@ $(document).ready(function(){
 		$('.button-cancle').hide("scale", 220);
 		$('.button-change-status').show("scale",250);
 		
-		$('#status').val($("#orig_status").val());
+		//$('#status').val($("#orig_status").val());
+		$("#status").select2().select2("val", $("#orig_status").val());
 		//$("#status").attr("disabled", "true");
 		$('#status').select2('readonly', true);
 	});

@@ -257,11 +257,13 @@
           </div>
         </div>
         <div class="tab-pane generaltab" id="tab2CV">
-          <h3 class="userinfo-ttl">Qualifications & Employment History <a href="<?php echo base_url(); ?>list_user/add_experience/<?php echo $user_data->user_unique_id; ?>" class="btn btn-sm btn-small btn-primary pull-right" data-target="#myModal" data-toggle="modal">Experience <i class="fa fa-plus"></i> </a> <a href="<?php echo base_url(); ?>list_user/add_certificate/<?php echo $user_data->user_unique_id; ?>" class="btn btn-sm btn-small btn-primary pull-right" data-target="#myModal" data-toggle="modal">Certificate <i class="fa fa-plus"></i> </a> <a href="<?php echo base_url(); ?>list_user/add_qualifications/<?php echo $user_data->user_unique_id; ?>" class="btn btn-sm btn-small btn-primary pull-right" data-target="#myModal" data-toggle="modal">Qualifications <i class="fa fa-plus"></i> </a><a href="<?php echo base_url(); ?>list_user/add_reference/<?php echo $user_data->user_unique_id; ?>" class="btn btn-sm btn-small btn-primary pull-right" data-target="#myModal" data-toggle="modal">Reference <i class="fa fa-plus"></i> </a> </h3>
+          <h3 class="userinfo-ttl">Qualifications & Employment History</h3>
           <div class="info-box educatn-info">
             <div class="row">
               <div class="col-md-12">
-                <div class="sub-title">Higher Education:</div>
+                <div class="sub-title">Qualifications:
+					<a href="<?php echo base_url(); ?>list_user/add_qualifications/<?php echo $user_data->user_unique_id; ?>" class="btn btn-sm btn-small btn-primary pull-right" data-target="#myModal" data-toggle="modal">Qualifications <i class="fa fa-plus"></i> </a>
+				</div>
                 <ul>
                   <?php
             if(!empty($user_data->user_qualification))
@@ -281,7 +283,9 @@
           <div class="info-box certi-info">
             <div class="row">
               <div class="col-md-12">
-                <div class="sub-title">Certificates:</div>
+                <div class="sub-title">Certificates:
+					<a href="<?php echo base_url(); ?>list_user/add_certificate/<?php echo $user_data->user_unique_id; ?>" class="btn btn-sm btn-small btn-primary pull-right" data-target="#myModal" data-toggle="modal">Certificate <i class="fa fa-plus"></i> </a> 
+				</div>
                 <ul>
                   <?php
             if(!empty($user_data->user_certificate))
@@ -301,7 +305,9 @@
           <div class="info-box emply-info">
             <div class="row">
               <div class="col-md-12">
-                <div class="sub-title">Employment History:</div>
+                <div class="sub-title">Employment History:
+					<a href="<?php echo base_url(); ?>list_user/add_experience/<?php echo $user_data->user_unique_id; ?>" class="btn btn-sm btn-small btn-primary pull-right" data-target="#myModal" data-toggle="modal">Experience <i class="fa fa-plus"></i> </a> 
+				</div>
                 <ul>
                   <?php
             if(!empty($user_data->user_experience))
@@ -324,7 +330,9 @@
           <div class="info-box emply-info">
             <div class="row">
               <div class="col-md-12">
-                <div class="sub-title">Reference:</div>
+                <div class="sub-title">Reference:
+					<a href="<?php echo base_url(); ?>list_user/add_reference/<?php echo $user_data->user_unique_id; ?>" class="btn btn-sm btn-small btn-primary pull-right" data-target="#myModal" data-toggle="modal">Reference <i class="fa fa-plus"></i> </a> 
+				</div>
                 <ul>
                   <?php
             if(!empty($user_data->cv_reference))
