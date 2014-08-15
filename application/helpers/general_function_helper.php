@@ -1576,8 +1576,26 @@ function get_line_manager_list() {
 	$ci->db->select('*');
 	$ci->db->from('users');
 	$ci->db->join('user_profile','users.user_id = user_profile.user_id','left');
-	$ci->db->where_not_in('users.user_roll_id',array('1','3','4'));
+	$ci->db->where_not_in('users.user_roll_id',array('3'));
 	$ci->db->where('user_profile.is_line_manager',1);
+	$ci->db->order_by('first_name', 'ASC');	
+	$query = $ci->db->get();
+	$student_data = $query->result_array();
+	$student_arr = array();
+	$student_arr[0] = '--Select--';
+	foreach ($student_data as $_student_data){
+		$student_arr[$_student_data['user_id']] = $_student_data['first_name'];
+	}
+	return $student_arr;
+}
+
+function get_interviewer_list() {
+	$ci =& get_instance();
+	$ci->db->select('*');
+	$ci->db->from('users');
+	$ci->db->join('user_profile','users.user_id = user_profile.user_id','left');
+	$ci->db->where_not_in('users.user_roll_id',array('3'));
+	$ci->db->where('user_profile.interviewer',1);
 	$ci->db->order_by('first_name', 'ASC');	
 	$query = $ci->db->get();
 	$student_data = $query->result_array();

@@ -1046,6 +1046,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 		$content_data['other_user_roll'] = get_other_user_roll();
 		$content_data['other_user_list'] = get_other_user_list();
 		$content_data['line_manager_list'] = get_line_manager_list();
+		$content_data['other_user_interviewer_list'] = get_interviewer_list();
 		$content_data['nationality_list'] = get_nationality_list();
 		$content_data['campus_list'] = get_campus_list(1);
 		$content_data['department_list'] = get_department_list();
