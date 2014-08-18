@@ -1442,87 +1442,105 @@ function generateElsdId($gender){
 	return $ret;
 }
 
-function user_profile_status($type = "") {
+function user_profile_status($type = "") 
+{
 		$ret = array();
+		
+		$ci =& get_instance();
+		$ci->db->select('*');
+		$ci->db->from('user_status_master');
+		$query = $ci->db->get();
+		$status_master = $query->result_array();
+		$status_master_arr = array();
+		foreach($status_master as $statuses){
+			$status_master_arr[$statuses['id']] = $statuses['status_desc'];
+		}
 		
 		if($type == "")
 		{
-			$ret = array('1'=>'New employee added by contractor',
-					 '2'=>'New employee deleted by AHR',
-					 '3'=>'AHR rejects employee (missing documents)',
-					 '4'=>'AHR rejects employee (does not meet requirements)',
-					 '5'=>'Pending 1',
-					 '6'=>'Pending 2',
-					 '7'=>'Pending 3',
-					 '8'=>'Pending 4',
-					 '9'=>'Pre-Approval successful',
-					 '10'=>'On Hold',
-					 '11'=>'PY Interview unsuccessful',
-					 '12'=>'PY Interview successful',
-					 '13'=>'Ready for timetable',
-					 '14'=>'Removed from timetable',
-					 '15'=>'Suspended',
-					 '16'=>'Dismissed',
-					 '17'=>'Resigned',
-					 '18'=>'Contract not renewed by staff',
-					 '19'=>'Contract not renewed by ELSD',
-					 '20'=>'Other');
+			$ret = array('1'=>$status_master_arr[1],//'New employee added by contractor',
+					 '2'=>$status_master_arr[2],//'New employee deleted by AHR',
+					 '3'=>$status_master_arr[3],//'AHR rejects employee (missing documents)',
+					 '4'=>$status_master_arr[4],//'AHR rejects employee (does not meet requirements)',
+					 '5'=>$status_master_arr[5],//'Pending 1',
+					 '6'=>$status_master_arr[6],//'Pending 2',
+					 '7'=>$status_master_arr[7],//'Pending 3',
+					 '8'=>$status_master_arr[8],//'Pending 4',
+					 '9'=>$status_master_arr[9],//'Pre-Approval successful',
+					 '10'=>$status_master_arr[10],//'On Hold',
+					 '11'=>$status_master_arr[11],//'PY Interview unsuccessful',
+					 '12'=>$status_master_arr[12],//'PY Interview successful',
+					 '13'=>$status_master_arr[13],//'Ready for timetable',
+					 '14'=>$status_master_arr[14],//'Removed from timetable',
+					 '15'=>$status_master_arr[15],//'Suspended',
+					 '16'=>$status_master_arr[16],//'Dismissed',
+					 '17'=>$status_master_arr[17],//'Resigned',
+					 '18'=>$status_master_arr[18],//'Contract not renewed by staff',
+					 '19'=>$status_master_arr[19],//'Contract not renewed by ELSD',
+					 '20'=>$status_master_arr[20]//'Other'
+					 );
 		}
 		else if($type == "companyemployee")
 		{
-			$ret = array('1'=>'New employee added by contractor',
-					 '2'=>'New employee deleted by AHR',
-					 '3'=>'AHR rejects employee (missing documents)',
-					 '4'=>'AHR rejects employee (does not meet requirements)',
+			$ret = array('1'=>$status_master_arr[1],//'New employee added by contractor',
+					 '2'=>$status_master_arr[2],//'New employee deleted by AHR',
+					 '3'=>$status_master_arr[3],//'AHR rejects employee (missing documents)',
+					 '4'=>$status_master_arr[4],//'AHR rejects employee (does not meet requirements)',
 					 '5'=>'Pending',
 					 '6'=>'Pending',
 					 '7'=>'Pending',
 					 '8'=>'Pending',
-					 '9'=>'Pre-Approval successful',
-					 '10'=>'On Hold',
-					 '11'=>'PY Interview unsuccessful',
-					 '12'=>'PY Interview successful',
-					 '13'=>'Ready for timetable',
-					 '14'=>'Removed from timetable',
-					 '15'=>'Suspended',
-					 '16'=>'Dismissed',
-					 '17'=>'Resigned',
-					 '18'=>'Contract not renewed by staff',
-					 '19'=>'Contract not renewed by ELSD');
+					 '9'=>$status_master_arr[9],//'Pre-Approval successful',
+					 '10'=>$status_master_arr[10],//'On Hold',
+					 '11'=>$status_master_arr[11],//'PY Interview unsuccessful',
+					 '12'=>$status_master_arr[12],//'PY Interview successful',
+					 '13'=>$status_master_arr[13],//'Ready for timetable',
+					 '14'=>$status_master_arr[14],//'Removed from timetable',
+					 '15'=>$status_master_arr[15],//'Suspended',
+					 '16'=>$status_master_arr[16],//'Dismissed',
+					 '17'=>$status_master_arr[17],//'Resigned',
+					 '18'=>$status_master_arr[18],//'Contract not renewed by staff',
+					 '19'=>$status_master_arr[19]//'Contract not renewed by ELSD'
+					 );
 		}		
 		else if($type == "newemployee")			 
 		{
-			$ret = array('2'=>'New employee deleted by AHR',
-						 '3'=>'AHR rejects employee (missing documents)',
-						 '4'=>'AHR rejects employee (does not meet requirements)',
-						 '5'=>'Pending 1',
-						 '6'=>'Pending 2',
-						 '7'=>'Pending 3',
-						 '8'=>'Pending 4',
-						 '9'=>'Pre-Approval successful',
-						 '10'=>'On Hold');
+			$ret = array('2'=>$status_master_arr[2],//'New employee deleted by AHR',
+						 '3'=>$status_master_arr[3],//'AHR rejects employee (missing documents)',
+						 '4'=>$status_master_arr[4],//'AHR rejects employee (does not meet requirements)',
+						 '5'=>$status_master_arr[5],//'Pending 1',
+						 '6'=>$status_master_arr[6],//'Pending 2',
+						 '7'=>$status_master_arr[7],//'Pending 3',
+						 '8'=>$status_master_arr[8],//'Pending 4',
+						 '9'=>$status_master_arr[9],//'Pre-Approval successful',
+						 '10'=>$status_master_arr[10]//'On Hold'
+						);
 		}
 		else if($type == "interview")			 
 		{
-			$ret = array('11'=>'PY Interview unsuccessful',
-						 '12'=>'PY Interview successful');
+			$ret = array('11'=>$status_master_arr[11],//'PY Interview unsuccessful',
+						 '12'=>$status_master_arr[12]//'PY Interview successful'
+						);
 		}
 		else if($type == "activestaff")			 
 		{
-			$ret = array('13'=>'Ready for timetable',
-						 '14'=>'Removed from timetable',
-						 '15'=>'Suspended');
+			$ret = array('13'=>$status_master_arr[13],//'Ready for timetable',
+						 '14'=>$status_master_arr[14],//'Removed from timetable',
+						 '15'=>$status_master_arr[15]//'Suspended'
+						);
 		}
 		else if($type == "inactivestaff")			 
 		{
-			$ret = array('16'=>'Dismissed',
-						 '17'=>'Resigned',
-						 '18'=>'Contract not renewed by staff',
-						 '19'=>'Contract not renewed by ELSD');
+			$ret = array('16'=>$status_master_arr[16],//'Dismissed',
+						 '17'=>$status_master_arr[17],//'Resigned',
+						 '18'=>$status_master_arr[18],//'Contract not renewed by staff',
+						 '19'=>$status_master_arr[19]//'Contract not renewed by ELSD'
+						);
 		}
 		else if($type == "otherstaff")			 
 		{
-			$ret = array('20'=>'Other');
+			$ret = array('20'=>$status_master_arr[20]//'Other'
+						);
 		}
 		
 		return $ret;

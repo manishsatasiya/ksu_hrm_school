@@ -34,7 +34,7 @@
 
                       <?php print form_label('Status', 'status',array('class'=>'form-label')); ?>
 
-                      <?php echo print form_dropdown('status',$user_profile_status,($user_data)?$user_data->status:$this->session->flashdata('status'),'id="status" class="select2 form-control"'); ?>
+                      <?php echo form_dropdown('status',$user_profile_status,($user_data)?$user_data->status:$this->session->flashdata('status'),'id="status" class="select2 form-control"'); ?>
 
                     </div>
 

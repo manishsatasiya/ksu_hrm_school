@@ -155,6 +155,7 @@ class List_Teacher_Student_model extends CI_Model {
 		$strQueryIntType = "";
 		$strQueryIntOutCome = "";
 		$arrAllStatus = user_profile_status($type);
+			
 		$arrIntType = get_interview_type();
 		$arrIntOutCome = get_interview_outcome();
 		
@@ -231,8 +232,7 @@ class List_Teacher_Student_model extends CI_Model {
 		
 		if($type != "")
 		{
-			$arrTempStatus = user_profile_status($type);
-			$arrStatus = array_keys($arrTempStatus);
+			$arrStatus = array_keys($arrAllStatus);
 			
 			if(count($arrStatus) > 0)
 				$this->db->where_in('users.status',$arrStatus);
