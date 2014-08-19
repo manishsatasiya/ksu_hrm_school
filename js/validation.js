@@ -1667,18 +1667,35 @@ $(document).ready(function() {
 		}
 	});
 	
-	$("#save_user_status").validate({
-		submitHandler: function(form) {
-			form.submit();
-		},
-		rules: {
-			comment: "required"
-		},
-		messages: {
-			comment: "Please enter your comment"
+	// process the form
+	$('#save_status').click(function(event) {
+
+		if($('#comment').val() == "")
+		{
+			$('#comment').before('<span class="error"><label for="" generated="true" class="error">Please enter comment.</label></span>');
+		    return false;
 		}
+		// get the form data
+		// there are many ways to get this data using jQuery (you can use the class or id also)
+		var formData = {
+			'status' 	: $('#status').val(),
+			'comment' 	: $('#comment').val(),
+			'user_id' 	: $('input[name=ori_user_id]').val()
+		};
+
+		// process the form
+		$.ajax({
+			type 		: 'POST', // define the type of HTTP verb we want to use (POST for our form)
+			url 		: CI.base_url+'list_user/save_user_status', // the url where we want to POST
+			data 		: formData, // our data object
+			success: function(data) {
+				location.reload();
+			}
+		})
+		
+		// stop the form from submitting the normal way and refreshing the page
+		event.preventDefault();
 	});
-	
 });
 
 function check_edit_school_form(id){

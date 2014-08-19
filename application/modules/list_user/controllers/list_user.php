@@ -17,7 +17,7 @@ class List_user extends Private_Controller {
 		$this->load->model('list_school/list_school_model');
     }
 
-    /**
+    /*
      *
      * index
      *
@@ -1064,7 +1064,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 				$user_data->ver_nationality = 1;
 			}
 		}
-		$school_data = $this->list_school_model->get_school_data(1);
+	/*	$school_data = $this->list_school_model->get_school_data(1);
 		if(isset($user_data->ver_reference) && $user_data->ver_reference == 0){
 			
 			$min_referee_count = $school_data->min_referee_count;
@@ -1081,7 +1081,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 				$user_data->ver_experience = 1;
 			}
 		}
-		
+		*/
 		$content_data['user_data'] = $user_data;
 		$content_data['tab_id'] = $tab_id;
 		$content_data['previlage_action'] = get_previlege_action();

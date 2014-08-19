@@ -1,5 +1,4 @@
 <!-- Modal -->
-
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -652,14 +651,35 @@ print form_hidden('user_id', $user_data->user_unique_id);
                           <div class="tab-pane active" id="tab1"> <br>
                             <h4 class="semi-bold">Step 1 - <span class="light">Personal & Contact Details</span></h4>
                             <br>
-							<div class="row form-row">
-								<div class="col-md-4"> <?php print form_label('ELSD ID', 'elsd_id',array('class'=>'form-label')); ?> <?php print form_input(array('name' => 'elsd_id', 'id' => 'elsd_id', 'value' => ($user_data)?$user_data->elsd_id:$this->session->flashdata('elsd_id'), 'class' => 'form-control ','placeholder' => 'ELSD ID','readonly'=>'readonly')); ?> </div>
-								<div class="col-md-4"> <?php print form_label('DB ID', 'db_id',array('class'=>'form-label')); ?> <?php print form_input(array('name' => 'db_id', 'id' => 'db_id', 'value' => ($user_data)?$user_data->user_unique_id:$this->session->flashdata('db_id'), 'class' => 'form-control ','placeholder' => 'DB ID','readonly'=>'readonly')); ?> </div>
-							</div>	
-                            <!--row 1 start-->
-                            <?php print form_open('list_user/save_user_status/', array('id' => 'save_user_status','name'=>'save_user_status')) ."\r\n"; ?>
+							<?php print form_open('list_user/edit_profile/'.$user_data->user_unique_id.'/6', array('id' => 'edit_profile','name'=>'edit_profile')) ."\r\n"; ?>
+                            <div class="row form-row">		
+                              <div class="col-md-3"> <?php print form_label('First Names', 'names',array('class'=>'form-label')); ?> 
+							  <?php print form_input(array('name' => 'first_name', 'id' => 'first_name', 'value' => ($user_data)?$user_data->first_name:$this->session->flashdata('first_name'), 'class' => 'form-control ','placeholder' => 'First Name')); ?> </div>
+							  <div class="col-md-3"> <?php print form_label('Middle Name 1', 'names',array('class'=>'form-label')); ?>
+                               <?php print form_input(array('name' => 'middle_name', 'id' => 'middle_name', 'value' => ($user_data)?$user_data->middle_name:$this->session->flashdata('middle_name'), 'class' => 'form-control ','placeholder' => 'Middle Name')); ?> </div>
+                              <div class="col-md-3"> <?php print form_label('Middle Name 2', 'names',array('class'=>'form-label')); ?>
+                               <?php print form_input(array('name' => 'middle_name2', 'id' => 'middle_name2', 'value' => ($user_data)?$user_data->middle_name2:$this->session->flashdata('middle_name2'), 'class' => 'form-control ','placeholder' => 'Middle Name 2')); ?> </div>
+                              <div class="col-md-3"> <?php print form_label('Last Name', 'names',array('class'=>'form-label')); ?>
+                               <?php print form_input(array('name' => 'last_name', 'id' => 'last_name', 'value' => ($user_data)?$user_data->last_name:$this->session->flashdata('last_name'), 'class' => 'form-control ','placeholder' => 'Last Name')); ?> </div>
+                            </div>
+                            <!--row 1 end-->
+                            <!--row 2 start-->
                             <div class="row form-row">
-                              <div class="col-md-4"> <?php print form_label('Status', 'status',array('class'=>'form-label')); ?> <?php print form_dropdown('status',$user_profile_status,($user_data)?$user_data->status:$this->session->flashdata('status'),'id="status" class="select2 form-control"'); ?>
+                              <div class="col-md-3"> <?php print form_label('Gender', 'gender',array('class'=>'form-label')); ?> <?php print form_dropdown('gender',array(''=> 'Select Gender','M'=> 'Male','F'=>'Female'),($user_data)?$user_data->gender:$this->session->flashdata('gender'),'id="gender" class="select2 form-control"'); ?> </div>
+							  <div class="col-md-3"> <?php print form_label('Nationality', 'nationality',array('class'=>'form-label')); ?> <?php print form_dropdown('nationality',$nationality_list,($user_data)?$user_data->nationality:$this->session->flashdata('nationality'),'id="nationality" class="select2 form-control"'); ?> </div>
+							  <div class="col-md-3"> <?php print form_label('Marital status', 'marital_status',array('class'=>'form-label')); ?> <?php print form_dropdown('marital_status',array(''=> 'Select Marital status','Married'=> 'Married','Single'=>'Single'),($user_data)?$user_data->marital_status:$this->session->flashdata('marital_status'),'id="marital_status" class="select2 form-control"'); ?> </div> 
+							  <div class="col-md-3"> <?php print form_label('DOB', 'birth_date',array('class'=>'form-label')); ?>
+                                <div class="input-append success date col-md-10 col-lg-10 no-padding"> <?php print form_input(array('name' => 'birth_date', 'id' => 'show_dp', 'value' => ($user_data)?make_dp_date($user_data->birth_date):$this->session->flashdata('birth_date'), 'class' => 'form-control ','placeholder' => 'Dob')); ?> <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
+                              </div>
+                            </div>  
+                            <div class="row form-row">
+								<div class="col-md-3"> <?php print form_label('ELSD ID', 'elsd_id',array('class'=>'form-label')); ?> <?php print form_input(array('name' => 'elsd_id', 'id' => 'elsd_id', 'value' => ($user_data)?$user_data->elsd_id:$this->session->flashdata('elsd_id'), 'class' => 'form-control ','placeholder' => 'ELSD ID','readonly'=>'readonly')); ?> </div>
+								<div class="col-md-3"> <?php print form_label('DB ID', 'db_id',array('class'=>'form-label')); ?> <?php print form_input(array('name' => 'db_id', 'id' => 'db_id', 'value' => ($user_data)?$user_data->user_unique_id:$this->session->flashdata('db_id'), 'class' => 'form-control ','placeholder' => 'DB ID','readonly'=>'readonly')); ?> </div>
+							<!--</div>-->	
+                            <!--row 1 start-->
+                            <?php //print form_open('list_user/save_user_status/', array('id' => 'save_user_status','name'=>'save_user_status')) ."\r\n"; ?>
+                            <!--<div class="row form-row">-->
+                              <div class="col-md-3"> <?php print form_label('Status', 'status',array('class'=>'form-label')); ?> <?php print form_dropdown('status',$user_profile_status,($user_data)?$user_data->status:$this->session->flashdata('status'),'id="status" class="select2 form-control"'); ?>
                                 <?php 
 						  //if($user_data->status == 20){ ?>
                                 <script>
@@ -669,55 +689,31 @@ print form_hidden('user_id', $user_data->user_unique_id);
 							  </script>
                                 <?php //} ?>
                               </div>
-                              <div class="col-md-4">
+                              <div class="col-md-3">
                               <label>&nbsp;</label>
                                 <input type="button" id="change_status_button" class="button-change-status btn btn-primary" value="Change Status" />
                               </div>
                             </div>
                             <div class="row form-row" id="status_comment_box">
                               <div class="col-md-8"> <?php print form_input(array('name' => 'comment', 'id' => 'comment', 'value' => '', 'class' => 'form-control comment','placeholder' => 'Why you want to change the status?')); ?> </div>
-                              <div class="col-md-4"> <?php print form_hidden('user_id', ($user_data)?$user_data->user_unique_id:0); ?>
+                              <div class="col-md-4"> <?php print form_hidden('ori_user_id', ($user_data)?$user_data->user_unique_id:0); ?>
                                 <input type="hidden" name="orig_status" id="orig_status" value="<?php echo ($user_data)?$user_data->status:0; ?>" />
-                                <input type="submit" id="save_status" class="button-save btn btn-primary" value="Save" />
+                                <input type="button" id="save_status" class="button-save btn btn-primary" value="Save" />
                                 <input type="button" id="cancel_status_button" class="button-cancle btn btn-primary" value="Cancel" />
                               </div>
                             </div>
-                            <?php print form_close() ."\r\n"; ?> 
-							<?php print form_open('list_user/edit_profile/'.$user_data->user_unique_id.'/6', array('id' => 'edit_profile','name'=>'edit_profile')) ."\r\n"; ?>
+                            <?php //print form_close() ."\r\n"; ?> 
                             <div class="row form-row">
-                              <div class="col-md-4"> <?php print form_label('Gender', 'gender',array('class'=>'form-label')); ?> <?php print form_dropdown('gender',array(''=> 'Select Gender','M'=> 'Male','F'=>'Female'),($user_data)?$user_data->gender:$this->session->flashdata('gender'),'id="gender" class="select2 form-control"'); ?> </div>
-                            </div>
-							<div class="row form-row">		
-                              <div class="col-md-4"> <?php print form_label('First Names', 'names',array('class'=>'form-label')); ?> 
-							  <?php print form_input(array('name' => 'first_name', 'id' => 'first_name', 'value' => ($user_data)?$user_data->first_name:$this->session->flashdata('first_name'), 'class' => 'form-control ','placeholder' => 'First Name')); ?> </div>
-							  <div class="col-md-4"> <?php print form_label('Middle Name 1', 'names',array('class'=>'form-label')); ?>
-                               <?php print form_input(array('name' => 'middle_name', 'id' => 'middle_name', 'value' => ($user_data)?$user_data->middle_name:$this->session->flashdata('middle_name'), 'class' => 'form-control ','placeholder' => 'Middle Name')); ?> </div>
-                              <div class="col-md-4"> <?php print form_label('Middle Name 2', 'names',array('class'=>'form-label')); ?>
-                               <?php print form_input(array('name' => 'middle_name2', 'id' => 'middle_name2', 'value' => ($user_data)?$user_data->middle_name2:$this->session->flashdata('middle_name2'), 'class' => 'form-control ','placeholder' => 'Middle Name 2')); ?> </div>
-                            </div>
-                            <!--row 1 end-->
-                            <!--row 2 start-->
-                            <div class="row form-row">
-                              <div class="col-md-4"> <?php print form_label('Last Name', 'names',array('class'=>'form-label')); ?>
-                               <?php print form_input(array('name' => 'last_name', 'id' => 'last_name', 'value' => ($user_data)?$user_data->last_name:$this->session->flashdata('last_name'), 'class' => 'form-control ','placeholder' => 'Last Name')); ?> </div>
-							  <div class="col-md-4"> <?php print form_label('Nationality', 'nationality',array('class'=>'form-label')); ?> <?php print form_dropdown('nationality',$nationality_list,($user_data)?$user_data->nationality:$this->session->flashdata('nationality'),'id="nationality" class="select2 form-control"'); ?> </div>
-                              <div class="col-md-4"> <?php print form_label('Marital status', 'marital_status',array('class'=>'form-label')); ?> <?php print form_dropdown('marital_status',array(''=> 'Select Marital status','Married'=> 'Married','Single'=>'Single'),($user_data)?$user_data->marital_status:$this->session->flashdata('marital_status'),'id="marital_status" class="select2 form-control"'); ?> </div> 
-                            </div>
-                            <!--row 2 end-->
-                            <!--row 3 start-->
-                            <div class="row form-row">
-                              <div class="col-md-4"> <?php print form_label('Login Email', 'username',array('class'=>'form-label')); ?> <?php print form_input(array('name' => 'username', 'id' => 'username', 'value' => ($user_data)?$user_data->username:$this->session->flashdata('username'), 'class' => 'form-control ','placeholder' => 'email@example.com')); ?> </div>
-                              <div class="col-md-4"> <?php print form_label('Change Password', 'password',array('class'=>'form-label')); ?> <?php print form_password(array('name' => 'password', 'id' => 'password', 'value' => '', 'class' => 'form-control','placeholder' => 'Password')); ?> </div>
-							  <div class="col-md-4"> <?php print form_label('DOB', 'birth_date',array('class'=>'form-label')); ?>
-                                <div class="input-append success date col-md-10 col-lg-10 no-padding"> <?php print form_input(array('name' => 'birth_date', 'id' => 'show_dp', 'value' => ($user_data)?make_dp_date($user_data->birth_date):$this->session->flashdata('birth_date'), 'class' => 'form-control ','placeholder' => 'Dob')); ?> <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
-                              </div>
+                              <div class="col-md-3"> <?php print form_label('Login Email', 'username',array('class'=>'form-label')); ?> <?php print form_input(array('name' => 'username', 'id' => 'username', 'value' => ($user_data)?$user_data->username:$this->session->flashdata('username'), 'class' => 'form-control ','placeholder' => 'email@example.com')); ?> </div>
+                              <div class="col-md-3"> <?php print form_label('Personal Email', 'personal_email',array('class'=>'form-label')); ?> <?php print form_input(array('name' => 'personal_email', 'id' => 'personal_email', 'value' => ($user_data)?$user_data->personal_email:$this->session->flashdata('personal_email'), 'class' => 'form-control','placeholder' => 'Personal Email')); ?> </div>	
+                              <div class="col-md-3"> <?php print form_label('Mobile Phone', 'cell_phone',array('class'=>'form-label')); ?> <?php print form_input(array('name' => 'cell_phone', 'id' => 'cell_phone', 'value' => ($user_data)?$user_data->cell_phone:$this->session->flashdata('cell_phone'), 'class' => 'form-control ','placeholder' => 'Mobile Phone')); ?> </div>
+							  <div class="col-md-3"> <?php print form_label('Skype ID', 'skype_id',array('class'=>'form-label')); ?> <?php print form_input(array('name' => 'skype_id', 'id' => 'skype_id', 'value' => ($user_data)?$user_data->skype_id:$this->session->flashdata('skype_id'), 'class' => 'form-control')); ?> </div>
                             </div>
                             <!--row 3 end-->
                             <!--row 3.1 start-->
                             <div class="row form-row">
-							  <div class="col-md-4"> <?php print form_label('Personal Email', 'personal_email',array('class'=>'form-label')); ?> <?php print form_input(array('name' => 'personal_email', 'id' => 'personal_email', 'value' => ($user_data)?$user_data->personal_email:$this->session->flashdata('personal_email'), 'class' => 'form-control','placeholder' => 'Personal Email')); ?> </div>	
-                              <div class="col-md-4"> <?php print form_label('Mobile Phone', 'cell_phone',array('class'=>'form-label')); ?> <?php print form_input(array('name' => 'cell_phone', 'id' => 'cell_phone', 'value' => ($user_data)?$user_data->cell_phone:$this->session->flashdata('cell_phone'), 'class' => 'form-control ','placeholder' => 'Mobile Phone')); ?> </div>
-							  <div class="col-md-4"> <?php print form_label('Skype ID', 'skype_id',array('class'=>'form-label')); ?> <?php print form_input(array('name' => 'skype_id', 'id' => 'skype_id', 'value' => ($user_data)?$user_data->skype_id:$this->session->flashdata('skype_id'), 'class' => 'form-control')); ?> </div>
+								<div class="col-md-4"> <?php print form_label('Change Password', 'password',array('class'=>'form-label')); ?> <?php print form_password(array('name' => 'password', 'id' => 'password', 'value' => '', 'class' => 'form-control','placeholder' => 'Password')); ?> </div>	
+								<div class="col-md-4"> <?php print form_label('Confirm Password', 'confirm_password',array('class'=>'form-label')); ?> <?php print form_password(array('name' => 'confirm_password', 'id' => 'confirm_password', 'value' => '', 'class' => 'form-control','placeholder' => 'Password')); ?> </div>						  
                             </div>
                           </div>
                           <div class="tab-pane" id="tab2"> <br>
