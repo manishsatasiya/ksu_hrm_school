@@ -636,6 +636,7 @@ $(document).ready(function(){
 		{
 			$('.button-change-status').hide("scale", 300);
 			$('.comment').show("scale", 350);
+			$('#iderror').show("scale", 355);
 			$('.button-save').show("scale", 360);
 			$('.button-cancle').show("scale", 370);
 		}
@@ -643,6 +644,8 @@ $(document).ready(function(){
 	
 	$('.button-cancle').click(function(){
 		$('.comment').hide("scale", 200);
+		$('#iderror').html("");
+		$('#iderror').hide("scale", 200);
 		$('.button-save').hide("scale", 210);
 		$('.button-cancle').hide("scale", 220);
 		$('.button-change-status').show("scale",250);

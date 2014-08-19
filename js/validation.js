@@ -1672,7 +1672,7 @@ $(document).ready(function() {
 
 		if($('#comment').val() == "")
 		{
-			$('#comment').before('<span class="error"><label for="" generated="true" class="error">Please enter comment.</label></span>');
+			$('#iderror').html('<span class="error"><label for="" generated="true" class="error">Please enter comment.</label></span>');
 		    return false;
 		}
 		// get the form data
