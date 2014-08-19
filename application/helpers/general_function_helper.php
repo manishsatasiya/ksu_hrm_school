@@ -127,7 +127,7 @@ if (!function_exists('get_other_user_list')) {
 		$student_arr = array();
 		$student_arr[0] = '--Select--';
 		foreach ($student_data as $_student_data){
-			$student_arr[$_student_data['user_id']] = $_student_data['first_name'];
+			$student_arr[$_student_data['user_id']] = $_student_data['first_name'].' '.$_student_data['last_name'].' - '.$_student_data['elsd_id'];
 		}
 		return $student_arr;
 	}
@@ -1621,6 +1621,27 @@ function get_interviewer_list() {
 	$student_arr[0] = '--Select--';
 	foreach ($student_data as $_student_data){
 		$student_arr[$_student_data['user_id']] = $_student_data['first_name'];
+	}
+	return $student_arr;
+}
+
+function get_campus_user_list() {
+	$ci =& get_instance();
+	$ci->db->select('*');
+	$ci->db->from('users');
+	$ci->db->where_not_in('users.user_roll_id',array('1','3','4'));
+	$ci->db->order_by('first_name', 'ASC');
+	if(($ci->session->userdata('campus_id') > 0 || $ci->session->userdata('campus') != ""))
+	{
+		$ci->db->where('users.campus_id',$ci->session->userdata('campus_id'));
+		$ci->db->or_where('users.campus_id',0);	
+	}
+	$query = $ci->db->get();
+	$student_data = $query->result_array();
+	$student_arr = array();
+	$student_arr[0] = '--Select--';
+	foreach ($student_data as $_student_data){
+		$student_arr[$_student_data['user_id']] = $_student_data['first_name'].' '.$_student_data['last_name'].' - '.$_student_data['elsd_id'];
 	}
 	return $student_arr;
 }

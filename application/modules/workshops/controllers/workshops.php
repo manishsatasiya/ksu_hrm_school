@@ -99,7 +99,7 @@ $this->template->set_partial('sidebar', 'sidebar');
     }
     
     public function add($workshop_id = null){
-    	$content_data['presenter_list'] = get_other_user_list();
+    	$content_data['presenter_list'] = get_campus_user_list();
 		$content_data['workshop_type_list'] = $this->workshops_model->get_workshop_types();
 		$content_data['semester'] = array('0'=>'Select Semester','1'=>'1','2'=>'2');
 		$content_data['status'] = array('0'=>'Select Status','1'=>'Active','2'=>'In Active');

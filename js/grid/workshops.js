@@ -36,8 +36,9 @@ $(document).ready( function () {
 									actionstr += '<i class="fa fa-gear"></i>';
 									actionstr += '</button>';
 									actionstr += '<ul class="dropdown-menu">';
+									if(edit_flag == 1){
 									actionstr += '<li><a href="'+CI.base_url+'workshops/add/'+oObj.aData[0]+'" data-target="#myModal" data-toggle="modal" class="modal-link">Edit Workshop</a></li>';
-									
+									}
 									actionstr += '<li><a href="'+CI.base_url+'workshops/attendees/'+oObj.aData[0]+'">View Attendee</a></li>';
 									
 									actionstr += '<li><a href="'+CI.base_url+'workshops/add_attendee/0/0/'+oObj.aData[0]+'" data-target="#myModal" data-toggle="modal" class="modal-link">Add Attendee</a></li>';
