@@ -118,6 +118,8 @@ class Add_employee extends Private_Controller {
 					for($i=0;$i < $certificates_count -1;$i++){
 						$certificate_id = $certificates['certificate_id'][$i];
 						$date = make_db_date($certificates['date'][$i]);
+						$institute = $certificates['institute'][$i];
+						$graduation_year = $certificates['graduation_year'][$i];
 						$created_at = date('Y-m-d H:i:s');
 						
 						$user_certificate = array(
@@ -125,6 +127,8 @@ class Add_employee extends Private_Controller {
 							'type'       => 'certificate',
 							'qualification_id'       => $certificate_id,
 							'date'       => $date,
+							'institute'       => $institute,
+							'graduation_year'       => $graduation_year,
 							'created_at'       => $created_at
 						);
 						grid_add_data($user_certificate,'user_qualification');
@@ -141,6 +145,7 @@ class Add_employee extends Private_Controller {
 						$date = make_db_date($qualifications['date'][$i]);
 						$institute = $qualifications['institute'][$i];
 						$graduation_year = $qualifications['graduation_year'][$i];
+						
 						$created_at = date('Y-m-d H:i:s');
 						
 						$user_qualification = array(
@@ -359,6 +364,8 @@ class Add_employee extends Private_Controller {
 						for($i=0;$i < $certificates_count -1;$i++){
 							$certificate_id = $certificates['certificate_id'][$i];
 							$date = make_db_date($certificates['date'][$i]);
+							$institute = $certificates['institute'][$i];
+							$graduation_year = $certificates['graduation_year'][$i];
 							$created_at = date('Y-m-d H:i:s');
 							
 							$user_certificate = array(
@@ -366,6 +373,8 @@ class Add_employee extends Private_Controller {
 								'type'       => 'certificate',
 								'qualification_id'       => $certificate_id,
 								'date'       => $date,
+								'institute'       => $institute,
+								'graduation_year'       => $graduation_year,
 								'created_at'       => $created_at
 							);
 							grid_add_data($user_certificate,'user_qualification');
@@ -531,7 +540,8 @@ class Add_employee extends Private_Controller {
 					$row['user_qualification_id'] = $_user_certificate_data['user_qualification_id'];
 					$row['qualification_id'] = $_user_certificate_data['qualification_id'];
 					$row['date'] = date("d M Y",strtotime($_user_certificate_data['date']));
-					
+					$row['institute'] = $_user_certificate_data['institute'];
+					$row['graduation_year'] = $_user_certificate_data['graduation_year'];
 					$user_certificate[] = $row;
 				}
 			}

@@ -67,7 +67,19 @@ print form_open('list_user/add_qualifications/'.$user_id.'/'.$id, array('id' => 
 			<div class="input_box_thin"><?php print form_checkbox(array('name' => 'subject_related', 'id' => 'subject_related', 'value' => '1', 'checked' => $checked)); ?></div>
 		</div>
     </div>
-		
+	<div class="row form-row">
+		<div class="col-md-6">
+			<div class="form_label2"><?php print form_label('Verified', 'verified'); ?></div>
+			<div class="input_box_thin"><?php  
+				print form_dropdown('verified',array('N/A','Yes','No'),($rowdata)?$rowdata->verified:'','id="verified" class="formselect"'); 
+			?></div>
+		</div>
+        <div class="col-md-6">
+			<div class="form_label2"><?php print form_label('Comments', 'comments'); ?></div>
+			<div class="input_box_thin"><?php print form_input(array('name' => 'comments', 'id' => 'comments', 'value' => ($rowdata)?$rowdata->comments:$this->session->flashdata('comments'), 'class' => 'form-control')); ?></div>
+		</div>	
+		<div class="clear"></div>
+	</div>	
 </div>
 <div class="modal-footer">
 	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

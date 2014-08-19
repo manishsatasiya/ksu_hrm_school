@@ -1118,6 +1118,8 @@ $this->template->set_partial('sidebar', 'sidebar');
     		$date = $this->input->post('date');
 			$institute = $this->input->post('institute');
     		$graduation_year = $this->input->post('graduation_year');
+			$verified = $this->input->post('verified');
+    		$comments = $this->input->post('comments');
     		
 			$data = array();
 			$data['user_id'] = $user_id;
@@ -1130,6 +1132,8 @@ $this->template->set_partial('sidebar', 'sidebar');
 			$data['date'] = make_db_date($date);
 			$data['institute'] = $institute;
 			$data['graduation_year'] = $graduation_year;
+			$data['verified'] = $verified;
+			$data['comments'] = $comments;
 			
 			$error = "";
     		$error_seperator = "<br>";
