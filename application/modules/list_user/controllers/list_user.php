@@ -1166,12 +1166,24 @@ $this->template->set_partial('sidebar', 'sidebar');
     		
 			$certificate_id = $this->input->post('certificate_id');
     		$date = $this->input->post('date');
+			$accredited = $this->input->post('accredited');
+			$in_class = $this->input->post('in_class');
+			$institute = $this->input->post('institute');
+    		$graduation_year = $this->input->post('graduation_year');
+			$verified = $this->input->post('verified');
+    		$comments = $this->input->post('comments');		
     		
 			$data = array();
 			$data['user_id'] = $user_id;
 			$data['type'] = 'certificate';
 			$data['qualification_id'] = $certificate_id;
 			$data['date'] = make_db_date($date);
+			$data['accredited'] = $accredited;
+			$data['in_class'] = $in_class;
+			$data['institute'] = $institute;
+			$data['graduation_year'] = $graduation_year;
+			$data['verified'] = $verified;
+			$data['comments'] = $comments;
 				
 			$error = "";
     		$error_seperator = "<br>";

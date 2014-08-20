@@ -13,6 +13,7 @@ $(document).ready( function () {
 				aoColumns: [
 								{"sName": "user_workshop_id"},
 								{"sName": "first_name"},
+								{"sName": "line_manager"},
 								{"sName": "elsd_id"},
 								{"sName": "email"},
 								{"sName": "created_at"},
@@ -28,6 +29,17 @@ $(document).ready( function () {
 								}
 						   ],
 				sPaginationType: "bootstrap"});
+	dTable.columnFilter({
+	        aoColumns: [ 
+	                 null,   
+	        		 { type: "text" },
+	                 null,
+					 { type: "text" },
+					 { type: "text" },
+					 null,
+					 null
+	            ]
+        });	
 	$('#grid_workshop_attendees_wrapper .dataTables_filter input').addClass("input-medium ");
 	$('#grid_workshop_attendees_wrapper .dataTables_length select').addClass("select2-wrapper span12");			
 });

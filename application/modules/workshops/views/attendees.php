@@ -79,11 +79,12 @@ if($this->session->userdata('role_id') == '1' || in_array("add",$this->arrAction
 			<table class="table" id="grid_workshop_attendees">
 				<thead>
 					<tr>
-						<th>ID</th>
+						<th style="width:77px">ID</th>
 						<th>Attendee</th>
-						<th>Staff ID</th>
+                        <th>Line Manager</th>
+						<th style="width:130px">ELSD ID</th>
 						<th>Email</th>
-						<th style="width:77px">Registered on</th>
+						<th style="width:170px">Registered on</th>
 						<th style="width:80px"><?php print $this->lang->line('student_p_action'); ?></th>
 					</tr>
 				</thead>
@@ -91,7 +92,8 @@ if($this->session->userdata('role_id') == '1' || in_array("add",$this->arrAction
 					<tr>
 						<th>ID</th>
 						<th>Attendee</th>
-						<th>Staff ID</th>
+                        <th>Line Manager</th>
+						<th>ELSD ID</th>
 						<th>Email</th>
 						<th style="width:77px">Registered on</th>
 						<th><?php print $this->lang->line('student_p_action'); ?></th>

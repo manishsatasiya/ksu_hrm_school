@@ -81,7 +81,8 @@ if($this->session->userdata('role_id') == '1' || in_array("add",$this->arrAction
 						<th>&nbsp;</th>
 						<th>ID</th>
 						<th>Attendee</th>
-						<th>Staff ID</th>
+						<th>ELSD ID</th>
+                        <th>Line Manager</th>
 						<th>Email</th>
 						<th style="width:80px"><?php print $this->lang->line('student_p_action'); ?></th>
 					</tr>
@@ -91,7 +92,8 @@ if($this->session->userdata('role_id') == '1' || in_array("add",$this->arrAction
 						<th>&nbsp;</th>
 						<th>ID</th>
 						<th>Attendee</th>
-						<th>Staff ID</th>
+						<th>ELSD ID</th>
+                        <th>Line Manager</th>
 						<th>Email</th>
 						<th><?php print $this->lang->line('student_p_action'); ?></th>
 					</tr>

@@ -201,18 +201,19 @@ class Workshops_model extends CI_Model {
 	
 	public function get_workshop_attendees($limit = 0, $offset = 0, $order_by = "user_workshop_id,workshop_id", $sort_order = "asc", $search_data, $workshop_id,$count = false) {
 		$user_id = $this->session->userdata('user_id');
-
+		
         if (!empty($search_data)) {
         	!empty($search_data['user_workshop_id']) ? $data['user_workshop_id'] = $search_data['user_workshop_id'] : "";
-            !empty($search_data['first_name']) ? $data['first_name'] = $search_data['first_name'] : "";
-            !empty($search_data['elsd_id']) ? $data['elsd_id'] = $search_data['elsd_id'] : "";
-            !empty($search_data['email']) ? $data['email'] = $search_data['email'] : ""; 
+            !empty($search_data['users.first_name']) ? $data['users.first_name'] = $search_data['users.first_name'] : "";
+            !empty($search_data['users.elsd_id']) ? $data['users.elsd_id'] = $search_data['users.elsd_id'] : "";
+            !empty($search_data['users.email']) ? $data['users.email'] = $search_data['users.email'] : ""; 
             !empty($search_data['created_at']) ? $data['created_at'] = $search_data['created_at'] : "";
         }
    
-        $this->db->select('user_workshop.*,users.first_name as attendee_name,users.elsd_id,users.email',FALSE);
+        $this->db->select('user_workshop.*,CONCAT(users.first_name," ", users.last_name) as attendee_name,CONCAT(l.first_name," ", l.last_name) as line_manager,users.elsd_id,users.email',FALSE);
         $this->db->from('user_workshop');  
-        $this->db->join('users','users.user_id = user_workshop.attendee','left');        
+        $this->db->join('users','users.user_id = user_workshop.attendee','left');
+		$this->db->join('users AS l','l.user_id = users.coordinator','left');
 		$this->db->where('workshop_id',$workshop_id);
 					
         if(!empty($data))
@@ -233,7 +234,7 @@ class Workshops_model extends CI_Model {
         	$this->db->limit($limit, $offset);
 
         $query = $this->db->get();
-		
+		//echo $this->db->last_query();
 		if($count == true)
 			return $query->num_rows();
 			

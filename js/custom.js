@@ -582,32 +582,7 @@ $(document).ready(function(){
 	/*$('#popover1').live('mouseleave', function() {
 		$(this).popover("hide");
 	});*/
-	if(CI.controller_name == 'add_employee')
-	{
-		$('#add_reference_div').click(function(){
-			addReferenceBox();
-		});
 		
-		$('#add_experience_div').click(function(){
-			addExperienceBox();
-		});
-		
-		$('#add_certificate_div').click(function(){
-			addCertificateBox();
-		});
-		
-		$('#add_qualification_div').click(function(){
-			addQualificationBox();
-		});
-		
-		if(add_default_box){
-			addReferenceBox();
-			addExperienceBox();
-			addCertificateBox();
-			addQualificationBox();
-		}
-	}
-	
 	//$('#status').select2('readonly', true);
 	
 	$('.comment').hide();
@@ -667,7 +642,32 @@ $(document).ready(function(){
 			
 		}
 	});*/
-			
+	
+	if(CI.controller_name == 'add_employee')
+	{
+		$('#add_reference_div').click(function(){
+			addReferenceBox();
+		});
+		
+		$('#add_experience_div').click(function(){
+			addExperienceBox();
+		});
+		
+		$('#add_certificate_div').click(function(){
+			addCertificateBox();
+		});
+		
+		$('#add_qualification_div').click(function(){
+			addQualificationBox();
+		});
+		
+		if(add_default_box){
+			addReferenceBox();
+			addExperienceBox();
+			addCertificateBox();
+			addQualificationBox();
+		}
+	}
 });
 
 function change_worked_at_ksu_before() {
@@ -693,6 +693,13 @@ function addCertificateBox(){
 	$('#certificates #show_dp').each(function() {
 		$(this).datepicker({format: 'D dd MM yyyy'});
 	});
+	$('#certificates #date_year').each(function() {
+		$(this).datepicker( {
+			format: " yyyy",
+			viewMode: "years", 
+			minViewMode: "years"
+		});
+	});	
 	$('#certificates .select2-container').each(function() {
 		$(this).remove();
 	});

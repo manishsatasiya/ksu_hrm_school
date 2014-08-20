@@ -45,9 +45,9 @@ print form_open('workshops/add/'.$workshop_id, array('id' => 'add_workshop_form_
 	</div>
 	<div class="row form-row">
 		<div class="col-md-6">
-			<div class="form_label2"><?php print form_label('Date', 'reg_start_date'); ?></div>
+			<div class="form_label2"><?php print form_label('Date', 'start_date'); ?></div>
 			<div class="input-append success date col-md-10 col-lg-6 no-padding">
-				<?php print form_input(array('name' => 'start_date', 'id' => 'reg_start_date', 'value' => ($rowdata)?date('D, d M Y',strtotime($rowdata->start_date)):$this->session->flashdata('start_date'), 'class' => 'form-control qtip_start_date')); ?>
+                <?php print form_input(array('name' => 'start_date', 'id' => 'show_dp', 'value' => ($rowdata)?make_dp_date($rowdata->start_date):$this->session->flashdata('start_date'), 'class' => 'form-control')); ?>
 				<span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
 			</div>
 		</div>
@@ -69,7 +69,12 @@ print form_open('workshops/add/'.$workshop_id, array('id' => 'add_workshop_form_
 		</div>
 		<div class="clear"></div>
 	</div>
-	
+	<div class="row form-row">
+		<div class="col-md-6">
+			<div class="form_label2"><?php print form_label('Presented', 'presented'); ?></div>
+			<div class="input_box_thin"><?php print form_dropdown('presented',array('2'=>'No','1'=>'Yes'),($rowdata)?$rowdata->presented:$this->session->flashdata('presented'),'id="presented" class=""'); ?></div>
+		</div>	
+    </div>    
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

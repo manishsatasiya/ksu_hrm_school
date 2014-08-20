@@ -672,6 +672,7 @@ print form_hidden('user_id', $user_data->user_unique_id);
                                 <div class="input-append success date col-md-10 col-lg-10 no-padding"> <?php print form_input(array('name' => 'birth_date', 'id' => 'show_dp', 'value' => ($user_data)?make_dp_date($user_data->birth_date):$this->session->flashdata('birth_date'), 'class' => 'form-control ','placeholder' => 'Dob')); ?> <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
                               </div>
                             </div>  
+                            <hr />
                             <div class="row form-row">
 								<div class="col-md-3"> <?php print form_label('ELSD ID', 'elsd_id',array('class'=>'form-label')); ?> <?php print form_input(array('name' => 'elsd_id', 'id' => 'elsd_id', 'value' => ($user_data)?$user_data->elsd_id:$this->session->flashdata('elsd_id'), 'class' => 'form-control ','placeholder' => 'ELSD ID','readonly'=>'readonly')); ?> </div>
 								<div class="col-md-3"> <?php print form_label('DB ID', 'db_id',array('class'=>'form-label')); ?> <?php print form_input(array('name' => 'db_id', 'id' => 'db_id', 'value' => ($user_data)?$user_data->user_unique_id:$this->session->flashdata('db_id'), 'class' => 'form-control ','placeholder' => 'DB ID','readonly'=>'readonly')); ?> </div>
@@ -694,6 +695,7 @@ print form_hidden('user_id', $user_data->user_unique_id);
                                 <input type="button" id="change_status_button" class="button-change-status btn btn-primary" value="Change Status" />
                               </div>
                             </div>
+                            <hr />
                             <div class="row form-row" id="status_comment_box">
                               <div class="col-md-8"> <?php print form_input(array('name' => 'comment', 'id' => 'comment', 'value' => '', 'class' => 'form-control comment','placeholder' => 'Why you want to change the status?')); ?> 
 							  <div id="iderror"></div>
@@ -712,6 +714,7 @@ print form_hidden('user_id', $user_data->user_unique_id);
                               <div class="col-md-3"> <?php print form_label('Mobile Phone', 'cell_phone',array('class'=>'form-label')); ?> <?php print form_input(array('name' => 'cell_phone', 'id' => 'cell_phone', 'value' => ($user_data)?$user_data->cell_phone:$this->session->flashdata('cell_phone'), 'class' => 'form-control ','placeholder' => 'Mobile Phone')); ?> </div>
 							  <div class="col-md-3"> <?php print form_label('Skype ID', 'skype_id',array('class'=>'form-label')); ?> <?php print form_input(array('name' => 'skype_id', 'id' => 'skype_id', 'value' => ($user_data)?$user_data->skype_id:$this->session->flashdata('skype_id'), 'class' => 'form-control')); ?> </div>
                             </div>
+                            <hr />
                             <!--row 3 end-->
                             <!--row 3.1 start-->
                             <div class="row form-row">

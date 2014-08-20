@@ -1453,7 +1453,7 @@ $(document).ready(function() {
 		}
 	});
 	
-	$(function() {
+	$(document).ready(function(){	
 		$("#show_dp").datepicker({
 			format: 'D dd MM yyyy'
 		});
@@ -1474,6 +1474,20 @@ $(document).ready(function() {
 			viewMode: "years", 
 			minViewMode: "years"
 		});
+		$('#certificates #date_year').each(function() {
+			$(this).datepicker( {
+				format: " yyyy",
+				viewMode: "years", 
+				minViewMode: "years"
+			});
+		});
+		$('#qualifications #date_year').each(function() {
+			$(this).datepicker( {
+				format: " yyyy",
+				viewMode: "years", 
+				minViewMode: "years"
+			});
+		});	
 	});
 	
 	var $add_emp_validator = $("#add_employee").validate({

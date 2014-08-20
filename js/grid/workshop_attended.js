@@ -15,6 +15,7 @@ $(document).ready( function () {
 								{"sName": "user_workshop_id"},
 								{"sName": "first_name"},
 								{"sName": "elsd_id"},
+								{"sName": "line_manager"},
 								{"sName": "email"},
 								{	"sName": "ID",
 									"bSearchable": false,
@@ -22,6 +23,17 @@ $(document).ready( function () {
 								}
 						   ],
 				sPaginationType: "bootstrap"});
+	dTable.columnFilter({
+	        aoColumns: [ 
+	                 null,
+					 null,
+	        		 { type: "text" },
+					 { type: "text" },
+	                 null,
+					 { type: "text" },
+					 null
+	            ]
+        });	
 	$('#grid_workshop_attended_wrapper .dataTables_filter input').addClass("input-medium ");
 	$('#grid_workshop_attended_wrapper .dataTables_length select').addClass("select2-wrapper span12");				
 });

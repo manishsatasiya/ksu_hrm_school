@@ -122,6 +122,7 @@ $this->template->set_partial('sidebar', 'sidebar');
     		$semester = $this->input->post('semester');
     		$workshop_type_id = $this->input->post('workshop_type_id');
     		$status = $this->input->post('status');
+			$presented = $this->input->post('presented');
     		$user_id = $this->session->userdata('user_id');
 			
 			$data = array();
@@ -136,7 +137,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 			$data['semester'] = $semester;
 			$data['workshop_type_id'] = $workshop_type_id;
 			$data['status'] = $status;
-			$data['presented'] = 2;
+			$data['presented'] = $presented;
 			$data['campus'] = '';
 			$data['academic_year'] = '';
 			
@@ -298,7 +299,8 @@ $this->template->set_partial('sidebar', 'sidebar');
 				$user_workshop_id = $result_row["user_workshop_id"];
 					
 				$row[] = $user_workshop_id;
-				$row[] = ucwords(strtolower($result_row["attendee_name"]));
+				$row[] = $result_row["attendee_name"];
+				$row[] = $result_row["line_manager"];
 				$row[] = $result_row["elsd_id"];
 				$row[] = $result_row["email"];
     			$row[] = date("D, d M Y",strtotime($result_row["created_at"]));
@@ -448,7 +450,7 @@ $this->template->set_partial('sidebar', 'sidebar');
     	/* Array of database columns which should be read and sent back to DataTables. Use a space where
     	 * you want to insert a non-database field (for example a counter or static image)
     	*/
-    	$aColumns = array('user_workshop_id','users.first_name','users.elsd_id','users.email','created_at');
+    	$aColumns = array('attendance','user_workshop_id','users.first_name','users.elsd_id','users.line_manager','users.email','user_workshop_id');
     	$grid_data = get_search_data($aColumns);
     	
     	$sort_order = $grid_data['sort_order'];
@@ -498,6 +500,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 				$row[] = $user_workshop_id;
 				$row[] = ucwords(strtolower($result_row["attendee_name"]));
 				$row[] = $result_row["elsd_id"];
+				$row[] = $result_row["line_manager"];
 				$row[] = $result_row["email"];
     			$row[] = $actions;
 				$output['aaData'][] = $row;

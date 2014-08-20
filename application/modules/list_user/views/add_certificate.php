@@ -26,7 +26,46 @@ print form_open('list_user/add_certificate/'.$user_id.'/'.$id, array('id' => 'ad
 			</div>
 		</div>
 		<div class="clear"></div>
-	</div>		
+	</div>
+    <div class="row form-row">
+        <div class="col-md-6">
+            <div class="form_label2"><?php print form_label('Institute', 'institute'); ?></div>
+            <div class="input_box_thin"><?php print form_input(array('name' => 'institute', 'id' => 'institute', 'value' => ($rowdata)?$rowdata->institute:$this->session->flashdata('institute'), 'class' => 'form-control')); ?></div>
+        </div>
+        <div class="col-md-6">
+            <div class="form_label2"><?php print form_label('Graduation year', 'graduation_year'); ?></div>
+            <div class="input-append success col-md-10 no-padding">	
+                <?php print form_input(array('name' => 'graduation_year', 'id' => 'date_year', 'value' => ($rowdata)?$rowdata->graduation_year:$this->session->flashdata('graduation_year'), 'class' => 'form-control')); ?>
+                <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    <div class="row form-row">
+    	<div class="col-md-4">
+			<div class="form_label2"><?php print form_label('In Class', 'in_class'); ?></div>
+            <?php $checked = (isset($rowdata->in_class) && $rowdata->in_class == '1') ? true:false; ?>
+			<div class="input_box_thin"><?php print form_checkbox(array('name' => 'in_class', 'id' => 'in_class', 'value' => '1', 'checked' => $checked)); ?></div>
+		</div>
+    	<div class="col-md-4">
+			<div class="form_label2"><?php print form_label('Accredited', 'accredited'); ?></div>
+            <?php $checked = (isset($rowdata->accredited) && $rowdata->accredited == '1') ? true:false; ?>
+			<div class="input_box_thin"><?php print form_checkbox(array('name' => 'accredited', 'id' => 'accredited', 'value' => '1', 'checked' => $checked)); ?></div>
+		</div>
+        <div class="col-md-4">
+			<div class="form_label2"><?php print form_label('Verified', 'verified'); ?></div>
+			<div class="input_box_thin"><?php  
+				print form_dropdown('verified',array('N/A'=>'N/A','Yes'=>'Yes','No'=>'No'),($rowdata)?$rowdata->verified:'','id="verified" class="formselect"'); 
+			?></div>
+		</div>
+    </div>
+	<div class="row form-row">
+        <div class="col-md-12">
+			<div class="form_label2"><?php print form_label('Comments', 'comments'); ?></div>
+			<div class="input_box_thin"><?php print form_input(array('name' => 'comments', 'id' => 'comments', 'value' => ($rowdata)?$rowdata->comments:$this->session->flashdata('comments'), 'class' => 'form-control')); ?></div>
+		</div>	
+		<div class="clear"></div>
+	</div>
 </div>
 <div class="modal-footer">
 	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
