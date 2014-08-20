@@ -46,20 +46,23 @@ $controller_name = $this->router->fetch_class();
 
 		<div class="user-info-wrapper">	
 
-			<!--<div class="profile-wrapper">
-
-				<img src="<?php print base_url() ?>assets/img/profiles/avatar.jpg" alt="" data-src="<?php print base_url() ?>assets/img/profiles/avatar.jpg" width="69" height="69" />
-
+			<div class="profile-wrapper">
+                    	<?php 
+						$profile_picture = get_profile_pic();
+						$profile_picture_75 = $profile_picture[75];
+						?>
+						<img src="<?php print $profile_picture_75; ?>" alt="" data-src="<?php print $profile_picture_75; ?>" data-src-retina="" width="69" height="69" />
+				<!--<img src="<?php print base_url() ?>assets/img/profiles/avatar.jpg" alt="" data-src="<?php print base_url() ?>assets/img/profiles/avatar.jpg" width="69" height="69" />-->
 			</div>
 
 			<div class="user-info">
-
 				<div class="greeting"><?php echo $this->lang->line('welcome'); ?></div>
-
-				<div class="username"><?php echo $this->session->userdata('username');  ?> </div>
-
+				<div class="username">
+					<?php echo $this->session->userdata('first_name');  ?>
+					<?php //echo $this->session->userdata('username');  ?>
+                </div>
+                <div class="status">Status<a href="#"><div class="status-icon green"></div>Online</a></div>
 			</div>
--->
 		</div>
 
 		<!-- END MINI-PROFILE -->
