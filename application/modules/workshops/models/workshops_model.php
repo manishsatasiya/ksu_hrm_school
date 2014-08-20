@@ -75,7 +75,7 @@ class Workshops_model extends CI_Model {
         $this->db->join('users','users.user_id = workshops.presenter','left');
 		$this->db->join('workshop_types','workshop_types.id = workshops.workshop_type_id','left');
         
-		$this->db->where('start_date < "'.date('Y-m-d').'"');
+		//$this->db->where('start_date < "'.date('Y-m-d').'"');
 		$this->db->where('workshops.status',2);	
 		//$this->db->where('presented',1);
 					
