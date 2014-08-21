@@ -172,8 +172,9 @@
 
                 	<li><a href="<?php print site_url('list_user/edit_profile/'.$this->session->userdata('user_id')); ?>">View Profile</a></li>
 
-                     <li><a href="<?php print site_url('schedule'); ?>">My Schedule</a></li>
-
+                     <li><a href="<?php print site_url('my_attendance'); ?>">My Attendance</a></li>
+                   <li><a href="<?php print site_url('schedule'); ?>">My Schedule</a></li>
+   
                      <li class="divider"></li>
 
                   <li><a href="<?php print site_url('auth/logout'); ?>"><i class="fa fa-power-off"></i>&nbsp;&nbsp;<?php echo $this->lang->line('logout'); ?></a>	</li>
