@@ -92,7 +92,7 @@ class Schedule extends Private_Controller {
 					elseif( $title && isset($time) && isset($type) && $type == 'work') {
 	
 							//$calendar.= '<ul class="cal-events"><li class="appointments_work"><a href="'.URL::base().'/shared/edit_appointment/'.$value->id. '" class="float-left icon-gear with-tooltip icon-white modal_link" title="Edit appointment">'.ucwords($value->title).'</a><br> at ' .$value->time.'<a href="'.URL::base().'/shared/delete_appointment/'.$value->id. '" class="float-right clear-both icon-trash with-tooltip icon-white confirm" title="Delete appointment"></a><br></li></ul>';
-							$_tital.= ''.ucwords($title).'<br> at ' .$time.'';				
+							$_tital.= ''.substr($title,0,10)."\n at " .$time.'';				
 					} elseif( $title && isset($time) && isset($type) && $type == 'private') {
 	
 							//$calendar.= '<ul class="cal-events"><li class="appointments_private"><a href="'.URL::base().'/shared/edit_appointment/'.$value->id. '" class="float-left icon-gear with-tooltip icon-white modal_link" title="Edit appointment">'.ucwords($value->title).'</a><br> at ' .$value->time.'<a href="'.URL::base().'/shared/delete_appointment/'.$value->id. '" class="float-right clear-both icon-trash with-tooltip icon-white confirm" title="Delete appointment"></a><br></li></ul>';

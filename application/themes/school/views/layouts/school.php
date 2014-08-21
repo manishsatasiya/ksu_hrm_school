@@ -151,7 +151,7 @@ $(document).ready(function() {
 	<script src="<?php print base_url(); ?>assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
 	<script src="<?php print base_url(); ?>assets/plugins/jquery-slider/jquery.sidr.min.js" type="text/javascript"></script>  
 	<script src="<?php print base_url(); ?>assets/plugins/pace/pace.min.js" type="text/javascript"></script>
-	 
+	<script src="<?php print base_url(); ?>assets/plugins/jquery-numberAnimate/jquery.animateNumbers.js" type="text/javascript"></script>
 	<script src="<?php print base_url(); ?>assets/plugins/jquery-block-ui/jqueryblockui.js" type="text/javascript"></script> 
     
     <script type="text/javascript" src="<?php print base_url(); ?>js/underscore-min.js"></script>

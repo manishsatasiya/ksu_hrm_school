@@ -94,6 +94,7 @@ class Home_model extends CI_Model {
     {
 		$query = "SELECT 
 						'UK' as nationality, 
+						'730, 240' as coords, 
 						SUM(IF(gender='M', 1, 0)) as male_count, 
 						SUM(IF(gender='F', 1, 0)) as female_count, 
 						COUNT(*) as total 
@@ -105,6 +106,7 @@ class Home_model extends CI_Model {
 				 UNION
 				 SELECT 
 						'Ireland' as nationality, 
+						'710, 280' as coords, 
 						SUM(IF(gender='M', 1, 0)) as male_count, 
 						SUM(IF(gender='F', 1, 0)) as female_count, 
 						COUNT(*) as total 
@@ -116,6 +118,7 @@ class Home_model extends CI_Model {
 				 UNION
 				 SELECT 
 						'America' as nationality, 
+						'260, 232' as coords, 
 						SUM(IF(gender='M', 1, 0)) as male_count, 
 						SUM(IF(gender='F', 1, 0)) as female_count, 
 						COUNT(*) as total 
@@ -127,6 +130,7 @@ class Home_model extends CI_Model {
 				 UNION
 				 SELECT 
 						'Canada' as nationality, 
+						'360, 300' as coords, 
 						SUM(IF(gender='M', 1, 0)) as male_count, 
 						SUM(IF(gender='F', 1, 0)) as female_count, 
 						COUNT(*) as total 
@@ -138,6 +142,7 @@ class Home_model extends CI_Model {
 				 UNION
 				 SELECT 
 						'Australia' as nationality, 
+						'1320, 640' as coords, 
 						SUM(IF(gender='M', 1, 0)) as male_count, 
 						SUM(IF(gender='F', 1, 0)) as female_count, 
 						COUNT(*) as total 
@@ -149,6 +154,7 @@ class Home_model extends CI_Model {
 				 UNION
 				 SELECT 
 						'New Zealand' as nationality, 
+						'1500, 710' as coords, 
 						SUM(IF(gender='M', 1, 0)) as male_count, 
 						SUM(IF(gender='F', 1, 0)) as female_count, 
 						COUNT(*) as total 
@@ -160,6 +166,7 @@ class Home_model extends CI_Model {
 				 UNION
 				 SELECT 
 						'Saudi Arabia' as nationality, 
+						'950, 440' as coords, 
 						SUM(IF(gender='M', 1, 0)) as male_count, 
 						SUM(IF(gender='F', 1, 0)) as female_count, 
 						COUNT(*) as total 
@@ -171,6 +178,7 @@ class Home_model extends CI_Model {
 				 UNION
 				 SELECT 
 						'Native Total' as nationality, 
+						'90, 600' as coords, 
 						SUM(IF(gender='M', 1, 0)) as male_count, 
 						SUM(IF(gender='F', 1, 0)) as female_count, 
 						COUNT(*) as total 
@@ -182,6 +190,7 @@ class Home_model extends CI_Model {
 				 UNION
 				 SELECT 
 						'Non native Total' as nationality, 
+						'90, 650' as coords, 
 						SUM(IF(gender='M', 1, 0)) as male_count, 
 						SUM(IF(gender='F', 1, 0)) as female_count, 
 						COUNT(*) as total 
@@ -193,6 +202,7 @@ class Home_model extends CI_Model {
 				 UNION
 				 SELECT 
 						'Unknown' as nationality, 
+						'90, 700' as coords, 
 						SUM(IF(gender='M', 1, 0)) as male_count, 
 						SUM(IF(gender='F', 1, 0)) as female_count, 
 						COUNT(*) as total 

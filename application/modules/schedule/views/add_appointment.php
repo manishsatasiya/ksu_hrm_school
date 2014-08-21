@@ -14,26 +14,26 @@ print form_open('schedule/add_appointment/', array('id' => 'add_appointment','na
 	<div class="row form-row">
 		<div class="col-md-6">
 			<div class="form_label2"><?php print form_label('Date', 'date'); ?></div>
-			<div class="input-append success date col-md-10 col-lg-6 no-padding">
+			<div class="input-append success date col-md-12 col-lg-10 no-padding">
             	<?php print form_input(array('name' => 'date', 'id' => 'show_dp', 'value' => ($rowdata)?make_dp_date($rowdata->date):$this->session->flashdata('date'), 'class' => 'form-control ')); ?>
                 <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
             </div>            
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-3">
 			<div class="form_label2"><?php print form_label('Time', 'time'); ?></div>
-			<div class="input_box_thin"><?php print form_input(array('name' => 'time', 'id' => 'time', 'value' => ($rowdata)?$rowdata->time:$this->session->flashdata('time'), 'class' => 'form-control')); ?></div>
-		</div>	
+			<div class="input_box_thin"><?php print form_input(array('name' => 'time', 'id' => 'show_tp', 'value' => ($rowdata)?$rowdata->time:$this->session->flashdata('time'), 'class' => 'form-control')); ?></div>
+		</div>
+        <div class="col-md-3">
+			<div class="form_label2"><?php print form_label('Type', 'type'); ?></div>
+			<div class="input_box_thin"><?php print form_dropdown('type',array('private'=>'Private','work'=>'Work'),($rowdata)?$rowdata->type:'0','id="type" class="formselect"');  ?></div>
+		</div>
 		<div class="clear"></div>
 	</div>
 	
 	<div class="row form-row">
-		<div class="col-md-6">
-			<div class="form_label2"><?php print form_label('Type', 'type'); ?></div>
-			<div class="input_box_thin"><?php print form_dropdown('type',array('private'=>'Private','work'=>'Work'),($rowdata)?$rowdata->type:'0','id="type" class="formselect"');  ?></div>
-		</div>
-		<div class="col-md-6">
+		<div class="col-md-12">
 			<div class="form_label2"><?php print form_label('Details', 'details'); ?></div>
-			<div class="input_box_thin"><?php print form_input(array('name' => 'details', 'id' => 'details', 'value' => ($rowdata)?$rowdata->details:$this->session->flashdata('details'), 'class' => 'form-control')); ?></div>
+			<div class="input_box_thin"><?php print form_textarea(array('name' => 'details', 'id' => 'details', 'value' => ($rowdata)?$rowdata->details:$this->session->flashdata('details'), 'class' => 'form-control', 'rows' => '4', 'cols' => '40')); ?></div>
 		</div>
 		<div class="clear"></div>
 	</div>

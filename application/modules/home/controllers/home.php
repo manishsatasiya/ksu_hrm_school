@@ -103,6 +103,11 @@ class Home extends Private_Controller {
 		
     }
 	
+	public function get_nationality_map() {
+		$content_data = array();
+		$content_data['nationality'] = $this->home_model->get_nationality();
+		$this->template->build('nationality_map', $content_data);
+	}
 	// no access view if user has no privilage
     function no_access(){
     	$content_data = array();

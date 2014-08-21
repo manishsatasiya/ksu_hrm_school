@@ -283,6 +283,6 @@ $(function(){
 });
 // recaptcha fix for chrome/safari - iframe creates a white space below footer
 $(window).load(function() {
-    var x = $('iframe').get(-1);
-    $(x).remove();
+    //var x = $('iframe').get(-1);
+    //$(x).remove();
 });

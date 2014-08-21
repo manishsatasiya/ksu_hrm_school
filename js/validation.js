@@ -1453,7 +1453,11 @@ $(document).ready(function() {
 		}
 	});
 	
-	$(document).ready(function(){	
+	$(document).ready(function(){
+		$('#show_tp').timepicker({
+			showLeadingZero: true,
+			onHourShow: OnHourShowCallbackAM
+		});
 		$("#show_dp").datepicker({
 			format: 'D dd MM yyyy'
 		});
