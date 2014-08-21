@@ -6,7 +6,7 @@ class My_attendance_model extends CI_Model {
         parent::__construct();
     }
 
-	public function get_my_attendance($limit = 0, $offset = 0, $order_by = "LogDate", $sort_order = "desc", $search_data,$count = false) {
+	public function get_my_attendance($limit = 0, $offset = 0, $order_by = "LogDate", $sort_order = "desc", $search_data,$count = false,$user_unique_id=0) {
 		if (!empty($search_data)) {
         	!empty($search_data['dwMachineNumber']) ? $data['dwMachineNumber'] = $search_data['dwMachineNumber'] : "";
         }
@@ -39,6 +39,10 @@ class My_attendance_model extends CI_Model {
 			$this->db->where('teacher_attendance.user_id',$user_id);        
 		}
 			
+		if($user_unique_id > 0)
+		{
+			$this->db->where('teacher_attendance.user_id',$user_unique_id);
+		}	
         $query = $this->db->get();
 		
 		if($count == true)

@@ -2,6 +2,7 @@
 
 <script type="text/javascript">
 var edit_flag = 1;
+var user_unique_id = 0;
 <?php 
 if($this->session->userdata('role_id') != '1' && !in_array("edit",$this->arrAction))
 {

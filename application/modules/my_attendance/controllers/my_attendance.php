@@ -33,7 +33,7 @@ class My_attendance extends Private_Controller {
         $this->template->build('my_attendance', $content_data);
     }
 	
-    public function index_json($order_by = "LogDate", $sort_order = "desc", $search = "all", $offset = 0) {
+    public function index_json($user_unique_id=0,$order_by = "LogDate", $sort_order = "desc", $search = "all", $offset = 0) {
     	/* Array of database columns which should be read and sent back to DataTables. Use a space where
     	 * you want to insert a non-database field (for example a counter or static image)
     	*/
@@ -55,8 +55,8 @@ class My_attendance extends Private_Controller {
     	$per_page =  $grid_data['per_page'];
     	$offset =  $grid_data['offset'];
 		
-    	$data = $this->my_attendance_model->get_my_attendance($per_page, $offset, $order_by, $sort_order, $grid_data['search_data']);
-    	$count = $this->my_attendance_model->get_my_attendance($per_page, $offset, $order_by, $sort_order, $grid_data['search_data'],true);
+    	$data = $this->my_attendance_model->get_my_attendance($per_page, $offset, $order_by, $sort_order, $grid_data['search_data'],false,$user_unique_id);
+    	$count = $this->my_attendance_model->get_my_attendance($per_page, $offset, $order_by, $sort_order, $grid_data['search_data'],true,$user_unique_id);
     
     	/*
     	 * Output

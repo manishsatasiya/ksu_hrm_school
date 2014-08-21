@@ -5,7 +5,7 @@ $(document).ready( function () {
 		bJQueryUI:false,
 		bProcessing:true,
 		bServerSide: true,
-		sAjaxSource: CI.base_url+"my_attendance/index_json",
+		sAjaxSource: CI.base_url+"my_attendance/index_json/"+user_unique_id,
 		"sDom": "<'div class=col-md-12'fClT><'clear'>rtip",
 		"oTableTools": {
             "aButtons": [

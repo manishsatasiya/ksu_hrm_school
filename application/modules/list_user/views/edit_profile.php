@@ -36,6 +36,8 @@
         <li><a href="#tab2Observations"><i class="fa fa-lightbulb-o"></i> Observations </a></li>
         <li><a href="#tab2Privilege"><i class="fa fa-credit-card"></i> Add Privilege </a></li>
 		<li><a href="#tab2ViewStatusLog"><i class="fa fa-chain"></i> View Status Log </a></li>
+		<li><a href="#tab2myattendance"><i class="fa fa-chain"></i> My Attendance </a></li>
+		<li><a href="#tab2myinductions"><i class="fa fa-chain"></i> My Inductions </a></li>
         <li style="background:none;">
           <div class="edit-profile-tab"><a href="#tab2Edit" class="btn btn-info">Edit Profile </a></div>
         </li>
@@ -616,6 +618,86 @@ print form_hidden('user_id', $user_data->user_unique_id);
               </table>
             </div>
           </div>
+        </div>
+		<!-- My Ateendance-->
+		<div class="tab-pane generaltab" id="tab2myattendance">
+          <div class="grid">
+            <h3 class="userinfo-ttl">My Attendance</h3>
+            <div class="grid-body ">
+			  <script type="text/javascript" src="<?php print base_url(); ?>js/grid/my_attendance.js"></script>
+              <table class="table" id="grid_my_attendance">
+				<thead>
+                  <tr>
+					<th>ID</th>
+					<th>Scan ID</th>
+					<th>Log Date</th>
+					<th>In Time</th>
+					<th>Out Time</th>
+					<th>Total Hours</th>
+					<th>Late</th>
+					<th>Approved</th>
+					<th>StartTime</th>
+					<th>EndTime</th>
+				</tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th>ID</th>
+					<th>Scan ID</th>
+					<th>Log Date</th>
+					<th>In Time</th>
+					<th>Out Time</th>
+					<th>Total Hours</th>
+					<th>Late</th>
+					<th>Approved</th>
+					<th>StartTime</th>
+					<th>EndTime</th>
+                  </tr>
+                </tfoot>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+		<!-- My Indicuctions-->
+		<div class="tab-pane generaltab" id="tab2myinductions">
+          <!--<div class="grid">
+            <h3 class="userinfo-ttl">My Inductions</h3>
+            <div class="grid-body ">
+			  <script type="text/javascript">
+			  var user_unique_id = <?=($user_data)?$user_data->user_unique_id:0?>
+			  </script>
+              <script type="text/javascript" src="<?php print base_url(); ?>js/grid/my_inductions.js"></script>
+              <table class="table" id="grid_my_inductions">
+                <thead>
+                  <tr>
+				    <th>User ID</th>
+                    <th>ELSD ID</th>
+                    <th>Staff Name</th>
+                    <th>OLD Status</th>
+                    <th>New Status</th>
+                    <th>Updated By</th>
+                    <th>Comment</th>
+                    <th>Date/Time</th>
+                  </tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th>User ID</th>
+                    <th>ELSD ID</th>
+                    <th>Staff Name</th>
+                    <th>Status</th>
+                    <th>Updated By</th>
+                    <th>Comment</th>
+                    <th>Date/Time</th>
+                  </tr>
+                </tfoot>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>-->
         </div>
         <div class="edit-page tab-pane" id="tab2Edit">
           <ul class="nav nav-tabs" id="tab-01">
