@@ -29,17 +29,17 @@
 			  	foreach($next_appointments as $appointment) {
 					?>
                     <li>
-                        <span class="event-date with-month">
+                        <!--<span class="event-date with-month">
                         <div class="event-date"><?= date("d",strtotime( $appointment['event_day']))?></div><br> <div class="event-month"><?= date("F",strtotime( $appointment['event_day'])) ?></div>
-                        </span>
+                        </span>-->
                         
                         <h4><?= ucwords( $appointment['title']) ?> | <?= $appointment['time'] ?> </h4>
-                        <span> <?= date("D, d F Y",strtotime( $appointment['event_day'])) ?>  <a href="<?= base_url() ?>/shared/delete_appointment/<?= $appointment['id'] ?>" class="icon-trash confirm float-right with-tooltip" title="cancel appointment"></a></span>
+                        <span class="event-date"> <?= date("D, d F Y",strtotime( $appointment['event_day'])) ?>  <a href="<?= base_url() ?>/shared/delete_appointment/<?= $appointment['id'] ?>" class="icon-trash confirm float-right with-tooltip" title="cancel appointment"></a></span>
                         <?php
                         if($appointment['type'] == 'work')
-                        	echo '<span class="ribbon tiny"><span class="ribbon-inner green-gradient">Work</span></span>';
+                        	echo '<span class="ribbon tiny">Type: <span class="ribbon-inner green-gradient">Work</span></span>';
                         else
-                        	echo '<span class="ribbon tiny"><span class="ribbon-inner blue-gradient">Private</span></span>';
+                        	echo '<span class="ribbon tiny">Type: <span class="ribbon-inner blue-gradient">Private</span></span>';
                         ?>
                     </li>
                     <?php 
