@@ -581,7 +581,7 @@ print form_hidden('user_id', $user_data->user_unique_id);
             </div>
           </div>
         </div>
-		<div class="tab-pane generaltab" id="tab2ViewStatusLog">
+		<div class="tab-pane" id="tab2ViewStatusLog">
           <div class="grid">
             <h3 class="userinfo-ttl">View Changed Status Log.</h3>
             <div class="grid-body ">
@@ -620,7 +620,7 @@ print form_hidden('user_id', $user_data->user_unique_id);
           </div>
         </div>
 		<!-- My Ateendance-->
-		<div class="tab-pane generaltab" id="tab2myattendance">
+		<div class="tab-pane" id="tab2myattendance">
           <div class="grid">
             <h3 class="userinfo-ttl">My Attendance</h3>
             <div class="grid-body ">
@@ -661,7 +661,7 @@ print form_hidden('user_id', $user_data->user_unique_id);
           </div>
         </div>
 		<!-- My Indicuctions-->
-		<div class="tab-pane generaltab" id="tab2myinductions">
+		<div class="tab-pane" id="tab2myinductions">
           <!--<div class="grid">
             <h3 class="userinfo-ttl">My Inductions</h3>
             <div class="grid-body ">
