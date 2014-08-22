@@ -37,7 +37,7 @@
         <li><a href="#tab2Privilege"><i class="fa fa-credit-card"></i> Add Privilege </a></li>
 		<li><a href="#tab2ViewStatusLog"><i class="fa fa-chain"></i> View Status Log </a></li>
 		<li><a href="#tab2myattendance"><i class="fa fa-chain"></i> My Attendance </a></li>
-		<li><a href="#tab2myinductions"><i class="fa fa-chain"></i> My Inductions </a></li>
+		<li><a href="#tab2myinductions"><i class="fa fa-chain"></i> My Induction </a></li>
         <li style="background:none;">
           <div class="edit-profile-tab"><a href="#tab2Edit" class="btn btn-info">Edit Profile </a></div>
         </li>
@@ -663,7 +663,7 @@ print form_hidden('user_id', $user_data->user_unique_id);
 		<!-- My Indicuctions-->
 		<div class="tab-pane" id="tab2myinductions">
           <div class="grid">
-            <h3 class="userinfo-ttl">My Inductions</h3>
+            <h3 class="userinfo-ttl">My Induction</h3>
             <div class="grid-body ">
 				<div class="row form-row">
 					<div class="col-md-3"> 
