@@ -91,6 +91,13 @@ class Home extends Private_Controller {
 			$content_data['total_employees'] = $this->home_model->get_teacher_count(false,false,'1,4',false,false);
 			
 			$content_data['nationality'] = $this->home_model->get_nationality();
+			$content_data['employee_state_month'] = $this->home_model->get_employee_state();
+			$content_data['employee_state_year'] = $this->home_model->get_employee_state(false);
+			
+			$content_data['student_all_count'] = $this->home_model->get_student_count(false,false);
+			$content_data['student_male_count'] = $this->home_model->get_student_count(false);
+			$content_data['student_female_count'] = $this->home_model->get_student_count(false,'F');
+			$content_data['latest_student'] = $this->home_model->get_latest_student();
 		}
         $this->template->set_theme(Settings_model::$db_config['default_theme']);
         $this->template->set_layout('school');
@@ -105,6 +112,7 @@ class Home extends Private_Controller {
 	
 	public function get_nationality_map() {
 		$content_data = array();
+		$content_data['country_to_display'] = array('UK','Ireland','America','Canada','Australia');
 		$content_data['nationality'] = $this->home_model->get_nationality();
 		$this->template->build('nationality_map', $content_data);
 	}

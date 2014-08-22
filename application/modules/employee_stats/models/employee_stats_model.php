@@ -1,7 +1,7 @@
 <?php 
 if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Home_model extends CI_Model {
+class Employee_stats_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();
@@ -292,4 +292,4 @@ class Home_model extends CI_Model {
 	}
 }
 
-/* End of file home_model.php */
+/* End of file employee_stats_model.php */
