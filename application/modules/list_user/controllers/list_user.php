@@ -15,6 +15,7 @@ class List_user extends Private_Controller {
 		$this->load->helper('general_function');
 		$this->load->model('add_privilege/privilege_model');
 		$this->load->model('list_school/list_school_model');
+		$this->load->model('my_inductions/my_inductions_model');
     }
 
     /*
@@ -1088,6 +1089,31 @@ $this->template->set_partial('sidebar', 'sidebar');
         $content_data['privilege_data'] = $this->privilege_model->get_menu_actions();
 		$content_data['roll_privilege'] = $this->list_user_model->get_existing_privilege($user_data->user_roll_id);
 		
+		//START My Induction
+		$data = $this->my_inductions_model->get_my_inductions($user_id);
+    
+    	if($data){
+    		foreach($data->result_array() AS $result_row){
+				$content_data["myinductiondata"] = array("Curriculum_Framework" => $result_row["cf"],                                                          
+													"Oxford_iTools_Smart_Board" => $result_row["oi"],
+													"Educational_Technology" => $result_row["et"],                                                
+													"The_Saudi_Learner" => $result_row["sl"],
+													"Professional_Development" => $result_row["pd"],                                                                
+													"Classroom_Management" => $result_row["cm"],
+													"Students_Affairs" => $result_row["sa"],                                                             
+													"Lesson_Planning" => $result_row["lp"],
+													"Academic_Administration_Quality" => $result_row["aaq"],
+													"New_ELSD_Portal_Training" => $result_row["ep"],
+													"Academic_HR" => $result_row["ahr"],                                                
+													"New_Headway_Plus" => $result_row["hp"],
+													"Assessment" => $result_row["as"],                                                                                 
+													"Headway_Academic_Skills" => $result_row["ha"],
+													"Management_Information" => $result_row["mi"],                                              
+													"Qskills_Orientation" => $result_row["qs"]
+												);
+    		}
+    	}
+		//END My Induction
         $this->template->set_theme(Settings_model::$db_config['default_theme']);
         $this->template->set_layout('school');
         
