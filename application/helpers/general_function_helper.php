@@ -1387,7 +1387,11 @@ function getCertificateType($get_name = false){
 				7=>"Diploma Certificate",
 				8=>"Other Certificate",
 				9=>"cv",
-				10=>"Interview evaluation form"
+				10=>"Interview evaluation form",
+				11=>"Reference 1",
+				12=>"Reference 2",
+				13=>"Lesson Plan",
+				14=>"Writing Sample"
 				);
 	}else{
 		return $arrCertificateType = array("photo" => 1,
@@ -1399,7 +1403,11 @@ function getCertificateType($get_name = false){
 											"Diploma_Certificate" => 7,
 											"Other_Certificate" => 8,
 											"cv" => 9,
-											"interview_evaluation_form" => 10
+											"interview_evaluation_form" => 10,
+											"Reference_1" => 11,
+											"Reference_2" => 12,
+											"Lesson_Plan" => 13,
+											"Writing_Sample" => 14
 											);
 	}	
 }
