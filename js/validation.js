@@ -1047,7 +1047,7 @@ $(document).ready(function() {
 		    },
 			password_confirm: {
 		      required: true,
-			  equalTo: "#password_confirm"
+			  equalTo: "#password"
 		    },
 			user_roll_id: {
 		      required: true,
@@ -1072,6 +1072,10 @@ $(document).ready(function() {
 			gender:"Please select gender",
 			username:"Please enter login email",
 			password:"Please enter login password",
+			confirm_password: {
+				required: "Please provide a password",
+				equalTo: "Please enter the same password"
+			},
 			user_roll_id:"Please select KSU role",
 			system_roll_id:"Please select System role",
 			returning:"Please select returning employee",
@@ -1123,6 +1127,9 @@ $(document).ready(function() {
 		      required: true,
 		      email: true,
 		    },
+			confirm_password: {
+				equalTo: "#password"
+			},
 			user_roll_id: {
 		      required: true,
 		    },
@@ -1146,6 +1153,9 @@ $(document).ready(function() {
 			last_name:"Please enter last anme",
 			gender:"Please select gender",
 			username:"Please enter login email",
+			confirm_password: {
+				equalTo: "Please enter the same password"
+			},			
 			user_roll_id:"Please select KSU role",
 			system_roll_id:"Please select System role",
 			returning:"Please select returning employee",
