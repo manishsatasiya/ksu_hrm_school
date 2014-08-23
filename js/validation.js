@@ -1104,6 +1104,9 @@ $(document).ready(function() {
 	//edit_profile Validations
 	var $edit_validator = $("#edit_profile").validate({
 		  rules: {
+			title: {
+			  required: true,
+			},
 			status: {
 		      required: true,
 		    }, 
@@ -1137,6 +1140,7 @@ $(document).ready(function() {
 		    }
 		  },
 		  messages: {
+			title: "Please select title",
 			status: "Please select status",
 			first_name:"Please enter first name",
 			last_name:"Please enter last anme",

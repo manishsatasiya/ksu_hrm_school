@@ -778,7 +778,7 @@ print form_hidden('user_id', $user_data->user_unique_id);
 					</div>
 				</div>
             </div>
-          </div>-->
+          </div>
         </div>
         <div class="edit-page tab-pane" id="tab2Edit">
           <ul class="nav nav-tabs" id="tab-01">
