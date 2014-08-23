@@ -777,7 +777,25 @@ if (!function_exists('get_course_class')) {
 			$cotroller = $ci->router->fetch_class();
 			$action = $ci->router->fetch_method();
 			
-			if($action != "no_access" && $usr_role != '1' && $cotroller != "login" && $cotroller != "logout" && $cotroller != "profile" && $cotroller != "reset_password" && $cotroller != "forgot_password" && $cotroller != "forgot_username" && $action != "update_account" && $action != "update_password" && $action != "upload_profile_pic" && $action != "reset" && $action != "index_json" && $action != "getdata" && $action != "show_comment" && $action != "export_to_excel" && $action != "get_existing_privilege" && $action != "get_listbox" && $action != "view_report" && $action != "update_student" && $action != "delete" && $action != "viewlog" && $cotroller != "add_privilege" && $action != "add_reason" && $action != "update_course_class" && $action != "update_course" && $action != "update_section" && $action != "update_class_room" && $action != "add_ca_mark" && $action != "callthirdmarkerpage" && $action != "list_thirdmarker_stu" && $action != "view_attendance_log" && $action != "add_reason" && $cotroller != "createpdf" && $action != "get_campus_section" && $action != "view_grade_report_log"  && $cotroller != "list_enable_week" && $action != "add_user_privilege" && $action != "delete" && $cotroller != "add_employee" && $cotroller != "list_course_class")
+			if($action != "no_access" && $usr_role != '1' && $cotroller != "login" && $cotroller != "logout" && 
+				$cotroller != "profile" && $cotroller != "reset_password" && $cotroller != "forgot_password" 
+				&& $cotroller != "forgot_username" && $action != "update_account" && $action != "update_password" 
+				&& $action != "upload_profile_pic" && $action != "reset" && $action != "index_json" && 
+				$action != "getdata" && $action != "show_comment" && $action != "export_to_excel" && $action != "get_existing_privilege" 
+				&& $action != "get_listbox" && $action != "view_report" && $action != "update_student" 
+				&& $action != "delete" && $action != "viewlog" && $cotroller != "add_privilege" && $action != "add_reason" 
+				&& $action != "update_course_class" && $action != "update_course" && $action != "update_section" 
+				&& $action != "update_class_room" && $action != "add_ca_mark" && $action != "callthirdmarkerpage" 
+				&& $action != "list_thirdmarker_stu" && $action != "view_attendance_log" && $action != "add_reason" && 
+				$cotroller != "createpdf" && $action != "get_campus_section" &&
+				$cotroller != "home" &&	
+				$action != "edit_profile" &&	
+				$cotroller != "my_attendance" &&	
+				$cotroller != "my_inductions" &&	
+				$cotroller != "schedule" &&	
+				$action != "view_grade_report_log"  && $cotroller != "list_enable_week" && $action != "add_user_privilege" 
+				&& $action != "delete" && $cotroller != "add_employee" && $cotroller != "list_course_class"
+				)
 			{
 				if(get_priviledge_action($cotroller,$action)){
 					return true;

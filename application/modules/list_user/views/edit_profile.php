@@ -919,7 +919,7 @@ print form_hidden('user_id', $user_data->user_unique_id);
                                 <div class="input-append success date col-md-10 col-lg-10 no-padding"> <?php print form_input(array('name' => 'original_start_date', 'id' => 'show_dp', 'value' => ($user_data)?make_dp_date($user_data->original_start_date):$this->session->flashdata('original_start_date'), 'class' => 'form-control')); ?> <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
                               </div>
 							  <div class="col-md-4"> <?php print form_label('Original Year Joined', 'original_start_year',array('class'=>'form-label')); ?>
-                                <div class="input-append success date col-md-10 col-lg-10 no-padding"> 
+                                <div class="input-append success col-md-10 col-lg-10 no-padding"> 
 								<?php print form_dropdown('original_start_year',$original_start_year_list,($user_data)?$user_data->original_start_year:$this->session->flashdata('original_start_year'),'id="original_start_year" class="select2 form-control"'); ?>
 								</div>
                               </div>

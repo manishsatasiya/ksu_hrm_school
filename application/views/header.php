@@ -170,7 +170,7 @@
 
 				<ul class="dropdown-menu  pull-right" role="menu" aria-labelledby="user-options">
 
-                	<li><a href="<?php print site_url('list_user/edit_profile/'.$this->session->userdata('user_id')); ?>">View Profile</a></li>
+                	<li><a href="<?php print site_url('list_user/edit_profile/'.$this->session->userdata('user_id')); ?>">My Profile</a></li>
 
                      <li><a href="<?php print site_url('my_attendance'); ?>">My Attendance</a></li>
 					 <li><a href="<?php print site_url('my_inductions'); ?>">My Inductions</a></li>

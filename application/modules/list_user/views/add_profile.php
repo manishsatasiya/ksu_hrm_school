@@ -203,7 +203,7 @@
                             <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
                         </div>
 						<div class="col-md-4"> <?php print form_label('Original Year Joined', 'original_start_year',array('class'=>'form-label')); ?>
-							<div class="input-append success date col-md-10 col-lg-10 no-padding"> 
+							<div class="input-append success col-md-10 col-lg-10 no-padding"> 
 							<?php print form_dropdown('original_start_year',$original_start_year_list,$this->session->flashdata('original_start_year'),'id="original_start_year" class="select2 form-control"'); ?>
 							</div>
 						</div>
