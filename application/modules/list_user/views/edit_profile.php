@@ -1218,6 +1218,98 @@ print form_hidden('user_id', $user_data->user_unique_id);
                         ?>
                           </div>
                         </li>
+						
+						<li>
+                          <div class="col-md-5">
+                            <label>CV</label>
+                            <input type="file" name="cv[]" id="cv" class="form-control input-sm" accept="image/jpg|image/jpeg|image/png|application/pdf" multiple>
+                          </div>
+                          <div class="col-md-7">
+                            <?php
+                        if(isset($user_documents["9"]) && count($user_documents["9"]) > 0)
+                        {
+							foreach($user_documents["9"] as $_document_id => $_document) {
+                        ?>
+                            <div> <a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-file-text"></i></a> <a class="btn-delet" title="Delete" href="<?php print base_url()?>list_user/delete_profile_document/<?php echo $user_data->user_unique_id?>/9/<?php echo $_document_id; ?>"><i class="fa fa-trash-o"></i></a> </div>
+                            <?php
+							}
+                        }
+                        ?>
+                          </div>
+                        </li>
+						<li>
+                          <div class="col-md-5">
+                            <label>Reference 1</label>
+                            <input type="file" name="Reference_1[]" id="Reference_1" class="form-control input-sm" accept="image/jpg|image/jpeg|image/png|application/pdf" multiple>
+                          </div>
+                          <div class="col-md-7">
+                            <?php
+                        if(isset($user_documents["11"]) && count($user_documents["11"]) > 0)
+                        {
+							foreach($user_documents["11"] as $_document_id => $_document) {
+                        ?>
+                            <div> <a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-file-text"></i></a> <a class="btn-delet" title="Delete" href="<?php print base_url()?>list_user/delete_profile_document/<?php echo $user_data->user_unique_id?>/11/<?php echo $_document_id; ?>"><i class="fa fa-trash-o"></i></a> </div>
+                            <?php
+							}
+                        }
+                        ?>
+                          </div>
+                        </li>
+						<li>
+                          <div class="col-md-5">
+                            <label>Reference 2</label>
+                            <input type="file" name="Reference_2[]" id="Reference_2" class="form-control input-sm" accept="image/jpg|image/jpeg|image/png|application/pdf" multiple>
+                          </div>
+                          <div class="col-md-7">
+                            <?php
+                        if(isset($user_documents["12"]) && count($user_documents["12"]) > 0)
+                        {
+							foreach($user_documents["12"] as $_document_id => $_document) {
+                        ?>
+                            <div> <a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-file-text"></i></a> <a class="btn-delet" title="Delete" href="<?php print base_url()?>list_user/delete_profile_document/<?php echo $user_data->user_unique_id?>/12/<?php echo $_document_id; ?>"><i class="fa fa-trash-o"></i></a> </div>
+                            <?php
+							}
+                        }
+                        ?>
+                          </div>
+                        </li>
+						<li>
+                          <div class="col-md-5">
+                            <label>Lesson Plan</label>
+                            <input type="file" name="Lesson_Plan[]" id="Lesson_Plan" class="form-control input-sm" accept="image/jpg|image/jpeg|image/png|application/pdf" multiple>
+                          </div>
+                          <div class="col-md-7">
+                            <?php
+                        if(isset($user_documents["13"]) && count($user_documents["13"]) > 0)
+                        {
+							foreach($user_documents["13"] as $_document_id => $_document) {
+                        ?>
+                            <div> <a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-file-text"></i></a> <a class="btn-delet" title="Delete" href="<?php print base_url()?>list_user/delete_profile_document/<?php echo $user_data->user_unique_id?>/13/<?php echo $_document_id; ?>"><i class="fa fa-trash-o"></i></a> </div>
+                            <?php
+							}
+                        }
+                        ?>
+                          </div>
+                        </li>
+						<li>
+                          <div class="col-md-5">
+                            <label>Writing Sample</label>
+                            <input type="file" name="Writing_Sample[]" id="Writing_Sample" class="form-control input-sm" accept="image/jpg|image/jpeg|image/png|application/pdf" multiple>
+                          </div>
+                          <div class="col-md-7">
+                            <?php
+                        if(isset($user_documents["14"]) && count($user_documents["14"]) > 0)
+                        {
+							foreach($user_documents["14"] as $_document_id => $_document) {
+                        ?>
+                            <div> <a href="<?php print base_url().$_document; ?>" target="_blank"> <i class="fa fa-file-text"></i></a> <a class="btn-delet" title="Delete" href="<?php print base_url()?>list_user/delete_profile_document/<?php echo $user_data->user_unique_id?>/14/<?php echo $_document_id; ?>"><i class="fa fa-trash-o"></i></a> </div>
+                            <?php
+							}
+                        }
+                        ?>
+                          </div>
+                        </li>
+						
                       </ul>
                       <br />
                       <input type="submit" name="submit" value="Submit" class="btn btn-success btn-cons">
