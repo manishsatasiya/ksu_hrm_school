@@ -1594,6 +1594,28 @@ function get_jobtitle_list() {
 		}
 		return $student_arr;
 	}
+
+function get_original_start_year_list() {
+		$arr[""] = '--Select--';
+		$arr["2007-08"] = '2007-08';
+		$arr["2008-09"] = '2008-09';
+		$arr["2009-10"] = '2009-10';
+		$arr["2010-11"] = '2010-11';
+		$arr["2011-12"] = '2011-12';
+		$arr["2012-13"] = '2012-13';
+		$arr["2013-14"] = '2013-14';
+		$arr["2014-15"] = '2014-15';
+		return $arr;
+	}
+	 
+function get_name_title_list() {
+		$arr[""] = '--Select--';
+		$arr["Mr"] = 'Mr';
+		$arr["Mrs"] = 'Mrs';
+		$arr["Ms"] = 'Ms';
+		$arr["Dr"] = 'Dr';
+		return $arr;
+	}
 	
 function list_dashboard_page(){
 	return array('Text'=>'Text','Normal'=>'Normal','Advance'=>'Advance');

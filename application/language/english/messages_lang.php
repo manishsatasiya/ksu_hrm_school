@@ -543,6 +543,7 @@ $lang['workshop_type_sub'] = 'Workshop Type';
 $lang['contractors_sub'] = 'Contractors';
 $lang['duties_sub'] = 'Duties';
 $lang['department_sub'] = 'Department';
+$lang['jobtitle_sub'] = 'Jobtitle';
 $lang['nationality_sub'] = 'Nationality';
 $lang['other_staff_sub'] = 'Other Staff';
 $lang['qualification_sub'] = 'Qualification';
@@ -682,6 +683,10 @@ $lang['list_duties'] = 'Duties';
 $lang['add_department'] = 'Add Department';
 $lang['edit_department'] = 'Edit Department';
 $lang['list_department'] = 'Department';
+
+$lang['add_jobtitle'] = 'Add Jobtitle';
+$lang['edit_jobtitle'] = 'Edit Jobtitle';
+$lang['list_jobtitle'] = 'Job Title';
 
 $lang['add_nationality'] = 'Add Nationality';
 $lang['edit_nationality'] = 'Edit Nationality';

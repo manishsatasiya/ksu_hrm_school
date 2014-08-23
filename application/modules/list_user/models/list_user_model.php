@@ -32,6 +32,19 @@ class List_User_model extends CI_Model {
 		return false;
 	}
 	
+	public function check_user_profile_exist($user_id) {
+		$this->db->select('*');
+    	$this->db->from('user_profile');
+		$this->db->where('user_profile.user_id',$user_id);
+		$query = $this->db->get();
+		
+		if($query->num_rows() > 0) {
+    		return $query->row();
+    	}
+		
+		return false;
+	}
+	
 	public function get_cv_reference($user_id) {
 		$this->db->select('user_cv_reference.*');
     	$this->db->from('user_cv_reference');

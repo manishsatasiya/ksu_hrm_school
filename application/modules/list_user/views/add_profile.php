@@ -51,10 +51,9 @@
                       <?php print form_label('Gender', 'gender',array('class'=>'form-label')); ?>
                       <?php print form_dropdown('gender',array(''=> 'Select Gender','M'=> 'Male','F'=>'Female'),'','id="gender" class="select2 form-control"'); ?>
                     </div>
-                    <div class="col-md-4">
-                      <?php //print form_label('ELSD ID', 'elsd_id',array('class'=>'form-label')); ?>
-                      <?php //print form_input(array('name' => 'elsd_id', 'id' => 'elsd_id', 'value' => $this->session->flashdata('elsd_id'), 'class' => 'form-control no-boarder','placeholder' => 'ELSD ID')); ?>
-                    </div>
+				    <div class="col-md-4"> <?php print form_label('Name Title', 'title',array('class'=>'form-label')); ?> 
+				    <?php print form_dropdown('title',$name_title_list,$this->session->flashdata('title'),'id="title" class="select2 form-control"'); ?>
+				    </div>
                   </div>
                   <!--row 1 end-->
                   <!--row 2 start-->
@@ -203,6 +202,11 @@
                             <?php print form_input(array('name' => 'original_start_date', 'id' => 'show_dp', 'value' => $this->session->flashdata('original_start_date'), 'class' => 'form-control')); ?>
                             <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
                         </div>
+						<div class="col-md-4"> <?php print form_label('Original Year Joined', 'original_start_year',array('class'=>'form-label')); ?>
+							<div class="input-append success date col-md-10 col-lg-10 no-padding"> 
+							<?php print form_dropdown('original_start_year',$original_start_year_list,$this->session->flashdata('original_start_year'),'id="original_start_year" class="select2 form-control"'); ?>
+							</div>
+						</div>
                         <div class="col-md-4">
                       <?php print form_label('Joining Date for academic year', 'cy_joining_date',array('class'=>'form-label')); ?>
                       <div class="input-append success date col-md-10 col-lg-6 no-padding">

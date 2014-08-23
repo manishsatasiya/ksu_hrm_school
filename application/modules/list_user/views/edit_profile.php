@@ -815,6 +815,11 @@ print form_hidden('user_id', $user_data->user_unique_id);
                             <h4 class="semi-bold">Step 1 - <span class="light">Personal & Contact Details</span></h4>
                             <br>
 							<?php print form_open('list_user/edit_profile/'.$user_data->user_unique_id.'/6', array('id' => 'edit_profile','name'=>'edit_profile')) ."\r\n"; ?>
+							<div class="row form-row">		
+                              <div class="col-md-3"> <?php print form_label('Name Title', 'title',array('class'=>'form-label')); ?> 
+							  <?php print form_dropdown('title',$name_title_list,($user_data)?$user_data->title:$this->session->flashdata('title'),'id="title" class="select2 form-control"'); ?>
+							  </div>  
+							</div>  
                             <div class="row form-row">		
                               <div class="col-md-3"> <?php print form_label('First Names', 'names',array('class'=>'form-label')); ?> 
 							  <?php print form_input(array('name' => 'first_name', 'id' => 'first_name', 'value' => ($user_data)?$user_data->first_name:$this->session->flashdata('first_name'), 'class' => 'form-control ','placeholder' => 'First Name')); ?> </div>
@@ -912,6 +917,11 @@ print form_hidden('user_id', $user_data->user_unique_id);
 							<div class="row form-row">                              
                               <div class="col-md-4"> <?php print form_label('Original Joining Date at KSU', 'original_start_date',array('class'=>'form-label')); ?>
                                 <div class="input-append success date col-md-10 col-lg-10 no-padding"> <?php print form_input(array('name' => 'original_start_date', 'id' => 'show_dp', 'value' => ($user_data)?make_dp_date($user_data->original_start_date):$this->session->flashdata('original_start_date'), 'class' => 'form-control')); ?> <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>
+                              </div>
+							  <div class="col-md-4"> <?php print form_label('Original Year Joined', 'original_start_year',array('class'=>'form-label')); ?>
+                                <div class="input-append success date col-md-10 col-lg-10 no-padding"> 
+								<?php print form_dropdown('original_start_year',$original_start_year_list,($user_data)?$user_data->original_start_year:$this->session->flashdata('original_start_year'),'id="original_start_year" class="select2 form-control"'); ?>
+								</div>
                               </div>
 							  <div class="col-md-4"> <?php print form_label('Joining Date for academic year', 'cy_joining_date',array('class'=>'form-label')); ?>
                                 <div class="input-append success date col-md-10 col-lg-10 no-padding"> <?php print form_input(array('name' => 'cy_joining_date', 'id' => 'show_dp', 'value' => ($user_data)?make_dp_date($user_data->cy_joining_date):$this->session->flashdata('cy_joining_date'), 'class' => 'form-control','placeholder' => 'Joining Date')); ?> <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span> </div>

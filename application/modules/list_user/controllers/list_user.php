@@ -613,6 +613,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 				$elsd_id = generateElsdId($this->input->post('gender'));
 				$user_data = array(
 						'status'       => $this->input->post('status'),
+						'title'       => $this->input->post('title'),
 						'first_name'       => $this->input->post('first_name'),
 						'middle_name'       => $this->input->post('middle_name'),
 						'middle_name2'       => $this->input->post('middle_name2'),
@@ -648,6 +649,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 						//'responsibilities'       => $this->input->post('responsibilities'),
 						'cy_joining_date'       => make_db_date($this->input->post('cy_joining_date')),
 						'original_start_date'       => make_db_date($this->input->post('original_start_date')),
+						'original_start_year'       => $this->input->post('original_start_year'),
 						'returning'       => $this->input->post('returning'),
 						'teaching_experience'       => $this->input->post('teaching_experience'),
 						'contractor'       => $this->input->post('contractor'),
@@ -735,6 +737,8 @@ $this->template->set_partial('sidebar', 'sidebar');
 		$content_data['campus_list'] = get_campus_list(1);
 		$content_data['department_list'] = get_department_list();
 		$content_data['jobtitle_list'] = get_jobtitle_list();
+		$content_data['original_start_year_list'] = get_original_start_year_list();
+		$content_data['name_title_list'] = get_name_title_list();
 		$content_data['interview_outcome_list'] = get_interview_outcome();
 		$content_data['interview_type_list'] = get_interview_type();
 		
@@ -791,6 +795,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 					$old_roll_id = $this->list_user_model->get_user_roll($user_id);
 					$user_data = array(
 							//'status'       => $this->input->post('status'),
+							'title'       => $this->input->post('title'),
 							'first_name'       => $this->input->post('first_name'),
 							'middle_name'       => $this->input->post('middle_name'),
 							'middle_name2'       => $this->input->post('middle_name2'),
@@ -828,6 +833,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 							//'responsibilities'       => $this->input->post('responsibilities'),
 							'cy_joining_date'       => make_db_date($this->input->post('cy_joining_date')),
 							'original_start_date'       => make_db_date($this->input->post('original_start_date')),
+							'original_start_year'       => $this->input->post('original_start_year'),
 							'returning'       => $this->input->post('returning'),
 							'teaching_experience'       => $this->input->post('teaching_experience'),
 							'contractor'       => $this->input->post('contractor'),
@@ -925,6 +931,11 @@ $this->template->set_partial('sidebar', 'sidebar');
 			}
 		}
 		
+		if(!$this->list_user_model->check_user_profile_exist($user_id))
+		{
+			$first_insert_profile_data = array('user_id' => $user_id);
+			$profile_id = grid_add_data($first_insert_profile_data,'user_profile');
+		}
 		
 		$user_data = $this->list_user_model->get_user_profile($user_id);
     	if(!$user_data)
@@ -1053,6 +1064,8 @@ $this->template->set_partial('sidebar', 'sidebar');
 		$content_data['campus_list'] = get_campus_list(1);
 		$content_data['department_list'] = get_department_list();
 		$content_data['jobtitle_list'] = get_jobtitle_list();
+		$content_data['original_start_year_list'] = get_original_start_year_list();
+		$content_data['name_title_list'] = get_name_title_list();
 		$content_data['interview_outcome_list'] = get_interview_outcome();
 		$content_data['interview_type_list'] = get_interview_type();
 		
