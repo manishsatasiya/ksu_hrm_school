@@ -1372,9 +1372,11 @@ function get_profile_pic($user_id = 0) {
 	if($user_id == 0)
 		$user_id = $ci->session->userdata('user_id');
 	
-	$ci->db->select('profile_picture');
+	$ci->db->select('profile_picture,elsd_id,job_title.job_title AS job_title_name');
 	$ci->db->from('users');
-	$ci->db->where('user_id', $user_id);
+	$ci->db->join('user_profile', 'user_profile.user_id = users.user_id','left');
+	$ci->db->join('job_title', 'job_title.job_title_id = user_profile.job_title','left');
+	$ci->db->where('users.user_id', $user_id);
 	$ci->db->limit(1);
 	$query = $ci->db->get();
 	if($query->num_rows() == 1) {
@@ -1389,6 +1391,8 @@ function get_profile_pic($user_id = 0) {
 			$profile_pic[150] = $profile_picture_150;
 			$profile_pic[75] = $profile_picture_75;
 		}
+		$profile_pic['elsd_id'] = $row->elsd_id;
+		$profile_pic['job_title_name'] = $row->job_title_name;
 	}
 		
 	return $profile_pic;	   

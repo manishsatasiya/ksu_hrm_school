@@ -52,7 +52,6 @@ $controller_name = $this->router->fetch_class();
 						$profile_picture_75 = $profile_picture[75];
 						?>
 						<img src="<?php print $profile_picture_75; ?>" alt="" data-src="<?php print $profile_picture_75; ?>" data-src-retina="" width="69" height="69" />
-				<!--<img src="<?php print base_url() ?>assets/img/profiles/avatar.jpg" alt="" data-src="<?php print base_url() ?>assets/img/profiles/avatar.jpg" width="69" height="69" />-->
 			</div>
 
 			<div class="user-info">
@@ -62,6 +61,8 @@ $controller_name = $this->router->fetch_class();
 					<?php //echo $this->session->userdata('username');  ?>
                 </div>
                 <div class="status">Status<a href="#"><div class="status-icon green"></div>Online</a></div>
+                <div class="status">ELSD ID: <?=$profile_picture['elsd_id'];?></div>
+                <div class="status">Job title: <?=$profile_picture['job_title_name'];?></div>
 			</div>
 		</div>
 
