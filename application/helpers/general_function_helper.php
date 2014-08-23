@@ -1535,9 +1535,7 @@ function user_profile_status($type = "")
 		}		
 		else if($type == "newemployee")			 
 		{
-			$ret = array('2'=>$status_master_arr[2],//'New employee deleted by AHR',
-						 '3'=>$status_master_arr[3],//'AHR rejects employee (missing documents)',
-						 '4'=>$status_master_arr[4],//'AHR rejects employee (does not meet requirements)',
+			$ret = array('3'=>$status_master_arr[3],//'AHR rejects employee (missing documents)',
 						 '5'=>$status_master_arr[5],//'Pending 1',
 						 '6'=>$status_master_arr[6],//'Pending 2',
 						 '7'=>$status_master_arr[7],//'Pending 3',
@@ -1561,7 +1559,9 @@ function user_profile_status($type = "")
 		}
 		else if($type == "inactivestaff")			 
 		{
-			$ret = array('16'=>$status_master_arr[16],//'Dismissed',
+			$ret = array('2'=>$status_master_arr[2],//'New employee deleted by AHR',
+						 '4'=>$status_master_arr[4],//'AHR rejects employee (does not meet requirements)',
+						 '16'=>$status_master_arr[16],//'Dismissed',
 						 '17'=>$status_master_arr[17],//'Resigned',
 						 '18'=>$status_master_arr[18],//'Contract not renewed by staff',
 						 '19'=>$status_master_arr[19]//'Contract not renewed by ELSD'
