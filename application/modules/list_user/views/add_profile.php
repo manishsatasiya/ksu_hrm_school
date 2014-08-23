@@ -166,13 +166,12 @@
                   <!--row 2.3 Start KSU Role,Job Title,Scan ID-->
                   	<div class="row form-row">
                   	<div class="col-md-4">
-                      <?php print form_label('KSU Role', 'user_roll_id',array('class'=>'form-label')); ?>
+                      <?php print form_label('ELSD System Role', 'user_roll_id',array('class'=>'form-label')); ?>
                       <?php print form_dropdown('user_roll_id',$other_user_roll,'0','id="user_roll_id" class="select2 form-control"'); ?>
-                      <span>The employee's actual role within the ELSD programme</span>
                     </div>
                     <div class="col-md-4">
                           <?php print form_label('Job Title', 'job_title',array('class'=>'form-label')); ?>
-                          <?php print form_input(array('name' => 'job_title', 'id' => 'job_title', 'value' => $this->session->flashdata('job_title'), 'class' => 'form-control no-boarder','placeholder' => 'Job Title')); ?>
+                          <?php print form_dropdown('job_title',$jobtitle_list,($user_data)?$user_data->job_title:$this->session->flashdata('job_title'),'id="department_id" class="select2 form-control"'); ?>
                       </div>  
                     <div class="col-md-4">
 						  <?php print form_label('Scan ID', 'scanner_id',array('class'=>'form-label')); ?>

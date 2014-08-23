@@ -1579,6 +1579,22 @@ function get_department_list() {
 		return $student_arr;
 	}
 
+	
+function get_jobtitle_list() {
+		$ci =& get_instance();
+		$ci->db->select('*');
+		$ci->db->from('job_title');
+		$ci->db->order_by('job_title', 'ASC');	
+		$query = $ci->db->get();
+		$student_data = $query->result_array();
+		$student_arr = array();
+		$student_arr[0] = '--Select--';
+		foreach ($student_data as $student_datas){
+			$student_arr[$student_datas['job_title_id']] = $student_datas['job_title'];
+		}
+		return $student_arr;
+	}
+	
 function list_dashboard_page(){
 	return array('Text'=>'Text','Normal'=>'Normal','Advance'=>'Advance');
 }

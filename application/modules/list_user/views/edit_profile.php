@@ -84,7 +84,7 @@
                 <div class="sub-title"> Employment Information </div>
                 <ul>
                   <li class="emply-info1">
-                    Job Title: <?php echo $user_data->job_title; ?> </li>
+                    Job Title: <?php echo $user_data->job_title_name; ?> </li>
                   <li>
                     <div class="col-md-6">Current Year Joining Date: <?php echo $user_data->cy_joining_date; ?></div>
                     <div class="col-md-6">Original Joining Date: <?php echo $user_data->original_start_date; ?></div>
@@ -900,8 +900,8 @@ print form_hidden('user_id', $user_data->user_unique_id);
                             </div>
                             <!--row 3.2 start-->
                             <div class="row form-row">
-							  <div class="col-md-4"> <?php print form_label('KSU Role', 'user_roll_id',array('class'=>'form-label')); ?> <?php print form_dropdown('user_roll_id',$other_user_roll,($user_data)?$user_data->user_roll_id:$this->session->flashdata('user_roll_id'),'id="user_roll_id" class="select2 form-control"'); ?> <span>The employee's actual role within the ELSD programme</span> </div>	
-							  <div class="col-md-4"> <?php print form_label('Job Title', 'job_title',array('class'=>'form-label')); ?> <?php print form_input(array('name' => 'job_title', 'id' => 'job_title', 'value' => ($user_data)?$user_data->job_title:$this->session->flashdata('job_title'), 'class' => 'form-control ','placeholder' => 'Job Title')); ?> </div>
+							  <div class="col-md-4"> <?php print form_label('ELSD System Role', 'user_roll_id',array('class'=>'form-label')); ?> <?php print form_dropdown('user_roll_id',$other_user_roll,($user_data)?$user_data->user_roll_id:$this->session->flashdata('user_roll_id'),'id="user_roll_id" class="select2 form-control"'); ?> </div>	
+							  <div class="col-md-4"> <?php print form_label('Job Title', 'job_title',array('class'=>'form-label')); ?> <?php print form_dropdown('job_title',$jobtitle_list,($user_data)?$user_data->job_title:$this->session->flashdata('job_title'),'id="department_id" class="select2 form-control"'); ?>  </div>
                               <div class="col-md-4"> <?php print form_label('Scan ID', 'scanner_id',array('class'=>'form-label')); ?> <?php print form_input(array('name' => 'scanner_id', 'id' => 'scanner_id', 'value' => ($user_data)?$user_data->scanner_id:$this->session->flashdata('scanner_id'), 'class' => 'form-control ','placeholder' => 'Hand Scan ID')); ?> </div>
                             </div>
 							<div class="row form-row">                              

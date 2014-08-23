@@ -734,6 +734,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 		$content_data['nationality_list'] = get_nationality_list();
 		$content_data['campus_list'] = get_campus_list(1);
 		$content_data['department_list'] = get_department_list();
+		$content_data['jobtitle_list'] = get_jobtitle_list();
 		$content_data['interview_outcome_list'] = get_interview_outcome();
 		$content_data['interview_type_list'] = get_interview_type();
 		
@@ -1051,6 +1052,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 		$content_data['nationality_list'] = get_nationality_list();
 		$content_data['campus_list'] = get_campus_list(1);
 		$content_data['department_list'] = get_department_list();
+		$content_data['jobtitle_list'] = get_jobtitle_list();
 		$content_data['interview_outcome_list'] = get_interview_outcome();
 		$content_data['interview_type_list'] = get_interview_type();
 		

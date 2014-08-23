@@ -8,9 +8,10 @@ class List_User_model extends CI_Model {
     }
 
     public function get_user_profile($user_id) {
-		$this->db->select('users.*,users.user_id as user_unique_id,user_profile.*,user_verifications.*,countries.nationality as nationality_name,user_roll.user_roll_name,contractors.contractor as contractor_name,school_campus.campus_name,c1.first_name as line_manager,duties.duties,c2.first_name as change_by_name');
+		$this->db->select('users.*,users.user_id as user_unique_id,user_profile.*,job_title.job_title AS job_title_name,user_verifications.*,countries.nationality as nationality_name,user_roll.user_roll_name,contractors.contractor as contractor_name,school_campus.campus_name,c1.first_name as line_manager,duties.duties,c2.first_name as change_by_name');
     	$this->db->from('users');
 		$this->db->join('user_profile', 'user_profile.user_id = users.user_id','left');
+		$this->db->join('job_title', 'job_title.job_title_id = user_profile.job_title','left');
     	$this->db->join('user_verifications', 'user_verifications.user_id = users.user_id','left');
 		$this->db->join('countries', 'countries.id = user_profile.nationality','left');
 		$this->db->join('user_roll', 'user_roll.user_roll_id = users.user_roll_id','left');
