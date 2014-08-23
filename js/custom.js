@@ -95,7 +95,6 @@ if(CI.controller_name == 'list_school')
 	});*/
 }
 // list_school END
-
 //list_enable_week START
 if(CI.controller_name == 'list_enable_week')
 {

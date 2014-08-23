@@ -1452,12 +1452,15 @@ $(document).ready(function() {
 			contracted_numbers: "Please enter number"
 		}
 	});
-	
+	/*
+	$(function() {
+			$('#show_tp').timepicker({
+				showLeadingZero: true,
+				onHourShow: OnHourShowCallbackAM
+			});
+	});
+	*/
 	$(document).ready(function(){
-		$('#show_tp').timepicker({
-			showLeadingZero: true,
-			onHourShow: OnHourShowCallbackAM
-		});
 		$("#show_dp").datepicker({
 			format: 'D dd MM yyyy'
 		});
