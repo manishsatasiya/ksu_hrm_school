@@ -1681,7 +1681,28 @@ $(document).ready(function() {
 			}			
 		},
 		messages: {
-			duties: "Please enter department name"
+			department_name: "Please enter department name"
+		}
+	});
+	
+	$("#add_job_title_form_datatable").validate({
+		submitHandler: function(form) {
+			
+			//form.submit();
+			jQuery(form).ajaxSubmit({
+				success: function(data){
+					$('#myModal').delay(1000).modal('hide');
+					parent.reload_datatable();
+				}
+			});
+		},
+		rules: {
+			job_title:{				
+				required:true
+			}			
+		},
+		messages: {
+			job_title: "Please enter job title"
 		}
 	});
 	
