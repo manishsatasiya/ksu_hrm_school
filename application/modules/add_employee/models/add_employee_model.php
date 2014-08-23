@@ -99,7 +99,8 @@ class Add_Employee_model extends CI_Model {
 	}
 	
 	public function get_user_workshop($user_id) {
-		$this->db->select('workshops.title,workshops.topic,workshops.start_date,CONCAT(users.first_name,users.last_name) as presenter_name,workshop_types.type',false);
+		$this->db->select('workshops.title,workshops.topic,workshops.start_date,
+		CONCAT_WS(" ",users.first_name,users.middle_name,users.middle_name2,users.last_name) AS presenter_name,workshop_types.type',false);
     	$this->db->from('workshops');
 		$this->db->join('user_workshop', 'user_workshop.workshop_id = workshops.workshop_id','left');
 		$this->db->join('users', 'workshops.presenter = users.user_id','left');

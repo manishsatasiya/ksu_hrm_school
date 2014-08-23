@@ -123,7 +123,7 @@ class List_User_model extends CI_Model {
 	}
 	
 	public function get_user_workshop($user_id) {
-		$this->db->select('workshops.title,workshops.topic,workshops.start_date,CONCAT(users.first_name,users.last_name) as presenter_name,workshop_types.type',false);
+		$this->db->select('workshops.title,workshops.topic,workshops.start_date,CONCAT_WS(" ",users.first_name,users.middle_name,users.middle_name2,users.last_name) as presenter_name,workshop_types.type',false);
     	$this->db->from('workshops');
 		$this->db->join('user_workshop', 'user_workshop.workshop_id = workshops.workshop_id','left');
 		$this->db->join('users', 'workshops.presenter = users.user_id','left');
@@ -511,10 +511,10 @@ SELECT `user_id`, `user_roll_id`, `username`, `password`, `section_id`, `section
 		
         $this->db->select('user_status_log.user_id,
 						   u1.elsd_id,
-						   CONCAT(u1.first_name," ",u1.middle_name," ",u1.last_name) AS staff_name,'.
+						   CONCAT_WS(" ",u1.first_name,u1.middle_name,u1.middle_name2,u1.last_name) AS staff_name,'.
 						   $strQueryAllOldStatus.' AS oldstatus,'.
 						   $strQueryAllNewStatus.' AS newstatus,
-						   CONCAT(c1.first_name," ",c1.middle_name," ",c1.last_name) AS updated_by,
+						   CONCAT_WS(" ",c1.first_name,c1.middle_name,c1.middle_name2,c1.last_name) AS updated_by,
 						   comment,
 						   updated_at'
 						  ,FALSE);

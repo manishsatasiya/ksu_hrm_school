@@ -10,7 +10,7 @@ class Home_model extends CI_Model {
     public function get_staff_count() {
 		
 		$this->db->from('users');
-		$this->db->where_not_in('users.user_roll_id',array('1','4'));
+		$this->db->where_not_in('users.user_roll_id',array('1','3'));
 		//$this->db->where_in('active',array(2,1));
 		return $this->db->count_all_results();
     }
@@ -18,7 +18,7 @@ class Home_model extends CI_Model {
 	public function get_pending_count() {
 		
 		$this->db->from('users');
-		$this->db->where_not_in('users.user_roll_id',array('1','4'));
+		$this->db->where_not_in('users.user_roll_id',array('1','3'));
 		//$this->db->where('active',3);
 		return $this->db->count_all_results();
     }
@@ -26,7 +26,7 @@ class Home_model extends CI_Model {
 	public function get_block_count() {
 		
 		$this->db->from('users');
-		$this->db->where_not_in('users.user_roll_id',array('1','4'));
+		$this->db->where_not_in('users.user_roll_id',array('1','3'));
 		//$this->db->where('active',2);
 		return $this->db->count_all_results();
     }
@@ -65,7 +65,7 @@ class Home_model extends CI_Model {
 		$this->db->from('users');
 		$this->db->join('user_profile','users.user_id=user_profile.user_id','left');
 		$this->db->join('contractors','user_profile.contractor=contractors.id','left');
-		$this->db->where_not_in('users.user_roll_id',array('1','4'));
+		$this->db->where_not_in('users.user_roll_id',array('1','3'));
 		//$this->db->where('users.active','0');
 		$this->db->group_by('user_profile.contractor, user_profile.resignation_resons');
 		
@@ -241,7 +241,7 @@ class Home_model extends CI_Model {
     }
 	
 	public function get_employee_state($by_month = true) {
-		//$this->db->where_not_in('users.user_roll_id',array('1','4'));
+		//$this->db->where_not_in('users.user_roll_id',array('1','3'));
 		
 		$query = "SELECT COUNT(*) as cnt
 				  FROM users

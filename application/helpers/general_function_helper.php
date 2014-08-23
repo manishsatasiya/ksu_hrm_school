@@ -11,7 +11,7 @@ if (!function_exists('get_ca_lead_teacher_list')) {
      */
     function get_ca_lead_teacher_list() {
     	$ci =& get_instance();
-    	$ci->db->select('*');
+    	$ci->db->select('*,CONCAT_WS(" ",users.first_name,users.middle_name,users.middle_name2,users.last_name) AS staff_name',FALSE);
     	$ci->db->from('users');
     	$ci->db->join('user_roll','users.user_roll_id = user_roll.user_roll_id','left');    	
     	//$ci->db->where('users.user_roll_id IN(12)');   
@@ -31,7 +31,7 @@ if (!function_exists('get_ca_lead_teacher_list')) {
     	$teacher_arr = array();
     	$teacher_arr[0] = '--Select--';
     	foreach ($teacher_data as $teacher_datas){
-    		$teacher_arr[$teacher_datas['user_id']."j"] = $teacher_datas['first_name'].' '.$teacher_datas['last_name'];    		
+    		$teacher_arr[$teacher_datas['user_id']."j"] = $teacher_datas['staff_name'];    		
     	}
         return $teacher_arr;
     }
@@ -48,7 +48,7 @@ if (!function_exists('get_teacher_list')) {
      */
     function get_teacher_list($campus_id=0) {
     	$ci =& get_instance();
-    	$ci->db->select('*');
+    	$ci->db->select('*,CONCAT_WS(" ",users.first_name,users.middle_name,users.middle_name2,users.last_name) AS staff_name',FALSE);
     	$ci->db->from('users');
     	$ci->db->join('school_campus','school_campus.campus_id = users.campus_id','left');  
     	$ci->db->join('user_roll','users.user_roll_id = user_roll.user_roll_id','left');    	
@@ -73,7 +73,7 @@ if (!function_exists('get_teacher_list')) {
     	$teacher_arr = array();
     	$teacher_arr[0] = '--Select--';
     	foreach ($teacher_data as $teacher_datas){
-    		$teacher_arr[$teacher_datas['user_id']."j"] = $teacher_datas['first_name'].' '.$teacher_datas['last_name'];    		
+    		$teacher_arr[$teacher_datas['user_id']."j"] = $teacher_datas['staff_name'];    		
     	}
         return $teacher_arr;
     }
@@ -90,7 +90,7 @@ if (!function_exists('get_student_list')) {
 	 */
 	function get_student_list() {
 		$ci =& get_instance();
-		$ci->db->select('*');
+		$ci->db->select('*,CONCAT_WS(" ",users.first_name,users.middle_name,users.middle_name2,users.last_name) AS staff_name',FALSE);
 		$ci->db->from('users');
 		$ci->db->join('user_roll','users.user_roll_id = user_roll.user_roll_id','left');
 		$ci->db->where('users.user_roll_id', '4');
@@ -100,7 +100,7 @@ if (!function_exists('get_student_list')) {
 		$student_arr = array();
 		$student_arr[0] = '--Select--';
 		foreach ($student_data as $student_datas){
-			$student_arr[$student_datas['user_id']."j"] = $student_datas['first_name'].' '.$student_datas['last_name'];
+			$student_arr[$student_datas['user_id']."j"] = $student_datas['staff_name'];
 		}
 		return $student_arr;
 	}
@@ -118,16 +118,16 @@ if (!function_exists('get_other_user_list')) {
 	 */
 	function get_other_user_list() {
 		$ci =& get_instance();
-		$ci->db->select('*');
+		$ci->db->select('*,CONCAT_WS(" ",users.first_name,users.middle_name,users.middle_name2,users.last_name) AS staff_name',FALSE);
 		$ci->db->from('users');
-		$ci->db->where_not_in('users.user_roll_id',array('1','3','4'));
+		$ci->db->where_not_in('users.user_roll_id',array('1','3'));
 		$ci->db->order_by('first_name', 'ASC');	
 		$query = $ci->db->get();
 		$student_data = $query->result_array();
 		$student_arr = array();
 		$student_arr[0] = '--Select--';
 		foreach ($student_data as $_student_data){
-			$student_arr[$_student_data['user_id']] = $_student_data['first_name'].' '.$_student_data['last_name'].' - '.$_student_data['elsd_id'];
+			$student_arr[$_student_data['user_id']] = $_student_data['staff_name'].' - '.$_student_data['elsd_id'];
 		}
 		return $student_arr;
 	}
@@ -1659,10 +1659,9 @@ function make_db_date($date = ''){
 
 function get_line_manager_list() {
 	$ci =& get_instance();
-	$ci->db->select('*');
+	$ci->db->select('*,CONCAT_WS(" ",users.first_name,users.middle_name,users.middle_name2,users.last_name) AS staff_name',FALSE);
 	$ci->db->from('users');
 	$ci->db->join('user_profile','users.user_id = user_profile.user_id','left');
-	$ci->db->where_not_in('users.user_roll_id',array('3'));
 	$ci->db->where('user_profile.is_line_manager',1);
 	$ci->db->order_by('first_name', 'ASC');	
 	$query = $ci->db->get();
@@ -1670,17 +1669,16 @@ function get_line_manager_list() {
 	$student_arr = array();
 	$student_arr[0] = '--Select--';
 	foreach ($student_data as $_student_data){
-		$student_arr[$_student_data['user_id']] = $_student_data['first_name'];
+		$student_arr[$_student_data['user_id']] = $_student_data['staff_name'];
 	}
 	return $student_arr;
 }
 
 function get_interviewer_list() {
 	$ci =& get_instance();
-	$ci->db->select('*');
+	$ci->db->select('*,CONCAT_WS(" ",users.first_name,users.middle_name,users.middle_name2,users.last_name) AS staff_name',FALSE);
 	$ci->db->from('users');
 	$ci->db->join('user_profile','users.user_id = user_profile.user_id','left');
-	$ci->db->where_not_in('users.user_roll_id',array('3'));
 	$ci->db->where('user_profile.interviewer',1);
 	$ci->db->order_by('first_name', 'ASC');	
 	$query = $ci->db->get();
@@ -1688,16 +1686,16 @@ function get_interviewer_list() {
 	$student_arr = array();
 	$student_arr[0] = '--Select--';
 	foreach ($student_data as $_student_data){
-		$student_arr[$_student_data['user_id']] = $_student_data['first_name'];
+		$student_arr[$_student_data['user_id']] = $_student_data['staff_name'];
 	}
 	return $student_arr;
 }
 
 function get_campus_user_list() {
 	$ci =& get_instance();
-	$ci->db->select('*');
+	$ci->db->select('*,CONCAT_WS(" ",users.first_name,users.middle_name,users.middle_name2,users.last_name) AS staff_name',FALSE);
 	$ci->db->from('users');
-	$ci->db->where_not_in('users.user_roll_id',array('1','3','4'));
+	$ci->db->where_not_in('users.user_roll_id',array('1','3'));
 	$ci->db->order_by('first_name', 'ASC');
 	if(($ci->session->userdata('campus_id') > 0 || $ci->session->userdata('campus') != ""))
 	{
@@ -1709,7 +1707,7 @@ function get_campus_user_list() {
 	$student_arr = array();
 	$student_arr[0] = '--Select--';
 	foreach ($student_data as $_student_data){
-		$student_arr[$_student_data['user_id']] = $_student_data['first_name'].' '.$_student_data['last_name'].' - '.$_student_data['elsd_id'];
+		$student_arr[$_student_data['user_id']] = $_student_data['staff_name'].' - '.$_student_data['elsd_id'];
 	}
 	return $student_arr;
 }

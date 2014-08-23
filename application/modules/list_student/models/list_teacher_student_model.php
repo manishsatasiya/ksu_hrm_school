@@ -121,7 +121,7 @@ class List_Teacher_Student_model extends CI_Model {
 		$this->db->join('user_roll', 'user_roll.user_roll_id = users.user_roll_id','left');
 		$this->db->join('contractors', 'contractors.id = user_profile.contractor','left');
 		$this->db->join('countries', 'countries.id = user_profile.nationality','left');
-		$this->db->where_not_in('users.user_roll_id',array('1','3','4'));
+		$this->db->where_not_in('users.user_roll_id',array('1','3'));
     	$this->db->where_not_in('users.status',array('1'));
     	
     	!empty($data) ? $this->db->like($data) : "";
@@ -139,7 +139,7 @@ class List_Teacher_Student_model extends CI_Model {
     	if (!empty($search_data)) {
     		!empty($search_data['user_id']) ? $data['user_id'] = $search_data['user_id'] : "";
 			!empty($search_data['elsd_id']) ? $data['elsd_id'] = $search_data['elsd_id'] : "";
-    		!empty($search_data['staff_name']) ? $data['CONCAT(users.first_name," ",users.middle_name," ",users.last_name)'] = $search_data['staff_name'] : "";
+    		!empty($search_data['staff_name']) ? $data['CONCAT_WS(" ",users.first_name,users.middle_name,users.middle_name2,users.last_name)'] = $search_data['staff_name'] : "";
     		!empty($search_data['email']) ? $data['email'] = $search_data['email'] : "";
     		!empty($search_data['personal_email']) ? $data['personal_email'] = $search_data['personal_email'] : "";
     		!empty($search_data['user_roll_name']) ? $data['user_roll_name'] = $search_data['user_roll_name'] : "";
@@ -194,7 +194,7 @@ class List_Teacher_Student_model extends CI_Model {
 		
     	$this->db->select('users.user_id,
 						  users.elsd_id,
-						  CONCAT(users.first_name," ",users.middle_name," ",users.last_name) AS staff_name,
+						  CONCAT_WS(" ",users.first_name,users.middle_name,users.middle_name2,users.last_name) AS staff_name,
 						  users.email,
 						  users.personal_email,
 						  users.cell_phone,
@@ -207,8 +207,8 @@ class List_Teacher_Student_model extends CI_Model {
 						  department.department_name,
 						  user_profile.scanner_id,
 						  IF(user_profile.returning = 1,"Yes","No") AS returning,
-						  CONCAT(intr1.first_name," ",intr1.middle_name," ",intr1.last_name) AS interviewer1,
-						  CONCAT(intr2.first_name," ",intr2.middle_name," ",intr2.last_name) AS interviewer2,
+						  CONCAT_WS(" ",intr1.first_name,intr1.middle_name,intr1.middle_name2,intr1.last_name) AS interviewer1,
+						  CONCAT_WS(" ",intr2.first_name,intr2.middle_name,intr2.middle_name2,intr2.last_name) AS interviewer2,
 						  user_verifications.interview_date,
 						  user_verifications.interview_notes,'.
 						  $strQueryIntOutCome.' AS interview_outcome,'.
@@ -228,7 +228,7 @@ class List_Teacher_Student_model extends CI_Model {
 		$this->db->join('department', 'department.id = user_profile.department_id','left');
 		$this->db->join('contractors', 'contractors.id = user_profile.contractor','left');
 		$this->db->join('countries', 'countries.id = user_profile.nationality','left');
-		$this->db->where_not_in('users.user_roll_id',array('1','4'));
+		//$this->db->where_not_in('users.user_roll_id',array('1','3'));
 		
 		if($type != "")
 		{
@@ -558,7 +558,7 @@ class List_Teacher_Student_model extends CI_Model {
     	$this->db->from('users');
     	$this->db->join('user_roll', 'user_roll.user_roll_id = users.user_roll_id','left');
 		$this->db->join('user_profile', 'user_profile.user_id = users.user_id','left');
-    	$this->db->where_not_in('users.user_roll_id',array('1','3','4'));
+    	$this->db->where_not_in('users.user_roll_id',array('1','2','3'));
     	$this->db->where_not_in('users.status',array('1'));
     	!empty($search_data) ? $this->db->like($search_data) : "";
     	return $this->db->count_all_results();

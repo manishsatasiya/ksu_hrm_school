@@ -210,7 +210,8 @@ class Workshops_model extends CI_Model {
             !empty($search_data['created_at']) ? $data['created_at'] = $search_data['created_at'] : "";
         }
    
-        $this->db->select('user_workshop.*,CONCAT(users.first_name," ", users.last_name) as attendee_name,CONCAT(l.first_name," ", l.last_name) as line_manager,users.elsd_id,users.email',FALSE);
+        $this->db->select('user_workshop.*,CONCAT_WS(" ",users.first_name,users.middle_name,users.middle_name2,users.last_name) as attendee_name,
+							CONCAT_WS(" ",l.first_name,l.middle_name,l.middle_name2,l.last_name) as line_manager,users.elsd_id,users.email',FALSE);
         $this->db->from('user_workshop');  
         $this->db->join('users','users.user_id = user_workshop.attendee','left');
 		$this->db->join('users AS l','l.user_id = users.coordinator','left');
@@ -295,7 +296,7 @@ class Workshops_model extends CI_Model {
 	function get_attendee_user_list() {
 		$this->db->select('*');
 		$this->db->from('users');
-		$this->db->where_not_in('users.user_roll_id',array('1','3','4'));
+		$this->db->where_not_in('users.user_roll_id',array('1','3'));
 		
 		if(($this->session->userdata('campus_id') > 0 || $this->session->userdata('campus') != ""))
 		{

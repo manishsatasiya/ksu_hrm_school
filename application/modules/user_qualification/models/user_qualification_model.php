@@ -10,7 +10,7 @@ class User_qualification_model extends CI_Model {
     	if (!empty($search_data)) {
     		!empty($search_data['user_id']) ? $data['user_id'] = $search_data['user_id'] : "";
 			!empty($search_data['elsd_id']) ? $data['elsd_id'] = $search_data['elsd_id'] : "";
-    		!empty($search_data['staff_name']) ? $data['CONCAT(users.first_name," ",users.middle_name," ",users.last_name)'] = $search_data['staff_name'] : "";
+    		!empty($search_data['staff_name']) ? $data['CONCAT_WS(" ",users.first_name,users.middle_name,users.middle_name2,users.last_name)'] = $search_data['staff_name'] : "";
     		!empty($search_data['email']) ? $data['email'] = $search_data['email'] : "";
     		!empty($search_data['personal_email']) ? $data['personal_email'] = $search_data['personal_email'] : "";
     		!empty($search_data['user_roll_name']) ? $data['user_roll_name'] = $search_data['user_roll_name'] : "";
@@ -68,7 +68,7 @@ class User_qualification_model extends CI_Model {
 		$this->db->join('contractors', 'contractors.id = user_profile.contractor','left');
 		$this->db->join('countries', 'countries.id = user_profile.nationality','left');
 		$this->db->join('user_qualification', 'user_qualification.user_id = users.user_id','left');
-		$this->db->where_not_in('users.user_roll_id',array('1','4'));
+		$this->db->where_not_in('users.user_roll_id',array('1','3'));
 		$this->db->where_in('user_qualification.qualification_id',array_keys($dt_columns));
 		if($type != "")
 		{
