@@ -240,7 +240,7 @@ class List_Teacher_Student_model extends CI_Model {
 		
     	!empty($data) ? $this->db->like($data) : "";
 		
-		if(($this->session->userdata('campus_id') > 0 || $this->session->userdata('campus') != ""))
+		if($this->session->userdata('role_id') != 1 && ($this->session->userdata('campus_id') > 0 || $this->session->userdata('campus') != ""))
 		{
 			if($this->session->userdata('campus_id') > 0){
 				$this->db->where('users.campus_id',$this->session->userdata('campus_id'));
@@ -248,7 +248,7 @@ class List_Teacher_Student_model extends CI_Model {
 			}	
 		}
         
-		if($this->session->userdata('contractor') > 0){
+		if($this->session->userdata('role_id') != 1 && $this->session->userdata('contractor') > 0){
 			$this->db->where('user_profile.contractor',$this->session->userdata('contractor'));
 		}
 		
