@@ -27,17 +27,35 @@
     <div class="tabbable tabs-left">
       <input type="hidden" id="tab_id" value="<?=$tab_id?>" />
       <ul class="nav nav-tabs left-tab" id="tab-2">
-        <li class="active"> <a href="#tab2Personal"><i class="fa fa-table"></i> Personal Details</a></li>
-        <li><a href="#tab2Contact"><i class="fa fa-tablet"></i> Contact Details </a></li>
-        <li><a href="#tab2Medical"><i class="fa fa-plus-square"></i> Medical Details </a></li>
-        <li><a href="#tab2Emergency"><i class="fa fa-fire-extinguisher"></i> Emergency Contacts </a></li>
-        <li><a href="#tab2CV"><i class="fa fa-file-o"></i> Qualifications & Employment History </a></li>
-        <li><a href="#tab2Workshops"><i class="fa fa-wrench"></i> Workshops </a></li>
-        <li><a href="#tab2Observations"><i class="fa fa-lightbulb-o"></i> Observations </a></li>
-        <li><a href="#tab2Privilege"><i class="fa fa-credit-card"></i> Add Privilege </a></li>
-		<li><a href="#tab2ViewStatusLog"><i class="fa fa-chain"></i> View Status Log </a></li>
+        <li class="active"> <a href="#tab2Personal"><i class="fa fa-table"></i> My Personal Details</a></li>
+        <li><a href="#tab2Contact"><i class="fa fa-tablet"></i> My Contact Details </a></li>
+        <li><a href="#tab2Medical"><i class="fa fa-plus-square"></i> My Medical Details </a></li>
+        <li><a href="#tab2Emergency"><i class="fa fa-fire-extinguisher"></i> My Emergency Contacts </a></li>
+        <li><a href="#tab2CV"><i class="fa fa-file-o"></i> My Qualifications & Employment </a></li>
+        <li><a href="#tab2Workshops"><i class="fa fa-wrench"></i> My Workshops </a></li>
+        <li><a href="#tab2Observations"><i class="fa fa-lightbulb-o"></i> My Observations </a></li>
+
+
+        <!--
+        *****************************************************************
+                              MANISH LOOK AT THIS
+        *****************************************************************
+        -->
+        <!-- li><a href="#tab2Privilege"><i class="fa fa-credit-card"></i> Add Privilege </a></li -->
+		    <!-- li><a href="#tab2ViewStatusLog"><i class="fa fa-chain"></i> View Status Log </a></li -->
+
+        <!--
+        *****************************************************************
+                              CLOSE
+        *****************************************************************
+        -->
+
+    <li><a href="#tab2mypma"><i class="fa fa-chain"></i> My PMA </a></li>
 		<li><a href="#tab2myattendance"><i class="fa fa-chain"></i> My Attendance </a></li>
 		<li><a href="#tab2myinductions"><i class="fa fa-chain"></i> My Induction </a></li>
+    <li><a href="#tab2mytimetable"><i class="fa fa-chain"></i> My Timetable </a></li>
+    <li><a href="#tab2mycover"><i class="fa fa-chain"></i> My Cover </a></li>
+    <li><a href="#tab2myrequests"><i class="fa fa-chain"></i> My Requests </a></li>
         <li style="background:none;">
           <div class="edit-profile-tab"><a href="#tab2Edit" class="btn btn-info">Edit Profile </a></div>
         </li>
@@ -158,6 +176,26 @@
             </div>
           </div>
         </div>
+
+
+    <!--
+    *****************************************************************
+                          MANISH LOOK AT THIS
+    *****************************************************************
+    -->
+
+    <div class="tab-pane generaltab" id="tab2mypma"><h3 class="userinfo-ttl"> My PMA</h3></div>
+    <div class="tab-pane generaltab" id="tab2mytimetable"><h3 class="userinfo-ttl"> My Timetable</h3></div>
+    <div class="tab-pane generaltab" id="tab2mycover"><h3 class="userinfo-ttl"> My Cover</h3></div>
+    <div class="tab-pane generaltab" id="tab2myrequests"><h3 class="userinfo-ttl"> My Requests</h3></div>
+
+
+    <!--
+    *****************************************************************
+                          CLOSE
+    *****************************************************************
+    -->
+
         <div class="tab-pane generaltab" id="tab2Contact">
           <h3 class="userinfo-ttl">Contact Details</h3>
           <div class="info-box address-info">
@@ -358,8 +396,8 @@
           <div class="info-box educatn-info">
             <div class="row">
               <div class="col-md-12">
-                <div class="sub-title">PMA Details
-                  <div class="pull-right">PD Workshops: <?php echo count($user_data->user_workshop); ?></div>
+                <div class="sub-title">PD Workshops: <?php echo count($user_data->user_workshop); ?>
+                  <div class="pull-right"></div>
                 </div>
                 <ul>
                   <?php
