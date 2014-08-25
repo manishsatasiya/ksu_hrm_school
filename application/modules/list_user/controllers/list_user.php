@@ -986,10 +986,11 @@ $this->template->set_partial('sidebar', 'sidebar');
 				$row['user_qualification_id'] = $_user_qualification_data['user_qualification_id'];
 				$row['subject'] = $_user_qualification_data['subject'];
 				$row['qualification'] = $_user_qualification_data['qualification'];
-				$row['date'] = date("d M Y",strtotime($_user_qualification_data['date']));
+				$row['date'] = ($_user_qualification_data['date'] != '0000-00-00' ? ', '. date("Y",strtotime($_user_qualification_data['date'])) : '' );
 				$row['accredited'] = $_user_qualification_data['accredited'];
 				$row['in_class'] = $_user_qualification_data['in_class'];
 				$row['subject_related'] = $_user_qualification_data['subject_related'];
+				$row['verified'] = $_user_qualification_data['verified'];
 				$user_qualification[] = $row;
 			}
 		}
@@ -1001,12 +1002,12 @@ $this->template->set_partial('sidebar', 'sidebar');
 				$row = array();
 				$row['user_qualification_id'] = $_user_certificate_data['user_qualification_id'];
 				$row['qualification'] = $_user_certificate_data['qualification'];
-				$row['date'] = date("d M Y",strtotime($_user_certificate_data['date']));
+				$row['verified'] = $_user_certificate_data['verified'];
+				$row['date'] = ($_user_certificate_data['date'] != '0000-00-00' ? ', '. date("Y",strtotime($_user_certificate_data['date'])) : '' );
 				
 				$user_certificate[] = $row;
 			}
 		}
-		
 		$user_experience_data = $this->list_user_model->get_user_experience($user_id);
 		$user_experience = array();
 		$user_experience_count = 0;

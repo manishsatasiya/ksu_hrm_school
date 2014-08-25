@@ -286,7 +286,7 @@
             { 
 				foreach($user_data->user_qualification as $qualification)
 				{ ?>
-                  <li><?php echo $qualification['qualification']; ?>, <?php echo $qualification['subject']; ?> <?php echo ( $qualification['date'] != '30 Nov -0001' ? ', '. $qualification['date'] : '' ); ?>
+                  <li><?php echo $qualification['qualification']; ?>, <?php echo $qualification['subject']; ?>, Verified: <?php echo $qualification['verified']; ?> <?php echo $qualification['date']; ?>
                     <div class="btn-group pull-right"> <!-- a class="btn btn-sm btn-small btn-primary" href="<?php echo base_url(); ?>list_user/add_qualifications/<?php echo $user_data->user_unique_id; ?>/<?php echo $qualification['user_qualification_id']; ?>" data-target="#myModal" data-toggle="modal">Edit <i class="fa fa-edit"></i></a> <a class="btn btn-sm btn-small btn-primary" href="#" onclick="javascript:_delete('user_qualification','user_qualification_id',<?php echo $qualification['user_qualification_id']; ?>);">Delete <i class="fa fa-trash-o"></i></a--></div>
                   </li>
                   <?php
@@ -304,7 +304,7 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="sub-title">Certificates:
-					<!--a href="<?php echo base_url(); ?>list_user/add_certificate/<?php echo $user_data->user_unique_id; ?>" class="btn btn-sm btn-small btn-primary pull-right" data-target="#myModal" data-toggle="modal">Certificate <i class="fa fa-plus"></i> </a--> 
+					<!--<a href="<?php echo base_url(); ?>list_user/add_certificate/<?php echo $user_data->user_unique_id; ?>" class="btn btn-sm btn-small btn-primary pull-right" data-target="#myModal" data-toggle="modal">Certificate <i class="fa fa-plus"></i> </a >-->
 				</div>
                 <ul>
                   <?php
@@ -312,7 +312,7 @@
             { 
 				foreach($user_data->user_certificate as $certificate)
 				{ ?>
-                  <li><?php echo $certificate['qualification']; ?> <?php echo ( $certificate['date'] != '30 Nov -0001' ? ', '. $certificate['date']   : ''  ); ?>
+                  <li><?php echo $certificate['qualification']; ?> , Verified: <?php echo $certificate['verified']; ?> <?php echo $certificate['date']; ?>
                     <div class="btn-group pull-right"> <!-- a class="btn btn-sm btn-small btn-primary" href="<?php echo base_url(); ?>list_user/add_certificate/<?php echo $user_data->user_unique_id; ?>/<?php echo $certificate['user_qualification_id']; ?>" data-target="#myModal" data-toggle="modal">Edit <i class="fa fa-edit"></i></a> <a class="btn btn-sm btn-small btn-primary" href="#" onclick="javascript:_delete('user_qualification','user_qualification_id',<?php echo $certificate['user_qualification_id']; ?>);">Delete <i class="fa fa-trash-o"></i></a--></div>
                   </li>
                   <?php

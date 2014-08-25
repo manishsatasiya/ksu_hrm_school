@@ -1210,9 +1210,6 @@ $(document).ready(function() {
 			},
 			subject_related:{
 				comboboxNotNone: true
-			},
-			date:{			
-				required:true
 			}
 		},
 		messages: {
@@ -1245,9 +1242,6 @@ $(document).ready(function() {
 		rules: {
 			certificate_id: {
 				comboboxNotNone: true
-			},
-			date:{			
-				required:true
 			}
 		},
 		messages: {
