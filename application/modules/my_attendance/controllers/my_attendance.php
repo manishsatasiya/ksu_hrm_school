@@ -77,19 +77,40 @@ class My_attendance extends Private_Controller {
 				$InTime = $result_row["InTime"];
 				$OutTime = $result_row["OutTime"];
 				$TotalHours = $result_row["TotalHours"];
-				$Late = $result_row["Late"];
-				$Approved = $result_row["Approved"];
+				$Late = trim($result_row["Late"]);
+				$Approved = trim($result_row["Approved"]);
 				$StartTime = $result_row["StartTime"];
 				$EndTime = $result_row["EndTime"];
 				
+				$css_text_color_start_late = "";
+				$css_text_color_end_late = "";
+				
+				$css_text_color_start_intime = "";
+				$css_text_color_end_intime = "";
+				
+				if(strtolower($Late) == "yes")
+				{
+					$css_text_color_start_late = '<p style="color:#FFFF00">';
+					$css_text_color_end_late = "</p>";
+				}
+				else if(strtolower($InTime) == "absent" && ($Approved == "NULL" || $Approved == "" || $Approved == "no"))
+				{
+					$css_text_color_start_intime = '<p style="color:#FF0000">';
+					$css_text_color_end_intime = "</p>";
+				}
+				else if(strtolower($InTime) == "absent" && strtolower($Approved) == "yes")
+				{
+					$css_text_color_start_intime = '<p style="color:#008000">';
+					$css_text_color_end_intime = "</p>";
+				}
 				$row[] = $id;
 				$row[] = $dwEnrollNumber;
 				$row[] = $Logdate;
-				$row[] = $InTime;
+				$row[] = $css_text_color_start_intime.$css_text_color_start_late.$InTime.$css_text_color_end_late.$css_text_color_end_intime;
 				$row[] = $OutTime;
 				$row[] = $TotalHours;
-				$row[] = $Late;
-				$row[] = $Approved;
+				$row[] = $css_text_color_start_late.$Late.$css_text_color_end_late;
+				$row[] = $css_text_color_start_intime.$Approved.$css_text_color_end_intime;
 				$row[] = $StartTime;
 				$row[] = $EndTime;
 				
