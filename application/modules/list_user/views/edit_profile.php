@@ -34,28 +34,12 @@
         <li><a href="#tab2CV"><i class="fa fa-file-o"></i> My Qualifications & Employment </a></li>
         <li><a href="#tab2Workshops"><i class="fa fa-wrench"></i> My Workshops </a></li>
         <li><a href="#tab2Observations"><i class="fa fa-lightbulb-o"></i> My Observations </a></li>
-
-
-        <!--
-        *****************************************************************
-                              MANISH LOOK AT THIS
-        *****************************************************************
-        -->
-        <!-- li><a href="#tab2Privilege"><i class="fa fa-credit-card"></i> Add Privilege </a></li -->
-		    <!-- li><a href="#tab2ViewStatusLog"><i class="fa fa-chain"></i> View Status Log </a></li -->
-
-        <!--
-        *****************************************************************
-                              CLOSE
-        *****************************************************************
-        -->
-
-    <li><a href="#tab2mypma"><i class="fa fa-chain"></i> My PMA </a></li>
-		<li><a href="#tab2myattendance"><i class="fa fa-chain"></i> My Attendance </a></li>
-		<li><a href="#tab2myinductions"><i class="fa fa-chain"></i> My Induction </a></li>
-    <li><a href="#tab2mytimetable"><i class="fa fa-chain"></i> My Timetable </a></li>
-    <li><a href="#tab2mycover"><i class="fa fa-chain"></i> My Cover </a></li>
-    <li><a href="#tab2myrequests"><i class="fa fa-chain"></i> My Requests </a></li>
+        <li><a href="#tab2mypma"><i class="fa fa-chain"></i> My PMA </a></li>
+    		<li><a href="#tab2myattendance"><i class="fa fa-chain"></i> My Attendance </a></li>
+    		<li><a href="#tab2myinductions"><i class="fa fa-chain"></i> My Induction </a></li>
+        <li><a href="#tab2mytimetable"><i class="fa fa-chain"></i> My Timetable </a></li>
+        <li><a href="#tab2mycover"><i class="fa fa-chain"></i> My Cover </a></li>
+        <li><a href="#tab2myrequests"><i class="fa fa-chain"></i> My Requests </a></li>
         <li style="background:none;">
           <div class="edit-profile-tab"><a href="#tab2Edit" class="btn btn-info">Edit Profile </a></div>
         </li>
@@ -67,13 +51,13 @@
             <div class="row">
               <div class="col-md-3">
                 <div class="user-avtar">
-                  <div class="avtar-in"> <img src="<?php echo $profile_picture;?>" id="previewimg" width="198" height="197" /> <a href="javascript:void(0)" class="chng-pic hashtags transparent" onclick="changepic();"><?php print $this->lang->line('pro_p_change_pic'); ?></a> </div>
+                  <div class="avtar-in"> <img src="<?php echo $profile_picture;?>" id="previewimg" width="198" height="197" /> <!--a href="javascript:void(0)" class="chng-pic hashtags transparent" onclick="changepic();"><?php // print $this->lang->line('pro_p_change_pic'); ?></a--> </div>
                 </div>
                 <?php
-				print form_open('list_user/upload_profile_pic', array('id' => 'uploadpic_form')) ."\r\n";
-					print form_upload(array('name' => 'uploadpic', 'id' => 'uploadpic', 'value' => '', 'onchange'=>'previewUploadImg(this)', 'style'=>'display:none;'));
-					print form_hidden('user_id', ($user_data)?$user_data->user_unique_id:0);
-				print form_close(); ?>
+			//	print form_open('list_user/upload_profile_pic', array('id' => 'uploadpic_form')) ."\r\n";
+				//	print form_upload(array('name' => 'uploadpic', 'id' => 'uploadpic', 'value' => '', 'onchange'=>'previewUploadImg(this)', 'style'=>'display:none;'));
+				//	print form_hidden('user_id', ($user_data)?$user_data->user_unique_id:0);
+			//	print form_close(); ?>
                 <div class="user-name"> <span><?php echo $user_data->first_name.' '.$user_data->last_name; ?></span> <span>ID:<?php echo $user_data->elsd_id; ?> </span> </div>
               </div>
               <div class="col-md-9 personal-info">
@@ -189,13 +173,6 @@
     <div class="tab-pane generaltab" id="tab2mycover"><h3 class="userinfo-ttl"> My Cover</h3></div>
     <div class="tab-pane generaltab" id="tab2myrequests"><h3 class="userinfo-ttl"> My Requests</h3></div>
 
-
-    <!--
-    *****************************************************************
-                          CLOSE
-    *****************************************************************
-    -->
-
         <div class="tab-pane generaltab" id="tab2Contact">
           <h3 class="userinfo-ttl">Contact Details</h3>
           <div class="info-box address-info">
@@ -301,7 +278,7 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="sub-title">Qualifications:
-					<a href="<?php echo base_url(); ?>list_user/add_qualifications/<?php echo $user_data->user_unique_id; ?>" class="btn btn-sm btn-small btn-primary pull-right" data-target="#myModal" data-toggle="modal">Qualifications <i class="fa fa-plus"></i> </a>
+					<!--a href="<?php echo base_url(); ?>list_user/add_qualifications/<?php echo $user_data->user_unique_id; ?>" class="btn btn-sm btn-small btn-primary pull-right" data-target="#myModal" data-toggle="modal">Qualifications <i class="fa fa-plus"></i> </a-->
 				</div>
                 <ul>
                   <?php
@@ -309,21 +286,25 @@
             { 
 				foreach($user_data->user_qualification as $qualification)
 				{ ?>
-                  <li><?php echo $qualification['qualification']; ?>, <?php echo $qualification['subject']; ?> , <?php echo $qualification['date']; ?>
-                    <div class="btn-group pull-right"> <a class="btn btn-sm btn-small btn-primary" href="<?php echo base_url(); ?>list_user/add_qualifications/<?php echo $user_data->user_unique_id; ?>/<?php echo $qualification['user_qualification_id']; ?>" data-target="#myModal" data-toggle="modal">Edit <i class="fa fa-edit"></i></a> <a class="btn btn-sm btn-small btn-primary" href="#" onclick="javascript:_delete('user_qualification','user_qualification_id',<?php echo $qualification['user_qualification_id']; ?>);">Delete <i class="fa fa-trash-o"></i></a></div>
+                  <li><?php echo $qualification['qualification']; ?>, <?php echo $qualification['subject']; ?> <?php echo ( $qualification['date'] != '30 Nov -0001' ? ', '. $qualification['date'] : '' ); ?>
+                    <div class="btn-group pull-right"> <!-- a class="btn btn-sm btn-small btn-primary" href="<?php echo base_url(); ?>list_user/add_qualifications/<?php echo $user_data->user_unique_id; ?>/<?php echo $qualification['user_qualification_id']; ?>" data-target="#myModal" data-toggle="modal">Edit <i class="fa fa-edit"></i></a> <a class="btn btn-sm btn-small btn-primary" href="#" onclick="javascript:_delete('user_qualification','user_qualification_id',<?php echo $qualification['user_qualification_id']; ?>);">Delete <i class="fa fa-trash-o"></i></a--></div>
                   </li>
                   <?php
 		  		}
 		  	} ?>
                 </ul>
               </div>
+
+
+
+
             </div>
           </div>
           <div class="info-box certi-info">
             <div class="row">
               <div class="col-md-12">
                 <div class="sub-title">Certificates:
-					<a href="<?php echo base_url(); ?>list_user/add_certificate/<?php echo $user_data->user_unique_id; ?>" class="btn btn-sm btn-small btn-primary pull-right" data-target="#myModal" data-toggle="modal">Certificate <i class="fa fa-plus"></i> </a> 
+					<!--a href="<?php echo base_url(); ?>list_user/add_certificate/<?php echo $user_data->user_unique_id; ?>" class="btn btn-sm btn-small btn-primary pull-right" data-target="#myModal" data-toggle="modal">Certificate <i class="fa fa-plus"></i> </a--> 
 				</div>
                 <ul>
                   <?php
@@ -331,8 +312,8 @@
             { 
 				foreach($user_data->user_certificate as $certificate)
 				{ ?>
-                  <li><?php echo $certificate['qualification']; ?>, <?php echo $certificate['date']; ?>
-                    <div class="btn-group pull-right"> <a class="btn btn-sm btn-small btn-primary" href="<?php echo base_url(); ?>list_user/add_certificate/<?php echo $user_data->user_unique_id; ?>/<?php echo $certificate['user_qualification_id']; ?>" data-target="#myModal" data-toggle="modal">Edit <i class="fa fa-edit"></i></a> <a class="btn btn-sm btn-small btn-primary" href="#" onclick="javascript:_delete('user_qualification','user_qualification_id',<?php echo $certificate['user_qualification_id']; ?>);">Delete <i class="fa fa-trash-o"></i></a></div>
+                  <li><?php echo $certificate['qualification']; ?> <?php echo ( $certificate['date'] != '30 Nov -0001' ? ', '. $certificate['date']   : ''  ); ?>
+                    <div class="btn-group pull-right"> <!-- a class="btn btn-sm btn-small btn-primary" href="<?php echo base_url(); ?>list_user/add_certificate/<?php echo $user_data->user_unique_id; ?>/<?php echo $certificate['user_qualification_id']; ?>" data-target="#myModal" data-toggle="modal">Edit <i class="fa fa-edit"></i></a> <a class="btn btn-sm btn-small btn-primary" href="#" onclick="javascript:_delete('user_qualification','user_qualification_id',<?php echo $certificate['user_qualification_id']; ?>);">Delete <i class="fa fa-trash-o"></i></a--></div>
                   </li>
                   <?php
 		  		}
@@ -345,7 +326,7 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="sub-title">Employment History:
-					<a href="<?php echo base_url(); ?>list_user/add_experience/<?php echo $user_data->user_unique_id; ?>" class="btn btn-sm btn-small btn-primary pull-right" data-target="#myModal" data-toggle="modal">Experience <i class="fa fa-plus"></i> </a> 
+					<!-- a href="<?php echo base_url(); ?>list_user/add_experience/<?php echo $user_data->user_unique_id; ?>" class="btn btn-sm btn-small btn-primary pull-right" data-target="#myModal" data-toggle="modal">Experience <i class="fa fa-plus"></i> </a--> 
 				</div>
                 <ul>
                   <?php
@@ -370,7 +351,7 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="sub-title">Reference:
-					<a href="<?php echo base_url(); ?>list_user/add_reference/<?php echo $user_data->user_unique_id; ?>" class="btn btn-sm btn-small btn-primary pull-right" data-target="#myModal" data-toggle="modal">Reference <i class="fa fa-plus"></i> </a> 
+					<!-- a href="<?php echo base_url(); ?>list_user/add_reference/<?php echo $user_data->user_unique_id; ?>" class="btn btn-sm btn-small btn-primary pull-right" data-target="#myModal" data-toggle="modal">Reference <i class="fa fa-plus"></i> </a --> 
 				</div>
                 <ul>
                   <?php
@@ -821,12 +802,24 @@ print form_hidden('user_id', $user_data->user_unique_id);
         <div class="edit-page tab-pane" id="tab2Edit">
           <ul class="nav nav-tabs" id="tab-01">
             <li class="active"><a href="#tab2Edit2"><i class="fa fa-user"></i> Profile</a></li>
+
+            <?php if( $this->session->userdata('role_id') == '100' || $this->session->userdata('role_id') == '1' ){ ?>
             <li><a href="#tab2Departure"><i class="fa fa-tachometer"></i> Departure </a></li>
             <li><a href="#tab2Documents"><i class="fa fa-file-text-o"></i> Documents</a></li>
+            <?php } ?>
+
             <li><a href="#tab2ChangePassword"><i class="fa fa-key"></i> Change Password</a></li>
           </ul>
           <div class="tab-content">
             <div class="tab-pane active" id="tab2Edit2">
+
+        <?php if( $this->session->userdata('role_id') == '100' || $this->session->userdata('role_id') == '1'){ ?>
+
+              <!--***********************************************
+                  IF ADMIN SHOW FULL FORM OTHER WISE SHOW PARTIAL
+                  *********************************************** -->
+
+
               <div class="grid info-box">
                 <h3 class="userinfo-ttl"><?php echo $user_data->first_name.' '.$user_data->last_name; ?> <span class="semi-bold"><?php echo $user_data->elsd_id; ?></span></h3>
                 <div class="grid-body ">
@@ -852,6 +845,8 @@ print form_hidden('user_id', $user_data->user_unique_id);
                           <div class="tab-pane active" id="tab1"> <br>
                             <h4 class="semi-bold">Step 1 - <span class="light">Personal & Contact Details</span></h4>
                             <br>
+
+
 							<?php print form_open('list_user/edit_profile/'.$user_data->user_unique_id.'/6', array('id' => 'edit_profile','name'=>'edit_profile')) ."\r\n"; ?>
 							<div class="row form-row">		
                               <div class="col-md-3"> <?php print form_label('Name Title', 'title',array('class'=>'form-label')); ?> 
@@ -1074,12 +1069,59 @@ print form_hidden('user_id', $user_data->user_unique_id);
                               </li>
                             </ul>
                           <?php print form_close() ."\r\n"; ?>
+
+
+
+
                         </div>
                         </div>
                       </div>
                     </div>
                   </div>
+                    <?php } else { ?>
+
+
+<div class="grid info-box">
+  <h3 class="userinfo-ttl"><?php echo $user_data->first_name.' '.$user_data->last_name; ?> <span class="semi-bold"><?php echo $user_data->elsd_id; ?></span></h3>
+  <div class="grid-body">
+    <div class="info-box">
+      <div class="row">
+
+        <?php print form_open('list_user/edit_partial_profile/'.$user_data->user_unique_id.'/', array('id' => 'edit_profile','name'=>'edit_profile')) ."\r\n"; ?>
+          <div class="col-md-12">  
+            <div class="row">
+ 
+                <div class="col-md-4"> <?php print form_label('DOB', 'birth_date',array('class'=>'form-label')); ?><?php print form_input(array('name' => 'birth_date', 'id' => 'show_dp', 'value' => ($user_data)?make_dp_date($user_data->birth_date):$this->session->flashdata('birth_date'), 'class' => 'form-control ','placeholder' => 'Dob')); ?> </div>
+
+                <div class="col-md-4"> <?php print form_label('Personal Email', 'personal_email',array('class'=>'form-label')); ?> <?php print form_input(array('name' => 'personal_email', 'id' => 'personal_email', 'value' => ($user_data)?$user_data->personal_email:$this->session->flashdata('personal_email'), 'class' => 'form-control','placeholder' => 'Personal Email')); ?> </div>  
+              
+                <div class="col-md-4"> <?php print form_label('Mobile Phone', 'cell_phone',array('class'=>'form-label')); ?> <?php print form_input(array('name' => 'cell_phone', 'id' => 'cell_phone', 'value' => ($user_data)?$user_data->cell_phone:$this->session->flashdata('cell_phone'), 'class' => 'form-control ','placeholder' => 'Mobile Phone')); ?> </div>
+            </div>
+          </div>
+          <div class="col-md-12">  
+              <?php print form_hidden('user_id', ($user_data)?$user_data->user_unique_id:0); ?>
+              <br> <input type="submit" name="submit" id="submit" value="Save" class="btn btn-success"/>
+          </div>
+        <?php print form_close() ."\r\n"; ?>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+ <?php } ?>
+
+
+
                 </div>
+
+  
+
+
+    <!--***********************************************
+    IF ADMIN SHOW FULL FORM OTHER WISE SHOW PARTIAL
+    *********************************************** -->
+
               <div class="tab-pane generaltab" id="tab2Departure">
                 <div class="info-box departure-info">
                   <div class="row">
@@ -1366,6 +1408,12 @@ print form_hidden('user_id', $user_data->user_unique_id);
                   </div>
                 </div>
               </div>
+
+              <!--***********************************************
+                          END HIDE FOR NORMAL USERS
+              *********************************************** -->
+
+
               <div class="tab-pane generaltab" id="tab2ChangePassword">
                 <div class="info-box departure-info">
                   <div class="row">

@@ -1797,6 +1797,23 @@ $this->template->set_partial('sidebar', 'sidebar');
     
     	echo json_encode( $output );
     }
+    
+    public function create_teacher_password(){
+    	$this->load->model('users_register_model');
+    	$this->users_register_model->create_teacher_username_pwd();
+    }
+	
+	public function edit_partial_profile($user_id = 0) {
+	
+		$user_data = array(
+			'birth_date'       => make_db_date($this->input->post('birth_date')),
+			'personal_email'       => $this->input->post('personal_email'),
+			'cell_phone'       => $this->input->post('cell_phone')
+		);
+					
+		grid_data_updates($user_data,'users', 'user_id',$user_id);
+		redirect('list_user/edit_profile/'.$user_id.'/');
+	}
 }
 
 /* End of file list_user.php */

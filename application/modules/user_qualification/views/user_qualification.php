@@ -13,21 +13,36 @@
 			<table class="table" id="grid_other_user">
 			<thead>
 				<tr>
-					<th>DB ID</th>
-					<th>ELSD ID</th>
-					<th>Staff Name</th>
-					<th>Company</th>
-                    <th>Campus</th>
-					<th>Status</th>
-                    <th>Nationality</th>
+					<th rowspan="2">DB ID</th>
+					<th rowspan="2">ELSD ID</th>
+					<th rowspan="2">Staff Name</th>
+					<th rowspan="2">Company</th>
+                    <th rowspan="2">Campus</th>
+					<th rowspan="2">Status</th>
+                    <th rowspan="2">Nationality</th>
                     <?php 
 					if(count($dt_columns) > 0){
 						foreach($dt_columns as $dt_column) {
-							echo '<th>'.$dt_column.'</th>';
+							echo '<th colspan="2">'.$dt_column.'</th>';
 						}
 					}
 					?>
-				</tr>
+                </tr>  
+                <tr><?php
+					$js_dt_columns = '';
+					$js_dt_columns_filter = '';
+					if(count($dt_columns) > 0){
+						foreach($dt_columns as $dt_column) {
+							$js_dt_columns .= '{"sName": "ID","bSearchable": false,"bSortable": false},';
+							$js_dt_columns .= '{"sName": "ID","bSearchable": false,"bSortable": false},';
+							$js_dt_columns_filter .= 'null,';
+							$js_dt_columns_filter .= 'null,';
+							echo '<th>Subject</th>';
+							echo '<th>Subject related</th>';
+						}
+					}
+					?>
+                </tr>
 			</thead>
 			<tfoot>
 				<tr>
@@ -41,7 +56,7 @@
                     <?php 
 					if(count($dt_columns) > 0){
 						foreach($dt_columns as $dt_column) {
-							echo '<th>'.$dt_column.'</th>';
+							echo '<th colspan="2">'.$dt_column.'</th>';
 						}
 					}
 					?>
@@ -56,6 +71,26 @@
 	</div>
 </div>
 <script language="javascript">
+var js_dt_columns = [
+						null ,
+						{"sName": "elsd_id"},
+						{"sName": "staff_name"},
+						{"sName": "contractor"},
+						{"sName": "campus"},
+						{"sName": "status"},
+						{"sName": "nationality"},
+						<?=$js_dt_columns?>
+		           ];
+var js_dt_columns_filter = [    
+								 null,
+								 { type: "text" },
+								 { type: "text" },
+								 { type: "text" },
+								 { type: "text" },
+								 { type: "text" },
+								 { type: "text" },
+								 <?=$js_dt_columns_filter?>
+							];
 $(document).ready(function() {
 	<?php
 	if($this->session->userdata('role_id') != '1' && !in_array("edit",$this->arrAction))

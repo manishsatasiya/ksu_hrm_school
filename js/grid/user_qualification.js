@@ -1,4 +1,5 @@
 $(document).ready( function () {
+							 //alert(js_dt_columns);
 	$('#grid_other_user').bind('processing',function(e, oSettings, bShow){showHideDatatableProcessing(bShow)});
 	dTable = $('#grid_other_user').dataTable({
 		bJQueryUI:false,
@@ -9,28 +10,12 @@ $(document).ready( function () {
 		"oColVis": {
 			"aiExclude": [table_total_col-1]
         },
-		aoColumns: [
-						null ,
-						{"sName": "elsd_id"},
-		            	{"sName": "staff_name"},
-		            	{"sName": "contractor"},
-						{"sName": "campus"},
-						{"sName": "status"},
-						{"sName": "nationality"}
-		           ],
+		aoColumns: js_dt_columns,
 		sPaginationType: "bootstrap"});
 		$('#grid_other_user_wrapper .dataTables_filter input').addClass("input-medium ");
 		$('#grid_other_user_wrapper .dataTables_length select').addClass("select2-wrapper span12"); 
 		dTable.columnFilter({
-	        aoColumns: [    
-	                 null,
-					 { type: "text" },
-					 { type: "text" },
-	        		 { type: "text" },
-	                 { type: "text" },
-	                 { type: "text" },
-	                 { type: "text" }	                 
-	            ]
+	        aoColumns: js_dt_columns_filter
         });
 	
 });

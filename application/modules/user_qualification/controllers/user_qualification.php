@@ -77,6 +77,8 @@ $this->template->set_partial('sidebar', 'sidebar');
     
     	$data = $this->user_qualification_model->get_user_qualification("companyemployee",$per_page, $offset, $order_by, $sort_order, $grid_data['search_data']);
     	$count = $this->user_qualification_model->get_user_qualification("companyemployee",0, 0, "", "", $grid_data['search_data']);
+		
+		$dt_columns = $this->user_qualification_model->get_dt_columns();
 		/*
     	 * Output
     	*/
@@ -89,6 +91,7 @@ $this->template->set_partial('sidebar', 'sidebar');
     
     	if($data){
     		foreach($data->result_array() AS $result_row){
+				//print_r($result_row);
     			$row = array();
     			$row[] = $result_row['user_id'];
 				$row[] = $result_row['elsd_id'];
@@ -97,6 +100,12 @@ $this->template->set_partial('sidebar', 'sidebar');
 				$row[] = $result_row['campus_name'];
 				$row[] = $result_row['status'];
 				$row[] = $result_row['nationality'];
+				if(!empty($dt_columns)){
+					foreach($dt_columns as $column_id=>$column_name){
+						$row[] = $result_row[$column_id.'_subject_name'];
+						$row[] = $result_row[$column_id.'_subject_related'];
+					}
+				}
     			$output['aaData'][] = $row;
     		}
     	}

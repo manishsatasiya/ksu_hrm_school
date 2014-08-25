@@ -796,6 +796,7 @@ if (!function_exists('get_course_class')) {
 				$action != "get_viewstatuslog_json"  &&
 				$action != "get_observations_json"  &&
 				$action != "get_user_existing_privilege"  &&
+				$action != "edit_partial_profile" &&
 				$action != "view_grade_report_log"  && $cotroller != "list_enable_week" && $action != "add_user_privilege" 
 				&& $action != "delete" && $cotroller != "add_employee" && $cotroller != "list_course_class"
 				)

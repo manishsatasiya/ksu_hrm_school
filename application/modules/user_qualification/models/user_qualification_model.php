@@ -25,7 +25,7 @@ class User_qualification_model extends CI_Model {
 		$strQueryAllStatus = "";
 		$strQueryIntType = "";
 		$strQueryIntOutCome = "";
-		$arrAllStatus = user_profile_status();
+		$arrAllStatus = user_profile_status($type);
 		
 		foreach($arrAllStatus AS $key=>$val)
 		{
@@ -39,42 +39,43 @@ class User_qualification_model extends CI_Model {
 		}
 		
 		$dt_columns = $this->get_dt_columns();
-		
-    	$this->db->select('users.user_id,
+		//echo '<pre>';
+		//print_r($dt_columns);exit;
+		$qualification_sql = '';
+		if(!empty($dt_columns)){
+			foreach($dt_columns as $column_id=>$column_name){
+				$qualification_sql .= '(SELECT user_qualification.subject FROM user_qualification WHERE user_qualification.user_id = users.user_id AND qualification_id = '.$column_id.') as '.$column_id.'_subject_name,
+						  (SELECT user_qualification.subject_related FROM user_qualification WHERE user_qualification.user_id = users.user_id AND qualification_id = '.$column_id.') as '.$column_id.'_subject_related,';
+			}	
+    	}
+		$this->db->select('users.user_id,
 						  users.elsd_id,
 						  CONCAT(users.first_name," ",users.middle_name," ",users.last_name) AS staff_name,
-						  users.email,
-						  users.personal_email,
-						  users.cell_phone,
-						  users.birth_date,'.
-						  $strQueryAllStatus.' AS status,
-						  user_roll.user_roll_name,
+						  '.$strQueryAllStatus.' AS status,
 						  school_campus.campus_name,
 						  contractors.contractor,
 						  countries.nationality,
-						  department.department_name,
-						  user_profile.scanner_id,
-						  IF(user_profile.returning = 1,"Yes","No") AS returning,
-						  users.created_date,
-						  users.updated_date,
-						  GROUP_CONCAT(subject) AS subject,
-						  GROUP_CONCAT(subject_related) AS subject_related
-						 ',FALSE);
+						  '.$qualification_sql.'',FALSE);
     	$this->db->from('users');
 		$this->db->join('user_profile', 'user_profile.user_id = users.user_id','left');
 		$this->db->join('school_campus', 'school_campus.campus_id = users.campus_id','left');
-		$this->db->join('user_roll', 'user_roll.user_roll_id = users.user_roll_id','left');
-		$this->db->join('department', 'department.id = user_profile.department_id','left');
+		//$this->db->join('user_roll', 'user_roll.user_roll_id = users.user_roll_id','left');
+		//$this->db->join('department', 'department.id = user_profile.department_id','left');
 		$this->db->join('contractors', 'contractors.id = user_profile.contractor','left');
 		$this->db->join('countries', 'countries.id = user_profile.nationality','left');
+<<<<<<< HEAD
+		//$this->db->join('user_qualification', 'user_qualification.user_id = users.user_id','left');
+		$this->db->where_not_in('users.user_roll_id',array('1','4'));
+		//$this->db->where_in('user_qualification.qualification_id',array_keys($dt_columns));
+=======
 		$this->db->join('user_qualification', 'user_qualification.user_id = users.user_id','left');
 		$this->db->where_not_in('users.user_roll_id',array('1','3'));
 		$this->db->where_in('user_qualification.qualification_id',array_keys($dt_columns));
+>>>>>>> origin/master
 		if($type != "")
 		{
-			$arrTempStatus = user_profile_status($type);
-			$arrStatus = array_keys($arrTempStatus);
 			
+			$arrStatus = array_keys($arrAllStatus);			
 			if(count($arrStatus) > 0)
 				$this->db->where_in('users.status',$arrStatus);
     	}
@@ -101,7 +102,7 @@ class User_qualification_model extends CI_Model {
     
     	$query = $this->db->get();
 		//echo $this->db->last_query();	
-		
+		//echo 'fddsf';exit;
 		if($limit == 0)
 			return $query->num_rows();
 			
