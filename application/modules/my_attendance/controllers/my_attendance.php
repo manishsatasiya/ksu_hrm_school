@@ -82,6 +82,17 @@ class My_attendance extends Private_Controller {
 				$StartTime = $result_row["StartTime"];
 				$EndTime = $result_row["EndTime"];
 				
+				$row[] = $id;
+				$row[] = $dwEnrollNumber;
+				$row[] = $Logdate;
+				$row[] = $InTime;
+				$row[] = $OutTime;
+				$row[] = $TotalHours;
+				$row[] = $Late;
+				$row[] = $Approved;
+				$row[] = $StartTime;
+				$row[] = $EndTime;
+				
 				$output['aaData'][] = $row;
     		}
     	}

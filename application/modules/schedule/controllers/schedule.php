@@ -136,6 +136,7 @@ class Schedule extends Private_Controller {
 			$date = $this->input->post('date');
     		$time = $this->input->post('time');
     		$type = $this->input->post('type');
+    		$subject = $this->input->post('subject');
     		$details = $this->input->post('details');
 			    		
 			$data = array();
@@ -143,6 +144,7 @@ class Schedule extends Private_Controller {
 			$data['date'] = date('Y-m-d',strtotime($date));
 			$data['time'] = $time;
 			$data['type'] = $type;
+			$data['subject'] = $subject;
 			$data['details'] = $details;
 							
 			$error = "";

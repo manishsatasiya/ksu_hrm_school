@@ -10,7 +10,7 @@ class Schedule_model extends CI_Model {
 		$school_setting = get_school_setting();
 		$school_start_date = $school_setting->school_start_date;
 		
-		$this->db->select('appointments.details as title,appointments.date as event_day,appointments.appointment_id as id,time,type',FALSE);
+		$this->db->select('appointments.subject as title,appointments.date as event_day,appointments.appointment_id as id,time,type',FALSE);
 		$this->db->from('appointments');
 		$this->db->where("user_id", $user_id);
 		$this->db->where("date > ".date("Y-m-d",strtotime($school_start_date)));
