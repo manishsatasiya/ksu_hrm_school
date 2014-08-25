@@ -230,6 +230,14 @@ class List_Teacher_Student_model extends CI_Model {
 		$this->db->join('countries', 'countries.id = user_profile.nationality','left');
 		//$this->db->where_not_in('users.user_roll_id',array('1','3'));
 		
+		
+		if($this->session->userdata('role_id') != 1 && ($this->session->userdata('campus_id') > 0 || $this->session->userdata('campus') != ""))
+		{
+			if($this->session->userdata('campus_id') > 0){
+				$this->db->where('(users.campus_id = '.$this->session->userdata('campus_id').' OR users.campus_id = 0)');
+			}	
+		}
+		
 		if($type != "")
 		{
 			$arrStatus = array_keys($arrAllStatus);
@@ -240,14 +248,6 @@ class List_Teacher_Student_model extends CI_Model {
 		
     	!empty($data) ? $this->db->like($data) : "";
 		
-		if($this->session->userdata('role_id') != 1 && ($this->session->userdata('campus_id') > 0 || $this->session->userdata('campus') != ""))
-		{
-			if($this->session->userdata('campus_id') > 0){
-				$this->db->where('users.campus_id',$this->session->userdata('campus_id'));
-				$this->db->or_where('users.campus_id',0);
-			}	
-		}
-        
 		if($this->session->userdata('role_id') != 1 && $this->session->userdata('contractor') > 0){
 			$this->db->where('user_profile.contractor',$this->session->userdata('contractor'));
 		}
