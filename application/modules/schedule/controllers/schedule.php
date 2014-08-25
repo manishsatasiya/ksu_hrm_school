@@ -70,11 +70,11 @@ class Schedule extends Private_Controller {
                 if($title == 'residency card' || $title == 'visit visa' || $title == 'business visa' || $title == 'other visa' ) {
 
 					if( $title == 'residency card') {
-							$_tital.= 'IMPORTANT!<br>Iqaamah expiry';
+							$_tital.= 'IMPORTANT!\r\nIqaamah expiry';
 							$color = 'red';
 							
 					} else if( $title == 'visit visa' || $title == 'business visa' || $title == 'other visa') {
-							$_tital.= 'IMPORTANT!<br>Visa expiry';
+							$_tital.= 'IMPORTANT!\r\nVisa expiry';
 							$color = 'red';
 					}
 
@@ -84,28 +84,28 @@ class Schedule extends Private_Controller {
 						//$calendar.= '<ul class="cal-events"><li class="important">'.$value->title.'  observation, by: ' . $value->observer . '</li></ul>';
 						$_tital.= ''.$title.'  observation';						
 					} elseif( $title == 'passport' ) {
-						$_tital.= 'IMPORTANT!<br>Passport expiry';
+						$_tital.= 'IMPORTANT!\r\nPassport expiry';
 						$color = 'red';
 					}  elseif( $title && isset($time) && !empty($venue)) {
 						$_tital.= 'Workshop: ' .$title. ': ' .$time  .',  '.$venue  . '';
 					} 	
 					elseif( $title && isset($time) && isset($type) && $type == 'work') {
 	
-							//$calendar.= '<ul class="cal-events"><li class="appointments_work"><a href="'.URL::base().'/shared/edit_appointment/'.$value->id. '" class="float-left icon-gear with-tooltip icon-white modal_link" title="Edit appointment">'.ucwords($value->title).'</a><br> at ' .$value->time.'<a href="'.URL::base().'/shared/delete_appointment/'.$value->id. '" class="float-right clear-both icon-trash with-tooltip icon-white confirm" title="Delete appointment"></a><br></li></ul>';
+							//$calendar.= '<ul class="cal-events"><li class="appointments_work"><a href="'.base_url().'/shared/edit_appointment/'.$id. '" class="float-left icon-gear with-tooltip icon-white modal_link" title="Edit appointment">'.ucwords($title).'</a>\r\n at ' .$time.'<a href="'.base_url().'/shared/delete_appointment/'.$id. '" class="float-right clear-both icon-trash with-tooltip icon-white confirm" title="Delete appointment"></a>\r\n</li></ul>';
 							$_tital.= ''.substr($title,0,10)."\n at " .$time.'';				
 					} elseif( $title && isset($time) && isset($type) && $type == 'private') {
 	
-							//$calendar.= '<ul class="cal-events"><li class="appointments_private"><a href="'.URL::base().'/shared/edit_appointment/'.$value->id. '" class="float-left icon-gear with-tooltip icon-white modal_link" title="Edit appointment">'.ucwords($value->title).'</a><br> at ' .$value->time.'<a href="'.URL::base().'/shared/delete_appointment/'.$value->id. '" class="float-right clear-both icon-trash with-tooltip icon-white confirm" title="Delete appointment"></a><br></li></ul>';
-							$_tital.= ''.ucwords($title).'<br> at ' .$time.'';
+							//$calendar.= '<ul class="cal-events"><li class="appointments_private"><a href="'.base_url().'/shared/edit_appointment/'.$id. '" class="float-left icon-gear with-tooltip icon-white modal_link" title="Edit appointment">'.ucwords($title).'</a>\r\n at ' .$time.'<a href="'.base_url().'/shared/delete_appointment/'.$id. '" class="float-right clear-both icon-trash with-tooltip icon-white confirm" title="Delete appointment"></a>\r\n</li></ul>';
+							$_tital.= ''.ucwords($title).'\r\n at ' .$time.'';
 					}
 	
 	
 					elseif( $title == 'buzz') {
 						$_tital.= '' .$value->title. ' observation';
 					} elseif( !empty($id) ) {
-						$_tital.= '' .$title. '<br>Holiday Begins.';
+						$_tital.= '' .$title. '\r\nHoliday Begins.';
 					} elseif( !empty($days) ) {
-						$_tital.= '' .$title. '<br>Holiday Ends.';
+						$_tital.= '' .$title. '\r\nHoliday Ends.';
 					} else {
 						 $_tital.= $title;
 					}
@@ -148,7 +148,7 @@ class Schedule extends Private_Controller {
 			$data['details'] = $details;
 							
 			$error = "";
-    		$error_seperator = "<br>";
+    		$error_seperator = "\r\n";
 			$table = 'appointments';
     		$wher_column_name = 'appointment_id';
     		/*if($id){
