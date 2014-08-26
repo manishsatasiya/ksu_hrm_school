@@ -90,7 +90,7 @@ class My_attendance extends Private_Controller {
 				
 				if(strtolower($Late) == "yes")
 				{
-					$css_text_color_start_late = '<p style="color:#FFFF00">';
+					$css_text_color_start_late = '<p style="color:#d46401">';
 					$css_text_color_end_late = "</p>";
 				}
 				else if(strtolower($InTime) == "absent" && ($Approved == "NULL" || $Approved == "" || $Approved == "no"))

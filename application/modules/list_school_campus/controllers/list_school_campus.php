@@ -152,6 +152,21 @@ $this->template->set_partial('sidebar', 'sidebar');
     
     public function add($id = null){
     	$content_data['id'] = $id;
+		$content_data['attendance_days_list'] = array(0 => "Sunday",
+
+      1=> "Monday",
+
+      2 => "Tuesday",
+
+      3 => "Wednesday",
+
+      4 => "Thursday",
+
+      5 => "Friday",
+
+      6 => "Saturday");
+		
+		
     	$rowdata = array();
     	if($id){
     		$rowdata = $this->list_school_campus_model->get_campus_data($id);
@@ -162,6 +177,7 @@ $this->template->set_partial('sidebar', 'sidebar');
     	if($this->input->post()){
     		$campus_name = $this->input->post('campus_name');
     		$campus_location = $this->input->post('campus_location');
+			$line_manager_attendance_day = $this->input->post('line_manager_attendance_day');
     		
     		$error = "";
     		$error_seperator = "<br>";
@@ -182,7 +198,7 @@ $this->template->set_partial('sidebar', 'sidebar');
     			$data = array();
     			$data['campus_name'] = $campus_name;
     			$data['campus_location'] = $campus_location;
-    			$data['campus_name'] = $campus_name;
+    			$data['line_manager_attendance_day'] = $line_manager_attendance_day;
     			
     			$table = 'school_campus';
     			$wher_column_name = 'campus_id';
@@ -214,7 +230,7 @@ $this->template->set_partial('sidebar', 'sidebar');
     			$data = array();
     			$data['campus_name'] = $campus_name;
     			$data['campus_location'] = $campus_location;
-    			$data['campus_name'] = $campus_name;
+    			$data['line_manager_attendance_day'] = $line_manager_attendance_day;
     
     			$table = 'school_campus';
     			$lastinsertid = grid_add_data($data,$table);
