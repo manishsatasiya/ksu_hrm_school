@@ -30,5 +30,4 @@ class Workshops_staff_model extends CI_Model {
             return $query;
         }
     }
-	
 }

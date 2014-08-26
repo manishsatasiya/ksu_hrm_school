@@ -793,6 +793,7 @@ if (!function_exists('get_course_class')) {
 				$cotroller != "my_attendance" &&	
 				$cotroller != "my_inductions" &&	
 				$cotroller != "schedule" &&	
+				$cotroller != "workshops_staff" &&	
 				$action != "get_viewstatuslog_json"  &&
 				$action != "get_observations_json"  &&
 				$action != "get_user_existing_privilege"  &&

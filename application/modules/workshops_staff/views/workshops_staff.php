@@ -8,7 +8,11 @@
       </div>
       <div class="grid-body generaltab">
             <div class="m-b-15 emply-info">
-            	<?php
+				<?php
+				if ($this->session->flashdata('message')) {
+					print "<br><div class=\"alert alert-error\">". $this->session->flashdata('message') ."</div>";
+				}
+				
             	if(!empty($workshops)){
 					$i = 1;
 					foreach($workshops as $workshop) { 
@@ -28,7 +32,22 @@
                               <div class="col-md-3">Venue: <?= $workshop['venue']; ?></div>
                               <div class="col-md-3">Attendee Limit: <?= $workshop['attendee_limit']; ?></div>
                               <div class="col-md-3">Registered: <?= $workshop['registered']; ?></div>
-                              <div class="col-md-3"><a href="#" class="btn btn-small btn-success" data-target="#myModal" data-toggle="modal">Sign up</a></div>
+                              <div class="col-md-3">
+							  <?php
+							  if($workshop['spaces'] == 0)
+							  {
+							  ?>
+								<small class="label label-important">Full</small>
+							  <?php
+							  }
+							  else
+							  {
+							  ?>
+								<a href="<?php echo base_url(); ?>workshops_staff/signup/<?php echo $workshop['workshop_id']; ?>" class="btn btn-small btn-success">Sign up</a>
+							  <?php
+							  }
+							  ?>							  
+							  </div>
                             </li>                           
                           </ul>
                         </div>
