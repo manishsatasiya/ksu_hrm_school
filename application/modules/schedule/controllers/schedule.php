@@ -70,11 +70,11 @@ class Schedule extends Private_Controller {
                 if($title == 'residency card' || $title == 'visit visa' || $title == 'business visa' || $title == 'other visa' ) {
 
 					if( $title == 'residency card') {
-							$_tital.= 'IMPORTANT!\r\nIqaamah expiry';
+							$_tital.= 'IMPORTANT!'."\r\n".'Iqaamah expiry';
 							$color = 'red';
 							
 					} else if( $title == 'visit visa' || $title == 'business visa' || $title == 'other visa') {
-							$_tital.= 'IMPORTANT!\r\nVisa expiry';
+							$_tital.= 'IMPORTANT!'."\r\n".'Visa expiry';
 							$color = 'red';
 					}
 
@@ -84,7 +84,7 @@ class Schedule extends Private_Controller {
 						//$calendar.= '<ul class="cal-events"><li class="important">'.$value->title.'  observation, by: ' . $value->observer . '</li></ul>';
 						$_tital.= ''.$title.'  observation';						
 					} elseif( $title == 'passport' ) {
-						$_tital.= 'IMPORTANT!\r\nPassport expiry';
+						$_tital.= 'IMPORTANT!'."\r\n".'Passport expiry';
 						$color = 'red';
 					}  elseif( $title && isset($time) && !empty($venue)) {
 						$_tital.= 'Workshop: ' .$title. ': ' .$time  .',  '.$venue  . '';
@@ -96,16 +96,16 @@ class Schedule extends Private_Controller {
 					} elseif( $title && isset($time) && isset($type) && $type == 'private') {
 	
 							//$calendar.= '<ul class="cal-events"><li class="appointments_private"><a href="'.base_url().'/shared/edit_appointment/'.$id. '" class="float-left icon-gear with-tooltip icon-white modal_link" title="Edit appointment">'.ucwords($title).'</a>\r\n at ' .$time.'<a href="'.base_url().'/shared/delete_appointment/'.$id. '" class="float-right clear-both icon-trash with-tooltip icon-white confirm" title="Delete appointment"></a>\r\n</li></ul>';
-							$_tital.= ''.ucwords($title).'\r\n at ' .$time.'';
+							$_tital.= ''.ucwords($title)."\r\n at " .$time.'';
 					}
 	
 	
 					elseif( $title == 'buzz') {
 						$_tital.= '' .$value->title. ' observation';
 					} elseif( !empty($id) ) {
-						$_tital.= '' .$title. '\r\nHoliday Begins.';
+						$_tital.= '' .$title. "\r\n".'Holiday Begins.';
 					} elseif( !empty($days) ) {
-						$_tital.= '' .$title. '\r\nHoliday Ends.';
+						$_tital.= '' .$title. ''."\r\n".'Holiday Ends.';
 					} else {
 						 $_tital.= $title;
 					}
@@ -127,9 +127,9 @@ class Schedule extends Private_Controller {
 		
 		$content_data['id'] = $id;
     	$rowdata = array();
-    	/*if($id){
-    		$rowdata = $this->list_user_model->get_emergency_contact_data($id);
-    	}*/
+    	if($id){
+    		$rowdata = $this->schedule_model->get_appointment_data($id);
+    	}
     	$content_data['rowdata'] = $rowdata;
     	if($this->input->post()){
     		
@@ -151,14 +151,14 @@ class Schedule extends Private_Controller {
     		$error_seperator = "\r\n";
 			$table = 'appointments';
     		$wher_column_name = 'appointment_id';
-    		/*if($id){
+    		if($id){
     			$data['updated_at'] = date('Y-m-d H:i:s');
     			grid_data_updates($data,$table,$wher_column_name,$id);
     			
-    		}else{*/
+    		}else{
     			$data['created_at'] = date('Y-m-d H:i:s');
     			$lastinsertid = grid_add_data($data,$table);
-    		//}
+    		}
     		exit;
     	}
     	$this->template->build('add_appointment', $content_data);

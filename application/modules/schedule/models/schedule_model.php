@@ -149,6 +149,20 @@ class Schedule_model extends CI_Model {
 		return $data;
 	}
 	
+	public function get_appointment_data($id){
+    	
+		$this->db->select('appointments.*',FALSE);
+        $this->db->from('appointments');
+		$this->db->where('appointments.appointment_id', $id);
+		
+    	$query = $this->db->get();
+    	if($query->num_rows() == 1) {
+    		$row = $query->row();
+    		return $row;
+    	}
+    	return false;
+    }
+	
 }
 
 /* End of file contractors_model.php */

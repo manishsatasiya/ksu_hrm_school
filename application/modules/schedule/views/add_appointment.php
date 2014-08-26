@@ -2,7 +2,7 @@
 <script type="text/javascript" src="<?php print base_url(); ?>js/validation.js"></script>
 
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-print form_open('schedule/add_appointment/', array('id' => 'add_appointment','name'=>'formmain')) ."\r\n";
+print form_open('schedule/add_appointment/'.$id, array('id' => 'add_appointment','name'=>'formmain')) ."\r\n";
 ?>
 <div class="modal-header">
   <h2><?php if(!$id){ echo 'Add appointment'; }else{ echo 'Edit appointment'; } ?></h2>
@@ -15,7 +15,7 @@ print form_open('schedule/add_appointment/', array('id' => 'add_appointment','na
 		<div class="col-md-4">
 			<div class="form_label2"><?php print form_label('Date', 'date'); ?></div>
 			<div class="input-append success date col-md-10 col-lg-10 no-padding">
-            	<?php print form_input(array('name' => 'date', 'id' => 'date', 'value' => ($rowdata)?date('m/d/Y',strtotime($rowdata->date)):$this->session->flashdata('date'), 'class' => 'form-control ')); ?>
+            	<?php print form_input(array('name' => 'date', 'id' => 'show_dp', 'value' => ($rowdata)?make_dp_date($rowdata->date):$this->session->flashdata('date'), 'class' => 'form-control ')); ?>
                 <span class="add-on"><span class="arrow"></span><i class="fa fa-th"></i></span>
             </div>            
 		</div>
@@ -33,7 +33,7 @@ print form_open('schedule/add_appointment/', array('id' => 'add_appointment','na
 	<div class="row form-row">
 		<div class="col-md-12">
 			<div class="form_label2"><?php print form_label('Subject', 'subject'); ?></div>
-			<div class="input_box_thin"><?php print form_input(array('name' => 'subject', 'id' => 'subject', 'value' => ($rowdata)?$rowdata->details:$this->session->flashdata('subject'), 'class' => 'form-control','maxlength'=>'20')); ?></div>
+			<div class="input_box_thin"><?php print form_input(array('name' => 'subject', 'id' => 'subject', 'value' => ($rowdata)?$rowdata->subject:$this->session->flashdata('subject'), 'class' => 'form-control','maxlength'=>'20')); ?></div>
 		</div>
 		<div class="clear"></div>
 	</div>

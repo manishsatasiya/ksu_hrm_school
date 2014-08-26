@@ -50,6 +50,7 @@
                         else
                         	echo '<span class="ribbon tiny">Type: <span class="ribbon-inner blue-gradient">Private</span></span>';
                         ?>
+                         <a href="<?php echo base_url(); ?>schedule/add_appointment/<?= $appointment['id'] ?>" class="pull-right" style="color:#fff;" data-target="#myModal" data-toggle="modal">Edit</a><br />
                     </li>
                     <?php 
 				}
