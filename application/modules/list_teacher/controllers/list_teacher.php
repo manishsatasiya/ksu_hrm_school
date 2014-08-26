@@ -120,7 +120,7 @@ $this->template->set_partial('sidebar', 'sidebar');
     	/* Array of database columns which should be read and sent back to DataTables. Use a space where
     	 * you want to insert a non-database field (for example a counter or static image)
     	*/
-    	$aColumns = array('elsd_id','first_name','campus','username','password','email');
+    	$aColumns = array('elsd_id','staff_name','campus_name','username','password','email');
     	
     	$grid_data = get_search_data($aColumns);
     	$sort_order = $grid_data['sort_order'];
@@ -167,9 +167,9 @@ $this->template->set_partial('sidebar', 'sidebar');
 					$row[] =  "<a onmouseover='' id=\"popover\" data-content='".$strTooltip."' data-toggle=\"popover\"><font size=\"2\" color=\"red\">".$result_row["first_name"]."</font></a>";
 				}
 				else{    				
-				$row[] = $result_row["first_name"];    			
+				$row[] = $result_row["staff_name"];    			
 				}
-    			$row[] = $result_row["campus"];
+    			$row[] = $result_row["campus_name"];
     			$row[] = $result_row["username"];
     			$row[] = '**********';
     			$row[] = $result_row["email"];
@@ -602,8 +602,8 @@ $this->template->set_partial('sidebar', 'sidebar');
     	if($data){
     		foreach($data->result_array() AS $result_row){
     			$arrTeacher[] = array("elsd_id" => $result_row["elsd_id"],
-											"first_name" => $result_row["first_name"],
-											"campus" => $result_row["campus"],
+											"first_name" => $result_row["staff_name"],
+											"campus" => $result_row["campus_name"],
 											"username" => $result_row["username"],
 											"email" => $result_row["email"]
 										 );	

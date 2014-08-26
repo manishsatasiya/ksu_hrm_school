@@ -11,9 +11,8 @@ $(document).ready( function () {
         },
 		aoColumns: [
 		            	null , 
-		            	{"sName": "first_name"},
-		            	//{"sName": "section_title"},
-						{"sName": "campus"},
+		            	{"sName": "staff_name"},
+		            	{"sName": "campus_name"},
 		            	{"sName": "username"},
 		            	{"sName": "password"},	
 		            	{"sName": "email"},

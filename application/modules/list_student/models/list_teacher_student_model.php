@@ -20,11 +20,10 @@ class List_Teacher_Student_model extends CI_Model {
      */
 
     public function get_teacher($limit = 0, $offset = 0, $order_by = "username", $sort_order = "asc", $search_data,$campus_id=0) {
-        $fields = $this->db->list_fields('users');
-
+        
         if (!empty($search_data)) {
             !empty($search_data['username']) ? $data['users.username'] = $search_data['username'] : "";
-            !empty($search_data['first_name']) ? $data['users.first_name'] = $search_data['first_name'] : "";
+            !empty($search_data['staff_name']) ? $data['CONCAT_WS(" ",users.first_name,users.middle_name,users.middle_name2,users.last_name)'] = $search_data['staff_name'] : "";
             !empty($search_data['ca_lead_teacher']) ? $data['ca_lead.first_name'] = $search_data['ca_lead_teacher'] : "";
             !empty($search_data['section_title']) ? $data['course_section.section_title'] = $search_data['section_title'] : "";
             !empty($search_data['elsd_id']) ? $data['users.elsd_id'] = $search_data['elsd_id'] : "";
@@ -36,53 +35,54 @@ class List_Teacher_Student_model extends CI_Model {
             !empty($search_data['state']) ? $data['users.state'] = $search_data['state'] : "";
             !empty($search_data['zip']) ? $data['users.zip'] = $search_data['zip'] : "";
             !empty($search_data['cell_phone']) ? $data['users.cell_phone'] = $search_data['cell_phone'] : "";
-            !empty($search_data['campus']) ? $data['users.campus'] = $search_data['campus'] : "";
+            !empty($search_data['campus_name']) ? $data['campus_name'] = $search_data['campus_name'] : "";
         }
-        $this->db->select('users.*, user_roll.user_roll_name as role_name,(select count(*)from users_log where users_log.user_id = users.user_id) as log_cnt',FALSE);
-        $this->db->from('users');  
-        $this->db->join('course_class','users.user_id = course_class.primary_teacher_id','left');  
-        $this->db->join('course_section','course_class.section_id = course_section.section_id','left');  
-        
-		$this->db->where('users.user_roll_id','3');       
-		//$this->db->where('users.active','1');       
-		if($campus_id > 0) {
-			$this->db->where('users.campus_id = '.$campus_id);
-		}
-		if($this->session->userdata('ca_lead_teacher') > 0)
+       
+    	$this->db->select('users.elsd_id,
+						  CONCAT_WS(" ",users.first_name,users.middle_name,users.middle_name2,users.last_name) AS staff_name,
+						  school_campus.campus_name,
+						  users.username,
+						  users.email,
+						  users.user_id,
+						  change_by,
+						  (select count(*) from users_log where users_log.user_id=users.user_id) as log_cnt
+						 ',FALSE);
+    	$this->db->from('users');
+		$this->db->join('user_profile', 'user_profile.user_id = users.user_id','left');
+		$this->db->join('school_campus', 'school_campus.campus_id = users.campus_id','left');
+		$this->db->join('user_roll', 'user_roll.user_roll_id = users.user_roll_id','left');
+		$this->db->join('contractors', 'contractors.id = user_profile.contractor','left');
+		$this->db->where('users.user_roll_id','3');
+		
+		if($this->session->userdata('role_id') != 1 && ($this->session->userdata('campus_id') > 0 || $this->session->userdata('campus') != ""))
 		{
-			$this->db->where('course_section.ca_lead_teacher',$this->session->userdata('ca_lead_teacher'));
+			if($this->session->userdata('campus_id') > 0){
+				$this->db->where('(users.campus_id = '.$this->session->userdata('campus_id').' OR users.campus_id = 0)');
+			}
 		}
 		
-		if($this->session->userdata('role_id') > 4 && ($this->session->userdata('campus_id') > 0 || $this->session->userdata('campus') != ""))
-		{
-			if($this->session->userdata('campus_id') > 0)
-				$this->db->where('users.campus_id',$this->session->userdata('campus_id'));
-			else if($this->session->userdata('campus') != "")
-				$this->db->where('users.campus',$this->session->userdata('campus'));	
+    	!empty($data) ? $this->db->like($data) : "";
+		
+		if($this->session->userdata('role_id') != 1 && $this->session->userdata('contractor') > 0){
+			$this->db->where('user_profile.contractor',$this->session->userdata('contractor'));
 		}
 		
-        $this->db->join('user_roll', 'user_roll.user_roll_id = users.user_roll_id');        
-        
-        if(!empty($data))
-        {
-        	$str_data_or_like = "";
-        	foreach($data AS $data_key=>$data_val)
-        	{
-        		$str_data_or_like .= " $data_key LIKE '%$data_val%' OR ";	
-        	}
-        	$str_data_or_like = trim(trim($str_data_or_like),"OR");
-        	
-        	if($str_data_or_like != "")
-        		$this->db->where("(".$str_data_or_like.")", null, false);
-        }
-        
-        $this->db->order_by($order_by, $sort_order);
-        $this->db->limit($limit, $offset);
-		$this->db->group_by(array("users.user_id"));
-        $query = $this->db->get();
-        if($query->num_rows() > 0) {
-            return $query;
-        }
+		if($order_by != "")
+			$this->db->order_by($order_by, $sort_order);
+		
+		
+		if($limit > 0)
+			$this->db->limit($limit, $offset);
+    
+    	$query = $this->db->get();
+		//echo $this->db->last_query();	
+		
+		if($limit == 0)
+			return $query->num_rows();
+			
+    	if($query->num_rows() > 0) {
+    		return $query;
+    	}
     }
     
     /**
@@ -499,7 +499,7 @@ class List_Teacher_Student_model extends CI_Model {
     {
     	if (!empty($search_data)) {
             !empty($search_data['username']) ? $data['users.username'] = $search_data['username'] : "";
-            !empty($search_data['first_name']) ? $data['users.first_name'] = $search_data['first_name'] : "";
+            !empty($search_data['staff_name']) ? $data['CONCAT_WS(" ",users.first_name,users.middle_name,users.middle_name2,users.last_name)'] = $search_data['staff_name'] : "";
 			!empty($search_data['ca_lead_teacher']) ? $data['ca_lead.first_name'] = $search_data['ca_lead_teacher'] : "";
 			!empty($search_data['section_title']) ? $data['course_section.section_title'] = $search_data['section_title'] : "";
             !empty($search_data['elsd_id']) ? $data['users.elsd_id'] = $search_data['elsd_id'] : "";
@@ -511,30 +511,42 @@ class List_Teacher_Student_model extends CI_Model {
             !empty($search_data['state']) ? $data['users.state'] = $search_data['state'] : "";
             !empty($search_data['zip']) ? $data['users.zip'] = $search_data['zip'] : "";
             !empty($search_data['cell_phone']) ? $data['users.cell_phone'] = $search_data['cell_phone'] : "";
-            !empty($search_data['campus']) ? $data['users.campus'] = $search_data['campus'] : "";
+            !empty($search_data['campus_name']) ? $data['campus_name'] = $search_data['campus_name'] : "";
         }
-        
-		$this->db->select('users.*');
+        $this->db->select('users.elsd_id,
+						  CONCAT_WS(" ",users.first_name,users.middle_name,users.middle_name2,users.last_name) AS staff_name,
+						  school_campus.campus_name,
+						  users.username,
+						  users.email,
+						  users.user_id
+						 ',FALSE);
     	$this->db->from('users');
+		$this->db->join('user_profile', 'user_profile.user_id = users.user_id','left');
 		$this->db->join('course_class','users.user_id = course_class.primary_teacher_id','left');  
-        $this->db->join('course_section','course_class.section_id = course_section.section_id','left');  
-
-    	$this->db->where('users.user_roll_id','3');
-    	//$this->db->where('users.active','1');  
+        $this->db->join('course_section','course_class.section_id = course_section.section_id','left');
+		$this->db->join('school_campus', 'school_campus.campus_id = users.campus_id','left');
+		$this->db->join('user_roll', 'user_roll.user_roll_id = users.user_roll_id','left');
+		$this->db->join('contractors', 'contractors.id = user_profile.contractor','left');
+		$this->db->where('users.user_roll_id','3');
 		
 		if($this->session->userdata('ca_lead_teacher') > 0)
 		{
 			$this->db->where('course_section.ca_lead_teacher',$this->session->userdata('ca_lead_teacher'));
 		}
 		
-		if($this->session->userdata('role_id') > 4 && ($this->session->userdata('campus_id') > 0 || $this->session->userdata('campus') != ""))
+		if($this->session->userdata('role_id') != 1 && ($this->session->userdata('campus_id') > 0 || $this->session->userdata('campus') != ""))
 		{
-			if($this->session->userdata('campus_id') > 0)
-				$this->db->where('users.campus_id',$this->session->userdata('campus_id'));
-			else if($this->session->userdata('campus') != "")
-				$this->db->where('users.campus',$this->session->userdata('campus'));	
+			if($this->session->userdata('campus_id') > 0){
+				$this->db->where('(users.campus_id = '.$this->session->userdata('campus_id').' OR users.campus_id = 0)');
+			}
 		}
-    	
+		
+    	!empty($data) ? $this->db->like($data) : "";
+		
+		if($this->session->userdata('role_id') != 1 && $this->session->userdata('contractor') > 0){
+			$this->db->where('user_profile.contractor',$this->session->userdata('contractor'));
+		}
+		
 		if(!empty($data))
         {
         	$str_data_or_like = "";
