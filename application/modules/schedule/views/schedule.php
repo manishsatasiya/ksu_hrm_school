@@ -77,7 +77,7 @@
                         elseif($workshop['workshop_type_id'] == 1)
                         	echo '<span class="ribbon tiny"><span class="ribbon-inner blue-gradient">Opt</span></span>';
                         ?>
-                        <a href="<?php echo base_url(); ?>schedule/cancel_signup/<?= $workshop['user_workshop_id'] ?>" class="pull-right" style="color:#fff;">Cancel Signup</a><br />
+                        <a href="<?php echo base_url(); ?>schedule/cancel_signup/<?= $workshop['user_workshop_id'] ?>" class="pull-right" style="color:#fff;">Cancel Signup</a><br /><br />
                     </li>
                     <?php 
 				}
