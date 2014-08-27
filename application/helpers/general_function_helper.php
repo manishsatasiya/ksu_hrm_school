@@ -794,6 +794,7 @@ if (!function_exists('get_course_class')) {
 				$cotroller != "my_inductions" &&	
 				$cotroller != "schedule" &&	
 				$cotroller != "workshops_staff" &&	
+				$cotroller != "line_managers_list" &&	
 				$action != "get_viewstatuslog_json"  &&
 				$action != "get_observations_json"  &&
 				$action != "get_user_existing_privilege"  &&
@@ -1733,6 +1734,19 @@ function getTableField($table, $select_col, $where_col,$where_col_val)
 		return $row->$select_col;
 	}
 	return "";
+}
+
+function isLineManager()
+{
+	$ci =& get_instance();
+	$user_id = $ci->session->userdata('user_id');
+	$ci->db->select('*',FALSE);
+	$ci->db->from("user_profile");
+	$ci->db->where("user_id",$user_id);
+	$ci->db->where("is_line_manager",1);
+	
+	$query = $ci->db->get();
+	return $query->num_rows();
 }
 /* End of file general_function_helper.php */
 /* Location: ./application/helpers/general_function_helper.php */ 
