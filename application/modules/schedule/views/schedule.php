@@ -43,14 +43,14 @@
                         </span>-->
                         
                         <h4><?= ucwords($appointment['title']) ?> | <?= $appointment['time'] ?> </h4>
-                        <span class="event-date"> <?= date("D, d F Y",strtotime( $appointment['event_day'])) ?>  <a href="<?= base_url() ?>/shared/delete_appointment/<?= $appointment['id'] ?>" class="icon-trash confirm float-right with-tooltip" title="cancel appointment"></a></span>
+                        <span class="event-date"> <?= date("D, d F Y",strtotime( $appointment['event_day'])) ?> </span>
                         <?php
                         if($appointment['type'] == 'work')
                         	echo '<span class="ribbon tiny">Type: <span class="ribbon-inner green-gradient">Work</span></span>';
                         else
                         	echo '<span class="ribbon tiny">Type: <span class="ribbon-inner blue-gradient">Private</span></span>';
                         ?>
-                         <a href="<?php echo base_url(); ?>schedule/add_appointment/<?= $appointment['id'] ?>" class="pull-right" style="color:#fff;" data-target="#myModal" data-toggle="modal">Edit</a><br />
+                         <span class="pull-right"><a href="<?php echo base_url(); ?>schedule/add_appointment/<?= $appointment['id'] ?>" class="" style="color:#fff;" data-target="#myModal" data-toggle="modal">Edit</a> | <a href="<?= base_url() ?>/schedule/delete/<?= $appointment['id'] ?>" class="" style="color:#fff;" title="cancel appointment">Delete</a></span><br />
                     </li>
                     <?php 
 				}
@@ -65,9 +65,9 @@
 			  	foreach($user_workshops as $workshop) {
 					?>
                     <li>
-                        <span class="event-date with-month">
+                        <!--<span class="event-date with-month">
                         <div class="event-date"><?= date("d",strtotime( $workshop['event_day']))?></div><br> <div class="event-month"><?= date("F",strtotime( $workshop['event_day'])) ?></div>
-                        </span>
+                        </span>-->
                         
                         <h4><?= ucwords( $workshop['title']) ?> | <?= $workshop['time'] ?> </h4>
                         <span>Venue: <?= $workshop['venue'] ?>  |  <?= date("D, d F Y",strtotime( $workshop['event_day'])) ?>  <a href="<?= base_url() ?>/shared/delete_appointment/<?= $workshop['workshop_id'] ?>" class="icon-trash confirm float-right with-tooltip" title="cancel appointment"></a></span>
@@ -77,6 +77,7 @@
                         elseif($workshop['workshop_type_id'] == 1)
                         	echo '<span class="ribbon tiny"><span class="ribbon-inner blue-gradient">Opt</span></span>';
                         ?>
+                        <a href="<?php echo base_url(); ?>schedule/cancel_signup/<?= $workshop['user_workshop_id'] ?>" class="pull-right" style="color:#fff;">Cancel Signup</a><br />
                     </li>
                     <?php 
 				}

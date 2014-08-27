@@ -9,6 +9,7 @@ class Schedule extends Private_Controller {
         $this->load->library('form_validation');
 		$this->load->helper('general_function');
 		$this->load->model('schedule_model');
+		$this->load->model('list_course/courses_model');
     }
 	
     public function index() {
@@ -166,13 +167,23 @@ class Schedule extends Private_Controller {
 	
 	public function delete($id = null){
     	if($id){
-			$table = 'contractors';
-			$wher_column_name = 'id';
-			set_activity_data_log($id,'Delete','Contractors > List Contractors','List Contractors',$table,$wher_column_name,$user_id='');
+			$table = 'appointments';
+			$wher_column_name = 'appointment_id';
     		$rowdata = $this->courses_model->delete_data($table,$wher_column_name,$id);
     	}
-		redirect('/contractors/');
+		redirect('/schedule/');
         exit();
 	}
+	
+	public function cancel_signup($id = null){
+    	if($id){
+			$table = 'user_workshop';
+			$wher_column_name = 'user_workshop_id';
+    		$rowdata = $this->courses_model->delete_data($table,$wher_column_name,$id);
+    	}
+		redirect('/schedule/');
+        exit();
+	}
+	
 }
 /* End of file contractors.php */

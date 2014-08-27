@@ -10,7 +10,7 @@ class Schedule_model extends CI_Model {
 		$school_setting = get_school_setting();
 		$school_start_date = $school_setting->school_start_date;
 		
-		$this->db->select('appointments.details as title,appointments.date as event_day,appointments.appointment_id as id,time,type',FALSE);
+		$this->db->select('appointments.subject as title,appointments.date as event_day,appointments.appointment_id as id,time,type',FALSE);
 		$this->db->from('appointments');
 		$this->db->where("user_id", $user_id);
 		$this->db->where("date > ".date("Y-m-d",strtotime($school_start_date)));
@@ -83,7 +83,7 @@ class Schedule_model extends CI_Model {
 	
 	public function get_user_workshops($user_id){
 		
-		$this->db->select('workshops.title,workshops.start_date as event_day,workshops.time,workshops.venue,workshops.workshop_id,workshops.workshop_type_id',FALSE);
+		$this->db->select('workshops.title,workshops.start_date as event_day,workshops.time,workshops.venue,workshops.workshop_id,workshops.workshop_type_id,user_workshop_id',FALSE);
 		$this->db->from('user_workshop');
 		$this->db->join('workshops','user_workshop.workshop_id = workshops.workshop_id','left');
 		$this->db->where("start_date > ".date("Y-m-d"));
