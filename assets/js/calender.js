@@ -39,6 +39,10 @@
 			selectable: true,
 			selectHelper: true,
 			events: CI.base_url+"schedule/index_json",
+			dayRender: function(startDate, cell) { 
+				 var startDateString = $.fullCalendar.formatDate(startDate, 'yyyy-MM-dd');
+				 alert(startDateString);
+			}
 		});
 		/* Hide Default header : coz our bottons look awesome */ 
 		$('.fc-header').hide();

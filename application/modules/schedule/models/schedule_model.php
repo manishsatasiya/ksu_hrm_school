@@ -137,7 +137,7 @@ class Schedule_model extends CI_Model {
 		$this->db->where("user_id", $user_id);
 		$this->db->where("date > ".date("Y-m-d"));
 		$this->db->order_by('date','asc');
-		$this->db->limit(7,0);
+		$this->db->limit(3,0);
 		
 		$query = $this->db->get();
 		$data = array();

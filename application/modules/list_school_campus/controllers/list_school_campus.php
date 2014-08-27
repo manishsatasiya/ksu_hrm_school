@@ -152,7 +152,7 @@ $this->template->set_partial('sidebar', 'sidebar');
     
     public function add($id = null){
     	$content_data['id'] = $id;
-		$content_data['attendance_days_list'] = array(0 => "Sunday",
+		$content_data['attendance_days_list'] = array('' => "Select",0 => "Sunday",
 
       1=> "Monday",
 

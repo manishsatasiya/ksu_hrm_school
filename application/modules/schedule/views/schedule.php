@@ -31,7 +31,7 @@
             <h3 class="text-white semi-bold" id="calender-current-day"></h3>
             <h2 class="text-white" id="calender-current-date"></h2>
             <div class="events-wrapper">
-              <div class="events-heading">My next 7 appointments</div>
+              <div class="events-heading">My next 3 appointments</div>
               <ul>
               <?php
 			  if(count($next_appointments) > 0) {

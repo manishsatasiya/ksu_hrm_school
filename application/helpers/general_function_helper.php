@@ -1716,5 +1716,23 @@ function get_campus_user_list() {
 	}
 	return $student_arr;
 }
+
+function getTableField($table, $select_col, $where_col,$where_col_val)
+{
+	$ci =& get_instance();
+	
+	$ci->db->select(''.$select_col.'',FALSE);
+	$ci->db->from($table);
+	
+	if(isset($where_col) && $where_col_val!="")
+		$ci->db->where($where_col,$where_col_val);
+	
+	$query = $ci->db->get();
+	if($query->num_rows() > 0) {
+		$row = $query->row();
+		return $row->$select_col;
+	}
+	return "";
+}
 /* End of file general_function_helper.php */
 /* Location: ./application/helpers/general_function_helper.php */ 

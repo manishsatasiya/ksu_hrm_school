@@ -27,7 +27,7 @@ print form_hidden('gender', $value = 'M');
 </div>
 <div class="row form-row">
 	<div class="col-md-6">
-    	<div class="form_label"><?php print form_label('Presenter', 'line_manager_attendance_day'); ?></div>
+    	<div class="form_label"><?php print form_label('Line manager attendance day', 'line_manager_attendance_day'); ?></div>
 		<div class="input_box_thin"><?php print form_dropdown('line_manager_attendance_day',$attendance_days_list,($rowdata)?$rowdata->line_manager_attendance_day:$this->session->flashdata('line_manager_attendance_day'),'id="line_manager_attendance_day" class=""'); ?></div>
     </div>
 </div>    
