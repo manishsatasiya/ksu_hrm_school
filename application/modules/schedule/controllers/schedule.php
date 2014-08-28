@@ -113,9 +113,12 @@ class Schedule extends Private_Controller {
 	
 				}
 				
-				$row['title'] = $_tital;
+				$row['title'] = $_tital.'<a class="fa fa-search-plus" style="color:#fff; font-size:20px;"></a>';
 				$row['start'] = $event_day;
     			$row['color'] = $color;
+				if($type == 'work' || $type == 'private'){
+					$row['url'] = '#'.$id;
+				}
 				$output[] = $row;
     		}
     	}
@@ -184,6 +187,19 @@ class Schedule extends Private_Controller {
 		redirect('/schedule/');
         exit();
 	}
+	
+	public function view_detail($id = null){
+    	$user_id = $this->session->userdata('user_id');	
+		
+		$content_data['id'] = $id;
+    	$rowdata = array();
+    	if($id){
+    		$rowdata = $this->schedule_model->get_appointment_data($id);
+    	}
+    	$content_data['rowdata'] = $rowdata;
+
+    	$this->template->build('view_detail', $content_data);
+    }
 	
 }
 /* End of file contractors.php */
