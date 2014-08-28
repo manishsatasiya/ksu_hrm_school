@@ -1747,7 +1747,18 @@ $(document).ready(function() {
 		event.preventDefault();
 	});
 });
-
+if(CI.controller_name == 'schedule')
+{
+	$('#close_view_model').click(function(event) {
+		var _href = $(this).attr('href');
+		var id = _href.replace(/\D+/g, '');
+		$('#myModal').modal('hide');
+		$('#myModal2').modal({
+		  remote: CI.base_url+'schedule/add_appointment/'+id
+		});
+		//return false;
+	});
+}
 function check_edit_school_form(id){
 	// validate add school year form on keyup and submit
 	

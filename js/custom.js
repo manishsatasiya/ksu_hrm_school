@@ -567,10 +567,7 @@ if(CI.controller_name == 'list_bug')
 
 }
 
-if(CI.controller_name == 'list_report')
-{
 
-}
 
 $(document).ready(function(){
 	//$('#popover1').popover({ trigger: "hover focus" });

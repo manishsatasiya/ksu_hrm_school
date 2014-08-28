@@ -39,9 +39,19 @@
 			selectable: true,
 			selectHelper: true,
 			events: CI.base_url+"schedule/index_json",
-			dayRender: function(startDate, cell) { 
-				 var startDateString = $.fullCalendar.formatDate(startDate, 'yyyy-MM-dd');
-				 alert(startDateString);
+			eventClick: function(event) {
+				if (event.url) {
+					var id = event.url.replace(/\D+/g, '');
+					$('#myModal').modal({
+					  remote: CI.base_url+'schedule/view_detail/'+id
+					})
+					return false;
+				}
+			},
+			eventRender: function(event, element, view) {
+				 //if (view.name == 'agendaDay') {
+					  element.find('span.fc-event-title').html(element.find('span.fc-event-title').text());
+				 //}
 			}
 		});
 		/* Hide Default header : coz our bottons look awesome */ 
