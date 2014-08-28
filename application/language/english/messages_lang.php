@@ -540,6 +540,7 @@ $lang['workshop'] = 'Manage Workshop';
 $lang['active_workshop_sub'] = 'Active Workshop';
 $lang['inactive_workshop_sub'] = 'Inactive Workshop';
 $lang['workshop_type_sub'] = 'Workshop Type';
+$lang['workshop_sign_up_sub'] = 'Workshop Sign Up';
 $lang['contractors_sub'] = 'Contractors';
 $lang['duties_sub'] = 'Duties';
 $lang['department_sub'] = 'Department';
@@ -671,6 +672,7 @@ $lang['inactive_list_workshop'] = 'InActive Workshop';
 $lang['add_workshop_type'] = 'Add Workshop Type';
 $lang['edit_workshop_type'] = 'Edit Workshop Type';
 $lang['list_workshop_type'] = 'Workshop Type';
+$lang['workshop_sign_up'] = 'Workshop Sign Up';
 
 $lang['add_contractors'] = 'Add Contractor';
 $lang['edit_contractors'] = 'Edit Contractor';
@@ -718,11 +720,11 @@ $lang['edit_profile'] = 'Edit profile';
 
 $lang['update_profile'] = 'Update account';
 
-$lang['current_password'] = 'current password';
+$lang['current_password'] = 'Current Password';
 
-$lang['new_password'] = 'new password';
+$lang['new_password'] = 'New Password';
 
-$lang['new_password_again'] = 'new password again';
+$lang['new_password_again'] = 'Confirm New Password';
 
 $lang['send_copy_to_email'] = 'Send a copy of your new password to your e-mail?';
 
