@@ -1755,11 +1755,11 @@ function get_user_campus_privilages($where_user_id=0)
 	if($where_user_id > 0)
 		$user_id = $where_user_id;
 	
-	$this->db->select('campus_id');
-	$this->db->from('user_campus_privilege');
-	$this->db->where('user_id',$user_id);
+	$ci->db->select('campus_id');
+	$ci->db->from('user_campus_privilege');
+	$ci->db->where('user_id',$user_id);
 		
-	$query = $this->db->get();
+	$query = $ci->db->get();
 	if($query->num_rows() > 0) 
 	{
 		$retArr[] = 0;
@@ -1771,6 +1771,30 @@ function get_user_campus_privilages($where_user_id=0)
 	else 
 	{
 		$retArr[] = 99999;
+	}
+	
+	return $retArr;
+}
+
+function get_user_campus_privilages_data($where_user_id=0)
+{
+	$retArr = array();
+	
+	$ci =& get_instance();
+	if($where_user_id == 0)
+		return $retArr;
+
+	$ci->db->select('campus_id');
+	$ci->db->from('user_campus_privilege');
+	$ci->db->where('user_id',$where_user_id);
+		
+	$query = $ci->db->get();
+	if($query->num_rows() > 0) 
+	{
+		foreach($query->result_array() AS $row)
+		{
+			$retArr[] = $row["campus_id"]."j";
+		}
 	}
 	
 	return $retArr;

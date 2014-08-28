@@ -1057,7 +1057,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 		$user_data = (object) array_merge((array)$user_data,array('emergency_contacts'=>$emergency_contacts),array('user_qualification'=>$user_qualification),array('user_certificate'=>$user_certificate),array('user_experience'=>$user_experience),array('user_workshop'=>$user_workshop),array('cv_reference'=>$cv_reference));
 		
 		$user_permossion = $this->list_user_model->get_user_permossion($user_id);
-		$campus_privilages = get_user_campus_privilages($user_id);
+		$campus_privilages = get_user_campus_privilages_data($user_id);
 		$user_documents = $this->list_user_model->get_user_documents($user_id);
 	
 		$content_data = array();

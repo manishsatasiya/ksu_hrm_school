@@ -929,9 +929,8 @@ print form_hidden('user_id', $user_data->user_unique_id);
 							<div class="row form-row">
 							  <div class="col-md-3"> <?php print form_label('Contractor', 'contractor',array('class'=>'form-label')); ?> <?php print form_dropdown('contractor',array(''=>'Select Contractor','1'=> 'ICEAT','2'=>'EdEx','3'=>'KSU'),($user_data)?$user_data->contractor:$this->session->flashdata('contractor'),'id="contractor" class="select2 form-control"'); ?> </div>
                               <div class="col-md-3"> <?php print form_label('Campus Privilages', 'campus_privilages_id',array('class'=>'form-label')); ?> 
-                              <?php 
-							  print_r($campus_list);
-                              print form_dropdown('campus_privilages[]',$campus_list,($campus_privilages)?$campus_privilages:""); 
+                              <?php
+							  print form_multiselect('campus_privilages[]',$campus_list,$campus_privilages,'id="multi" class="select2 form-control" placeholder="Select Campus"'); 
                               ?> 
                               </div>
                               <div class="col-md-3"> <?php print form_label('Campus Location', 'campus_id',array('class'=>'form-label')); ?> <?php print form_dropdown('campus_id',$campus_list,($user_data)?$user_data->campus_id.'j':$this->session->flashdata('campus_id'),'id="campus_id" class="select2 form-control"'); ?> </div>

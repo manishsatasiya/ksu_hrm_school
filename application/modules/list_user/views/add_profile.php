@@ -137,7 +137,9 @@
                     </div>
                     <div class="col-md-3"> 
                       <?php print form_label('Campus Privilages', 'campus_privilages_id',array('class'=>'form-label')); ?> 
-                      <?php print form_multiselect('campus_privilages[]',$campus_list,'','id="campus_privilages" class="select2 form-control"'); ?> 
+                      <?php
+					  print form_multiselect('campus_privilages[]',$campus_list,"",'id="multi" class="select2 form-control" placeholder="Select Campus"'); 
+					  ?> 
                     </div>
                     <div class="col-md-3">
                       <?php print form_label('Campus Location', 'campus_id',array('class'=>'form-label')); ?>
@@ -174,7 +176,7 @@
                     </div>
                     <div class="col-md-4">
                           <?php print form_label('Job Title', 'job_title',array('class'=>'form-label')); ?>
-                          <?php print form_dropdown('job_title',$jobtitle_list,($user_data)?$user_data->job_title:$this->session->flashdata('job_title'),'id="department_id" class="select2 form-control"'); ?>
+                          <?php print form_dropdown('job_title',$jobtitle_list,$this->session->flashdata('job_title'),'id="job_title" class="select2 form-control"'); ?>
                       </div>  
                     <div class="col-md-4">
 						  <?php print form_label('Scan ID', 'scanner_id',array('class'=>'form-label')); ?>

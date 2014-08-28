@@ -541,14 +541,17 @@ SELECT `user_id`, `user_roll_id`, `username`, `password`, `section_id`, `section
     	$this->db->where('user_id',$user_id);
     	$delete = $this->db->delete('user_campus_privilege');
     	
-		foreach($campus_privilege AS $campusid)
+		if(is_array($campus_privilege) && count($campus_privilege) > 0)
 		{
-			if($campusid > 0)
+			foreach($campus_privilege AS $campusid)
 			{
-				$data = array('user_id' => $user_id,'campus_id' => $campusid);
-				$this->db->insert('user_campus_privilege', $data);
+				if($campusid > 0)
+				{
+					$data = array('user_id' => $user_id,'campus_id' => $campusid);
+					$this->db->insert('user_campus_privilege', $data);
+				}
 			}
-		}
+		}	
 		return true;
     }
 }
