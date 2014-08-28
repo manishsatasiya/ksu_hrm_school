@@ -131,15 +131,19 @@
                   <br>
                    <!--row 2.1 start-->
                   <div class="row form-row">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                       <?php print form_label('Contractor', 'contractor',array('class'=>'form-label')); ?>
                       <?php print form_dropdown('contractor',array(''=>'Select Contractor','1'=> 'ICEAT','2'=>'EdEx','3'=>'KSU'),'','id="contractor" class="select2 form-control"'); ?>
                     </div>
-                    <div class="col-md-4">
-                      <?php print form_label('Campus', 'campus_id',array('class'=>'form-label')); ?>
+                    <div class="col-md-3"> 
+                      <?php print form_label('Campus Privilages', 'campus_privilages_id',array('class'=>'form-label')); ?> 
+                      <?php print form_multiselect('campus_privilages[]',$campus_list,'','id="campus_privilages" class="select2 form-control"'); ?> 
+                    </div>
+                    <div class="col-md-3">
+                      <?php print form_label('Campus Location', 'campus_id',array('class'=>'form-label')); ?>
                       <?php print form_dropdown('campus_id',$campus_list,'','id="campus_id" class="select2 form-control"'); ?>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                       <?php print form_label('Line Manager', 'coordinator',array('class'=>'form-label')); ?>
                       <?php print form_dropdown('coordinator',$other_user_list,'','id="coordinator" class="select2 form-control"'); ?>
                     </div>

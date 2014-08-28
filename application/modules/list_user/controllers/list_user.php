@@ -723,6 +723,9 @@ $this->template->set_partial('sidebar', 'sidebar');
 				$roll_privilege = $this->list_user_model->get_existing_privilege($this->input->post('user_roll_id'));
 				$this->list_user_model->create_single_user_privilege($user_id, $roll_privilege);
 				
+				$campus_privilege = $this->input->post('campus_privilages');
+				$this->list_user_model->create_user_campus_privilege($user_id, $campus_privilege);
+					
 				redirect('list_user/edit_profile/'.$user_id.'/');		
 			}						
 			
@@ -927,7 +930,10 @@ $this->template->set_partial('sidebar', 'sidebar');
 						$roll_privilege = $this->list_user_model->get_existing_privilege($user_roll_id);
 						$this->list_user_model->create_single_user_privilege($user_id, $roll_privilege);
 					}
-				}						
+					
+					$campus_privilege = $this->input->post('campus_privilages');
+					$this->list_user_model->create_user_campus_privilege($user_id, $campus_privilege);
+				}
 			}
 		}
 		
@@ -1051,11 +1057,13 @@ $this->template->set_partial('sidebar', 'sidebar');
 		$user_data = (object) array_merge((array)$user_data,array('emergency_contacts'=>$emergency_contacts),array('user_qualification'=>$user_qualification),array('user_certificate'=>$user_certificate),array('user_experience'=>$user_experience),array('user_workshop'=>$user_workshop),array('cv_reference'=>$cv_reference));
 		
 		$user_permossion = $this->list_user_model->get_user_permossion($user_id);
+		$campus_privilages = get_user_campus_privilages($user_id);
 		$user_documents = $this->list_user_model->get_user_documents($user_id);
 	
 		$content_data = array();
 		$content_data['user_documents'] = $user_documents;
 		$content_data['user_permossion'] = $user_permossion;
+		$content_data['campus_privilages'] = $campus_privilages;
 		$content_data['user_profile_status'] = user_profile_status();
 		$content_data['other_user_roll'] = get_other_user_roll();
 		$content_data['other_user_list'] = get_other_user_list();

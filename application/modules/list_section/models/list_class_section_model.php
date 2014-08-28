@@ -63,19 +63,17 @@ class List_class_section_model extends CI_Model {
 		$this->db->join('school_campus','school_campus.campus_id = camps_id','left');  
     	$this->db->join('users AS ca_lead','course_section.ca_lead_teacher = ca_lead.user_id','left');  
     	 !empty($data) ? $this->db->or_like($data) : "";
-		if($this->session->userdata('role_id') > 4 && $this->session->userdata('ca_lead_teacher') == 0 && ($this->session->userdata('campus_id') > 0 || $this->session->userdata('campus') != ""))
-		{
+    	 
+    	if(count(get_user_campus_privilages()) > 0)
+		{	
 			$this->db->join('course_class','course_class.section_id = course_section.section_id','left');  
 			$this->db->join('users','course_class.primary_teacher_id = users.user_id','left');  
 			
-			if($this->session->userdata('campus_id') > 0)
-				$this->db->where('course_section.camps_id',$this->session->userdata('campus_id'));
-			else if($this->session->userdata('campus') != "")
-				$this->db->where('users.campus',$this->session->userdata('campus'));	
+			$this->db->where_in('course_section.camps_id',get_user_campus_privilages());
 			
 			$this->db->group_by(array("course_section.section_id"));		
 		}
-		
+		 
 		if($this->session->userdata('ca_lead_teacher') > 0)
 		{
 			$this->db->where('course_section.ca_lead_teacher',$this->session->userdata('ca_lead_teacher'));

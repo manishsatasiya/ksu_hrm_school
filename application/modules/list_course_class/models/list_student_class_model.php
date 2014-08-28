@@ -112,13 +112,11 @@ class List_student_class_model extends CI_Model {
 			$this->db->where('course_section.ca_lead_teacher',$this->session->userdata('ca_lead_teacher'));
 		}
 		
-		if($this->session->userdata('role_id') > 4 && ($this->session->userdata('campus_id') > 0) || $this->session->userdata('campus') != "")
-		{
-			if($this->session->userdata('campus_id') > 0)
-				$this->db->where('p1.campus_id',$this->session->userdata('campus_id'));
-			else if($this->session->userdata('campus') != "")
-				$this->db->where('p1.campus',$this->session->userdata('campus'));	
+		if(count(get_user_campus_privilages()) > 0)
+		{	
+			$this->db->where_in('p1.campus_id',get_user_campus_privilages());
 		}
+		
 		if($where)
 		{
 			for($i=0;$i<count($where);$i++){
@@ -181,14 +179,11 @@ class List_student_class_model extends CI_Model {
 			$this->db->where('course_section.ca_lead_teacher',$this->session->userdata('ca_lead_teacher'));
 		}
 		
-		if($this->session->userdata('role_id') > 4 && ($this->session->userdata('campus_id') > 0 || $this->session->userdata('campus') != ""))
-		{
-			if($this->session->userdata('campus_id') > 0)
-				$this->db->where('users.campus_id',$this->session->userdata('campus_id'));
-			else if($this->session->userdata('campus') != "")
-				$this->db->where('users.campus',$this->session->userdata('campus'));	
+		if(count(get_user_campus_privilages()) > 0)
+		{	
+			$this->db->where_in('users.campus_id',get_user_campus_privilages());
 		}
-        
+		
 		if(!empty($data))
         {
         	$str_data_or_like = "";
@@ -348,13 +343,11 @@ class List_student_class_model extends CI_Model {
 				$this->db->where('course_section.ca_lead_teacher',$this->session->userdata('ca_lead_teacher'));
 			}
 			
-			if($this->session->userdata('role_id') > 4 && ($this->session->userdata('campus_id') > 0) || $this->session->userdata('campus') != "")
-			{
-				if($this->session->userdata('campus_id') > 0)
-					$this->db->where('users.campus_id',$this->session->userdata('campus_id'));
-				else if($this->session->userdata('campus') != "")
-					$this->db->where('users.campus',$this->session->userdata('campus'));	
+			if(count(get_user_campus_privilages()) > 0)
+			{	
+				$this->db->where_in('users.campus_id',get_user_campus_privilages());
 			}
+			
 			if($where)
 			{
 				for($i=0;$i<count($where);$i++){

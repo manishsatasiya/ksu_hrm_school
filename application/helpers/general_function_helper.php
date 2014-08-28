@@ -16,12 +16,9 @@ if (!function_exists('get_ca_lead_teacher_list')) {
     	$ci->db->join('user_roll','users.user_roll_id = user_roll.user_roll_id','left');    	
     	//$ci->db->where('users.user_roll_id IN(12)');   
     	$ci->db->where('user_roll.is_ca_lead','Y');
-    	if($ci->session->userdata('role_id') > 4 && ($ci->session->userdata('campus_id') > 0 || $ci->session->userdata('campus') != ""))
-		{
-			if($ci->session->userdata('campus_id') > 0)
-				$ci->db->where('users.campus_id',$ci->session->userdata('campus_id'));
-			else if($ci->session->userdata('campus') != "")
-				$ci->db->where('users.campus',$ci->session->userdata('campus'));	
+    	if(count(get_user_campus_privilages()) > 0)
+		{	
+			$ci->db->where_in('users.campus_id',get_user_campus_privilages());
 		}
 		
 		$ci->db->order_by('first_name', 'ASC');	
@@ -59,12 +56,9 @@ if (!function_exists('get_teacher_list')) {
 			$ci->db->where('school_campus.campus_id',$campus_id);	
 		}
 		
-    	if($ci->session->userdata('role_id') > 4 && ($ci->session->userdata('campus_id') > 0 || $ci->session->userdata('campus') != ""))
-		{
-			if($ci->session->userdata('campus_id') > 0)
-				$ci->db->where('users.campus_id',$ci->session->userdata('campus_id'));
-			else if($ci->session->userdata('campus') != "")
-				$ci->db->where('users.campus',$ci->session->userdata('campus'));	
+		if(count(get_user_campus_privilages()) > 0)
+		{	
+			$ci->db->where_in('users.campus_id',get_user_campus_privilages());
 		}
 		
 		$ci->db->order_by('first_name', 'ASC');	
@@ -303,13 +297,11 @@ if (!function_exists('get_campus_list')) {
 			}
 		}*/
 		
-		if($ci->session->userdata('role_id') > 4 && ($ci->session->userdata('campus_id') > 0 || $ci->session->userdata('campus') != ""))
-		{
-			if($ci->session->userdata('campus_id') > 0)
-				$ci->db->where('school_campus.campus_id',$ci->session->userdata('campus_id'));
-			else if($ci->session->userdata('campus') != "")
-				$ci->db->where('school_campus.campus_name',$ci->session->userdata('campus'));	
+		if(count(get_user_campus_privilages()) > 0)
+		{	
+			$ci->db->where_in('campus_id',get_user_campus_privilages());
 		}
+		
 		$ci->db->order_by('campus_name', 'ASC');	
     	$query = $ci->db->get();
     	$campus_data = $query->result_array();
@@ -1703,11 +1695,12 @@ function get_campus_user_list() {
 	$ci->db->from('users');
 	$ci->db->where_not_in('users.user_roll_id',array('1','3'));
 	$ci->db->order_by('first_name', 'ASC');
-	if(($ci->session->userdata('campus_id') > 0 || $ci->session->userdata('campus') != ""))
-	{
-		$ci->db->where('users.campus_id',$ci->session->userdata('campus_id'));
-		$ci->db->or_where('users.campus_id',0);	
+	
+	if(count(get_user_campus_privilages()) > 0)
+	{	
+		$ci->db->where_in('users.campus_id',get_user_campus_privilages());
 	}
+	
 	$query = $ci->db->get();
 	$student_data = $query->result_array();
 	$student_arr = array();
@@ -1747,6 +1740,40 @@ function isLineManager()
 	
 	$query = $ci->db->get();
 	return $query->num_rows();
+}
+
+function get_user_campus_privilages($where_user_id=0)
+{
+	$retArr = array();
+	
+	$ci =& get_instance();
+	if($ci->session->userdata('role_id') == 1)
+		return $retArr;
+
+	$user_id = $ci->session->userdata('user_id');
+	
+	if($where_user_id > 0)
+		$user_id = $where_user_id;
+	
+	$this->db->select('campus_id');
+	$this->db->from('user_campus_privilege');
+	$this->db->where('user_id',$user_id);
+		
+	$query = $this->db->get();
+	if($query->num_rows() > 0) 
+	{
+		$retArr[] = 0;
+		foreach($query->result_array() AS $row)
+		{
+			$retArr[] = $row["campus_id"];
+		}
+	}
+	else 
+	{
+		$retArr[] = 99999;
+	}
+	
+	return $retArr;
 }
 /* End of file general_function_helper.php */
 /* Location: ./application/helpers/general_function_helper.php */ 

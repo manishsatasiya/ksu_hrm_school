@@ -63,15 +63,7 @@ class User_qualification_model extends CI_Model {
 		//$this->db->join('department', 'department.id = user_profile.department_id','left');
 		$this->db->join('contractors', 'contractors.id = user_profile.contractor','left');
 		$this->db->join('countries', 'countries.id = user_profile.nationality','left');
-<<<<<<< HEAD
-		//$this->db->join('user_qualification', 'user_qualification.user_id = users.user_id','left');
-		$this->db->where_not_in('users.user_roll_id',array('1','4'));
-		//$this->db->where_in('user_qualification.qualification_id',array_keys($dt_columns));
-=======
-		$this->db->join('user_qualification', 'user_qualification.user_id = users.user_id','left');
 		$this->db->where_not_in('users.user_roll_id',array('1','3'));
-		$this->db->where_in('user_qualification.qualification_id',array_keys($dt_columns));
->>>>>>> origin/master
 		if($type != "")
 		{
 			
@@ -82,14 +74,11 @@ class User_qualification_model extends CI_Model {
 		
     	!empty($data) ? $this->db->like($data) : "";
 		
-		if(($this->session->userdata('campus_id') > 0 || $this->session->userdata('campus') != ""))
-		{
-			if($this->session->userdata('campus_id') > 0)
-				$this->db->where('users.campus_id',$this->session->userdata('campus_id'));
-			else if($this->session->userdata('campus') != "")
-				$this->db->where('users.campus',$this->session->userdata('campus'));	
+    	if(count(get_user_campus_privilages()) > 0)
+		{	
+			$this->db->where_in('users.campus_id',get_user_campus_privilages());
 		}
-        
+		
 		if($this->session->userdata('contractor') > 0){
 			$this->db->where('user_profile.contractor',$this->session->userdata('contractor'));
 		}

@@ -35,19 +35,15 @@ class List_class_room_model extends CI_Model {
         $this->db->order_by($order_by, $sort_order);
         $this->db->limit($limit, $offset);
 
-		if($this->session->userdata('role_id') > 4 && ($this->session->userdata('campus_id') > 0 || $this->session->userdata('campus') != ""))
-		{
+        if(count(get_user_campus_privilages()) > 0)
+		{	
 			$this->db->join('course_class','course_class.class_room_id = course_class_room.class_room_id','left');  
 			$this->db->join('users','course_class.primary_teacher_id = users.user_id','left');  
 			
-			if($this->session->userdata('campus_id') > 0)
-				$this->db->where('course_class_room.camps_id',$this->session->userdata('campus_id'));
-			else if($this->session->userdata('campus') != "")
-				$this->db->where('users.campus',$this->session->userdata('campus'));	
-				
+			$this->db->where_in('course_class_room.camps_id',get_user_campus_privilages());
+			
 			$this->db->group_by(array("course_class_room.class_room_id"));
 		}
-		
 		
         $query = $this->db->get();
         
@@ -79,19 +75,15 @@ class List_class_room_model extends CI_Model {
 		$this->db->join('school_campus','school_campus.campus_id = camps_id','left');  		
         !empty($data) ? $this->db->or_like($data) : "";
         
-		if($this->session->userdata('role_id') > 4 && ($this->session->userdata('campus_id') > 0 || $this->session->userdata('campus') != ""))
-		{
+        if(count(get_user_campus_privilages()) > 0)
+		{	
 			$this->db->join('course_class','course_class.class_room_id = course_class_room.class_room_id','left');  
 			$this->db->join('users','course_class.primary_teacher_id = users.user_id','left');  
 			
-			if($this->session->userdata('campus_id') > 0)
-				$this->db->where('course_class_room.camps_id',$this->session->userdata('campus_id'));
-			else if($this->session->userdata('campus') != "")
-				$this->db->where('users.campus',$this->session->userdata('campus'));	
-				
+			$this->db->where_in('course_class_room.camps_id',get_user_campus_privilages());
+			
 			$this->db->group_by(array("course_class_room.class_room_id"));	
 		}
-		
 		
         $query = $this->db->get();
         

@@ -298,12 +298,9 @@ class Workshops_model extends CI_Model {
 		$this->db->from('users');
 		$this->db->where_not_in('users.user_roll_id',array('1','3'));
 		
-		if(($this->session->userdata('campus_id') > 0 || $this->session->userdata('campus') != ""))
-		{
-			if($this->session->userdata('campus_id') > 0)
-				$this->db->where('users.campus_id',$this->session->userdata('campus_id'));
-			else if($this->session->userdata('campus') != "")
-				$this->db->where('users.campus',$this->session->userdata('campus'));
+		if(count(get_user_campus_privilages()) > 0)
+		{	
+			$this->db->where_in('users.campus_id',get_user_campus_privilages());
 		}
 				
 		$this->db->order_by('first_name', 'ASC');	

@@ -54,11 +54,9 @@ class List_Teacher_Student_model extends CI_Model {
 		$this->db->join('contractors', 'contractors.id = user_profile.contractor','left');
 		$this->db->where('users.user_roll_id','3');
 		
-		if($this->session->userdata('role_id') != 1 && ($this->session->userdata('campus_id') > 0 || $this->session->userdata('campus') != ""))
-		{
-			if($this->session->userdata('campus_id') > 0){
-				$this->db->where('(users.campus_id = '.$this->session->userdata('campus_id').' OR users.campus_id = 0)');
-			}
+		if(count(get_user_campus_privilages()) > 0)
+		{	
+			$this->db->where_in('users.campus_id',get_user_campus_privilages());
 		}
 		
     	!empty($data) ? $this->db->like($data) : "";
@@ -230,12 +228,9 @@ class List_Teacher_Student_model extends CI_Model {
 		$this->db->join('countries', 'countries.id = user_profile.nationality','left');
 		//$this->db->where_not_in('users.user_roll_id',array('1','3'));
 		
-		
-		if($this->session->userdata('role_id') != 1 && ($this->session->userdata('campus_id') > 0 || $this->session->userdata('campus') != ""))
-		{
-			if($this->session->userdata('campus_id') > 0){
-				$this->db->where('(users.campus_id = '.$this->session->userdata('campus_id').' OR users.campus_id = 0)');
-			}	
+		if(count(get_user_campus_privilages()) > 0)
+		{	
+			$this->db->where_in('users.campus_id',get_user_campus_privilages());
 		}
 		
 		if($type != "")
@@ -313,13 +308,11 @@ class List_Teacher_Student_model extends CI_Model {
 			$this->db->where('course_section.ca_lead_teacher',$this->session->userdata('ca_lead_teacher'));
 		}
 		
-		if($this->session->userdata('role_id') > 4 && ($this->session->userdata('campus_id') > 0 || $this->session->userdata('campus') != ""))
-		{
-			if($this->session->userdata('campus_id') > 0)
-				$this->db->where('users.campus_id',$this->session->userdata('campus_id'));
-			else if($this->session->userdata('campus') != "")
-				$this->db->where('users.campus',$this->session->userdata('campus'));	
+		if(count(get_user_campus_privilages()) > 0)
+		{	
+			$this->db->where_in('users.campus_id',get_user_campus_privilages());
 		}
+		
         $this->db->join('user_roll', 'user_roll.user_roll_id = users.user_roll_id');
 		
 		if($showall == 1)
@@ -383,13 +376,11 @@ class List_Teacher_Student_model extends CI_Model {
 			$this->db->where('course_section.ca_lead_teacher',$this->session->userdata('ca_lead_teacher'));
 		}
 		
-		if($this->session->userdata('role_id') > 4 && ($this->session->userdata('campus_id') > 0 || $this->session->userdata('campus') != ""))
-		{
-			if($this->session->userdata('campus_id') > 0)
-				$this->db->where('users.campus_id',$this->session->userdata('campus_id'));
-			else if($this->session->userdata('campus') != "")
-				$this->db->where('users.campus',$this->session->userdata('campus'));	
+		if(count(get_user_campus_privilages()) > 0)
+		{	
+			$this->db->where_in('users.campus_id',get_user_campus_privilages());
 		}
+		
         $this->db->join('user_roll', 'user_roll.user_roll_id = users.user_roll_id');
 		
 		if($showall == 1)
@@ -446,12 +437,9 @@ class List_Teacher_Student_model extends CI_Model {
 			$this->db->where('course_section.ca_lead_teacher',$this->session->userdata('ca_lead_teacher'));
 		}
 		
-		if($this->session->userdata('role_id') > 4 && ($this->session->userdata('campus_id') > 0 || $this->session->userdata('campus') != ""))
-		{
-			if($this->session->userdata('campus_id') > 0)
-				$this->db->where('users.campus_id',$this->session->userdata('campus_id'));
-			else if($this->session->userdata('campus') != "")
-				$this->db->where('users.campus',$this->session->userdata('campus'));	
+		if(count(get_user_campus_privilages()) > 0)
+		{	
+			$this->db->where_in('users.campus_id',get_user_campus_privilages());
 		}
 		
 		if($sec_teacher > 0)
@@ -485,13 +473,11 @@ class List_Teacher_Student_model extends CI_Model {
 			$this->db->where('course_section.ca_lead_teacher',$this->session->userdata('ca_lead_teacher'));
 		}
 		
-		if($this->session->userdata('role_id') > 4 && ($this->session->userdata('campus_id') > 0 || $this->session->userdata('campus') != ""))
-		{
-			if($this->session->userdata('campus_id') > 0)
-				$this->db->where('users.campus_id',$this->session->userdata('campus_id'));
-			else if($this->session->userdata('campus') != "")
-				$this->db->where('users.campus',$this->session->userdata('campus'));	
+		if(count(get_user_campus_privilages()) > 0)
+		{	
+			$this->db->where_in('users.campus_id',get_user_campus_privilages());
 		}
+		
         return $this->db->count_all_results();
     }
     
@@ -534,11 +520,9 @@ class List_Teacher_Student_model extends CI_Model {
 			$this->db->where('course_section.ca_lead_teacher',$this->session->userdata('ca_lead_teacher'));
 		}
 		
-		if($this->session->userdata('role_id') != 1 && ($this->session->userdata('campus_id') > 0 || $this->session->userdata('campus') != ""))
-		{
-			if($this->session->userdata('campus_id') > 0){
-				$this->db->where('(users.campus_id = '.$this->session->userdata('campus_id').' OR users.campus_id = 0)');
-			}
+		if(count(get_user_campus_privilages()) > 0)
+		{	
+			$this->db->where_in('users.campus_id',get_user_campus_privilages());
 		}
 		
     	!empty($data) ? $this->db->like($data) : "";
@@ -609,14 +593,11 @@ class List_Teacher_Student_model extends CI_Model {
 			$this->db->where('course_section.ca_lead_teacher',$this->session->userdata('ca_lead_teacher'));
 		}
 		
-		if($this->session->userdata('role_id') > 4 && ($this->session->userdata('campus_id') > 0 || $this->session->userdata('campus') != ""))
-		{
-			if($this->session->userdata('campus_id') > 0)
-				$this->db->where('users.campus_id',$this->session->userdata('campus_id'));
-			else if($this->session->userdata('campus') != "")
-				$this->db->where('users.campus',$this->session->userdata('campus'));	
+		if(count(get_user_campus_privilages()) > 0)
+		{	
+			$this->db->where_in('users.campus_id',get_user_campus_privilages());
 		}
-    	
+		
     	if(!empty($data))
         {
         	$str_data_or_like = "";
@@ -651,12 +632,9 @@ class List_Teacher_Student_model extends CI_Model {
 			$this->db->where('course_section.ca_lead_teacher',$this->session->userdata('ca_lead_teacher'));
 		}
 		
-		if($this->session->userdata('role_id') > 4 && ($this->session->userdata('campus_id') > 0 || $this->session->userdata('campus') != ""))
-		{
-			if($this->session->userdata('campus_id') > 0)
-				$this->db->where('users.campus_id',$this->session->userdata('campus_id'));
-			else if($this->session->userdata('campus') != "")
-				$this->db->where('users.campus',$this->session->userdata('campus'));	
+		if(count(get_user_campus_privilages()) > 0)
+		{	
+			$this->db->where_in('users.campus_id',get_user_campus_privilages());
 		}
 		
 		if($sec_teacher > 0)
@@ -824,12 +802,9 @@ class List_Teacher_Student_model extends CI_Model {
 			$this->db->where('course_section.ca_lead_teacher',$this->session->userdata('ca_lead_teacher'));
 		}
 		
-		if($this->session->userdata('role_id') > 4 && ($this->session->userdata('campus_id') > 0 || $this->session->userdata('campus') != ""))
-		{
-			if($this->session->userdata('campus_id') > 0)
-				$this->db->where('users.campus_id',$this->session->userdata('campus_id'));
-			else if($this->session->userdata('campus') != "")
-				$this->db->where('users.campus',$this->session->userdata('campus'));	
+		if(count(get_user_campus_privilages()) > 0)
+		{	
+			$this->db->where_in('users.campus_id',get_user_campus_privilages());
 		}
 		
         $this->db->join('user_roll', 'user_roll.user_roll_id = users.user_roll_id');
