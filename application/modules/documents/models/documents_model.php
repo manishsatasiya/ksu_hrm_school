@@ -39,6 +39,20 @@ class Documents_model extends CI_Model {
         }
 		return $data;
     }
+	
+	public function get_document_by_id($id){
+    	
+		$this->db->select('documents.*',FALSE);
+        $this->db->from('documents');
+		$this->db->where('documents.document_id', $id);
+		
+    	$query = $this->db->get();
+    	if($query->num_rows() == 1) {
+    		$row = $query->row();
+    		return $row;
+    	}
+    	return false;
+    }
 
 }
 

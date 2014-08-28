@@ -99,17 +99,26 @@ if($this->session->userdata('role_id') == '1' || in_array("add",$this->arrAction
 </div>
 <script language="javascript">
 $(document).ready(function() {
-/*	fnShowHide(4);
-	fnShowHide(8);
+fnShowHide(0);
+	fnShowHide(4);
 	fnShowHide(6);
 	fnShowHide(7);
-	 fnShowHide(9);
-	 fnShowHide(10);
-	 fnShowHide(11);
-	$("#showhide_4").attr("checked", "checked");	
-	$("#showhide_5").attr("checked", "checked");
-	$("#showhide_6").attr("checked", "checked");
-	$("#showhide_7").attr("checked", "checked");*/
+	fnShowHide(9);
+	fnShowHide(10);
+	fnShowHide(11);
+	fnShowHide(12);
+	fnShowHide(13);
+	fnShowHide(14);
+	$("#showhide_0").removeAttr("checked");
+	$("#showhide_4").removeAttr("checked");	
+	$("#showhide_6").removeAttr("checked");	
+	$("#showhide_7").removeAttr("checked");
+	$("#showhide_9").removeAttr("checked");	
+	$("#showhide_10").removeAttr("checked");	
+	$("#showhide_11").removeAttr("checked");	
+	$("#showhide_12").removeAttr("checked");
+	$("#showhide_13").removeAttr("checked");	
+	$("#showhide_14").removeAttr("checked");
 	<?php
 	if($this->session->userdata('role_id') != '1' && !in_array("edit",$this->arrAction))
 	{

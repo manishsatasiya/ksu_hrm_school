@@ -45,15 +45,18 @@ class Documents extends Private_Controller {
         $this->template->build('documents', $content_data);
     }
 	
-	public function add_document() {
+	public function add_document($id = null) {
     	$content_data = array();
 		
 		$document_types = array('human_resources'=>'Human Resources','assessment'=>'Assessment','professional_development'=>'Professional Development','curriculum'=>'Curriculum','curriculum_quarter_2'=>'Curriculum Quarter 2','curriculum_quarter_4'=>'Curriculum Quarter 4');
-		
+		$campus_list = get_campus_list(1);
+		$campus_list['0j'] = 'All';
 		$errors = "";
 		$curr_dir = str_replace("\\","/",getcwd()).'/';
 		if($this->input->post()){
 			$roll_id = $this->input->post('roll_id');
+			$campus_id = (int) $this->input->post('campus_id');
+			
 			$document_type = $this->input->post('document_type');
 			$name = $this->input->post('name');
 			//upload and update the file
@@ -94,18 +97,25 @@ class Documents extends Private_Controller {
 			}
 			
 			
-			if(isset($data) && is_array($data) && count($data) > 0)
-			{
+			//if(isset($data) && is_array($data) && count($data) > 0)
+			//{
 				$table = 'documents';		
+				$wher_column_name = 'document_id';			
 				$doc_file = 'downloads/docs/'.$roll_id.'/'.$data['file']["file_name"];
 				
 				$data_document['roll_id'] = $roll_id;
+				$data_document['campus_id'] = $campus_id;
 				$data_document['document_type'] = $document_type;
 				$data_document['name'] = $name;
 				$data_document['file'] = $doc_file;
-				grid_add_data($data_document,$table);
 				
-			}
+				if($id){
+					grid_data_updates($data,$table,$wher_column_name,$id);    
+				}else{
+					grid_add_data($data_document,$table);
+				}
+			//}
+			
 			
 			if($errors <> ''){
 				$this->session->set_flashdata('message', $errors);
@@ -116,8 +126,15 @@ class Documents extends Private_Controller {
 			}
 		}
 		
+		$rowdata= array();
+		if($id){
+			$rowdata = $this->documents_model->get_document_by_id($id);
+		}
 		$content_data['other_user_roll'] = get_other_user_roll();
 		$content_data['document_types'] = $document_types;
+		$content_data['campus_list'] = $campus_list;
+		$content_data['rowdata'] = $rowdata;
+		$content_data['id'] = $id;
         // set layout data
         $this->template->set_theme(Settings_model::$db_config['default_theme']);
         $this->template->set_layout('school');

@@ -19,7 +19,7 @@
 					foreach($all_documents['human_resources'] as $document) {
 				?>
                     <tr>
-                        <td><a href="<?php echo base_url().$document['file']; ?>" target="_blank"><?php echo $document['name']; ?></a></td>
+                        <td><a href="<?php echo base_url().$document['file']; ?>" target="_blank"><?php echo $document['name']; ?></a>  | <a href="<?php echo base_url().'documents/add_document/'.$document['document_id']; ?>">Edit</a></td>
                     </tr>
                 <?php
 					}
