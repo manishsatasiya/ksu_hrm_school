@@ -77,7 +77,11 @@ if($this->session->userdata('role_id') != '1' && !in_array("edit",$this->arrActi
           <tbody>
           </tbody>
         </table>
+        <?php
+		if($show_submit){ ?>
         <input type="submit" name="submit" value="Submit" class="btn btn-warning" />
+        <?php
+		} ?>
 			</form>
       </div>
     </div>

@@ -112,13 +112,14 @@ class Schedule extends Private_Controller {
 					}
 	
 				}
-				
-				$row['title'] = $_tital.'<a class="fa fa-search-plus" style="color:#fff; font-size:20px;"></a>';
-				$row['start'] = $event_day;
-    			$row['color'] = $color;
 				if($type == 'work' || $type == 'private'){
 					$row['url'] = '#'.$id;
+					$_tital = '<i class="fa fa-search-plus" style="float:right;"></i>'.$_tital;
 				}
+				$row['title'] = $_tital;
+				$row['start'] = $event_day;
+    			$row['color'] = $color;
+				
 				$output[] = $row;
     		}
     	}

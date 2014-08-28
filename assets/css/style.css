@@ -7172,6 +7172,9 @@ table.fc-border-separate{
 .fc-ltr .fc-event-hori.fc-event-start, .fc-rtl .fc-event-hori.fc-event-end{
 	margin-top:10px;
 }
+.fc-ltr .fc-event-hori.fc-event-start:hover, .fc-rtl .fc-event-hori.fc-event-end:hover{
+	color:#fff;
+}
 .fc table thead tr th{
 	font-size: 0.9em;
 }

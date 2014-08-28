@@ -36,6 +36,7 @@ class Line_managers_list_model extends CI_Model {
 						  contractors.contractor,
 						  countries.nationality,
 						  department.department_name,
+						  co_ordinator_meetings.attendance,
 						  user_profile.scanner_id,
 						  IF(user_profile.returning = 1,"Yes","No") AS returning,	
 						  users.created_date,
@@ -48,6 +49,7 @@ class Line_managers_list_model extends CI_Model {
 		$this->db->join('department', 'department.id = user_profile.department_id','left');
 		$this->db->join('contractors', 'contractors.id = user_profile.contractor','left');
 		$this->db->join('countries', 'countries.id = user_profile.nationality','left');
+		$this->db->join('co_ordinator_meetings', 'co_ordinator_meetings.user_id = users.user_id','left');
 		$this->db->where('users.coordinator',$user_id);
 		
     	!empty($data) ? $this->db->like($data) : "";
