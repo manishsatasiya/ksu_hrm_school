@@ -215,6 +215,7 @@ class Grade_report_model extends CI_Model {
 
 	public function count_studentwithout_thirdmarks($search_data)
     {
+		$arrCampusPrivilages = get_user_campus_privilages();
     	if (!empty($search_data)) {
         	!empty($search_data['section_title']) ? $data['section_title'] = $search_data['section_title'] : "";
             !empty($search_data['campus']) ? $data['users.campus'] = $search_data['campus'] : "";
@@ -242,9 +243,9 @@ class Grade_report_model extends CI_Model {
 			$this->db->where('course_section.ca_lead_teacher',$this->session->userdata('ca_lead_teacher'));
 		}
 		
-		if(count(get_user_campus_privilages()) > 0)
+		if(count($arrCampusPrivilages) > 0)
 		{	
-			$this->db->where_in('users.campus_id',get_user_campus_privilages());
+			$this->db->where_in('users.campus_id',$arrCampusPrivilages);
 		}
 		
     	if(!empty($data))
@@ -263,6 +264,7 @@ class Grade_report_model extends CI_Model {
     }
 	
 	public function getstudentwithout_thirdmarks($limit = 0, $offset = 0, $order_by = "campus,section_title", $sort_order = "asc", $search_data) {
+		$arrCampusPrivilages = get_user_campus_privilages();
         if (!empty($search_data)) {
         	!empty($search_data['section_title']) ? $data['section_title'] = $search_data['section_title'] : "";
             !empty($search_data['campus']) ? $data['users.campus'] = $search_data['campus'] : "";
@@ -291,9 +293,9 @@ class Grade_report_model extends CI_Model {
 			$this->db->where('course_section.ca_lead_teacher',$this->session->userdata('ca_lead_teacher'));
 		}
 		
-		if(count(get_user_campus_privilages()) > 0)
+		if(count($arrCampusPrivilages) > 0)
 		{	
-			$this->db->where_in('users.campus_id',get_user_campus_privilages());
+			$this->db->where_in('users.campus_id',$arrCampusPrivilages);
 		}
 		
 		if(!empty($data))

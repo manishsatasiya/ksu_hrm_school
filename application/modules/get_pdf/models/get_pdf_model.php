@@ -24,15 +24,16 @@ class Get_pdf_model extends CI_Model {
 	
 	 public function get_course_class_section($campus_id) 
 	 {
+		$arrCampusPrivilages = get_user_campus_privilages();
         $this->db->select('course_section.*');
         $this->db->from('course_section');
 		$this->db->join('course_class', 'course_class.section_id = course_section.section_id','left');
 		$this->db->join('users', 'users.user_id = course_class.primary_teacher_id','left');
 		$this->db->where('course_class.is_active = "Y"');
 		
-		if(count(get_user_campus_privilages()) > 0)
+		if(count($arrCampusPrivilages) > 0)
 		{	
-			$this->db->where_in('users.campus_id',get_user_campus_privilages());
+			$this->db->where_in('users.campus_id',$arrCampusPrivilages);
 		}
 		
 		if($campus_id > 0)

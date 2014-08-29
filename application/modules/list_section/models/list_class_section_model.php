@@ -53,6 +53,7 @@ class List_class_section_model extends CI_Model {
     
     public function count_all_class_section_grid($search_data)
     {
+		$arrCampusPrivilages = get_user_campus_privilages();
     	if (!empty($search_data)) {
             !empty($search_data['section_title']) ? $data['section_title'] = $search_data['section_title'] : "";
             !empty($search_data['ca_lead_teacher']) ? $data['ca_lead.first_name'] = $search_data['ca_lead_teacher'] : "";
@@ -64,12 +65,12 @@ class List_class_section_model extends CI_Model {
     	$this->db->join('users AS ca_lead','course_section.ca_lead_teacher = ca_lead.user_id','left');  
     	 !empty($data) ? $this->db->or_like($data) : "";
     	 
-    	if(count(get_user_campus_privilages()) > 0)
+    	if(count($arrCampusPrivilages) > 0)
 		{	
 			$this->db->join('course_class','course_class.section_id = course_section.section_id','left');  
 			$this->db->join('users','course_class.primary_teacher_id = users.user_id','left');  
 			
-			$this->db->where_in('course_section.camps_id',get_user_campus_privilages());
+			$this->db->where_in('course_section.camps_id',$arrCampusPrivilages);
 			
 			$this->db->group_by(array("course_section.section_id"));		
 		}

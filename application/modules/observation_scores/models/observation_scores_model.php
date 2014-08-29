@@ -7,6 +7,7 @@ class Observation_scores_model extends CI_Model {
     }
 	
 	public function get_observations($limit = 0, $offset = 0, $order_by = "username", $sort_order = "asc", $search_data,$campus_id=0,$count = false) {
+		$arrCampusPrivilages = get_user_campus_privilages();
         $fields = $this->db->list_fields('users');
 
         if (!empty($search_data)) {
@@ -41,9 +42,9 @@ class Observation_scores_model extends CI_Model {
 			$this->db->where('course_section.ca_lead_teacher',$this->session->userdata('ca_lead_teacher'));
 		}
 		
-		if(count(get_user_campus_privilages()) > 0)
+		if(count($arrCampusPrivilages) > 0)
 		{	
-			$this->db->where_in('users.campus_id',get_user_campus_privilages());
+			$this->db->where_in('users.campus_id',$arrCampusPrivilages);
 		}
 		        
         if(!empty($data))

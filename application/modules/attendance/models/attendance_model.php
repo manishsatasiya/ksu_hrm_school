@@ -132,6 +132,7 @@ class Attendance_model extends CI_Model {
 	
 	public function get_late_attendance_class($course_id, $school_year_id,$week_id) 
     {
+		$arrCampusPrivilages = get_user_campus_privilages();
     	$arrRet = array();
     	$this->db->select('course_class.section_id, 
 							course_section.section_title, 
@@ -157,9 +158,9 @@ class Attendance_model extends CI_Model {
 			$this->db->where('course_section.ca_lead_teacher',$this->session->userdata('ca_lead_teacher'));
 		}
 		
-		if(count(get_user_campus_privilages()) > 0)
+		if(count($arrCampusPrivilages) > 0)
 		{	
-			$this->db->where_in('users.campus_id',get_user_campus_privilages());
+			$this->db->where_in('users.campus_id',$arrCampusPrivilages);
 		}
 		
 		$query = $this->db->get();
@@ -223,6 +224,7 @@ class Attendance_model extends CI_Model {
     
     public function count_all_late_attendance_report($search_data,$where=array())
     {
+		$arrCampusPrivilages = get_user_campus_privilages();
 		$sql = "update attendance_report 
 				join users on (student_id=user_id) 
 				join course_class on(users.section_id=course_class.section_id) 
@@ -263,9 +265,9 @@ class Attendance_model extends CI_Model {
 			$this->db->where('course_section.ca_lead_teacher',$this->session->userdata('ca_lead_teacher'));
 		}
 		
-		if(count(get_user_campus_privilages()) > 0)
+		if(count($arrCampusPrivilages) > 0)
 		{	
-			$this->db->where_in('s1.campus_id',get_user_campus_privilages());
+			$this->db->where_in('s1.campus_id',$arrCampusPrivilages);
 		}
 		
     	if($where)
@@ -288,6 +290,7 @@ class Attendance_model extends CI_Model {
     
     public function get_late_attendance_report($limit = 0, $offset = 0, $order_by = "attendeance_id", $sort_order = "desc", $search_data,$where=array())
     {
+		$arrCampusPrivilages = get_user_campus_privilages();
     	$user_id = $this->session->userdata('user_id');
     	$user_role = $this->session->userdata('role_id');
     	$fields = $this->db->list_fields('course_class');
@@ -357,9 +360,9 @@ class Attendance_model extends CI_Model {
 			$this->db->where('course_section.ca_lead_teacher',$this->session->userdata('ca_lead_teacher'));
 		}
 		
-		if(count(get_user_campus_privilages()) > 0)
+		if(count($arrCampusPrivilages) > 0)
 		{	
-			$this->db->where_in('s1.campus_id',get_user_campus_privilages());
+			$this->db->where_in('s1.campus_id',$arrCampusPrivilages);
 		}
 		
     	if($where)

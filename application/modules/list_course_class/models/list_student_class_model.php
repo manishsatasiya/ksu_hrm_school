@@ -20,6 +20,7 @@ class List_student_class_model extends CI_Model {
      */
 
      public function get_course_class($limit = 0, $offset = 0, $order_by = "course_class_id", $sort_order = "asc", $search_data,$where=array(),$without_third_marks="",$where2=array()) {
+		$arrCampusPrivilages = get_user_campus_privilages();
 		$user_id = $this->session->userdata('user_id');
 		$user_role = $this->session->userdata('role_id');
         $section_title = "";
@@ -112,9 +113,9 @@ class List_student_class_model extends CI_Model {
 			$this->db->where('course_section.ca_lead_teacher',$this->session->userdata('ca_lead_teacher'));
 		}
 		
-		if(count(get_user_campus_privilages()) > 0)
+		if(count($arrCampusPrivilages) > 0)
 		{	
-			$this->db->where_in('p1.campus_id',get_user_campus_privilages());
+			$this->db->where_in('p1.campus_id',$arrCampusPrivilages);
 		}
 		
 		if($where)
@@ -151,6 +152,7 @@ class List_student_class_model extends CI_Model {
     }
 
 	public function getstudentwithout_thirdmarks($search_data=array()) {
+		$arrCampusPrivilages = get_user_campus_privilages();
         if (!empty($search_data)) {
         	!empty($search_data['section_title']) ? $data['section_title'] = $search_data['section_title'] : "";
             !empty($search_data['campus']) ? $data['users.campus'] = $search_data['campus'] : "";
@@ -179,9 +181,9 @@ class List_student_class_model extends CI_Model {
 			$this->db->where('course_section.ca_lead_teacher',$this->session->userdata('ca_lead_teacher'));
 		}
 		
-		if(count(get_user_campus_privilages()) > 0)
+		if(count($arrCampusPrivilages) > 0)
 		{	
-			$this->db->where_in('users.campus_id',get_user_campus_privilages());
+			$this->db->where_in('users.campus_id',$arrCampusPrivilages);
 		}
 		
 		if(!empty($data))
@@ -289,6 +291,7 @@ class List_student_class_model extends CI_Model {
 
 	public function count_all_course_class($where=array(),$search_data,$without_third_marks='',$where2=array()) 
 	{
+		$arrCampusPrivilages = get_user_campus_privilages();
 		$section_title = "";
 		if (!empty($search_data)) {
 			$user_id = $this->session->userdata('user_id');
@@ -343,9 +346,9 @@ class List_student_class_model extends CI_Model {
 				$this->db->where('course_section.ca_lead_teacher',$this->session->userdata('ca_lead_teacher'));
 			}
 			
-			if(count(get_user_campus_privilages()) > 0)
+			if(count($arrCampusPrivilages) > 0)
 			{	
-				$this->db->where_in('users.campus_id',get_user_campus_privilages());
+				$this->db->where_in('users.campus_id',$arrCampusPrivilages);
 			}
 			
 			if($where)

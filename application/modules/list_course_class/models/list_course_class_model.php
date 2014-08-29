@@ -21,6 +21,7 @@ class List_course_class_model extends CI_Model {
      */
 
     public function get_course_class($limit = 0, $offset = 0, $order_by = "course_class.course_class_id", $sort_order = "asc", $search_data) {
+		$arrCampusPrivilages = get_user_campus_privilages();
         if (!empty($search_data)) {
         	
         	!empty($search_data['shift']) ? $data['shift'] = $search_data['shift'] : "";
@@ -54,9 +55,9 @@ class List_course_class_model extends CI_Model {
 			$this->db->where('course_section.ca_lead_teacher',$this->session->userdata('ca_lead_teacher'));
 		}
 		
-		if(count(get_user_campus_privilages()) > 0)
+		if(count($arrCampusPrivilages) > 0)
 		{	
-			$this->db->where_in('course_class.camps_id',get_user_campus_privilages());
+			$this->db->where_in('course_class.camps_id',$arrCampusPrivilages);
 			$this->db->group_by(array("course_class.course_class_id"));	
 		}
 		
@@ -225,7 +226,7 @@ class List_course_class_model extends CI_Model {
     }
     
     public function count_all_search_course_class_grid($search_data) {
-    	
+    	$arrCampusPrivilages = get_user_campus_privilages();
     	if (!empty($search_data)) {
         	
         	!empty($search_data['shift']) ? $data['shift'] = $search_data['shift'] : "";
@@ -255,9 +256,9 @@ class List_course_class_model extends CI_Model {
 			$this->db->where('course_section.ca_lead_teacher',$this->session->userdata('ca_lead_teacher'));
 		}
 		
-		if(count(get_user_campus_privilages()) > 0)
+		if(count($arrCampusPrivilages) > 0)
 		{	
-			$this->db->where_in('course_class.camps_id',get_user_campus_privilages());
+			$this->db->where_in('course_class.camps_id',$arrCampusPrivilages);
 			
 		}
 		

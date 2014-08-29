@@ -20,7 +20,7 @@ class List_Teacher_Student_model extends CI_Model {
      */
 
     public function get_teacher($limit = 0, $offset = 0, $order_by = "username", $sort_order = "asc", $search_data,$campus_id=0) {
-        
+        $arrCampusPrivilages = get_user_campus_privilages();
         if (!empty($search_data)) {
             !empty($search_data['username']) ? $data['users.username'] = $search_data['username'] : "";
             !empty($search_data['staff_name']) ? $data['CONCAT_WS(" ",users.first_name,users.middle_name,users.middle_name2,users.last_name)'] = $search_data['staff_name'] : "";
@@ -54,9 +54,9 @@ class List_Teacher_Student_model extends CI_Model {
 		$this->db->join('contractors', 'contractors.id = user_profile.contractor','left');
 		$this->db->where('users.user_roll_id','3');
 		
-		if(count(get_user_campus_privilages()) > 0)
+		if(count($arrCampusPrivilages) > 0)
 		{	
-			$this->db->where_in('users.campus_id',get_user_campus_privilages());
+			$this->db->where_in('users.campus_id',$arrCampusPrivilages);
 		}
 		
     	!empty($data) ? $this->db->like($data) : "";
@@ -134,6 +134,7 @@ class List_Teacher_Student_model extends CI_Model {
     }
 
 	public function get_staff_members($type="",$limit = 0, $offset = 0, $order_by = "username", $sort_order = "asc", $search_data) {
+		$arrCampusPrivilages = get_user_campus_privilages();
     	if (!empty($search_data)) {
     		!empty($search_data['user_id']) ? $data['user_id'] = $search_data['user_id'] : "";
 			!empty($search_data['elsd_id']) ? $data['elsd_id'] = $search_data['elsd_id'] : "";
@@ -228,9 +229,9 @@ class List_Teacher_Student_model extends CI_Model {
 		$this->db->join('countries', 'countries.id = user_profile.nationality','left');
 		//$this->db->where_not_in('users.user_roll_id',array('1','3'));
 		
-		if(count(get_user_campus_privilages()) > 0)
+		if(count($arrCampusPrivilages) > 0)
 		{	
-			$this->db->where_in('users.campus_id',get_user_campus_privilages());
+			$this->db->where_in('users.campus_id',$arrCampusPrivilages);
 		}
 		
 		if($type != "")
@@ -277,6 +278,7 @@ class List_Teacher_Student_model extends CI_Model {
      *
      */
 	public function get_student($limit = 0, $offset = 0, $order_by = "campus,section_title", $sort_order = "asc", $search_data,$showall=0,$campus_id=0) {
+		$arrCampusPrivilages = get_user_campus_privilages();
 		$user_id = $this->session->userdata('user_id');
 		$user_role = $this->session->userdata('role_id');
         $fields = $this->db->list_fields('users'); 
@@ -308,9 +310,9 @@ class List_Teacher_Student_model extends CI_Model {
 			$this->db->where('course_section.ca_lead_teacher',$this->session->userdata('ca_lead_teacher'));
 		}
 		
-		if(count(get_user_campus_privilages()) > 0)
+		if(count($arrCampusPrivilages) > 0)
 		{	
-			$this->db->where_in('users.campus_id',get_user_campus_privilages());
+			$this->db->where_in('users.campus_id',$arrCampusPrivilages);
 		}
 		
         $this->db->join('user_roll', 'user_roll.user_roll_id = users.user_roll_id');
@@ -346,6 +348,7 @@ class List_Teacher_Student_model extends CI_Model {
     }
     
     public function get_student_export($limit = 0, $offset = 0, $order_by = "campus,section_title", $sort_order = "asc", $search_data,$showall=0,$campus_id=0) {
+		$arrCampusPrivilages = get_user_campus_privilages();
 		$user_id = $this->session->userdata('user_id');
 		$user_role = $this->session->userdata('role_id');
         $fields = $this->db->list_fields('users'); 
@@ -376,9 +379,9 @@ class List_Teacher_Student_model extends CI_Model {
 			$this->db->where('course_section.ca_lead_teacher',$this->session->userdata('ca_lead_teacher'));
 		}
 		
-		if(count(get_user_campus_privilages()) > 0)
+		if(count($arrCampusPrivilages) > 0)
 		{	
-			$this->db->where_in('users.campus_id',get_user_campus_privilages());
+			$this->db->where_in('users.campus_id',$arrCampusPrivilages);
 		}
 		
         $this->db->join('user_roll', 'user_roll.user_roll_id = users.user_roll_id');
@@ -414,6 +417,7 @@ class List_Teacher_Student_model extends CI_Model {
     }
 	
 	public function get_sec_teacher_course_class_student($limit = 0, $offset = 0, $order_by = "username", $sort_order = "asc", $sec_teacher=0,$search_data) {
+		$arrCampusPrivilages = get_user_campus_privilages();
         $fields = $this->db->list_fields('users'); 
 
         if (!empty($search_data)) {
@@ -437,9 +441,9 @@ class List_Teacher_Student_model extends CI_Model {
 			$this->db->where('course_section.ca_lead_teacher',$this->session->userdata('ca_lead_teacher'));
 		}
 		
-		if(count(get_user_campus_privilages()) > 0)
+		if(count($arrCampusPrivilages) > 0)
 		{	
-			$this->db->where_in('users.campus_id',get_user_campus_privilages());
+			$this->db->where_in('users.campus_id',$arrCampusPrivilages);
 		}
 		
 		if($sec_teacher > 0)
@@ -463,6 +467,7 @@ class List_Teacher_Student_model extends CI_Model {
     
     public function count_all_teacher_members()
     {
+		$arrCampusPrivilages = get_user_campus_privilages();
     	$this->db->from('users');     
 		$this->db->join('course_class','users.user_id = course_class.primary_teacher_id','left');  
         $this->db->join('course_section','course_class.section_id = course_section.section_id','left');  
@@ -473,9 +478,9 @@ class List_Teacher_Student_model extends CI_Model {
 			$this->db->where('course_section.ca_lead_teacher',$this->session->userdata('ca_lead_teacher'));
 		}
 		
-		if(count(get_user_campus_privilages()) > 0)
+		if(count($arrCampusPrivilages) > 0)
 		{	
-			$this->db->where_in('users.campus_id',get_user_campus_privilages());
+			$this->db->where_in('users.campus_id',$arrCampusPrivilages);
 		}
 		
         return $this->db->count_all_results();
@@ -483,6 +488,7 @@ class List_Teacher_Student_model extends CI_Model {
     
     public function count_all_teacher_mem($search_data)
     {
+		$arrCampusPrivilages = get_user_campus_privilages();
     	if (!empty($search_data)) {
             !empty($search_data['username']) ? $data['users.username'] = $search_data['username'] : "";
             !empty($search_data['staff_name']) ? $data['CONCAT_WS(" ",users.first_name,users.middle_name,users.middle_name2,users.last_name)'] = $search_data['staff_name'] : "";
@@ -520,9 +526,9 @@ class List_Teacher_Student_model extends CI_Model {
 			$this->db->where('course_section.ca_lead_teacher',$this->session->userdata('ca_lead_teacher'));
 		}
 		
-		if(count(get_user_campus_privilages()) > 0)
+		if(count($arrCampusPrivilages) > 0)
 		{	
-			$this->db->where_in('users.campus_id',get_user_campus_privilages());
+			$this->db->where_in('users.campus_id',$arrCampusPrivilages);
 		}
 		
     	!empty($data) ? $this->db->like($data) : "";
@@ -562,6 +568,7 @@ class List_Teacher_Student_model extends CI_Model {
     
     public function count_all_student_mem($search_data,$showall=0)
     {
+		$arrCampusPrivilages = get_user_campus_privilages();
 		$user_id = $this->session->userdata('user_id');
 		$user_role = $this->session->userdata('role_id');
 		
@@ -593,9 +600,9 @@ class List_Teacher_Student_model extends CI_Model {
 			$this->db->where('course_section.ca_lead_teacher',$this->session->userdata('ca_lead_teacher'));
 		}
 		
-		if(count(get_user_campus_privilages()) > 0)
+		if(count($arrCampusPrivilages) > 0)
 		{	
-			$this->db->where_in('users.campus_id',get_user_campus_privilages());
+			$this->db->where_in('users.campus_id',$arrCampusPrivilages);
 		}
 		
     	if(!empty($data))
@@ -619,6 +626,7 @@ class List_Teacher_Student_model extends CI_Model {
 	
 	 public function count_all_sec_teacher_course_class_student($sec_teacher=0,$search_data)
     {
+		$arrCampusPrivilages = get_user_campus_privilages();
     	$this->db->select('*, user_roll.user_roll_name as role_name,course_section.section_title');
     	$this->db->from('users');     
     	$this->db->join('user_roll', 'user_roll.user_roll_id = users.user_roll_id');
@@ -632,9 +640,9 @@ class List_Teacher_Student_model extends CI_Model {
 			$this->db->where('course_section.ca_lead_teacher',$this->session->userdata('ca_lead_teacher'));
 		}
 		
-		if(count(get_user_campus_privilages()) > 0)
+		if(count($arrCampusPrivilages) > 0)
 		{	
-			$this->db->where_in('users.campus_id',get_user_campus_privilages());
+			$this->db->where_in('users.campus_id',$arrCampusPrivilages);
 		}
 		
 		if($sec_teacher > 0)
@@ -785,6 +793,7 @@ class List_Teacher_Student_model extends CI_Model {
      */
 
     public function count_all_teacher_search_members($search_data) {
+		$arrCampusPrivilages = get_user_campus_privilages();
         $data = array();
         !empty($search_data['username']) ? $data['username'] = $search_data['username'] : "";
         !empty($search_data['first_name']) ? $data['first_name'] = $search_data['first_name'] : "";
@@ -802,9 +811,9 @@ class List_Teacher_Student_model extends CI_Model {
 			$this->db->where('course_section.ca_lead_teacher',$this->session->userdata('ca_lead_teacher'));
 		}
 		
-		if(count(get_user_campus_privilages()) > 0)
+		if(count($arrCampusPrivilages) > 0)
 		{	
-			$this->db->where_in('users.campus_id',get_user_campus_privilages());
+			$this->db->where_in('users.campus_id',$arrCampusPrivilages);
 		}
 		
         $this->db->join('user_roll', 'user_roll.user_roll_id = users.user_roll_id');

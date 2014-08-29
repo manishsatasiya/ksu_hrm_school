@@ -20,6 +20,7 @@ class List_class_room_model extends CI_Model {
      */
 
     public function get_class_room($limit = 0, $offset = 0, $order_by = "class_room_id", $sort_order = "asc", $search_data) {
+		$arrCampusPrivilages = get_user_campus_privilages();
         $fields = $this->db->list_fields('course_class_room');
         //if (!in_array($order_by, $fields)) return array();
         if (!empty($search_data)) {
@@ -35,12 +36,12 @@ class List_class_room_model extends CI_Model {
         $this->db->order_by($order_by, $sort_order);
         $this->db->limit($limit, $offset);
 
-        if(count(get_user_campus_privilages()) > 0)
+        if(count($arrCampusPrivilages) > 0)
 		{	
 			$this->db->join('course_class','course_class.class_room_id = course_class_room.class_room_id','left');  
 			$this->db->join('users','course_class.primary_teacher_id = users.user_id','left');  
 			
-			$this->db->where_in('course_class_room.camps_id',get_user_campus_privilages());
+			$this->db->where_in('course_class_room.camps_id',$arrCampusPrivilages);
 			
 			$this->db->group_by(array("course_class_room.class_room_id"));
 		}
@@ -66,6 +67,7 @@ class List_class_room_model extends CI_Model {
     
     public function count_all_class_room_grid($search_data)
     {
+		$arrCampusPrivilages = get_user_campus_privilages();
     	if (!empty($search_data)) {
             !empty($search_data['class_room_title']) ? $data['class_room_title'] = $search_data['class_room_title'] : "";
 			!empty($search_data['campus_name']) ? $data['campus_name'] = $search_data['campus_name'] : "";
@@ -75,12 +77,12 @@ class List_class_room_model extends CI_Model {
 		$this->db->join('school_campus','school_campus.campus_id = camps_id','left');  		
         !empty($data) ? $this->db->or_like($data) : "";
         
-        if(count(get_user_campus_privilages()) > 0)
+        if(count($arrCampusPrivilages) > 0)
 		{	
 			$this->db->join('course_class','course_class.class_room_id = course_class_room.class_room_id','left');  
 			$this->db->join('users','course_class.primary_teacher_id = users.user_id','left');  
 			
-			$this->db->where_in('course_class_room.camps_id',get_user_campus_privilages());
+			$this->db->where_in('course_class_room.camps_id',$arrCampusPrivilages);
 			
 			$this->db->group_by(array("course_class_room.class_room_id"));	
 		}

@@ -294,13 +294,14 @@ class Workshops_model extends CI_Model {
     }
 	
 	function get_attendee_user_list() {
+		$arrCampusPrivilages = get_user_campus_privilages();
 		$this->db->select('*');
 		$this->db->from('users');
 		$this->db->where_not_in('users.user_roll_id',array('1','3'));
 		
-		if(count(get_user_campus_privilages()) > 0)
+		if(count($arrCampusPrivilages) > 0)
 		{	
-			$this->db->where_in('users.campus_id',get_user_campus_privilages());
+			$this->db->where_in('users.campus_id',$arrCampusPrivilages);
 		}
 				
 		$this->db->order_by('first_name', 'ASC');	

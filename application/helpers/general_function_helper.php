@@ -11,14 +11,15 @@ if (!function_exists('get_ca_lead_teacher_list')) {
      */
     function get_ca_lead_teacher_list() {
     	$ci =& get_instance();
+		$arrCampusPrivilages = get_user_campus_privilages();
     	$ci->db->select('*,CONCAT_WS(" ",users.first_name,users.middle_name,users.middle_name2,users.last_name) AS staff_name',FALSE);
     	$ci->db->from('users');
     	$ci->db->join('user_roll','users.user_roll_id = user_roll.user_roll_id','left');    	
     	//$ci->db->where('users.user_roll_id IN(12)');   
     	$ci->db->where('user_roll.is_ca_lead','Y');
-    	if(count(get_user_campus_privilages()) > 0)
+    	if(count($arrCampusPrivilages) > 0)
 		{	
-			$ci->db->where_in('users.campus_id',get_user_campus_privilages());
+			$ci->db->where_in('users.campus_id',$arrCampusPrivilages);
 		}
 		
 		$ci->db->order_by('first_name', 'ASC');	
@@ -45,6 +46,7 @@ if (!function_exists('get_teacher_list')) {
      */
     function get_teacher_list($campus_id=0) {
     	$ci =& get_instance();
+		$arrCampusPrivilages = get_user_campus_privilages();
     	$ci->db->select('*,CONCAT_WS(" ",users.first_name,users.middle_name,users.middle_name2,users.last_name) AS staff_name',FALSE);
     	$ci->db->from('users');
     	$ci->db->join('school_campus','school_campus.campus_id = users.campus_id','left');  
@@ -56,9 +58,9 @@ if (!function_exists('get_teacher_list')) {
 			$ci->db->where('school_campus.campus_id',$campus_id);	
 		}
 		
-		if(count(get_user_campus_privilages()) > 0)
+		if(count($arrCampusPrivilages) > 0)
 		{	
-			$ci->db->where_in('users.campus_id',get_user_campus_privilages());
+			$ci->db->where_in('users.campus_id',$arrCampusPrivilages);
 		}
 		
 		$ci->db->order_by('first_name', 'ASC');	
@@ -289,6 +291,7 @@ if (!function_exists('get_campus_list')) {
      */
     function get_campus_list($want_select=0) {
     	$ci =& get_instance();
+		$arrCampusPrivilages = get_user_campus_privilages();
     	$ci->db->select('*');
     	$ci->db->from('school_campus');
 		/*if($where){
@@ -297,9 +300,9 @@ if (!function_exists('get_campus_list')) {
 			}
 		}*/
 		
-		if(count(get_user_campus_privilages()) > 0)
+		if(count($arrCampusPrivilages) > 0)
 		{	
-			$ci->db->where_in('campus_id',get_user_campus_privilages());
+			$ci->db->where_in('campus_id',$arrCampusPrivilages);
 		}
 		
 		$ci->db->order_by('campus_name', 'ASC');	
@@ -1691,14 +1694,15 @@ function get_interviewer_list() {
 
 function get_campus_user_list() {
 	$ci =& get_instance();
+	$arrCampusPrivilages = get_user_campus_privilages();
 	$ci->db->select('*,CONCAT_WS(" ",users.first_name,users.middle_name,users.middle_name2,users.last_name) AS staff_name',FALSE);
 	$ci->db->from('users');
 	$ci->db->where_not_in('users.user_roll_id',array('1','3'));
 	$ci->db->order_by('first_name', 'ASC');
 	
-	if(count(get_user_campus_privilages()) > 0)
+	if(count($arrCampusPrivilages) > 0)
 	{	
-		$ci->db->where_in('users.campus_id',get_user_campus_privilages());
+		$ci->db->where_in('users.campus_id',$arrCampusPrivilages);
 	}
 	
 	$query = $ci->db->get();
