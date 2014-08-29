@@ -14,7 +14,7 @@ if (!function_exists('get_ca_lead_teacher_list')) {
 		$arrCampusPrivilages = get_user_campus_privilages();
     	$ci->db->select('*,CONCAT_WS(" ",users.first_name,users.middle_name,users.middle_name2,users.last_name) AS staff_name',FALSE);
     	$ci->db->from('users');
-    	$ci->db->join('user_roll','users.user_roll_id = user_roll.user_roll_id','left');    	
+    	$ci->db->join('user_roll','users.user_roll_id = user_roll.user_roll_id','left');
     	//$ci->db->where('users.user_roll_id IN(12)');   
     	$ci->db->where('user_roll.is_ca_lead','Y');
     	if(count($arrCampusPrivilages) > 0)

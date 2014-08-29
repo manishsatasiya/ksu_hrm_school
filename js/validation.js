@@ -1412,17 +1412,21 @@ $(document).ready(function() {
 	
 	$("#add_document").validate({
 		rules: {
+			campus_id: {
+				comboboxNotNone: true
+			},
 			roll_id: {
 				comboboxNotNone: true
 			},
 			name:{
 				required:true
-			},
+			}/*,
 			file:{			
 				required:true
-			}
+			}*/
 		},
 		messages: {
+			campus_id: "Please select campus",
 			roll_id: "Please select roll",
 			name: "Please enter name",
 			file: "Please select file"

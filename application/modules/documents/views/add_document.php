@@ -16,8 +16,9 @@
             <div class="containerfdfdf"></div>
             <div class="row form-row">
                 <div class="col-md-6">
-                    <?php print form_label('Role', 'roll_id',array('class'=>'form-label')); ?>
-                    <?php print form_dropdown('roll_id',$other_user_roll,($rowdata)?$rowdata->roll_id:$this->session->flashdata('roll_id'),'id="roll_id" class="select2 form-control"'); ?>
+                    <?php print form_label('Campus', 'campus_id',array('class'=>'form-label')); ?>
+                    <?php //print form_dropdown('campus_id',$campus_list,($rowdata)?$rowdata->campus_id:$this->session->flashdata('campus_id'),'id="campus_id" class="select2 form-control"'); ?>
+                    <?php print form_multiselect('campus_id[]',$campus_list,($rowdata)?$rowdata->campus_id:$this->session->flashdata('campus_id'),'id="multi" class="select2 form-control" placeholder="Select Campus"');  ?> 
                 </div>
                 <div class="col-md-6">
                     <?php print form_label('Document Type', 'document_type',array('class'=>'form-label')); ?>
@@ -27,15 +28,9 @@
             
             
             <div class="row form-row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <?php print form_label('Name', 'name',array('class'=>'form-label')); ?>
                     <?php print form_input(array('name' => 'name', 'id' => 'name', 'value' => ($rowdata)?$rowdata->name:$this->session->flashdata('name'), 'class' => 'form-control ','placeholder' => 'Name')); ?>
-                </div>
-            </div>
-             <div class="row form-row">
-                <div class="col-md-6">
-                    <?php print form_label('Campus', 'campus_id',array('class'=>'form-label')); ?>
-                    <?php print form_dropdown('campus_id',$campus_list,($rowdata)?$rowdata->campus_id:$this->session->flashdata('campus_id'),'id="campus_id" class="select2 form-control"'); ?>
                 </div>
                 <div class="col-md-6">
                     <?php print form_label('Select file', 'file',array('class'=>'form-label')); ?>

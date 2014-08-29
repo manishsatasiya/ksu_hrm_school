@@ -9,7 +9,7 @@ class Documents extends Private_Controller {
         $this->load->library('form_validation');
 		$this->load->helper('general_function');
 		$this->load->model('documents_model');
-		//$this->load->model('list_course/courses_model');
+		$this->load->model('list_course/courses_model');
     }
     
 	public function index() {
@@ -30,7 +30,7 @@ class Documents extends Private_Controller {
 							'curriculum_quarter_2'=>$curriculum_quarter_2,
 							'curriculum_quarter_4'=>$curriculum_quarter_4,
 						 );
-		
+		$content_data['campus_list'] = get_campus_list();
 		$content_data['all_documents'] = $all_documents;
 //		echo '<pre>';
 	//	print_r($all_documents);
@@ -49,19 +49,35 @@ class Documents extends Private_Controller {
     	$content_data = array();
 		
 		$document_types = array('human_resources'=>'Human Resources','assessment'=>'Assessment','professional_development'=>'Professional Development','curriculum'=>'Curriculum','curriculum_quarter_2'=>'Curriculum Quarter 2','curriculum_quarter_4'=>'Curriculum Quarter 4');
-		$campus_list = get_campus_list(1);
-		$campus_list['0j'] = 'All';
+		$campus_list = get_campus_list();
+
 		$errors = "";
 		$curr_dir = str_replace("\\","/",getcwd()).'/';
 		if($this->input->post()){
-			$roll_id = $this->input->post('roll_id');
-			$campus_id = (int) $this->input->post('campus_id');
-			
+
+			$campus_id = $this->input->post('campus_id');
+			if(!empty($campus_id)){
+				$campus_id = implode(',',$campus_id);
+			}
 			$document_type = $this->input->post('document_type');
 			$name = $this->input->post('name');
+			
+			$table = 'documents';		
+			$wher_column_name = 'document_id';
+			
+			$data_document['campus_id'] = $campus_id;
+			$data_document['document_type'] = $document_type;
+			$data_document['name'] = $name;
+			
+			if($id){
+				grid_data_updates($data_document,$table,$wher_column_name,$id);    
+			}else{
+				$id = grid_add_data($data_document,$table);
+			}
+			
 			//upload and update the file
-			$config['upload_path'] = $curr_dir.'downloads/docs/'.$roll_id.'/';
-			$config['allowed_types'] = 'jpg|jpeg|pdf|png|xlsx|doc|zip_docx|csv';
+			$config['upload_path'] = $curr_dir.'downloads/docs/';
+			$config['allowed_types'] = 'jpg|jpeg|pdf|png|xlsx|doc|zip|docx|csv';
 			$config['overwrite'] = true;
 			$config['remove_spaces'] = true;
 			$config['max_size']	= '2048';// in KB
@@ -70,19 +86,18 @@ class Documents extends Private_Controller {
 			$this->load->library('upload', $config);
 			
 			// flag for checking the directory exist or not
-			if(!is_dir($curr_dir.'downloads/docs/'.$roll_id))
+			if(!is_dir($curr_dir.'downloads/docs/'))
 			{
-				mkdir($curr_dir.'downloads/docs/'.$roll_id, 0777, true);
+				mkdir($curr_dir.'downloads/docs/', 0777, true);
 			}
-			$data = array();
-			
+			$data = array();		
 			
 			foreach($_FILES as $field => $file)
 			{
 				// No problems with the file
 				if($file['error'] == 0)
 				{
-					$config['file_name'] = $document_type.'_'.$file["name"];
+					$config['file_name'] = $id.'_'.$file["name"];
 					$this->upload->initialize($config);
 					// So lets upload
 					if($this->upload->do_upload($field))
@@ -95,40 +110,26 @@ class Documents extends Private_Controller {
 					}
 				}
 			}
-			
-			
-			//if(isset($data) && is_array($data) && count($data) > 0)
-			//{
-				$table = 'documents';		
-				$wher_column_name = 'document_id';			
-				$doc_file = 'downloads/docs/'.$roll_id.'/'.$data['file']["file_name"];
-				
-				$data_document['roll_id'] = $roll_id;
-				$data_document['campus_id'] = $campus_id;
-				$data_document['document_type'] = $document_type;
-				$data_document['name'] = $name;
+		
+			if(isset($data) && is_array($data) && count($data) > 0)
+			{
+				$data_document = array();
+				$doc_file = 'downloads/docs/'.$data['file']["file_name"];
 				$data_document['file'] = $doc_file;
 				
 				if($id){
-					grid_data_updates($data,$table,$wher_column_name,$id);    
-				}else{
-					grid_add_data($data_document,$table);
+					grid_data_updates($data_document,$table,$wher_column_name,$id);    
 				}
-			//}
-			
-			
-			if($errors <> ''){
-				$this->session->set_flashdata('message', $errors);
-				redirect('documents/add_document');
-			}else{
-				$this->session->set_flashdata('message', 'Document added sucessfully.');
-				redirect('documents');
 			}
+			
+			$this->session->set_flashdata('message', 'Document added sucessfully.');
+			redirect('documents');			
 		}
 		
 		$rowdata= array();
 		if($id){
 			$rowdata = $this->documents_model->get_document_by_id($id);
+			$rowdata->campus_id = (!empty($rowdata->campus_id))?explode(',',$rowdata->campus_id):array();
 		}
 		$content_data['other_user_roll'] = get_other_user_roll();
 		$content_data['document_types'] = $document_types;
@@ -146,6 +147,15 @@ class Documents extends Private_Controller {
         $this->template->build('add_document', $content_data);
     }
 	
-   
+   public function delete($id = null){
+    	if($id){
+			$table = 'documents';
+			$wher_column_name = 'document_id';
+    		$rowdata = $this->courses_model->delete_data($table,$wher_column_name,$id);
+    	}
+		redirect('/documents/');
+        exit();
+	}
+	
 }
 /* End of file documents.php */

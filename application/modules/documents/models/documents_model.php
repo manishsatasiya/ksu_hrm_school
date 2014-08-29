@@ -16,10 +16,16 @@ class Documents_model extends CI_Model {
     }
 
 	public function get_documents($document_type) {
-		   
+		$campus_id = $this->session->userdata('campus_id');
+		//$campus_id = 0;
+		$_like = array();
+		if($campus_id <> '' && $campus_id > 0){
+			$_like['campus_id'] = $campus_id.'j';
+		}
         $this->db->select('documents.*',FALSE);
         $this->db->from('documents');
 		$this->db->where('document_type', $document_type);
+		!empty($_like) ? $this->db->like($_like) : "";
 		$query = $this->db->get();
 		
 		$data = array();
@@ -28,7 +34,7 @@ class Documents_model extends CI_Model {
 				foreach($query->result_array() AS $result_row){
 					$row = array();
 					$row['document_id'] = $result_row['document_id'];
-					$row['roll_id'] = $result_row['roll_id'];
+					$row['campus_id'] = $result_row['campus_id'];
 					$row['document_type'] = $result_row['document_type'];
 					$row['name'] = $result_row['name'];
 					$row['file'] = $result_row['file'];
