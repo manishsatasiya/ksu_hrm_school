@@ -109,16 +109,6 @@ fnShowHide(0);
 	fnShowHide(12);
 	fnShowHide(13);
 	fnShowHide(14);
-	$("#showhide_0").removeAttr("checked");
-	$("#showhide_4").removeAttr("checked");	
-	$("#showhide_6").removeAttr("checked");	
-	$("#showhide_7").removeAttr("checked");
-	$("#showhide_9").removeAttr("checked");	
-	$("#showhide_10").removeAttr("checked");	
-	$("#showhide_11").removeAttr("checked");	
-	$("#showhide_12").removeAttr("checked");
-	$("#showhide_13").removeAttr("checked");	
-	$("#showhide_14").removeAttr("checked");
 	<?php
 	if($this->session->userdata('role_id') != '1' && !in_array("edit",$this->arrAction))
 	{
