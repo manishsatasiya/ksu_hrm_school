@@ -135,10 +135,10 @@ $(document).ready( function () {
 });
 function fnShowHide( iCol )
 {
-	if($("#showhide_"+iCol).is(':checked'))
-		$("#showhide_"+iCol).attr("checked", "checked");
+	if($("#Col-"+iCol).is(':checked'))
+		$("#Col-"+iCol).attr("checked", "checked");
 	else
-		$("#showhide_"+iCol).removeAttr("checked");	
+		$("#Col-"+iCol).removeAttr("checked");	
 		
 	/* Get the DataTables object again - this is not a recreation, just a get of the object */
 	var dTable = $('#grid_school').dataTable();

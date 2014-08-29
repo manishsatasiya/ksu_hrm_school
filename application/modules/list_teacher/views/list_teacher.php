@@ -101,8 +101,6 @@ if($this->session->userdata('role_id') == '1' || in_array("add",$this->arrAction
 $(document).ready(function() {
 	fnShowHide(4);
 	fnShowHide(5);
-	$("#showhide_4").attr("checked", "checked");	
-	$("#showhide_5").attr("checked", "checked");	
 	<?php 
 	if($this->session->userdata('role_id') != '1' && !in_array("edit",$this->arrAction))
 	{
