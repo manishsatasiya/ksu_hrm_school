@@ -75,7 +75,7 @@ if($this->session->userdata('role_id') == '1' || in_array("add",$this->arrAction
 <script language="javascript">
 $(document).ready(function() {
 	<?php 
-	//if($this->session->userdata('role_id') != '1' && !in_array("edit",$this->arrAction))
+	if($this->session->userdata('role_id') != '1' && !in_array("edit",$this->arrAction))
 	{
 	?>
 		fnShowHide(3);
