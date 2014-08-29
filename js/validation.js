@@ -1411,9 +1411,11 @@ $(document).ready(function() {
 	});
 	
 	$("#add_document").validate({
+		ignore: '',
 		rules: {
-			campus_id: {
-				comboboxNotNone: true
+			'campus_id[]': {
+				required:true,
+				minlength: 1
 			},
 			roll_id: {
 				comboboxNotNone: true
@@ -1426,7 +1428,7 @@ $(document).ready(function() {
 			}*/
 		},
 		messages: {
-			campus_id: "Please select campus",
+			'campus_id[]': "Please select campus",
 			roll_id: "Please select roll",
 			name: "Please enter name",
 			file: "Please select file"
