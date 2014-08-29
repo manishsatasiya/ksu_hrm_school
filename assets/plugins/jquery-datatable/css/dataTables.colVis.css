@@ -142,7 +142,9 @@ span.ColVis_radio {
 }
 .TableTools_Button .custom-checkbox label {display:block; margin-left:20px; cursor:pointer;}
 
-
+.checkbox-div label{
+margin-right:0px !important;
+}
 /* Smartphones (portrait and landscape) ----------- */
 @media all and (max-width: 600px) and (min-width: 240px) {
 div.dataTables_filter {

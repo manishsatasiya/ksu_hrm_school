@@ -588,7 +588,7 @@ ColVis.prototype = {
 				var classCheck="";
 		}
 		$(nSpan).html(
-			'<div class="custom-checkbox"><input type="checkbox"id="Col-'+i+'"/><label  class="'+classCheck+' " for=Col-"'+ i +'">'+ sTitle+'</label></div>' );
+			'<div class="checkbox check-success checkbox-div"><input type="checkbox"id="Col-'+i+'"/><label " for=Col-"'+ i +'">'+ sTitle+'</label></div>' );
 		//	'<span class="ColVis_title">'+i+'</span>' );
 		$(nButton).hover(
 				function(){ 
@@ -604,15 +604,7 @@ ColVis.prototype = {
 			
 		$(nButton).click( function (e) {					
 			var input=$(this).find('input');
-			
-			if(input.is(':checked')){
-				input.attr('checked','checked')
-				$(this).find('label').removeClass('checked checkedHover').addClass('hover');
-			}else{
-				input.removeAttr('checked');
-				$(this).find('label').addClass('checked');
-			}
-
+		
 			var showHide = !$('input', this).is(":checked");
 			if ( e.target.nodeName.toLowerCase() == "input" )
 			{
@@ -811,6 +803,7 @@ ColVis.prototype = {
 		nBackground.style.width = ((iWinWidth<iDocWidth)? iWinWidth : iDocWidth) +"px";
 		
 		var oStyle = this.dom.catcher.style;
+		
 		oStyle.height = $(this.dom.button).outerHeight()+"px";
 		oStyle.width = $(this.dom.button).outerWidth()+"px";
 		oStyle.top = oPos.top+"px";
@@ -830,7 +823,7 @@ ColVis.prototype = {
 				if ( this.dom.buttons[i] !== null )
 				{
 					this.dom.buttons[i].style.width = "auto";
-					aiSizes.push( $(this.dom.buttons[i]).outerWidth() );
+					aiSizes.push( $(this.dom.buttons[i]).outerWidth());
 				}
 			}
 			iMax = Math.max.apply(window, aiSizes);
