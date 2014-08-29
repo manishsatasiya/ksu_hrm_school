@@ -74,7 +74,6 @@ class List_Teacher_Student_model extends CI_Model {
 			$this->db->limit($limit, $offset);
     
     	$query = $this->db->get();
-		//echo $this->db->last_query();	
 		
 		if($limit == 0)
 			return $query->num_rows();
@@ -280,6 +279,7 @@ class List_Teacher_Student_model extends CI_Model {
      */
 	public function get_student($limit = 0, $offset = 0, $order_by = "campus,section_title", $sort_order = "asc", $search_data,$showall=0,$campus_id=0) {
 		$arrCampusPrivilages = get_user_campus_privilages();
+		$isLineManager = isLineManager();
 		$user_id = $this->session->userdata('user_id');
 		$user_role = $this->session->userdata('role_id');
         $fields = $this->db->list_fields('users'); 
@@ -288,7 +288,7 @@ class List_Teacher_Student_model extends CI_Model {
         	!empty($search_data['section_title']) ? $data['section_title'] = $search_data['section_title'] : "";
             !empty($search_data['username']) ? $data['users.username'] = $search_data['username'] : "";
             !empty($search_data['student_uni_id']) ? $data['users.student_uni_id'] = $search_data['student_uni_id'] : "";
-            !empty($search_data['first_name']) ? $data['users.first_name'] = $search_data['first_name'] : ""; 
+            !empty($search_data['staff_name']) ? $data['CONCAT_WS(" ",users.first_name,users.middle_name,users.middle_name2,users.last_name)'] = $search_data['staff_name'] : "";
             !empty($search_data['campus']) ? $data['users.campus'] = $search_data['campus'] : "";
             !empty($search_data['email']) ? $data['users.email'] = $search_data['email'] : "";
             !empty($search_data['primary_teacher_id']) ? $data['primary_teacher_id'] = $search_data['primary_teacher_id'] : "";
@@ -296,7 +296,7 @@ class List_Teacher_Student_model extends CI_Model {
 			!empty($search_data['buildings']) ? $data['buildings'] = $search_data['buildings'] : "";
         }
        
-        $this->db->select('users.*,DATE_FORMAT(users.student_schedule_date,"%a %D, %b, %Y ") AS stu_schedule_date, user_roll.user_roll_name as role_name,course_section.section_title,course_section.track AS section_track,course_section.buildings AS section_buildings,',FALSE);
+        $this->db->select('users.*,CONCAT_WS(" ",users.first_name,users.middle_name,users.middle_name2,users.last_name) AS staff_name,DATE_FORMAT(users.student_schedule_date,"%a %D, %b, %Y ") AS stu_schedule_date, user_roll.user_roll_name as role_name,course_section.section_title,course_section.track AS section_track,course_section.buildings AS section_buildings,',FALSE);
         $this->db->from('users');  
         $this->db->join('course_class','users.section_id=course_class.section_id','left');  
 
