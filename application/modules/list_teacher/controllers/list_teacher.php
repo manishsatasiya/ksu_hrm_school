@@ -164,7 +164,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 					}
     				$strTooltip .= '</table>';
 					//$row[] =  "<a onmouseover='javascript:popup(\"".$strTooltip."\",\"250px\");'><font size=\"2\" color=\"red\">".$result_row["first_name"]."</font></a>";
-					$row[] =  "<a onmouseover='' id=\"popover\" data-content='".$strTooltip."' data-toggle=\"popover\"><font size=\"2\" color=\"red\">".$result_row["first_name"]."</font></a>";
+					$row[] =  "<a onmouseover='' id=\"popover\" data-content='".$strTooltip."' data-toggle=\"popover\"><font size=\"2\" color=\"red\">".$result_row["staff_name"]."</font></a>";
 				}
 				else{    				
 				$row[] = $result_row["staff_name"];    			
