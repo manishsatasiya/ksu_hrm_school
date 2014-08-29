@@ -21,6 +21,7 @@ class List_Teacher_Student_model extends CI_Model {
 
     public function get_teacher($limit = 0, $offset = 0, $order_by = "username", $sort_order = "asc", $search_data,$campus_id=0) {
         $arrCampusPrivilages = get_user_campus_privilages();
+		$isLineManager = isLineManager();
         if (!empty($search_data)) {
             !empty($search_data['username']) ? $data['users.username'] = $search_data['username'] : "";
             !empty($search_data['staff_name']) ? $data['CONCAT_WS(" ",users.first_name,users.middle_name,users.middle_name2,users.last_name)'] = $search_data['staff_name'] : "";
@@ -61,8 +62,8 @@ class List_Teacher_Student_model extends CI_Model {
 		
     	!empty($data) ? $this->db->like($data) : "";
 		
-		if($this->session->userdata('role_id') != 1 && $this->session->userdata('contractor') > 0){
-			$this->db->where('user_profile.contractor',$this->session->userdata('contractor'));
+		if($this->session->userdata('role_id') != 1 && $isLineManager == 1){
+			$this->db->where('user_profile.contractor',$this->session->userdata('user_id'));
 		}
 		
 		if($order_by != "")
@@ -244,8 +245,8 @@ class List_Teacher_Student_model extends CI_Model {
 		
     	!empty($data) ? $this->db->like($data) : "";
 		
-		if($this->session->userdata('role_id') != 1 && $this->session->userdata('contractor') > 0){
-			$this->db->where('user_profile.contractor',$this->session->userdata('contractor'));
+		if($this->session->userdata('role_id') != 1 && $isLineManager == 1){
+			$this->db->where('user_profile.contractor',$this->session->userdata('user_id'));
 		}
 		
 		if($order_by != "")
@@ -488,6 +489,7 @@ class List_Teacher_Student_model extends CI_Model {
     
     public function count_all_teacher_mem($search_data)
     {
+		$isLineManager =  isLineManager();
 		$arrCampusPrivilages = get_user_campus_privilages();
     	if (!empty($search_data)) {
             !empty($search_data['username']) ? $data['users.username'] = $search_data['username'] : "";
@@ -533,8 +535,8 @@ class List_Teacher_Student_model extends CI_Model {
 		
     	!empty($data) ? $this->db->like($data) : "";
 		
-		if($this->session->userdata('role_id') != 1 && $this->session->userdata('contractor') > 0){
-			$this->db->where('user_profile.contractor',$this->session->userdata('contractor'));
+		if($this->session->userdata('role_id') != 1 && $isLineManager == 1){
+			$this->db->where('user_profile.contractor',$this->session->userdata('user_id'));
 		}
 		
 		if(!empty($data))

@@ -8,6 +8,7 @@ class Company_employee_model extends CI_Model {
     }
 	
 	public function get_company_employee($limit = 0, $offset = 0, $order_by = "username", $sort_order = "asc", $search_data,$count = false) {
+		$isLineManager = isLineManager();
     	if (!empty($search_data)) {
     		!empty($search_data['user_id']) ? $data['user_id'] = $search_data['user_id'] : "";
     		!empty($search_data['first_name']) ? $data['first_name'] = $search_data['first_name'] : "";
@@ -28,8 +29,8 @@ class Company_employee_model extends CI_Model {
 		//$this->db->where_not_in('users.user_roll_id',array('1','3'));
 		//$this->db->where('users.status',1);
 		
-		if($this->session->userdata('contractor') > 0){
-			$this->db->where('user_profile.contractor',$this->session->userdata('contractor'));
+		if($this->session->userdata('role_id') != 1 && $isLineManager == 1){
+			$this->db->where('user_profile.contractor',$this->session->userdata('user_id'));
 		}
 		
     	!empty($data) ? $this->db->like($data) : "";

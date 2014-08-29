@@ -8,6 +8,7 @@ class User_qualification_model extends CI_Model {
 
 	public function get_user_qualification($type="",$limit = 0, $offset = 0, $order_by = "username", $sort_order = "asc", $search_data) {
 		$arrCampusPrivilages = get_user_campus_privilages();
+		$isLineManager = isLineManager();
     	if (!empty($search_data)) {
     		!empty($search_data['user_id']) ? $data['user_id'] = $search_data['user_id'] : "";
 			!empty($search_data['elsd_id']) ? $data['elsd_id'] = $search_data['elsd_id'] : "";
@@ -80,8 +81,8 @@ class User_qualification_model extends CI_Model {
 			$this->db->where_in('users.campus_id',$arrCampusPrivilages);
 		}
 		
-		if($this->session->userdata('contractor') > 0){
-			$this->db->where('user_profile.contractor',$this->session->userdata('contractor'));
+		if($this->session->userdata('role_id') != 1 && $isLineManager == 1){
+			$this->db->where('user_profile.contractor',$this->session->userdata('user_id'));
 		}
 		
 		if($order_by != "")
