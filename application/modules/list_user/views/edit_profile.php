@@ -34,9 +34,23 @@
         <li><a href="#tab2CV"><i class="fa fa-file-o"></i> My Qualifications & Employment </a></li>
         <li><a href="#tab2Workshops"><i class="fa fa-wrench"></i> My Workshops </a></li>
         <li><a href="#tab2Observations"><i class="fa fa-lightbulb-o"></i> My Observations </a></li>
+		<!--
+        *****************************************************************
+                              MANISH LOOK AT THIS
+        *****************************************************************
+		-->
+		<!--
+        <li><a href="#tab2Privilege"><i class="fa fa-credit-card"></i> Add Privilege </a></li>
+		<li><a href="#tab2ViewStatusLog"><i class="fa fa-chain"></i> View Status Log </a></li>
+		-->
+        <!--
+        *****************************************************************
+                              CLOSE
+        *****************************************************************
+        -->
         <li><a href="#tab2mypma"><i class="fa fa-chain"></i> My PMA </a></li>
-    		<li><a href="#tab2myattendance"><i class="fa fa-chain"></i> My Attendance </a></li>
-    		<li><a href="#tab2myinductions"><i class="fa fa-chain"></i> My Induction </a></li>
+    	<li><a href="#tab2myattendance"><i class="fa fa-chain"></i> My Attendance </a></li>
+    	<li><a href="#tab2myinductions"><i class="fa fa-chain"></i> My Induction </a></li>
         <li><a href="#tab2mytimetable"><i class="fa fa-chain"></i> My Timetable </a></li>
         <li><a href="#tab2mycover"><i class="fa fa-chain"></i> My Cover </a></li>
         <li><a href="#tab2myrequests"><i class="fa fa-chain"></i> My Requests </a></li>
