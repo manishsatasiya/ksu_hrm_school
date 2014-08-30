@@ -12,6 +12,8 @@ class List_teacher extends Private_Controller {
         $this->load->model('list_student/list_teacher_student_model');
 		$this->load->helper('general_function');
 		$this->load->model('get_pdf/get_pdf_model');
+		$this->load->model('list_user/list_user_model');
+		
     }
 
     /**
@@ -192,88 +194,66 @@ $this->template->set_partial('sidebar', 'sidebar');
     public function add($id = null){
     	$content_data['get_ca_lead_teacher_list'] = get_ca_lead_teacher_list();
     	$content_data['campus_list'] = get_campus_list();
+		$content_data['line_manager_list'] = get_line_manager_list();
     	$content_data['id'] = $id;
-    	$rowdata = array();
+    	$rowdata = $campus_privilages = array();
     	if($id){
     		$rowdata = $this->list_teacher_student_model->get_teacher_data($id);
+			$campus_privilages = get_user_campus_privilages_data($id);
     	}
-    	 
     	$content_data['rowdata'] = $rowdata;
+    	$content_data['campus_privilages'] = $campus_privilages;
     	if($this->input->post()){
     		$nonce = md5(uniqid(mt_rand(), true));
-    		$user_id = $this->input->post('user_id');
-    		$elsd_id = $this->input->post('elsd_id');
+			$user_id = $this->input->post('user_id');
     		$campus_id = $this->input->post('campus_id');
     		$first_name = $this->input->post('first_name');
-    		$name_suffix = $this->input->post('name_suffix');
-    		$ca_lead_teacher = $this->input->post('ca_lead_teacher');
+    		$middle_name = $this->input->post('middle_name');
+    		$last_name = $this->input->post('last_name');
     		$email = $this->input->post('email');
-    		$address1 = $this->input->post('address1');
-    		$address2 = $this->input->post('address2');
-    		$city = $this->input->post('city');
-    		$state = $this->input->post('state');
-    		$zip = $this->input->post('zip');
-    		$birth_date = $this->input->post('birth_date');
-    		$birth_place = $this->input->post('birth_place');
-    		$language_known = $this->input->post('language_known');
-    		$work_phone = $this->input->post('work_phone');
-    		$home_phone = $this->input->post('home_phone');
-    		$cell_phone = $this->input->post('cell_phone');
+			$coordinator = $this->input->post('coordinator');
+			$office_no = $this->input->post('office_no');
     		$username = $this->input->post('username');
     		$password = $this->input->post('password');
-    		
-			$where_campus[] = array("campus_id"=>$campus_id);
-			$campus_arr = get_campus_name($where_campus);
-			$campus = "";
-			
-			if(isset($campus_arr["campusname"]))
-				$campus = $campus_arr["campusname"];
-				
+    			
     		$error = "";
     		$error_seperator = "<br>";
     		if($id){
     			 
     			$this->form_validation->set_rules('first_name', 'first name', 'trim|required|max_length[40]|min_length[2]');
 		        $this->form_validation->set_rules('email', 'email', 'trim|required|max_length[255]|is_valid_email|is_existing_field[users.email^users.user_id !=^'.$user_id.']');
-		        $this->form_validation->set_rules('elsd_id', 'ELSD ID', 'trim|required|is_existing_field[users.elsd_id^users.user_id !=^'.$user_id.']');
+		        
 		       	if (!$this->form_validation->run()) {
     				if (form_error('first_name')) {
     					$error .= form_error('first_name').$error_seperator;
     				}elseif (form_error('email')) {
     					$error .= form_error('email').$error_seperator;
-    				}elseif (form_error('elsd_id')) {
-    					$error .= form_error('elsd_id').$error_seperator;
     				}
     				echo $error;
     				exit();
     			}
     			
-    			$data = array();
-    			$data['elsd_id'] = $elsd_id;
+    			$data = $profile_data = array();
     			$data['campus_id'] = $campus_id;
-    			$data['campus'] = $campus;
     			$data['first_name'] = $first_name;
-    			$data['name_suffix'] = $name_suffix;
-    			$data['ca_lead_teacher'] = $ca_lead_teacher;
+    			$data['middle_name'] = $middle_name;
+    			$data['last_name'] = $last_name;
     			$data['email'] = $email;
-    			$data['address1'] = $address1;
-    			$data['address2'] = $address2;
-    			$data['city'] = $city;
-    			$data['state'] = $state;
-    			$data['zip'] = $zip;
-    			$data['birth_date'] = date('Y-m-d',strtotime($birth_date));
-    			$data['birth_place'] = $birth_place;
-    			$data['language_known'] = $language_known;
-    			$data['work_phone'] = $work_phone;
-    			$data['home_phone'] = $home_phone;
-    			$data['cell_phone'] = $cell_phone;
+				$data['coordinator'] = $coordinator;
     			$data['updated_date'] = date('Y-m-d H:i:s');
-    			$table = 'users';
+				$profile_data['office_no'] = $office_no;
+    			
+				$table = 'users';
     			$wher_column_name = 'user_id';
-    			
     			set_activity_data_log($id,'Update','Teacher > List teacher','List teacher',$table,$wher_column_name,'');
+
     			grid_data_updates($data,$table,$wher_column_name,$user_id);
-    			
+    			$table = 'user_profile';
+    			$wher_column_name = 'user_id';
+    			grid_data_updates($profile_data,$table,$wher_column_name,$user_id);
+				
+				$campus_privilege = $this->input->post('campus_privilages');
+				$this->list_user_model->create_user_campus_privilege($user_id, $campus_privilege);
     		}else{
     			 
     			$this->form_validation->set_rules('first_name', 'first name', 'trim|required|max_length[40]|min_length[2]');
@@ -281,8 +261,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 				$this->form_validation->set_rules('username', 'username', 'trim|required|max_length[50]|min_length[6]|is_existing_unique_field[users.username]');
 		        $this->form_validation->set_rules('password', 'password', 'trim|required|max_length[64]|matches[password_confirm]');
 		        $this->form_validation->set_rules('password_confirm', 'repeat password', 'trim|required|max_length[64]');
-				$this->form_validation->set_rules('elsd_id', 'ELSD ID', 'trim|required|is_existing_unique_field[users.elsd_id]');
-
+				
 		       	if (!$this->form_validation->run()) {
     				if (form_error('first_name')) {
     					$error .= form_error('first_name').$error_seperator;
@@ -294,42 +273,37 @@ $this->template->set_partial('sidebar', 'sidebar');
     					$error .= form_error('password').$error_seperator;
     				}elseif (form_error('password_confirm')) {
     					$error .= form_error('password_confirm').$error_seperator;
-    				}elseif (form_error('elsd_id')) {
-    					$error .= form_error('elsd_id').$error_seperator;
     				}
     				echo $error;
     				exit();
     			}
     			 
-    			$data = array();
-    			$data['elsd_id'] = $elsd_id;
+    			$data = $profile_data = array();
     			$data['campus_id'] = $campus_id;
-    			$data['campus'] = $campus;
     			$data['first_name'] = $first_name;
-    			$data['name_suffix'] = $name_suffix;
-    			$data['ca_lead_teacher'] = $ca_lead_teacher;
+    			$data['middle_name'] = $middle_name;
+    			$data['last_name'] = $last_name;
     			$data['email'] = $email;
-    			$data['address1'] = $address1;
-    			$data['address2'] = $address2;
-    			$data['city'] = $city;
-    			$data['state'] = $state;
-    			$data['zip'] = $zip;
-    			$data['birth_date'] = date('Y-m-d',strtotime($birth_date));
-    			$data['birth_place'] = $birth_place;
-    			$data['language_known'] = $language_known;
-    			$data['work_phone'] = $work_phone;
-    			$data['home_phone'] = $home_phone;
-    			$data['cell_phone'] = $cell_phone;
+				$data['coordinator'] = $coordinator;
     			$data['username'] = $username;
     			$data['password'] = hash_password($password, $nonce);
     			$data['user_roll_id'] = '3';
     			$data['active'] = '1';
     			$data['nonce'] = $nonce;
     			$data['created_date'] = date('Y-m-d H:i:s');
+				
     			$table = 'users';
     			$wher_column_name = 'elsd_id';
     			$lastinsertid = grid_add_data($data,$table);
     			set_activity_data_log($lastinsertid,'Add','Teacher > List teacher','List teacher',$table,$wher_column_name,$user_id='');
+				
+				$profile_data['user_id'] = $lastinsertid;
+				$profile_data['office_no'] = $office_no;
+				$table = 'user_profile';
+    			grid_add_data($profile_data,$table);
+				
+				$campus_privilege = $this->input->post('campus_privilages');
+				$this->list_user_model->create_user_campus_privilege($lastinsertid, $campus_privilege);
     		}
     		exit;
     	}

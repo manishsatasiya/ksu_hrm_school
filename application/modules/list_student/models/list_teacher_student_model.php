@@ -904,11 +904,14 @@ class List_Teacher_Student_model extends CI_Model {
     } 
     
     public function get_teacher_data($user_id,$elsd_id=""){
+		$this->db->select('*');
+		$this->db->from('users');
 		if($elsd_id != "")
-			$this->db->select('*')->from('users')->where('elsd_id', $elsd_id);
+			$this->db->where('users.elsd_id', $elsd_id);
 		else
-			$this->db->select('*')->from('users')->where('user_id', $user_id);
-			
+			$this->db->where('users.user_id', $user_id);
+		
+		$this->db->join('user_profile', 'user_profile.user_id = users.user_id','left');	
     	$query = $this->db->get();
 		
     	if($query->num_rows() == 1) {
