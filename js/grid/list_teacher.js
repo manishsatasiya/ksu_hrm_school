@@ -65,12 +65,7 @@ $(document).ready( function () {
             sAddURL: 	"list_teacher/add_student",
             aoColumns: [
                         	null,
-                        	{
-                        		indicator: 'Saving ...',
-    							tooltip: 'Click to edit name',
-    							type: 'text',
-    							submit:'Save changes'
-                        	},
+                        	null,
                         	{
                         		tooltip: 'Click to select campus',
                        			loadtext: 'loading...',
