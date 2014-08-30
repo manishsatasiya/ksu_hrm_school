@@ -63,9 +63,12 @@ class List_Teacher_Student_model extends CI_Model {
     	!empty($data) ? $this->db->like($data) : "";
 		
 		if($this->session->userdata('role_id') != 1 && $isLineManager == 1){
-			$this->db->where('user_profile.contractor',$this->session->userdata('user_id'));
+			$this->db->where('users.coordinator',$this->session->userdata('user_id'));
 		}
 		
+		if($this->session->userdata('role_id') != 1 && $this->session->userdata('contractor') > 1){
+			$this->db->where('user_profile.contractor',$this->session->userdata('contractor'));
+		}
 		if($order_by != "")
 			$this->db->order_by($order_by, $sort_order);
 		
@@ -245,7 +248,11 @@ class List_Teacher_Student_model extends CI_Model {
     	!empty($data) ? $this->db->like($data) : "";
 		
 		if($this->session->userdata('role_id') != 1 && $isLineManager == 1){
-			$this->db->where('user_profile.contractor',$this->session->userdata('user_id'));
+			$this->db->where('users.coordinator',$this->session->userdata('user_id'));
+		}
+		
+		if($this->session->userdata('role_id') != 1 && $this->session->userdata('contractor') > 1){
+			$this->db->where('user_profile.contractor',$this->session->userdata('contractor'));
 		}
 		
 		if($order_by != "")
@@ -536,7 +543,11 @@ class List_Teacher_Student_model extends CI_Model {
     	!empty($data) ? $this->db->like($data) : "";
 		
 		if($this->session->userdata('role_id') != 1 && $isLineManager == 1){
-			$this->db->where('user_profile.contractor',$this->session->userdata('user_id'));
+			$this->db->where('users.coordinator',$this->session->userdata('user_id'));
+		}
+		
+		if($this->session->userdata('role_id') != 1 && $this->session->userdata('contractor') > 1){
+			$this->db->where('user_profile.contractor',$this->session->userdata('contractor'));
 		}
 		
 		if(!empty($data))
