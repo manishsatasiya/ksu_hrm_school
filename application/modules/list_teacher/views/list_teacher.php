@@ -10,7 +10,7 @@ if($this->session->userdata('role_id') != '1' && !in_array("edit",$this->arrActi
 }
 ?>
 </script>
-<script type="text/javascript" src="<?php print base_url(); ?>js/grid/list_teacher.js"></script>
+<script type="text/javascript" src="<?php print base_url(); ?>js/grid/list_teacher.js?t=1"></script>
 
 <?php 
 if($this->session->userdata('role_id') == '1' || in_array("add",$this->arrAction))
