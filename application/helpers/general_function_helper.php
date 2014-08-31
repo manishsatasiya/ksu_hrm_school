@@ -1659,11 +1659,17 @@ function make_db_date($date = ''){
 }
 
 function get_line_manager_list() {
+	$arrActiveStatus = user_profile_status("activestaff");
 	$ci =& get_instance();
 	$ci->db->select('*,CONCAT_WS(" ",users.first_name,users.middle_name,users.middle_name2,users.last_name) AS staff_name',FALSE);
 	$ci->db->from('users');
 	$ci->db->join('user_profile','users.user_id = user_profile.user_id','left');
 	$ci->db->where('user_profile.is_line_manager',1);
+	
+	$arrStatus = array_keys($arrActiveStatus);
+	if(count($arrStatus) > 0)
+		$ci->db->where_in('users.status',$arrStatus);
+	
 	$ci->db->order_by('first_name', 'ASC');	
 	$query = $ci->db->get();
 	$student_data = $query->result_array();
@@ -1676,13 +1682,20 @@ function get_line_manager_list() {
 }
 
 function get_interviewer_list() {
+	$arrActiveStatus = user_profile_status("activestaff");
 	$ci =& get_instance();
 	$ci->db->select('*,CONCAT_WS(" ",users.first_name,users.middle_name,users.middle_name2,users.last_name) AS staff_name',FALSE);
 	$ci->db->from('users');
 	$ci->db->join('user_profile','users.user_id = user_profile.user_id','left');
 	$ci->db->where('user_profile.interviewer',1);
+	
+	$arrStatus = array_keys($arrActiveStatus);
+	if(count($arrStatus) > 0)
+		$ci->db->where_in('users.status',$arrStatus);
+		
 	$ci->db->order_by('first_name', 'ASC');	
 	$query = $ci->db->get();
+	
 	$student_data = $query->result_array();
 	$student_arr = array();
 	$student_arr[0] = '--Select--';

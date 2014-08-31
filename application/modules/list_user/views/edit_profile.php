@@ -916,7 +916,9 @@ print form_hidden('user_id', $user_data->user_unique_id);
 							  <div id="iderror"></div>
 							  </div>
 							  
-                              <div class="col-md-4"> <?php print form_hidden('ori_user_id', ($user_data)?$user_data->user_unique_id:0); ?>
+                              <div class="col-md-4"> 
+								<?php print form_hidden('ori_status_id', ($user_data)?$user_data->status:0); ?>
+								<?php print form_hidden('ori_user_id', ($user_data)?$user_data->user_unique_id:0); ?>
                                 <input type="hidden" name="orig_status" id="orig_status" value="<?php echo ($user_data)?$user_data->status:0; ?>" />
                                 <input type="button" id="save_status" class="button-save btn btn-primary" value="Save" />
                                 <input type="button" id="cancel_status_button" class="button-cancle btn btn-primary" value="Cancel" />

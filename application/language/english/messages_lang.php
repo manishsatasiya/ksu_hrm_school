@@ -1026,7 +1026,7 @@ $lang['student_p_action'] = 'Action';
 
 $lang['sch_date'] = 'Sch. Date';
 
-$lang['campus'] = 'Campus';
+$lang['campus'] = 'Campus Location';
 
 
 

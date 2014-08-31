@@ -135,11 +135,15 @@ if($this->session->userdata('role_id') == '1' || in_array("add",$this->arrAction
 
 <script language="javascript">
 $(document).ready(function() {
+	fnShowHide(2);
+	fnShowHide(4);
+	fnShowHide(5);
+	fnShowHide(6);
 	<?php 
 	if($this->session->userdata('role_id') != '1' && !in_array("edit",$this->arrAction))
 	{
 	?>
-		fnShowHide(6);
+		fnShowHide(7);
 	<?php 
 	}
 	?>

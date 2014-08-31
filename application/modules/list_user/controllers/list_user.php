@@ -782,12 +782,14 @@ $this->template->set_partial('sidebar', 'sidebar');
 				$this->form_validation->set_rules('first_name', 'first name', 'trim|required|max_length[40]|min_length[2]');
 				//$this->form_validation->set_rules('email', 'e-mail', 'trim|required|max_length[255]|is_valid_email|is_existing_unique_field[users.email]');
 				//$this->form_validation->set_rules('username', 'username', 'trim|required|max_length[255]|is_existing_unique_field[users.username]');
-				$this->form_validation->set_rules('username', 'username', 'trim|required|max_length[255]|is_existing_field[users.username^users.user_id !=^'.$user_id.']');
+				
+				if($this->input->post('ori_status_id') > 12)
+					$this->form_validation->set_rules('username', 'username', 'trim|required|max_length[255]|is_existing_field[users.username^users.user_id !=^'.$user_id.']');
 				
 				if (!$this->form_validation->run()) {
 					if (form_error('first_name')) {
 						$this->session->set_flashdata('message', form_error('first_name'));
-					}elseif (form_error('username')) {
+					}elseif ($this->input->post('ori_status_id') > 12 && form_error('username')) {
 						$this->session->set_flashdata('message', form_error('username'));
 					}
 					redirect('list_user/edit_profile/'.$user_id);
