@@ -24,7 +24,7 @@ class List_Teacher_Student_model extends CI_Model {
 		$isLineManager = isLineManager();
         if (!empty($search_data)) {
             !empty($search_data['username']) ? $data['users.username'] = $search_data['username'] : "";
-            !empty($search_data['staff_name']) ? $data['CONCAT_WS("",trim(users.first_name),trim(users.middle_name),trim(users.middle_name2),trim(users.last_name))'] = str_replace(" ","",trim($search_data['staff_name'])) : "";
+            !empty($search_data['staff_name']) ? $data['CONCAT_WS(" ",users.first_name,users.middle_name,users.middle_name2,users.last_name)'] = $search_data['staff_name'] : "";
             !empty($search_data['ca_lead_teacher']) ? $data['ca_lead.first_name'] = $search_data['ca_lead_teacher'] : "";
             !empty($search_data['section_title']) ? $data['course_section.section_title'] = $search_data['section_title'] : "";
             !empty($search_data['elsd_id']) ? $data['users.elsd_id'] = $search_data['elsd_id'] : "";
@@ -500,7 +500,7 @@ class List_Teacher_Student_model extends CI_Model {
 		$arrCampusPrivilages = get_user_campus_privilages();
     	if (!empty($search_data)) {
             !empty($search_data['username']) ? $data['users.username'] = $search_data['username'] : "";
-            !empty($search_data['staff_name']) ? $data['CONCAT_WS("",trim(users.first_name),trim(users.middle_name),trim(users.middle_name2),trim(users.last_name))'] = str_replace(" ","",trim($search_data['staff_name'])) : "";
+            !empty($search_data['staff_name']) ? $data['CONCAT_WS(" ",users.first_name,users.middle_name,users.middle_name2,users.last_name)'] = $search_data['staff_name'] : "";
 			!empty($search_data['ca_lead_teacher']) ? $data['ca_lead.first_name'] = $search_data['ca_lead_teacher'] : "";
 			!empty($search_data['section_title']) ? $data['course_section.section_title'] = $search_data['section_title'] : "";
             !empty($search_data['elsd_id']) ? $data['users.elsd_id'] = $search_data['elsd_id'] : "";
