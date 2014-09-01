@@ -810,6 +810,14 @@ print form_hidden('user_id', $user_data->user_unique_id);
 						<?php print (isset($myinductiondata))?$myinductiondata["Qskills_Orientation"]:"" ?> 
 					</div>
 				</div>
+				<div class="row form-row">
+					<div class="col-md-3"> 
+						<?php print form_label('Academic Admin Policies', 'Academic_Admin_Policies',array('class'=>'form-label')); ?>  
+					</div>
+					<div class="col-md-1"> 	
+						<?php print (isset($myinductiondata))?$myinductiondata["Academic_Admin_Policies"]:"" ?> 
+					</div>
+				</div>
             </div>
           </div>
         </div>

@@ -42,7 +42,8 @@ class My_inductions extends Private_Controller {
 													"Assessment" => $result_row["as"],                                                                                 
 													"Headway_Academic_Skills" => $result_row["ha"],
 													"Management_Information" => $result_row["mi"],                                              
-													"Qskills_Orientation" => $result_row["qs"]
+													"Qskills_Orientation" => $result_row["qs"],
+													"Academic_Admin_Policies" => $result_row["aap"]
 												);
     		}
     	}

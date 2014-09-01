@@ -17,13 +17,16 @@ class My_inductions_model extends CI_Model {
 		
 			$this->db->where('induction.user_id',$user_id);        
 		}
-			
-		if($user_unique_id > 0)
+		else if($user_unique_id > 0)
 		{
 			$this->db->where('induction.user_id',$user_unique_id);
-		}	
+		}
+		else
+		{
+			return array();
+		}
         $query = $this->db->get();
-		
+		//echo $this->db->last_query();
 		if($query->num_rows() > 0) {
             return $query;
         }

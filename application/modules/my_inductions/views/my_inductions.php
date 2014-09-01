@@ -119,6 +119,14 @@
 						<?php print (isset($rowdata))?$rowdata["Qskills_Orientation"]:"" ?> 
 					</div>
 				</div>
+				<div class="row form-row">
+					<div class="col-md-3"> 
+						<?php print form_label('Academic Admin Policies', 'Academic_Admin_Policies',array('class'=>'form-label')); ?>  
+					</div>
+					<div class="col-md-1"> 	
+						<?php print (isset($rowdata))?$rowdata["Academic_Admin_Policies"]:"" ?> 
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
