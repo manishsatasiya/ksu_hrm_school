@@ -5,13 +5,15 @@ $(document).ready( function () {
 		bProcessing:true,
 		bServerSide: true,
 		sAjaxSource: "line_managers_list/index_json",
-		"sDom": 'fCl<"clear">rtip',
+		/*"sDom": 'fCl<"clear">rtip',
 		"oColVis": {
 			"aiExclude": [table_total_col-1]
-        },
+        },*/
+		"bLengthChange": false,
+		"iDisplayLength": 100,
 		aoColumns: [
 						null ,
-						{"sName": "attendance"},
+						null ,
 						{"sName": "staff_name"},
 						{"sName": "elsd_id"},
 		            	{"sName": "job_title"},
@@ -20,13 +22,14 @@ $(document).ready( function () {
 		            	{"sName": "cell_phone"},
 		            	{"sName": "contractor"}
 		           ],
-		sPaginationType: "bootstrap"});
+		sPaginationType: "bootstrap"
+	});
 		$('#grid_line_managers_list_wrapper .dataTables_filter input').addClass("input-medium ");
 		$('#grid_line_managers_list_wrapper .dataTables_length select').addClass("select2-wrapper span12"); 
 		dTable.columnFilter({
 	        aoColumns: [    
 	                 null,
-					 { type: "text" },
+					 null ,
 					 { type: "text" },
 	        		 null,
 	                 { type: "text" },

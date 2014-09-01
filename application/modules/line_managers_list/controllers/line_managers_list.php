@@ -30,13 +30,17 @@ class Line_Managers_list extends Private_Controller {
 					$this->line_managers_list_model->set_user_attendance($data);
 				}
 			}
+			$this->session->set_flashdata('message', 'Attendance sumitted sucessfully.');
 			redirect('/line_managers_list/');
 		}
 		$show_submit = false;
 		$current_day = date('w');
 		$line_manager_attendance_day = getTableField('school_campus', 'line_manager_attendance_day', 'campus_id',$this->session->userdata('campus_id'));
 		if($line_manager_attendance_day <> '' && $line_manager_attendance_day == $current_day){
-			$show_submit = true;
+			$check_attendance_submitted = $this->line_managers_list_model->check_attendance_submitted();
+			if($check_attendance_submitted == 0) {
+				$show_submit = true;
+			}
 		}
     	$content_data = array();
 		$content_data['show_submit'] = $show_submit;
@@ -83,23 +87,23 @@ $this->template->set_partial('sidebar', 'sidebar');
     			"iTotalDisplayRecords" => $count,
     			"aaData" => array()
     	);
-    
+    	
     	if($data){
+		
     		foreach($data->result_array() AS $result_row){
 				$current_day = date('w');
 				$attendance_dropdown = '';
 				$line_manager_attendance_day = getTableField('school_campus', 'line_manager_attendance_day', 'campus_id',$this->session->userdata('campus_id'));
-				if($line_manager_attendance_day <> '' && $line_manager_attendance_day == $current_day){
-					//$attendance_dropdown = '<select name="attendance['.$result_row['user_id'].']" style="width:100%;"><option value="">Select</option><option value="present">Present</option><option value="absent">Absent</option><option value="late">Late</option></select>';
-					$dropdown_option = array(''=>'Select','present'=>'Present','absent'=>'Absent','late'=>'Late');
-					$attendance_dropdown = form_dropdown('attendance['.$result_row['user_id'].']',$dropdown_option,$result_row['attendance'],'id="" class="" style="width:100%;"');
+				if($result_row['submitted'] == '0' && $line_manager_attendance_day <> '' && $line_manager_attendance_day == $current_day){
+					$dropdown_option = array(''=>'Select','present'=>'Present','absent'=>'Absent','late'=>'Late','other_duties'=>'Other Duties');
+					$attendance_dropdown = form_dropdown('attendance['.$result_row['user_id'].']',$dropdown_option,'','id="line_manager_attendance" class="" style="width:100%;"');
 				}
     			$row = array();
 				$row[] = $result_row['user_id'];
 				$row[] = $attendance_dropdown;
 				$row[] = $result_row['staff_name'];
 				$row[] = $result_row['elsd_id'];
-				$row[] = $result_row['job_title'];
+				$row[] = $result_row['job_title_name'];
 				$row[] = $result_row['personal_email'];
 				$row[] = $result_row['email'];				
 				$row[] = $result_row['cell_phone'];

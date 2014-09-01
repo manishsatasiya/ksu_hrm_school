@@ -1752,6 +1752,17 @@ $(document).ready(function() {
 		// stop the form from submitting the normal way and refreshing the page
 		event.preventDefault();
 	});
+	
+	$("#line_managers_dt_submit").on( "submit", function(e) {
+		$(this).find('select#line_manager_attendance').each(function(){
+			if($(this).val() == ''){
+				alert('Please select all user attendance.');
+				e.preventDefault();
+				return false;
+			}
+		});
+		
+	});
 });
 if(CI.controller_name == 'schedule')
 {

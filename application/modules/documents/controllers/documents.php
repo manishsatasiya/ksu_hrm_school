@@ -77,10 +77,10 @@ class Documents extends Private_Controller {
 			
 			//upload and update the file
 			$config['upload_path'] = $curr_dir.'downloads/docs/';
-			$config['allowed_types'] = 'jpg|jpeg|pdf|png|xlsx|doc|zip|docx|csv';
+			$config['allowed_types'] = 'jpg|jpeg|pdf|png|xlsx|doc|zip|rar|docx|csv';
 			$config['overwrite'] = true;
 			$config['remove_spaces'] = true;
-			$config['max_size']	= '2048';// in KB
+			$config['max_size']	= '15999';// in KB
 			
 			//load upload library
 			$this->load->library('upload', $config);

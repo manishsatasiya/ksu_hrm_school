@@ -40,13 +40,18 @@ if($this->session->userdata('role_id') != '1' && !in_array("edit",$this->arrActi
 <!-- /.modal -->
 <div class="row-fluid">
   <div class="span12">
+  	<?php
+	if ($this->session->flashdata('message')) {
+		print "<br><div class=\"alert alert-success\">". $this->session->flashdata('message') ."</div>";
+	}
+	?>
     <div class="grid simple ">
       <div class="grid-title">
         <h4>Line managers list</h4>
       </div>
       <div class="grid-body ">
         <div id="processing_message" style="display:none" title="Processing">Please wait while your request is being processed...</div>
-        <form action="" method="post">
+        <form action="" method="post" id="line_managers_dt_submit">
         <table class="table" id="grid_line_managers_list">
           <thead>
             <tr>

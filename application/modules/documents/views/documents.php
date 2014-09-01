@@ -121,6 +121,7 @@
 				?>
                 <li> <a href="<?php echo base_url().$document['file']; ?>" target="_blank"><?php echo $document['name']; ?></a>
                 	<?php 
+                  /*
 					if(!empty($document['campus_id'])){
 						$arr_campus_id = explode(',',$document['campus_id']);
 						$arr_campus_name = array();
@@ -130,8 +131,11 @@
 						
 						echo ' | '.implode(', ',$arr_campus_name);
 					}
+          */
 					?>
-                  <div class="pull-right"><a href="<?php echo base_url().'documents/add_document/'.$document['document_id']; ?>" class="btn btn-small btn-success ">Edit</a> <a href="<?php echo base_url().'documents/add_document/'.$document['document_id']; ?>" class="btn btn-small btn-danger ">Delete</a></div>
+                <?php if( $this->session->userdata('role_id') == '1'): ?>
+                  <div class="pull-right"><a href="<?php echo base_url().'documents/add_document/'.$document['document_id']; ?>" class="btn btn-small btn-success ">Edit</a> <a href="<?php echo base_url().'documents/delete/'.$document['document_id']; ?>" class="btn btn-small btn-danger ">Delete</a></div>
+                <?php endif; ?>
                 </li>
                 <?php
 					}
