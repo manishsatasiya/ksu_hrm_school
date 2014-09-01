@@ -32,68 +32,19 @@
         <li><a href="#tab2Medical"><i class="fa fa-plus-square"></i> My Medical Details </a></li>
         <li><a href="#tab2Emergency"><i class="fa fa-fire-extinguisher"></i> My Emergency Contacts </a></li>
         <li><a href="#tab2CV"><i class="fa fa-file-o"></i> My Qualifications & Employment </a></li>
-		<?php 
-		if($this->session->userdata('role_id') == '1' || in_array("my_workshops",$this->arrAction))
-		{
-		?>
-			<li><a href="#tab2Workshops"><i class="fa fa-wrench"></i> My Workshops </a></li>
-		<?php 
-		}
-		if($this->session->userdata('role_id') == '1' || in_array("my_observations",$this->arrAction))
-		{
-		?>
-			<li><a href="#tab2Observations"><i class="fa fa-lightbulb-o"></i> My Observations </a></li>
-		<?php 
-		}
-		if($this->session->userdata('role_id') == '1' || in_array("my_add_privilege",$this->arrAction))
-		{
-		?>
-			<li><a href="#tab2Privilege"><i class="fa fa-credit-card"></i> Add Privilege </a></li>
-		<?php 
-		}
-		if($this->session->userdata('role_id') == '1' || in_array("view_status_log",$this->arrAction))
-		{
-		?>
-			<li><a href="#tab2ViewStatusLog"><i class="fa fa-chain"></i> View Status Log </a></li>
-		<?php 
-		}
-		if($this->session->userdata('role_id') == '1' || in_array("my_pma",$this->arrAction))
-		{
-		?>
-			<li><a href="#tab2mypma"><i class="fa fa-chain"></i> My PMA </a></li>
-		<?php 
-		}
-		if($this->session->userdata('role_id') == '1' || in_array("my_attendance",$this->arrAction))
-		{
-		?>
-			<li><a href="#tab2myattendance"><i class="fa fa-chain"></i> My Attendance </a></li>
-		<?php 
-		}
-		if($this->session->userdata('role_id') == '1' || in_array("my_induction",$this->arrAction))
-		{
-		?>
-			<li><a href="#tab2myinductions"><i class="fa fa-chain"></i> My Induction </a></li>
-		<?php 
-		}
-		if($this->session->userdata('role_id') == '1' || in_array("my_timetable",$this->arrAction))
-		{
-		?>
-			<li><a href="#tab2mytimetable"><i class="fa fa-chain"></i> My Timetable </a></li>
-		<?php 
-		}
-		if($this->session->userdata('role_id') == '1' || in_array("my_cover",$this->arrAction))
-		{
-		?>
-			<li><a href="#tab2mycover"><i class="fa fa-chain"></i> My Cover </a></li>
-		<?php 
-		}
-		if($this->session->userdata('role_id') == '1' || in_array("my_requests",$this->arrAction))
-		{
-		?>
-			<li><a href="#tab2myrequests"><i class="fa fa-chain"></i> My Requests </a></li>
-		<?php 
-		}
-	    ?>
+        <li><a href="#tab2Workshops"><i class="fa fa-wrench"></i> My Workshops </a></li>
+        <li><a href="#tab2Observations"><i class="fa fa-lightbulb-o"></i> My Observations </a></li>
+
+        <?php if( $this->session->userdata('role_id') == '1'){ ?>
+          <li><a href="#tab2Privilege"><i class="fa fa-credit-card"></i> Add Privilege </a></li>
+  		    <li><a href="#tab2ViewStatusLog"><i class="fa fa-chain"></i> View Status Log </a></li>
+	       <?php } ?>
+        <li><a href="#tab2mypma"><i class="fa fa-chain"></i> My PMA </a></li>
+    	<li><a href="#tab2myattendance"><i class="fa fa-chain"></i> My Attendance </a></li>
+    	<li><a href="#tab2myinductions"><i class="fa fa-chain"></i> My Induction </a></li>
+        <li><a href="#tab2mytimetable"><i class="fa fa-chain"></i> My Timetable </a></li>
+        <li><a href="#tab2mycover"><i class="fa fa-chain"></i> My Cover </a></li>
+        <li><a href="#tab2myrequests"><i class="fa fa-chain"></i> My Requests </a></li>
         <li style="background:none;">
           <div class="edit-profile-tab"><a href="#tab2Edit" class="btn btn-info">Edit Profile </a></div>
         </li>
@@ -504,10 +455,7 @@ if(isset($user_data->user_roll_id) && $user_data->user_roll_id > 0) {
 	print form_open('list_user/reset_user_privilege/', array('id' => 'reset_user_privilege','name'=>'reset_user_privilege')) ."\r\n";
 		print form_hidden('user_id', $user_data->user_unique_id);
 		print form_hidden('user_roll_id', $user_data->user_roll_id);
-		if($this->session->userdata('role_id') == '1' || in_array("my_edit_privilege",$this->arrAction))
-		{
-			print form_submit(array('name' => 'reset_user_privilege', 'id' => 'reset_user_privilege', 'value' => 'Reset To Roll', 'class' => 'input_submit btn btn-danger btn-small')) ."\r\n";
-		}
+		print form_submit(array('name' => 'reset_user_privilege', 'id' => 'reset_user_privilege', 'value' => 'Reset To Roll', 'class' => 'input_submit btn btn-danger btn-small')) ."\r\n";
 	print form_close() ."\r\n";
 }
 ?>
@@ -608,14 +556,8 @@ print form_hidden('user_id', $user_data->user_unique_id);
                   <?php
     	}
     }
-
-				if($this->session->userdata('role_id') == '1' || in_array("my_edit_privilege",$this->arrAction))
-				{
-				?>
-					<li> <?php print form_submit(array('name' => 'add_single_user_privilege_submit', 'id' => 'add_single_user_privilege_submit', 'value' => $this->lang->line('privi_p_btn'), 'class' => 'input_submit btn btn-success btn-cons')) ."\r\n"; ?> </li>
-				<?php 
-				}
-				?>	
+    ?>
+                  <li> <?php print form_submit(array('name' => 'add_single_user_privilege_submit', 'id' => 'add_single_user_privilege_submit', 'value' => $this->lang->line('privi_p_btn'), 'class' => 'input_submit btn btn-success btn-cons')) ."\r\n"; ?> </li>
                 </ul>
                 <?php print form_close() ."\r\n";?>
                 <script>
@@ -859,14 +801,6 @@ print form_hidden('user_id', $user_data->user_unique_id);
 						<?php print (isset($myinductiondata))?$myinductiondata["Qskills_Orientation"]:"" ?> 
 					</div>
 				</div>
-				<div class="row form-row">
-					<div class="col-md-3"> 
-						<?php print form_label('Academic Admin Policies', 'Academic_Admin_Policies',array('class'=>'form-label')); ?>  
-					</div>
-					<div class="col-md-1"> 	
-						<?php print (isset($myinductiondata))?$myinductiondata["Academic_Admin_Policies"]:"" ?> 
-					</div>
-				</div>
             </div>
           </div>
         </div>
@@ -973,8 +907,7 @@ print form_hidden('user_id', $user_data->user_unique_id);
 							  <div id="iderror"></div>
 							  </div>
 							  
-                              <div class="col-md-4">
-								<?php print form_hidden('ori_user_id', ($user_data)?$user_data->user_unique_id:0); ?>
+                              <div class="col-md-4"> <?php print form_hidden('ori_user_id', ($user_data)?$user_data->user_unique_id:0); ?>
                                 <input type="hidden" name="orig_status" id="orig_status" value="<?php echo ($user_data)?$user_data->status:0; ?>" />
                                 <input type="button" id="save_status" class="button-save btn btn-primary" value="Save" />
                                 <input type="button" id="cancel_status_button" class="button-cancle btn btn-primary" value="Cancel" />
@@ -982,7 +915,7 @@ print form_hidden('user_id', $user_data->user_unique_id);
                             </div>
                             <?php //print form_close() ."\r\n"; ?> 
                             <div class="row form-row">
-                              <div class="col-md-3"> <?php print form_label('User Name', 'username',array('class'=>'form-label')); ?> <?php print form_input(array('name' => 'username', 'id' => 'username', 'value' => ($user_data)?$user_data->username:$this->session->flashdata('username'), 'class' => 'form-control ','placeholder' => 'email@example.com')); ?> </div>
+                              <div class="col-md-3"> <?php print form_label('Login Email', 'username',array('class'=>'form-label')); ?> <?php print form_input(array('name' => 'username', 'id' => 'username', 'value' => ($user_data)?$user_data->username:$this->session->flashdata('username'), 'class' => 'form-control ','placeholder' => 'email@example.com')); ?> </div>
                               <div class="col-md-3"> <?php print form_label('Personal Email', 'personal_email',array('class'=>'form-label')); ?> <?php print form_input(array('name' => 'personal_email', 'id' => 'personal_email', 'value' => ($user_data)?$user_data->personal_email:$this->session->flashdata('personal_email'), 'class' => 'form-control','placeholder' => 'Personal Email')); ?> </div>	
                               <div class="col-md-3"> <?php print form_label('Mobile Phone', 'cell_phone',array('class'=>'form-label')); ?> <?php print form_input(array('name' => 'cell_phone', 'id' => 'cell_phone', 'value' => ($user_data)?$user_data->cell_phone:$this->session->flashdata('cell_phone'), 'class' => 'form-control ','placeholder' => 'Mobile Phone')); ?> </div>
 							  <div class="col-md-3"> <?php print form_label('Skype ID', 'skype_id',array('class'=>'form-label')); ?> <?php print form_input(array('name' => 'skype_id', 'id' => 'skype_id', 'value' => ($user_data)?$user_data->skype_id:$this->session->flashdata('skype_id'), 'class' => 'form-control')); ?> </div>

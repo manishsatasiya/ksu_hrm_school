@@ -1039,8 +1039,7 @@ $(document).ready(function() {
 		      required: true,
 		    },
 			username: {
-		      required: true,
-		      email: true,
+		      required: true
 		    },
 			password: {
 		      required: true,
@@ -1068,9 +1067,9 @@ $(document).ready(function() {
 		  messages: {
 			status: "Please select status",
 			first_name:"Please enter first name",
-			last_name:"Please enter last anme",
+			last_name:"Please enter last name",
 			gender:"Please select gender",
-			username:"Please enter login email",
+			username:"Please enter User Name",
 			password:"Please enter login password",
 			confirm_password: {
 				required: "Please provide a password",
@@ -1106,68 +1105,99 @@ $(document).ready(function() {
 	 });
 	
 	//edit_profile Validations
-	var $edit_validator = $("#edit_profile").validate({
-		  rules: {
-			title: {
-			  required: true,
-			},
-			status: {
-		      required: true,
-		    }, 
-		    first_name: {
-		      required: true
-		    },
-			last_name: {
-		      required: true
-		    },
-			gender: {
-		      required: true,
-		    },
-			username: {
-		      required: true,
-		      email: true,
-		    },
-			confirm_password: {
-				equalTo: "#password"
-			},
-			user_roll_id: {
-		      required: true,
-		    },
-			system_roll_id: {
-		      required: true,
-		    },
-			returning: {
-		      required: true,
-		    },
-			contractor: {
-		      required: true,
-		    },
-			cell_phone: {
-		      required: true,
-		    }
-		  },
-		  messages: {
-			title: "Please select title",
-			status: "Please select status",
-			first_name:"Please enter first name",
-			last_name:"Please enter last anme",
-			gender:"Please select gender",
-			username:"Please enter login email",
-			confirm_password: {
-				equalTo: "Please enter the same password"
-			},			
-			user_roll_id:"Please select KSU role",
-			system_roll_id:"Please select System role",
-			returning:"Please select returning employee",
-			contractor:"Please select contracor",
-			cell_phone:"Please enter your mobile"
-		  },
-		  errorPlacement: function(label, element) {
-				$('<span class="arrow"></span>').insertBefore(element);
-				$('<span class="error"></span>').insertAfter(element).append(label)
-			}
-		});
-
+	if($("#orig_status").val() > 12)
+	{
+		var $edit_validator = $("#edit_profile").validate({
+				
+			  rules: {
+				title: {
+				  required: true
+				},
+				first_name: {
+				  required: true
+				},
+				last_name: {
+				  required: true
+				},
+				gender: {
+				  required: true
+				},
+				username: {
+				  required: true
+				},
+				confirm_password: {
+					equalTo: "#password"
+				},
+				user_roll_id: {
+				  required: true
+				},
+				system_roll_id: {
+				  required: true
+				},
+				returning: {
+				  required: true
+				},
+				contractor: {
+				  required: true
+				},
+				cell_phone: {
+				  required: true
+				}
+			  },
+			  messages: {
+				title: "Please select title",
+				first_name:"Please enter first name",
+				last_name:"Please enter last anme",
+				gender:"Please select gender",
+				username:"Please enter User Name",
+				confirm_password: {
+					equalTo: "Please enter the same password"
+				},			
+				user_roll_id:"Please select KSU role",
+				system_roll_id:"Please select System role",
+				returning:"Please select returning employee",
+				contractor:"Please select contracor",
+				cell_phone:"Please enter your mobile"
+			  },
+			  errorPlacement: function(label, element) {
+					$('<span class="arrow"></span>').insertBefore(element);
+					$('<span class="error"></span>').insertAfter(element).append(label)
+				}
+			});
+	}
+	else
+	{
+		var $edit_validator = $("#edit_profile").validate({
+			  rules: {
+				title: {
+				  required: true
+				},
+				first_name: {
+				  required: true
+				},
+				last_name: {
+				  required: true
+				},
+				gender: {
+				  required: true
+				},
+				contractor: {
+				  required: true
+				}
+			  },
+			  messages: {
+				title: "Please select title",
+				first_name:"Please enter first name",
+				last_name:"Please enter last anme",
+				gender:"Please select gender",
+				contractor:"Please select contracor"
+			  },
+			  errorPlacement: function(label, element) {
+					$('<span class="arrow"></span>').insertBefore(element);
+					$('<span class="error"></span>').insertAfter(element).append(label)
+				}
+			});
+	}
 	$('#edit_rootwizard').bootstrapWizard({
 	  		'tabClass': 'form-wizard',
 	  		'onNext': function(tab, navigation, index) {
@@ -1552,7 +1582,7 @@ $(document).ready(function() {
 			first_name:"Please enter first name",
 			last_name:"Please enter last name",
 			gender:"Please select gender",
-			username:"Please enter email",
+			username:"Please enter User Name",
 			birth_date:"Please select birthdate",
 			expected_arrival_date:"Please Select Expected Arrival Date",
 			nationality:"Please select nationality",

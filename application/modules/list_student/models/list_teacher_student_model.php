@@ -66,7 +66,7 @@ class List_Teacher_Student_model extends CI_Model {
 			$this->db->where('users.coordinator',$this->session->userdata('user_id'));
 		}
 		
-		if($this->session->userdata('role_id') != 1 && $this->session->userdata('contractor') > 1){
+		if($this->session->userdata('role_id') > 4 && $this->session->userdata('contractor') > 1){
 			$this->db->where('user_profile.contractor',$this->session->userdata('contractor'));
 		}
 		if($order_by != "")
@@ -138,6 +138,7 @@ class List_Teacher_Student_model extends CI_Model {
 
 	public function get_staff_members($type="",$limit = 0, $offset = 0, $order_by = "username", $sort_order = "asc", $search_data) {
 		$arrCampusPrivilages = get_user_campus_privilages();
+		$isLineManager = isLineManager();
     	if (!empty($search_data)) {
     		!empty($search_data['user_id']) ? $data['user_id'] = $search_data['user_id'] : "";
 			!empty($search_data['elsd_id']) ? $data['elsd_id'] = $search_data['elsd_id'] : "";
@@ -251,7 +252,7 @@ class List_Teacher_Student_model extends CI_Model {
 			$this->db->where('users.coordinator',$this->session->userdata('user_id'));
 		}
 		
-		if($this->session->userdata('role_id') != 1 && $this->session->userdata('contractor') > 1){
+		if($this->session->userdata('role_id') > 4 && $this->session->userdata('contractor') > 1){
 			$this->db->where('user_profile.contractor',$this->session->userdata('contractor'));
 		}
 		
@@ -546,7 +547,7 @@ class List_Teacher_Student_model extends CI_Model {
 			$this->db->where('users.coordinator',$this->session->userdata('user_id'));
 		}
 		
-		if($this->session->userdata('role_id') != 1 && $this->session->userdata('contractor') > 1){
+		if($this->session->userdata('role_id') > 4 && $this->session->userdata('contractor') > 1){
 			$this->db->where('user_profile.contractor',$this->session->userdata('contractor'));
 		}
 		

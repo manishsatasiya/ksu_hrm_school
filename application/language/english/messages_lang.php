@@ -415,6 +415,17 @@ $lang['user_role'] = 'Role';
 
 
 $lang['home'] = 'Home';
+$lang['my_edit_profile'] = 'Profile';
+$lang['my_workshops'] = 'My Workshops';
+$lang['my_observations'] = 'My Observations';
+$lang['view_status_log'] = 'View Status Log';
+$lang['my_pma'] = 'My PMA';
+$lang['my_attendance'] = 'My Attendance';
+$lang['my_induction'] = 'My Induction';
+$lang['my_timetable'] = 'My Timetable';
+$lang['my_cover'] = 'My Cover';
+$lang['my_requests'] = 'My Requests';
+$lang['my_add_privilege'] = 'Add Privilege';
 
 $lang['admin_panel'] = 'Admin panel';
 

@@ -186,7 +186,7 @@ $(document).ready(function() {
 	<script type="text/javascript" src="<?php print base_url(); ?>js/jQuery/jq_functions.js"></script>
 	<script type="text/javascript" src="<?php print base_url(); ?>js/custom.js"></script>
 	<script type="text/javascript" src="<?php print base_url(); ?>js/jquery.validate.js"></script>
-	<script type="text/javascript" src="<?php print base_url(); ?>js/validation.js"></script>
+	<script type="text/javascript" src="<?php print base_url(); ?>js/validation.js?t=6"></script>
 	<script type="text/javascript" src="<?php print base_url(); ?>js/jquery_datatables_editable/media/js/jquery.dataTables.editable.js"></script>
 	<script src="<?php print base_url(); ?>js/jquery_datatables_editable/media/js/jquery.jeditable.js" type="text/javascript"></script>
 	<script src="<?php print base_url(); ?>js/jquery_datatables_editable/media/js/jquery.dataTables.columnFilter.js" type="text/javascript"></script>
