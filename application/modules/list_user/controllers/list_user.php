@@ -591,9 +591,13 @@ $this->template->set_partial('sidebar', 'sidebar');
 			
 			$this->form_validation->set_rules('first_name', 'first name', 'trim|required|max_length[40]|min_length[2]');
 			//$this->form_validation->set_rules('email', 'e-mail', 'trim|required|max_length[255]|is_valid_email|is_existing_unique_field[users.email]');
-			$this->form_validation->set_rules('username', 'username', 'trim|required|max_length[255]|is_existing_unique_field[users.username]');
-			$this->form_validation->set_rules('password', 'password', 'trim|required|max_length[64]|matches[password_confirm]');
-			$this->form_validation->set_rules('password_confirm', 'repeat password', 'trim|required|max_length[64]');
+			
+			if($this->input->post('status') > 12)
+			{
+				$this->form_validation->set_rules('username', 'username', 'trim|required|max_length[255]|is_existing_unique_field[users.username]');
+				$this->form_validation->set_rules('password', 'password', 'trim|required|max_length[64]|matches[password_confirm]');
+				$this->form_validation->set_rules('password_confirm', 'repeat password', 'trim|required|max_length[64]');
+			}
 			
 			if (!$this->form_validation->run()) {
 				if (form_error('first_name')) {
@@ -601,11 +605,14 @@ $this->template->set_partial('sidebar', 'sidebar');
 				//}elseif (form_error('email')) {
 					//$this->session->set_flashdata('message', form_error('email'));
 				}elseif (form_error('username')) {
-					$this->session->set_flashdata('message', form_error('username'));
+					if($this->input->post('status') > 12)
+						$this->session->set_flashdata('message', form_error('username'));
 				}elseif (form_error('password')) {
-					$this->session->set_flashdata('message', form_error('password'));
+					if($this->input->post('status') > 12)
+						$this->session->set_flashdata('message', form_error('password'));
 				}elseif (form_error('password_confirm')) {
-					$this->session->set_flashdata('message', form_error('password_confirm'));
+					if($this->input->post('status') > 12)	
+						$this->session->set_flashdata('message', form_error('password_confirm'));
 				}
 				redirect('list_user/add_profile');
 				//exit();
@@ -675,7 +682,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 				
 				$user_cv_reference1 = array(
 							'user_id'       => $user_id,
-							'profile_id'       => $profile_id,
+							//'profile_id'       => $profile_id,
 							'company_name'       => $this->input->post('cv_reference_company_name_1'),
 							'name'       => $this->input->post('cv_reference_name_1'),
 							'position'       => $this->input->post('cv_reference_position_1'),
@@ -686,7 +693,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 				grid_add_data($user_cv_reference1,'user_cv_reference');		
 				$user_cv_reference2 = array(
 							'user_id'       => $user_id,
-							'profile_id'       => $profile_id,
+							//'profile_id'       => $profile_id,
 							'company_name'       => $this->input->post('cv_reference_company_name_2'),
 							'name'       => $this->input->post('cv_reference_name_2'),
 							'position'       => $this->input->post('cv_reference_position_2'),
@@ -782,15 +789,15 @@ $this->template->set_partial('sidebar', 'sidebar');
 				$this->form_validation->set_rules('first_name', 'first name', 'trim|required|max_length[40]|min_length[2]');
 				//$this->form_validation->set_rules('email', 'e-mail', 'trim|required|max_length[255]|is_valid_email|is_existing_unique_field[users.email]');
 				//$this->form_validation->set_rules('username', 'username', 'trim|required|max_length[255]|is_existing_unique_field[users.username]');
-				
-				if($this->input->post('ori_status_id') > 12)
+				if($this->input->post('orig_status') > 12)	
 					$this->form_validation->set_rules('username', 'username', 'trim|required|max_length[255]|is_existing_field[users.username^users.user_id !=^'.$user_id.']');
 				
 				if (!$this->form_validation->run()) {
 					if (form_error('first_name')) {
 						$this->session->set_flashdata('message', form_error('first_name'));
-					}elseif ($this->input->post('ori_status_id') > 12 && form_error('username')) {
-						$this->session->set_flashdata('message', form_error('username'));
+					}elseif (form_error('username')) {
+						if($this->input->post('orig_status') > 12)	
+							$this->session->set_flashdata('message', form_error('username'));
 					}
 					redirect('list_user/edit_profile/'.$user_id);
 					//exit();

@@ -1024,7 +1024,9 @@ $(document).ready(function() {
 	});
 	
 	//add_profile Validations
-	var $validator = $("#add_profile").validate({
+	if($("#status").val() > 12)
+	{
+		var $validator = $("#add_profile").validate({
 		  rules: {
 			status: {
 		      required: true,
@@ -1086,13 +1088,46 @@ $(document).ready(function() {
 				$('<span class="error"></span>').insertAfter(element).append(label)
 			}
 		});
-
+	}
+	else
+	{
+		var $validator = $("#add_profile").validate({
+			  rules: {
+				title: {
+				  required: true
+				},
+				first_name: {
+				  required: true
+				},
+				last_name: {
+				  required: true
+				},
+				gender: {
+				  required: true
+				},
+				contractor: {
+				  required: true
+				}
+			  },
+			  messages: {
+				title: "Please select title",
+				first_name:"Please enter first name",
+				last_name:"Please enter last anme",
+				gender:"Please select gender",
+				contractor:"Please select contracor"
+			  },
+			  errorPlacement: function(label, element) {
+					$('<span class="arrow"></span>').insertBefore(element);
+					$('<span class="error"></span>').insertAfter(element).append(label)
+				}
+			});
+	}
+	
 	$('#rootwizard').bootstrapWizard({
 	  		'tabClass': 'form-wizard',
 			onTabClick: function(tab, navigation, index) {return false;},
 	  		'onNext': function(tab, navigation, index) {
-			
-	  			var $valid = $("#add_profile").valid();
+				var $valid = $("#add_profile").valid($("#status").val());
 	  			if(!$valid) {
 	  				$validator.focusInvalid();
 	  				return false;
@@ -1129,12 +1164,6 @@ $(document).ready(function() {
 					equalTo: "#password"
 				},
 				user_roll_id: {
-				  required: true
-				},
-				system_roll_id: {
-				  required: true
-				},
-				returning: {
 				  required: true
 				},
 				contractor: {
@@ -1200,10 +1229,12 @@ $(document).ready(function() {
 	}
 	$('#edit_rootwizard').bootstrapWizard({
 	  		'tabClass': 'form-wizard',
-	  		'onNext': function(tab, navigation, index) {
-			
+			'onNext': function(tab, navigation, index) {
+				$('#rootwizard').find('.form-wizard').children('li').eq(index-1).addClass('complete');
+				$('#rootwizard').find('.form-wizard').children('li').eq(index-1).find('.step').html('<i class="fa fa-check"></i>');
+					
 	  			var $valid = $("#edit_profile").valid();
-	  			if(!$valid) {
+				if(!$valid) {
 	  				$edit_validator.focusInvalid();
 	  				return false;
 	  			}

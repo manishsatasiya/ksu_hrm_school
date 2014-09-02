@@ -176,7 +176,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 			if(isset($arrActivateTime[0]["activation_time"]))
 				$activate_time = $arrActivateTime[0]["activation_time"];
 			
-			$enable_week = $this->attendance_model->get_enableweek($courseclasses->school_year_id,$activate_time);
+			$enable_week = $this->attendance_model->get_enableweek(1,$activate_time);
 				
 			$cell_week = array();
 			foreach ($enable_week as $enable_wek){

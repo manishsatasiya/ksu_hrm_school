@@ -90,8 +90,8 @@
                     </div>
                     <div class="row form-row">
                     <div class="col-md-4">
-                      <?php print form_label('Login Email', 'username',array('class'=>'form-label')); ?>
-                      <?php print form_input(array('name' => 'username', 'id' => 'username', 'value' => $this->session->flashdata('username'), 'class' => 'form-control no-boarder','placeholder' => 'email@example.com')); ?>
+                      <?php print form_label('User Name', 'username',array('class'=>'form-label')); ?>
+                      <?php print form_input(array('name' => 'username', 'id' => 'username', 'value' => $this->session->flashdata('username'), 'class' => 'form-control no-boarder','placeholder' => 'email@example.com or other name')); ?>
                     </div>
                     <div class="col-md-4">
                       <?php print form_label('Password', 'password',array('class'=>'form-label')); ?>

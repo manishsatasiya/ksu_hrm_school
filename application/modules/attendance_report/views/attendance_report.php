@@ -107,4 +107,24 @@ dTable = $('#grid_attendance_report').dataTable({
 		           ],
 		sPaginationType: "bootstrap"});
 });
+
+$(document).ready(function() {
+	fnShowHide(2);
+	fnShowHide(4);
+	fnShowHide(5);
+	fnShowHide(6);
+	fnShowHide(7);
+	fnShowHide(8);
+	fnShowHide(9);
+});
+
+
+function fnShowHide( iCol )
+{
+	/* Get the DataTables object again - this is not a recreation, just a get of the object */
+	var dTable = $('#grid_attendance_report').dataTable();
+	
+	var bVis = dTable.fnSettings().aoColumns[iCol].bVisible;
+	dTable.fnSetColumnVis( iCol, bVis ? false : true );
+}
 </script>

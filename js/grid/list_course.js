@@ -11,6 +11,7 @@ $(document).ready( function () {
         },
 		aoColumns: [null , 
 		            {"sName": "course_title"},
+		            {"sName": "campus_name"},
 		            {"sName": "max_hours"},
 		            {"sName": "total_hours_all_weeks"},
 		            {"sName": "ID",
@@ -27,6 +28,7 @@ $(document).ready( function () {
 	dTable.columnFilter({
 	        aoColumns: [ 
 	                 null,   
+	        		 { type: "text" },
 	        		 { type: "text" },
 	        		 { type: "text" },
 	        		 { type: "text" },
@@ -48,6 +50,15 @@ if(edit_flag == 1)
 							tooltip: 'Click to edit title',
 							type: 'text',
 							submit:'Save changes'
+						},
+						{
+							tooltip: 'Click to select campus',
+							loadtext: 'loading...',
+							type: 'select',
+							onblur: 'cancel',
+							submit: 'Save',
+							loadurl: 'list_course_class/get_listbox/campus',
+							loadtype: 'GET'
 						},
 						{
 							indicator: 'Saving ...',

@@ -30,6 +30,7 @@ class List_course extends Private_Controller {
 		$content_data['course_subject'] = get_course_subject();		
 		$content_data['course'] = get_course();		
 		$content_data['teacher_list'] = get_teacher_list();		
+		$content_data['campus_list'] = get_campus_list(1);
 		$content_data['course_category'] = get_course_category();	
         if (!is_numeric($offset)) {
             redirect('/list_course');
@@ -124,7 +125,7 @@ $this->template->set_partial('sidebar', 'sidebar');
     	/* Array of database columns which should be read and sent back to DataTables. Use a space where
     	 * you want to insert a non-database field (for example a counter or static image)
     	*/
-    	$aColumns = array( 'course_id','course_title','max_hours','total_hours_all_weeks');
+    	$aColumns = array( 'course_id','course_title','campus_name','max_hours','total_hours_all_weeks');
     	$grid_data = get_search_data($aColumns);
     	$sort_order = $grid_data['sort_order'];
     	$order_by = $grid_data['order_by'];
@@ -156,6 +157,7 @@ $this->template->set_partial('sidebar', 'sidebar');
     			$row = array();
     			$row[] = $result_row["course_id"];
     			$row[] = $result_row["course_title"];
+    			$row[] = $result_row["campus_name"];
     			$row[] = $result_row["max_hours"];
     			$row[] = $result_row["total_hours_all_weeks"];
     			$row[] = $result_row["course_id"];
@@ -307,6 +309,10 @@ $this->template->set_partial('sidebar', 'sidebar');
     			exit();
     		}
     	}
+    	
+    	if($columnName == "campus_name")
+    		$columnName = "camps_id";
+    		
     	set_activity_data_log($id,'Update','Course > List Course','List Course',$tablename,$whrid_column,$user_id='');
     	grid_update_data($whrid_column,$id,$columnName,$value,$tablename);
     	

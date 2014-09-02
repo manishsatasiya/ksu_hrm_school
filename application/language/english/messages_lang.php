@@ -1559,9 +1559,9 @@ $lang['att_rep_p_list_teacher_name'] = 'Teacher Name';
 
 $lang['att_rep_p_list_per'] = '%';
 
-$lang['att_rep_p_list_tot_abs_hours'] = 'Total Absent Hours';
+$lang['att_rep_p_list_tot_abs_hours'] = 'Total';
 
-$lang['att_rep_p_list_week'] = 'Week';
+$lang['att_rep_p_list_week'] = 'WK';
 
 $lang['att_rep_p_export_btn'] = 'Export';
 

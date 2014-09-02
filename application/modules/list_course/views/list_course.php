@@ -10,7 +10,7 @@ if($this->session->userdata('role_id') != '1' && !in_array("edit",$this->arrActi
 }
 ?>
 </script>
-<script type="text/javascript" src="<?php print base_url(); ?>js/grid/list_course.js"></script>
+<script type="text/javascript" src="<?php print base_url(); ?>js/grid/list_course.js?t=1"></script>
 <?php 
 if($this->session->userdata('role_id') == '1' || in_array("add",$this->arrAction))
 {
@@ -51,6 +51,7 @@ if($this->session->userdata('role_id') == '1' || in_array("add",$this->arrAction
 						<tr>
 							<th><?php echo $this->lang->line('course_p_id'); ?></th>
 							<th><?php echo $this->lang->line('course_p_title'); ?></th>
+							<th><?php echo $this->lang->line('campus'); ?></th>
 							<th><?php echo $this->lang->line('course_p_max_hours'); ?></th>
 							<th><?php echo $this->lang->line('course_p_total_hours'); ?></th>
 							<th><?php echo $this->lang->line('course_p_action'); ?></th>
@@ -60,6 +61,7 @@ if($this->session->userdata('role_id') == '1' || in_array("add",$this->arrAction
 						<tr>
 							<th><?php echo $this->lang->line('course_p_id'); ?></th>
 							<th><?php echo $this->lang->line('course_p_title'); ?></th>
+							<th><?php echo $this->lang->line('campus'); ?></th>
 							<th><?php echo $this->lang->line('course_p_max_hours'); ?></th>
 							<th><?php echo $this->lang->line('course_p_total_hours'); ?></th>
 							<th><?php echo $this->lang->line('course_p_action'); ?></th>
@@ -80,7 +82,7 @@ $(document).ready(function() {
 	if($this->session->userdata('role_id') != '1' && !in_array("edit",$this->arrAction))
 	{
 	?>
-		fnShowHide(4);
+		fnShowHide(5);
 	<?php 
 	}
 	?>

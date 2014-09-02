@@ -33,6 +33,7 @@ class List_course_model extends CI_Model {
         if (!in_array($order_by, $fields)) return array();
         if (!empty($search_data)) {
             !empty($search_data['course_title']) ? $data['course_title'] = $search_data['course_title'] : "";
+            !empty($search_data['campus_name']) ? $data['campus_name'] = $search_data['campus_name'] : "";
             !empty($search_data['course_code']) ? $data['course_code'] = $search_data['course_code'] : "";
             !empty($search_data['max_hours']) ? $data['max_hours'] = $search_data['max_hours'] : "";
             !empty($search_data['total_hours_all_weeks']) ? $data['total_hours_all_weeks'] = $search_data['total_hours_all_weeks'] : "";
@@ -40,7 +41,7 @@ class List_course_model extends CI_Model {
         }
         $this->db->select('*');
         $this->db->from('courses');        
-        $this->db->join('courses_subject', 'courses_subject.course_subject_id = courses.course_subject_id','left');        
+        $this->db->join('school_campus', 'courses.camps_id = school_campus.campus_id','left');        
 		$this->db->join('school', 'school.school_id = courses.school_id','left');
 		$this->db->join('school_year', 'school_year.school_year_id = courses.school_year_id','left');
 		
@@ -72,10 +73,32 @@ class List_course_model extends CI_Model {
     
     public function count_all_course_grid1($search_data)
     {
-    	!empty($search_data) ? $this->db->or_like($search_data) : "";
+    	if (!empty($search_data)) {
+            !empty($search_data['course_title']) ? $data['course_title'] = $search_data['course_title'] : "";
+            !empty($search_data['campus_name']) ? $data['campus_name'] = $search_data['campus_name'] : "";
+            !empty($search_data['course_code']) ? $data['course_code'] = $search_data['course_code'] : "";
+            !empty($search_data['max_hours']) ? $data['max_hours'] = $search_data['max_hours'] : "";
+            !empty($search_data['total_hours_all_weeks']) ? $data['total_hours_all_weeks'] = $search_data['total_hours_all_weeks'] : "";
+            
+        }
+        $this->db->select('*');
+        $this->db->from('courses');        
+        $this->db->join('school_campus', 'courses.camps_id = school_campus.campus_id','left');        
+		$this->db->join('school', 'school.school_id = courses.school_id','left');
+		$this->db->join('school_year', 'school_year.school_year_id = courses.school_year_id','left');
+		
 		if($this->session->userdata('campus_id') > 0)
 			$this->db->where('courses.camps_id',$this->session->userdata('campus_id'));
-    	return $this->db->count_all_results('courses');
+		
+		!empty($data) ? $this->db->or_like($data) : "";
+        	
+		$query = $this->db->get();
+        
+        if($query->num_rows() > 0) {
+            return $query->num_rows();
+        }	
+        
+        return 0;
     }
 
     /**
