@@ -13,7 +13,7 @@ $(document).ready( function () {
 		"iDisplayLength": 100,
 		aoColumns: [
 						null ,
-						null ,
+						{"bSortable": false} ,
 						{"sName": "staff_name"},
 						{"sName": "elsd_id"},
 		            	{"sName": "job_title"},
