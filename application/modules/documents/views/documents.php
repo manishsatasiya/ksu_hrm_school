@@ -63,7 +63,7 @@
 						echo ' | '.implode(', ',$arr_campus_name);
 					}
 					?>
-                  <div class="pull-right"><a href="<?php echo base_url().'documents/add_document/'.$document['document_id']; ?>" class="btn btn-small btn-success ">Edit</a> <a href="<?php echo base_url().'documents/add_document/'.$document['document_id']; ?>" class="btn btn-small btn-danger ">Delete</a></div>
+                  <div class="pull-right"><a href="<?php echo base_url().'documents/add_document/'.$document['document_id']; ?>" class="btn btn-small btn-success ">Edit</a> <a href="<?php echo base_url().'documents/delete/'.$document['document_id']; ?>" class="btn btn-small btn-danger ">Delete</a></div>
                 </li>
                 <?php
 					}
@@ -97,7 +97,7 @@
 						echo ' | '.implode(', ',$arr_campus_name);
 					}
 					?>
-                  <div class="pull-right"><a href="<?php echo base_url().'documents/add_document/'.$document['document_id']; ?>" class="btn btn-small btn-success ">Edit</a> <a href="<?php echo base_url().'documents/add_document/'.$document['document_id']; ?>" class="btn btn-small btn-danger ">Delete</a></div>
+                  <div class="pull-right"><a href="<?php echo base_url().'documents/add_document/'.$document['document_id']; ?>" class="btn btn-small btn-success ">Edit</a> <a href="<?php echo base_url().'documents/delete/'.$document['document_id']; ?>" class="btn btn-small btn-danger ">Delete</a></div>
                 </li>
                 <?php
 					}
@@ -169,7 +169,7 @@
 						echo ' | '.implode(', ',$arr_campus_name);
 					}
 					?>
-                  <div class="pull-right"><a href="<?php echo base_url().'documents/add_document/'.$document['document_id']; ?>" class="btn btn-small btn-success ">Edit</a> <a href="<?php echo base_url().'documents/add_document/'.$document['document_id']; ?>" class="btn btn-small btn-danger ">Delete</a></div>
+                  <div class="pull-right"><a href="<?php echo base_url().'documents/add_document/'.$document['document_id']; ?>" class="btn btn-small btn-success ">Edit</a> <a href="<?php echo base_url().'documents/delete/'.$document['document_id']; ?>" class="btn btn-small btn-danger ">Delete</a></div>
                 </li>
                 <?php
 							}
@@ -199,7 +199,7 @@
 						echo ' | '.implode(', ',$arr_campus_name);
 					}
 					?>
-                  <div class="pull-right"><a href="<?php echo base_url().'documents/add_document/'.$document['document_id']; ?>" class="btn btn-small btn-success ">Edit</a> <a href="<?php echo base_url().'documents/add_document/'.$document['document_id']; ?>" class="btn btn-small btn-danger ">Delete</a></div>
+                  <div class="pull-right"><a href="<?php echo base_url().'documents/add_document/'.$document['document_id']; ?>" class="btn btn-small btn-success ">Edit</a> <a href="<?php echo base_url().'documents/delete/'.$document['document_id']; ?>" class="btn btn-small btn-danger ">Delete</a></div>
                 </li>
                 <?php
 							}

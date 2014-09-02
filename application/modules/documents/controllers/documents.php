@@ -118,6 +118,10 @@ class Documents extends Private_Controller {
 				$data_document['file'] = $doc_file;
 				
 				if($id){
+					$old_file = getTableField($table, 'file', $wher_column_name,$id);
+					if(!empty($old_file) && file_exists($old_file)){
+						@unlink($old_file);
+					}
 					grid_data_updates($data_document,$table,$wher_column_name,$id);    
 				}
 			}
@@ -151,7 +155,11 @@ class Documents extends Private_Controller {
     	if($id){
 			$table = 'documents';
 			$wher_column_name = 'document_id';
-    		$rowdata = $this->courses_model->delete_data($table,$wher_column_name,$id);
+			$file = getTableField($table, 'file', $wher_column_name,$id);
+			if(!empty($file) && file_exists($file)){
+				@unlink($file);
+			}
+    		$this->courses_model->delete_data($table,$wher_column_name,$id);
     	}
 		redirect('/documents/');
         exit();

@@ -11,7 +11,7 @@ class List_active_staff extends Private_Controller {
         $this->load->library('form_validation');
 		$this->load->model('list_course/courses_model');
         $this->load->model('list_student/list_teacher_student_model');
-		//$this->load->model('list_user_model');
+		$this->load->model('list_active_staff_model');
 		$this->load->helper('general_function');
 		$this->load->model('add_privilege/privilege_model');
 		
@@ -108,6 +108,50 @@ $this->template->set_partial('sidebar', 'sidebar');
     	echo json_encode( $output );
     }
     
+	
+	public function add_note($user_id,$id = null){
+    	$content_data['department_list'] = get_department_list();
+    			
+    	$content_data['id'] = $id;
+		$content_data['user_id'] = $user_id;
+    	$rowdata = array();
+    	if($id){
+    		$rowdata = $this->list_active_staff_model->get_profile_note($id);
+    	}
+    	$content_data['rowdata'] = $rowdata;
+    	if($this->input->post()){
+			$action_by = $this->session->userdata('user_id');    		
+			$note_type = $this->input->post('note_type');
+    		$department = $this->input->post('department');
+			$recommendation = $this->input->post('recommendation');
+			$show_to_employee = $this->input->post('show_to_employee');
+			$detail = $this->input->post('detail');
+			
+			$data = array();
+			$data['user_id'] = $user_id;
+			$data['note_type'] = $note_type;
+			$data['department'] = $department;
+			$data['recommendation'] = $recommendation;
+			$data['show_to_employee'] = $show_to_employee;
+			$data['detail'] = $detail;
+				
+			$error = "";
+    		$error_seperator = "<br>";
+			$table = 'profile_notes';
+    		$wher_column_name = 'id';
+    		if($id){
+				$data['updated_by'] = $action_by;
+    			$data['updated_at'] = date('Y-m-d H:i:s');
+    			grid_data_updates($data,$table,$wher_column_name,$id);
+    		}else{
+				$data['created_by'] = $action_by;
+    			$data['created_at'] = date('Y-m-d H:i:s');
+    			$lastinsertid = grid_add_data($data,$table);
+    		}
+    		exit;
+    	}
+    	$this->template->build('add_note', $content_data);
+    }
 }
 
 /* End of file list_user.php */

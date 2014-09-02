@@ -39,7 +39,7 @@ $(document).ready( function () {
 								actionstr += '<ul class="dropdown-menu">';
 								actionstr += '<li><a href="list_user/add/'+oObj.aData[parseInt(table_total_col-1)]+'" data-target="#myModal" data-toggle="modal" class="modal-link">Edit</a></li>';
 								actionstr += '<li><a href="list_user/edit_profile/'+oObj.aData[parseInt(table_total_col-1)]+'">View Profile</a></li>';
-								//actionstr += '<li><a href="add_privilege/add_single_user_privilege/index/'+oObj.aData[parseInt(table_total_col-1)]+'">Rights</a></li>';
+								actionstr += '<li><a href="list_active_staff/add_note/'+oObj.aData[parseInt(table_total_col-1)]+'" data-target="#myModal" data-toggle="modal" class="modal-link">Make a comment</a></li>';
 								actionstr += '<li class="divider"></li>';
 								actionstr += '<li><a href="#" onclick=dt_delete("users","user_id",'+oObj.aData[parseInt(table_total_col-1)]+'); class="text-error bold">Delete Profile <i class="fa fa-times-circle"></i></a></li>';
 								actionstr += '</ul>';

@@ -169,6 +169,10 @@ class Add_employee extends Private_Controller {
 					foreach($_POST['delete_document'] as $certificate_type=>$certificate_ids){
 						if(count($certificate_ids) > 0){
 							foreach($certificate_ids as $certificate_id){
+								$_user_documents = $this->list_user_model->get_user_documents($user_id);
+								if(isset($_user_documents[$certificate_type][$certificate_id]) && file_exists($_user_documents[$certificate_type][$certificate_id])){
+									@unlink($_user_documents[$certificate_type][$certificate_id]);
+								}
 								$this->list_user_model->delete_user_document($user_id,$certificate_type,$certificate_id);
 							}
 						}

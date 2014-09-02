@@ -1136,7 +1136,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 													"Headway_Academic_Skills" => $result_row["ha"],
 													"Management_Information" => $result_row["mi"],                                              
 													"Qskills_Orientation" => $result_row["qs"],
-													"Academic_Admin_Policies" => $result_row["aap"]
+                                                    "Academic_Admin_Policies" => $result_row["aap"]
 												);
     		}
     	}
@@ -1498,6 +1498,10 @@ $this->template->set_partial('sidebar', 'sidebar');
 	}	
 	
 	public function delete_profile_document($user_id,$certificate_type,$certificate_id = 0){
+		$user_documents = $this->list_user_model->get_user_documents($user_id);
+		if(isset($user_documents[$certificate_type][$certificate_id]) && file_exists($user_documents[$certificate_type][$certificate_id])){
+			@unlink($user_documents[$certificate_type][$certificate_id]);
+		}
 		$arrCertificateType = getCertificateType(true);
 		if($this->list_user_model->delete_user_document($user_id,$certificate_type,$certificate_id))
 			$this->session->set_flashdata('message', $arrCertificateType[$certificate_type]." deleted successfully");
