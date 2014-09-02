@@ -37,9 +37,15 @@ $(document).ready( function () {
 								actionstr += '<a class="fa fa-gear"></a>';
 								actionstr += '</button>';
 								actionstr += '<ul class="dropdown-menu">';
-								actionstr += '<li><a href="list_user/add/'+oObj.aData[parseInt(table_total_col-1)]+'" data-target="#myModal" data-toggle="modal" class="modal-link">Edit</a></li>';
-								actionstr += '<li><a href="list_user/edit_profile/'+oObj.aData[parseInt(table_total_col-1)]+'">View Profile</a></li>';
-								actionstr += '<li><a href="list_active_staff/add_note/'+oObj.aData[parseInt(table_total_col-1)]+'" data-target="#myModal" data-toggle="modal" class="modal-link">Make a comment</a></li>';
+								if(edit_flag == 1){
+									actionstr += '<li><a href="list_user/add/'+oObj.aData[parseInt(table_total_col-1)]+'" data-target="#myModal" data-toggle="modal" class="modal-link">Edit</a></li>';
+								}
+								if(edit_profile_flag == 1){
+									actionstr += '<li><a href="list_user/edit_profile/'+oObj.aData[parseInt(table_total_col-1)]+'">View Profile</a></li>';
+								}
+								if(add_note_flag == 1){
+									actionstr += '<li><a href="list_active_staff/add_note/'+oObj.aData[parseInt(table_total_col-1)]+'" data-target="#myModal" data-toggle="modal" class="modal-link">Make a comment</a></li>';
+								}
 								actionstr += '<li class="divider"></li>';
 								actionstr += '<li><a href="#" onclick=dt_delete("users","user_id",'+oObj.aData[parseInt(table_total_col-1)]+'); class="text-error bold">Delete Profile <i class="fa fa-times-circle"></i></a></li>';
 								actionstr += '</ul>';

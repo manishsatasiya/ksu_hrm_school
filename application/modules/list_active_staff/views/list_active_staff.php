@@ -2,11 +2,29 @@
 ?>
 <script type="text/javascript">
 var edit_flag = 1;
+var add_note_flag = 1;
+var edit_profile_flag = 1;
 <?php 
 if($this->session->userdata('role_id') != '1' && !in_array("edit",$this->arrAction))
 {
 ?>
 	edit_flag = 0;
+<?php 
+}
+?>
+<?php 
+if($this->session->userdata('role_id') != '1' && !in_array("add_note",$this->arrAction))
+{
+?>
+	add_note_flag = 0;
+<?php 
+}
+?>
+<?php 
+if($this->session->userdata('role_id') != '1' && !in_array("edit_profile",$this->arrAction))
+{
+?>
+	edit_profile_flag = 0;
 <?php 
 }
 ?>

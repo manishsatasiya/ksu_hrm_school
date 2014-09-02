@@ -60,11 +60,12 @@ $this->template->set_partial('sidebar', 'sidebar');
     	 * you want to insert a non-database field (for example a counter or static image)
     	*/
     	$aColumns = array('users.user_id',
+						'attendance',
 						'staff_name',
 						'users.elsd_id',
 						'user_profile.job_title',
-						'users.email',
 						'users.personal_email',
+						'users.email',
 						'users.cell_phone',
 						'contractors.contractor');
     	$grid_data = get_search_data($aColumns);
