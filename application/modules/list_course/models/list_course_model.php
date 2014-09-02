@@ -27,11 +27,7 @@ class List_course_model extends CI_Model {
      */
 
     public function get_course($limit = 0, $offset = 0, $order_by = "course_title", $sort_order = "asc", $search_data) {
-		
-		
-        $fields = $this->db->list_fields('courses');
-        if (!in_array($order_by, $fields)) return array();
-        if (!empty($search_data)) {
+		if (!empty($search_data)) {
             !empty($search_data['course_title']) ? $data['course_title'] = $search_data['course_title'] : "";
             !empty($search_data['campus_name']) ? $data['campus_name'] = $search_data['campus_name'] : "";
             !empty($search_data['course_code']) ? $data['course_code'] = $search_data['course_code'] : "";
@@ -53,7 +49,7 @@ class List_course_model extends CI_Model {
         $this->db->limit($limit, $offset);
 
         $query = $this->db->get();
-        
+        //echo $this->db->last_query();
         if($query->num_rows() > 0) {
             return $query;
         }
@@ -93,7 +89,6 @@ class List_course_model extends CI_Model {
 		!empty($data) ? $this->db->or_like($data) : "";
         	
 		$query = $this->db->get();
-        
         if($query->num_rows() > 0) {
             return $query->num_rows();
         }	
