@@ -1127,7 +1127,7 @@ $(document).ready(function() {
 	  		'tabClass': 'form-wizard',
 			onTabClick: function(tab, navigation, index) {return false;},
 	  		'onNext': function(tab, navigation, index) {
-				var $valid = $("#add_profile").valid($("#status").val());
+				var $valid = $("#add_profile").valid();
 	  			if(!$valid) {
 	  				$validator.focusInvalid();
 	  				return false;
@@ -1230,8 +1230,6 @@ $(document).ready(function() {
 	$('#edit_rootwizard').bootstrapWizard({
 	  		'tabClass': 'form-wizard',
 			'onNext': function(tab, navigation, index) {
-				$('#rootwizard').find('.form-wizard').children('li').eq(index-1).addClass('complete');
-				$('#rootwizard').find('.form-wizard').children('li').eq(index-1).find('.step').html('<i class="fa fa-check"></i>');
 					
 	  			var $valid = $("#edit_profile").valid();
 				if(!$valid) {
