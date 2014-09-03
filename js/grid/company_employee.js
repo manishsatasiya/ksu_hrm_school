@@ -50,6 +50,7 @@ $(document).ready( function () {
 		            	
 		           ],
 		sPaginationType: "bootstrap"});
+		dTable.fnSort([[2,'asc']]);	
 		$('#grid_company_employee_wrapper .dataTables_filter input').addClass("input-medium ");
 		$('#grid_company_employee_wrapper .dataTables_length select').addClass("select2-wrapper span12"); 
 		dTable.columnFilter({

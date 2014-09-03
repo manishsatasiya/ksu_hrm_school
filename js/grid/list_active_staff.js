@@ -57,6 +57,7 @@ $(document).ready( function () {
 		            	
 		           ],
 		sPaginationType: "bootstrap"});
+		dTable.fnSort([[2,'asc']]);	
 		$('#grid_other_user_wrapper .dataTables_filter input').addClass("input-medium ");
 		$('#grid_other_user_wrapper .dataTables_length select').addClass("select2-wrapper span12"); 
 		dTable.columnFilter({
