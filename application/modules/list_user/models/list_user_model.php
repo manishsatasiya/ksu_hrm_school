@@ -573,8 +573,7 @@ SELECT `user_id`, `user_roll_id`, `username`, `password`, `section_id`, `section
     	$this->db->from('profile_notes');
 		$this->db->join('users', 'users.user_id = profile_notes.user_id','left');
 		$this->db->join('users as created_u', 'created_u.user_id = profile_notes.created_by','left');
-		$this->db->join('user_profile', 'user_profile.user_id = users.user_id','left');
-		$this->db->join('department', 'department.id = user_profile.department_id','left');
+		$this->db->join('department', 'department.id = profile_notes.department','left');
 		if($this->session->userdata('role_id') == '3'){
 			$this->db->where('profile_notes.user_id',$user_id);
 			$this->db->where('profile_notes.show_to_employee','1');

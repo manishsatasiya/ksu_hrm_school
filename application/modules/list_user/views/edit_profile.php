@@ -1534,7 +1534,7 @@ print form_hidden('user_id', $user_data->user_unique_id);
           <div class="grid">
             <h3 class="userinfo-ttl">Comments</h3>
             <div class="grid-body ">
-			  <script type="text/javascript" src="<?php print base_url(); ?>js/grid/profile_comment.js"></script>
+			  <script type="text/javascript" src="<?php print base_url(); ?>js/grid/user_profile_comment.js"></script>
               <table class="table" id="grid_profile_comment">
 				<thead>
                   <tr>
@@ -1566,7 +1566,7 @@ print form_hidden('user_id', $user_data->user_unique_id);
 				if($this->session->userdata('role_id') == '3'){ ?>
                 	<script type="application/javascript">
 					$(document).ready( function () {
-					///comment_fnShowHide(1);
+						comment_fnShowHide(1);
 					});
 					</script>
                 <?php } ?>

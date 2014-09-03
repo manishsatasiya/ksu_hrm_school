@@ -1810,6 +1810,34 @@ $(document).ready(function() {
 			detail: "Please enter detail"
 		}
 	});
+	$("#add_comment_datatable").validate({
+		submitHandler: function(form) {
+			
+			//form.submit();
+			jQuery(form).ajaxSubmit({
+				success: function(data){
+					$('#myModal').delay(1000).modal('hide');
+					parent.reload_datatable();
+				}
+			});
+		},
+		rules: {
+			note_type:{				
+				required:true
+			},
+			department:{				
+				comboboxNotNone: true
+			},
+			detail:{				
+				required:true
+			}
+		},
+		messages: {
+			note_type: "Please select note type",
+			department: "Please select department",
+			detail: "Please enter detail"
+		}
+	});
 	// process the form
 	$('#save_status').click(function(event) {
 
