@@ -93,7 +93,11 @@
 			<li><a href="#tab2myrequests"><i class="fa fa-chain"></i> My Requests </a></li>
 		<?php 
 		}
+		if($this->session->userdata('role_id') == '1' || $this->session->userdata('role_id') == '3'){
 	    ?>
+        <li><a href="#tab2comments"><i class="fa fa-chain"></i> Comments </a></li>
+        <?php 
+		} ?>
         <li style="background:none;">
           <div class="edit-profile-tab"><a href="#tab2Edit" class="btn btn-info">Edit Profile </a></div>
         </li>
@@ -214,18 +218,16 @@
             </div>
           </div>
         </div>
-
-
-    <!--
-    *****************************************************************
-                          MANISH LOOK AT THIS
-    *****************************************************************
-    -->
-
-    <div class="tab-pane generaltab" id="tab2mypma"><h3 class="userinfo-ttl"> My PMA</h3></div>
-    <div class="tab-pane generaltab" id="tab2mytimetable"><h3 class="userinfo-ttl"> My Timetable</h3></div>
-    <div class="tab-pane generaltab" id="tab2mycover"><h3 class="userinfo-ttl"> My Cover</h3></div>
-    <div class="tab-pane generaltab" id="tab2myrequests"><h3 class="userinfo-ttl"> My Requests</h3></div>
+        
+        <!--
+        *****************************************************************
+                              MANISH LOOK AT THIS
+        *****************************************************************
+        -->
+        <div class="tab-pane generaltab" id="tab2mypma"><h3 class="userinfo-ttl"> My PMA</h3></div>
+        <div class="tab-pane generaltab" id="tab2mytimetable"><h3 class="userinfo-ttl"> My Timetable</h3></div>
+        <div class="tab-pane generaltab" id="tab2mycover"><h3 class="userinfo-ttl"> My Cover</h3></div>
+        <div class="tab-pane generaltab" id="tab2myrequests"><h3 class="userinfo-ttl"> My Requests</h3></div>
 
         <div class="tab-pane generaltab" id="tab2Contact">
           <h3 class="userinfo-ttl">Contact Details</h3>
@@ -1525,10 +1527,58 @@ print form_hidden('user_id', $user_data->user_unique_id);
               </div>
               </div>
            </div>  
+       	
+        <?php
+		if($this->session->userdata('role_id') == '1' || $this->session->userdata('role_id') == '3'){ ?>
+       	<div class="tab-pane" id="tab2comments">
+          <div class="grid">
+            <h3 class="userinfo-ttl">Comments</h3>
+            <div class="grid-body ">
+			  <script type="text/javascript" src="<?php print base_url(); ?>js/grid/profile_comment.js"></script>
+              <table class="table" id="grid_profile_comment">
+				<thead>
+                  <tr>
+					<th>ID</th>
+					<th>Staff Name</th>
+                    <th>Note type</th>
+					<th>Department</th>
+					<th>Recommended </th>
+                    <th>Detail</th>
+					<th>Created by</th>
+					<th>Date</th>
+				</tr>
+                </thead>
+                <tfoot>
+                  <tr>
+                    <th>ID</th>
+					<th>Staff Name</th>
+                    <th>Note type</th>
+					<th>Department</th>
+					<th>Recommended </th>
+                    <th>Detail</th>
+					<th>Created by</th>
+					<th>Date</th>
+                  </tr>
+                </tfoot>
+                <tbody></tbody>
+              </table>
+              <?php
+				if($this->session->userdata('role_id') == '3'){ ?>
+                	<script type="application/javascript">
+					$(document).ready( function () {
+					///comment_fnShowHide(1);
+					});
+					</script>
+                <?php } ?>
             </div>
           </div>
         </div>
+        <?php
+		} ?>
+        </div>
       </div>
     </div>
+  </div>
+</div>
  
 <!-- Tab End -->

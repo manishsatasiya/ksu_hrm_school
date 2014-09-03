@@ -795,6 +795,7 @@ if (!function_exists('get_course_class')) {
 				$action != "get_user_existing_privilege"  &&
 				$action != "edit_partial_profile" &&
 				$action != "view_grade_report_log"  && $cotroller != "list_enable_week" && $action != "add_user_privilege" 
+				&& $action != "get_profile_comment_json" 
 				&& $action != "delete" && $cotroller != "add_employee" && $cotroller != "list_course_class"
 				)
 			{
@@ -1815,6 +1816,16 @@ function get_user_campus_privilages_data($where_user_id=0)
 	}
 	
 	return $retArr;
+}
+function profile_comment_note_type(){
+	return array(''=>'Select','Praise'=>'Praise','Concern'=>'Concern');
+}
+function profile_comment_recommendation($id = null){
+	$recommendation_arr = array( '1'=>'Support', '2'=>'Disciplinary');
+	if($id){
+		return (isset($recommendation_arr[$id])) ? $recommendation_arr[$id] : '';
+	}
+	return $recommendation_arr;
 }
 /* End of file general_function_helper.php */
 /* Location: ./application/helpers/general_function_helper.php */ 

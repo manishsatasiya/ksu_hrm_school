@@ -1837,6 +1837,59 @@ $this->template->set_partial('sidebar', 'sidebar');
 		grid_data_updates($user_data,'users', 'user_id',$user_id);
 		redirect('list_user/edit_profile/'.$user_id.'/');
 	}
+	
+	public function get_profile_comment_json($order_by = "username", $sort_order = "asc", $search = "all", $offset = 0) {
+    	/* Array of database columns which should be read and sent back to DataTables. Use a space where
+    	 * you want to insert a non-database field (for example a counter or static image)
+    	*/
+    	$aColumns = array('profile_notes.id',
+						'staff_name',
+						'note_type',
+						'profile_notes.department',
+						'recommendation',
+						'detail',
+						'profile_notes.created_by',
+						'profile_notes.created_at');
+    	$grid_data = get_search_data($aColumns);
+    	$sort_order = $grid_data['sort_order'];
+		$order_by = $grid_data['order_by'];
+    	/*
+    	 * Paging
+    	*/
+    	$per_page =  $grid_data['per_page'];
+    	$offset =  $grid_data['offset'];
+    
+    	$data = $this->list_user_model->get_profile_comment($per_page, $offset, $order_by, $sort_order, $grid_data['search_data']);
+    	$count = $this->list_user_model->get_profile_comment(0, 0, "", "", $grid_data['search_data']);
+		/*
+    	 * Output
+    	*/
+    	$output = array(
+    			"sEcho" => intval($_GET['sEcho']),
+    			"iTotalRecords" => $count,
+    			"iTotalDisplayRecords" => $count,
+    			"aaData" => array()
+    	);
+    	
+    	if($data){
+		
+    		foreach($data->result_array() AS $result_row){
+				
+    			$row = array();
+				$row[] = $result_row['id'];
+				$row[] = $result_row['staff_name'];
+				$row[] = $result_row['note_type'];
+				$row[] = $result_row['department_name'];
+				$row[] = profile_comment_recommendation($result_row['recommendation']);
+				$row[] = $result_row['detail'];				
+				$row[] = $result_row['created_name'];
+				$row[] = $result_row['created_at'];
+    			$output['aaData'][] = $row;
+    		}
+    	}
+    
+    	echo json_encode( $output );
+    }
 }
 
 /* End of file list_user.php */

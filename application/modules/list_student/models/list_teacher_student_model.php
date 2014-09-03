@@ -142,7 +142,7 @@ class List_Teacher_Student_model extends CI_Model {
     	if (!empty($search_data)) {
     		!empty($search_data['user_id']) ? $data['user_id'] = $search_data['user_id'] : "";
 			!empty($search_data['elsd_id']) ? $data['elsd_id'] = $search_data['elsd_id'] : "";
-    		!empty($search_data['staff_name']) ? $data['CONCAT_WS(" ",users.first_name,users.middle_name,users.middle_name2,users.last_name)'] = $search_data['staff_name'] : "";
+    		!empty($search_data['staff_name']) ? $data['CONCAT_WS("",trim(users.first_name),trim(users.middle_name),trim(users.middle_name2),trim(users.last_name))'] = str_replace(" ","",trim($search_data['staff_name'])) : "";
     		!empty($search_data['email']) ? $data['email'] = $search_data['email'] : "";
     		!empty($search_data['personal_email']) ? $data['personal_email'] = $search_data['personal_email'] : "";
     		!empty($search_data['user_roll_name']) ? $data['user_roll_name'] = $search_data['user_roll_name'] : "";

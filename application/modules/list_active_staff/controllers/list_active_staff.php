@@ -111,7 +111,8 @@ $this->template->set_partial('sidebar', 'sidebar');
 	
 	public function add_note($user_id,$id = null){
     	$content_data['department_list'] = get_department_list();
-    			
+    	$content_data['note_type_list'] = profile_comment_note_type();
+		$content_data['recommendation_list'] = profile_comment_recommendation();		
     	$content_data['id'] = $id;
 		$content_data['user_id'] = $user_id;
     	$rowdata = array();

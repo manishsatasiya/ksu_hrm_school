@@ -15,7 +15,7 @@ print form_open('list_active_staff/add_note/'.$user_id.'/'.$id, array('id' => 'a
 		<div class="col-md-6">
 			<div class="form_label2"><?php print form_label('Note Type', 'note_type'); ?></div>
 			<div class="input_box_thin"><?php  
-				print form_dropdown('note_type',array(''=>'Select','Praise'=>'Praise','Concern'=>'Concern'),($rowdata)?$rowdata->note_type:'0','id="note_type" class="formselect"'); 
+				print form_dropdown('note_type',$note_type_list,($rowdata)?$rowdata->note_type:'0','id="note_type" class="formselect"'); 
 			?></div>
 		</div>
         <div class="col-md-6">
@@ -30,7 +30,7 @@ print form_open('list_active_staff/add_note/'.$user_id.'/'.$id, array('id' => 'a
         <div class="col-md-6">
 			<div class="form_label2"><?php print form_label('Recommended Action', 'recommendation'); ?></div>
 			<div class="input_box_thin"><?php  
-				print form_dropdown('recommendation',array( '1'=>'Support', '2'=>'Disciplinary' ),($rowdata)?$rowdata->recommendation:'0','id="recommendation" class="formselect"'); 
+				print form_dropdown('recommendation',$recommendation_list,($rowdata)?$rowdata->recommendation:'0','id="recommendation" class="formselect"'); 
 			?></div>
 		</div>
         <div class="col-md-6">
