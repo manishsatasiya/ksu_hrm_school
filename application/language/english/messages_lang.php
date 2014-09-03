@@ -193,6 +193,12 @@ $lang['cms'] = 'CMS';
 $lang['user_role'] = 'Role';
 $lang['home'] = 'Home';
 $lang['my_edit_profile'] = 'Profile';
+$lang['my_qual_emp_profile'] = 'My Qualification & Employmeny(Profile)';
+$lang['my_qualifications'] = 'Qualifications';
+$lang['my_certificates'] = 'Certificates';
+$lang['my_employment_history'] = 'Employment History';
+$lang['my_reference'] = 'Reference';
+
 $lang['my_workshops'] = 'My Workshops';
 $lang['my_observations'] = 'My Observations';
 $lang['view_status_log'] = 'View Status Log';
