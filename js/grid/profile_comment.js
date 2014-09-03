@@ -37,7 +37,7 @@ $(document).ready( function () {
 								//if(edit_profile_flag == 1)
 								actionstr += '<li><a href="profile_comment/view_detail/'+oObj.aData[parseInt(table_total_col-1)]+'" data-target="#myModal" data-toggle="modal">View Detail</a></li>';
 								actionstr += '<li class="divider"></li>';
-								actionstr += '<li><a href="#" onclick=dt_delete("profile_notes","id",'+oObj.aData[parseInt(table_total_col-1)]+'); class="text-error bold">Delete Profile <i class="fa fa-times-circle"></i></a></li>';
+								actionstr += '<li><a href="#" onclick=dt_delete("profile_notes","id",'+oObj.aData[parseInt(table_total_col-1)]+'); class="text-error bold">Delete <i class="fa fa-times-circle"></i></a></li>';
 								actionstr += '</ul>';
 								actionstr += '</div>';
 								
