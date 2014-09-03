@@ -128,7 +128,7 @@ $this->template->set_partial('sidebar', 'sidebar');
     	/* Array of database columns which should be read and sent back to DataTables. Use a space where
     	 * you want to insert a non-database field (for example a counter or static image)
     	*/
-    	$aColumns = array('course_class_id','course_title','users.first_name','second_name','class_room_title','section_title','shift','campus_name','course_section.track','course_section.buildings','student_cnt');
+    	$aColumns = array('course_class_id','course_title','first_staff_name','second_staff_name','class_room_title','section_title','shift','campus_name','course_section.track','course_section.buildings','student_cnt');
     	$grid_data = get_search_data($aColumns);
     	$sort_order = $grid_data['sort_order'];
     	$order_by = $grid_data['order_by'];
@@ -244,8 +244,8 @@ $this->template->set_partial('sidebar', 'sidebar');
 				}else {
 					$row[] = $result_row["course_title"];
 				}
-				$row[] = $result_row["first_name"];
-    			$row[] = $result_row["second_name"];
+				$row[] = $result_row["first_staff_name"];
+    			$row[] = $result_row["second_staff_name"];
     			$row[] = $result_row["class_room_title"];
     			$row[] = $result_row["section_title"];
     			$row[] = $result_row["courses_shift"];

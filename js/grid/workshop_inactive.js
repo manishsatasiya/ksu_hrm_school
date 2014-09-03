@@ -27,8 +27,8 @@ $(document).ready( function () {
        						"fnRender": function (oObj) {
        								var actionstr = "";
 									actionstr += '<div class="btn-group">';
-									actionstr += '<button class="btn-axn" data-toggle="dropdown">';
-									actionstr += '<i class="fa fa-gear"></i>';
+									actionstr += '<button class="btn btn-mini dropdown-toggle btn-demo-space" data-toggle="dropdown">';
+									actionstr += '<a class="fa fa-gear"></a>';
 									actionstr += '</button>';
 									actionstr += '<ul class="dropdown-menu">';
 									actionstr += '<li><a href="'+CI.base_url+'workshops/add/'+oObj.aData[0]+'" data-target="#myModal" data-toggle="modal" class="modal-link">Edit Workshop</a></li>';

@@ -178,17 +178,25 @@ $this->template->set_partial('sidebar', 'sidebar');
 						
 				$attendence_submitted_date = $courseclasses->attendence_submitted_date;
 
+				$row_attendance_last_date = "";
+				$row_attendence_submitted_date = "";
+				
+				if($attendance_last_date != "0000-00-00 00:00:00" && $attendance_last_date != "")
+					$row_attendance_last_date = date('d-M-Y h:i:s',strtotime($attendance_last_date));
+				if($attendence_submitted_date != "0000-00-00 00:00:00" && $attendence_submitted_date != "")
+					$row_attendence_submitted_date = date('d-M-Y h:i:s',strtotime($attendence_submitted_date));
+					
 				$entry = array(
 						$elsd_id,
 						$first_name,
 						$section_title,
+						$class_room_title,
 						$campus,
 						$course_title,
-						$class_room_title,
 						$attendence_week,
 						$shift,
-						date('d-M-Y h:i:s',strtotime($attendance_last_date)),
-						date('d-M-Y h:i:s',strtotime($attendence_submitted_date))
+						$row_attendance_last_date,
+						$row_attendence_submitted_date
 				);
 				$output['aaData'][] = $entry;
 				$i++;

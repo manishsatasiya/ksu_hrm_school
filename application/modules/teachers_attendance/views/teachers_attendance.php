@@ -88,4 +88,23 @@ dTable = $('#grid_teachers_attendance').dataTable({
 		           ],
 		sPaginationType: "bootstrap"});
 });
+
+
+$(document).ready(function() {
+	fnShowHide(0);
+	fnShowHide(2);
+	fnShowHide(3);
+	fnShowHide(4);
+	fnShowHide(5);
+});
+
+
+function fnShowHide( iCol )
+{
+	/* Get the DataTables object again - this is not a recreation, just a get of the object */
+	var dTable = $('#grid_teachers_attendance').dataTable();
+	
+	var bVis = dTable.fnSettings().aoColumns[iCol].bVisible;
+	dTable.fnSetColumnVis( iCol, bVis ? false : true );
+}
 </script>

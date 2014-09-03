@@ -29,10 +29,8 @@ $(document).ready( function () {
        						"fnRender": function (oObj) {
 								var actionstr = "";
 								actionstr += '<div class="btn-group">';
-								//actionstr += '<button class="btn btn-mini btn-primary btn-demo-space">OPTIONS</button>';
 								actionstr += '<button class="btn btn-mini dropdown-toggle btn-demo-space" data-toggle="dropdown">';
-								//actionstr += '<span class="caret"></span>';
-								actionstr += '<i class="fa fa-gear"></i>';
+								actionstr += '<a class="fa fa-gear"></a>';
 								actionstr += '</button>';
 								actionstr += '<ul class="dropdown-menu">';
 								if(edit_flag == 1)

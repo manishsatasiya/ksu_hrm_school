@@ -110,8 +110,7 @@ $this->template->set_partial('sidebar', 'sidebar');
 						$section_title,
 						$course_title,
 						$shift,
-						$campus,
-						$school_year_title
+						$campus
 					);	
 				$cell_weekarr = $cell_week["am"];
 

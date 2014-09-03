@@ -37,7 +37,11 @@ class List_course_class_model extends CI_Model {
 			!empty($search_data['buildings']) ? $data['buildings'] = $search_data['buildings'] : "";
         }
        
-        $this->db->select('*,course_section.*,courses.course_title,course_class.shift AS courses_shift,course_class_room.class_room_title,users.first_name,users_sec.first_name AS second_name,school.school_name,school_year.school_year_title,course_category.category_title,(SELECT COUNT(*) FROM users WHERE users.section_id=course_class.section_id) AS student_cnt,campus_name',false);
+        $this->db->select('*,CONCAT_WS(" ",users.first_name,users.middle_name,users.middle_name2,users.last_name) AS first_staff_name,
+							CONCAT_WS(" ",users_sec.first_name,users_sec.middle_name,users_sec.middle_name2,users_sec.last_name) AS second_staff_name,
+							course_section.*,courses.course_title,course_class.shift AS courses_shift,course_class_room.class_room_title,users.first_name,
+							users_sec.first_name AS second_name,school.school_name,school_year.school_year_title,course_category.category_title,
+							(SELECT COUNT(*) FROM users WHERE users.section_id=course_class.section_id) AS student_cnt,campus_name',false);
         $this->db->from('course_class');   
 		$this->db->join('courses', 'courses.course_id = course_class.course_id','left');      
 		$this->db->join('course_section', 'course_section.section_id = course_class.section_id','left');

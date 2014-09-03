@@ -63,7 +63,7 @@ if (!function_exists('get_teacher_list')) {
 			$ci->db->where_in('users.campus_id',$arrCampusPrivilages);
 		}
 		
-		$ci->db->order_by('first_name', 'ASC');	
+		$ci->db->order_by('staff_name', 'ASC');	
     	$query = $ci->db->get();
     	$teacher_data = $query->result_array();
     	$teacher_arr = array();

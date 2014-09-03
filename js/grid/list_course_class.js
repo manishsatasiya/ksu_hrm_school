@@ -223,7 +223,7 @@ function fnShowHide( iCol )
 	/* Get the DataTables object again - this is not a recreation, just a get of the object */
 	var dTable = $('#grid_course_class').dataTable();
 	
-	var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
+	var bVis = dTable.fnSettings().aoColumns[iCol].bVisible;
 	dTable.fnSetColumnVis( iCol, bVis ? false : true );
 }
 
