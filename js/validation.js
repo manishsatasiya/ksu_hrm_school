@@ -1838,6 +1838,30 @@ $(document).ready(function() {
 			detail: "Please enter detail"
 		}
 	});
+	$('#add_note_form_datatable select#department,#add_comment_datatable select#department').change(function (){
+		if(parseInt($(this).val()) == '8'){
+			$('#add_note_form_datatable #professional_development_cat').show();
+			$('#add_comment_datatable #professional_development_cat').show();
+			$('#add_note_form_datatable #professional_development_cat select#category').select2('enable');
+			$('#add_comment_datatable #professional_development_cat select#category').select2('enable');
+		}else {
+			$('#add_note_form_datatable #professional_development_cat').hide();
+			$('#add_comment_datatable #professional_development_cat').hide();
+			$('#add_note_form_datatable #professional_development_cat select#category').select2('disable').select2('val', '');
+			$('#add_comment_datatable #professional_development_cat select#category').select2('disable').select2('val', '');
+		}
+		if(parseInt($(this).val()) == '3'){
+			$('#add_note_form_datatable #academic_admin_cat').show();
+			$('#add_comment_datatable #academic_admin_cat').show();
+			$('#add_note_form_datatable #academic_admin_cat select#category').select2('enable');
+			$('#add_comment_datatable #academic_admin_cat select#category').select2('enable');
+		}else{
+			$('#add_note_form_datatable #academic_admin_cat').hide();	
+			$('#add_comment_datatable #academic_admin_cat').hide();	
+			$('#add_note_form_datatable #academic_admin_cat select#category').select2('disable').select2('val', '');
+			$('#add_comment_datatable #academic_admin_cat select#category').select2('disable').select2('val', '');
+		}
+	});
 	// process the form
 	$('#save_status').click(function(event) {
 

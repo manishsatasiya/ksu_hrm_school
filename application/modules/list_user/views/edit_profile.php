@@ -334,7 +334,11 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="sub-title">Qualifications:
-					<a href="<?php echo base_url(); ?>list_user/add_qualifications/<?php echo $user_data->user_unique_id; ?>" class="btn btn-sm btn-small btn-primary pull-right" data-target="#myModal" data-toggle="modal">Qualifications <i class="fa fa-plus"></i> </a>
+					<?php 
+					if($this->session->userdata('role_id') == '1' || in_array("add_qualifications",$this->arrAction))
+					{ ?><a href="<?php echo base_url(); ?>list_user/add_qualifications/<?php echo $user_data->user_unique_id; ?>" class="btn btn-sm btn-small btn-primary pull-right" data-target="#myModal" data-toggle="modal">Qualifications <i class="fa fa-plus"></i> </a>
+                    <?php
+					} ?>
 				</div>
                 <ul>
                   <?php
@@ -343,24 +347,33 @@
 				foreach($user_data->user_qualification as $qualification)
 				{ ?>
                   <li><?php echo $qualification['qualification']; ?>, <?php echo $qualification['subject']; ?>, Verified: <?php echo $qualification['verified']; ?> <?php echo $qualification['date']; ?>
-                    <div class="btn-group pull-right"> <a class="btn btn-sm btn-small btn-primary" href="<?php echo base_url(); ?>list_user/add_qualifications/<?php echo $user_data->user_unique_id; ?>/<?php echo $qualification['user_qualification_id']; ?>" data-target="#myModal" data-toggle="modal">Edit <i class="fa fa-edit"></i></a> <a class="btn btn-sm btn-small btn-primary" href="#" onclick="javascript:_delete('user_qualification','user_qualification_id',<?php echo $qualification['user_qualification_id']; ?>);">Delete <i class="fa fa-trash-o"></i></a></div>
+                    <div class="btn-group pull-right">
+                    <?php 
+					if($this->session->userdata('role_id') == '1' || in_array("edit_qualifications",$this->arrAction))
+					{ ?><a class="btn btn-sm btn-small btn-primary" href="<?php echo base_url(); ?>list_user/add_qualifications/<?php echo $user_data->user_unique_id; ?>/<?php echo $qualification['user_qualification_id']; ?>" data-target="#myModal" data-toggle="modal">Edit <i class="fa fa-edit"></i></a><?php
+					} ?>
+                    <?php 
+					if($this->session->userdata('role_id') == '1' || in_array("delete_qualifications",$this->arrAction))
+					{ ?><a class="btn btn-sm btn-small btn-primary" href="#" onclick="javascript:_delete('user_qualification','user_qualification_id',<?php echo $qualification['user_qualification_id']; ?>);">Delete <i class="fa fa-trash-o"></i></a><?php
+					} ?>
+                    </div>
                   </li>
                   <?php
 		  		}
 		  	} ?>
                 </ul>
               </div>
-
-
-
-
             </div>
           </div>
           <div class="info-box certi-info">
             <div class="row">
               <div class="col-md-12">
                 <div class="sub-title">Certificates:
-					<a href="<?php echo base_url(); ?>list_user/add_certificate/<?php echo $user_data->user_unique_id; ?>" class="btn btn-sm btn-small btn-primary pull-right" data-target="#myModal" data-toggle="modal">Certificate <i class="fa fa-plus"></i> </a >
+					<?php 
+					if($this->session->userdata('role_id') == '1' || in_array("add_certificate",$this->arrAction))
+					{ ?><a href="<?php echo base_url(); ?>list_user/add_certificate/<?php echo $user_data->user_unique_id; ?>" class="btn btn-sm btn-small btn-primary pull-right" data-target="#myModal" data-toggle="modal">Certificate <i class="fa fa-plus"></i> </a >
+                    <?php
+					} ?>
 				</div>
                 <ul>
                   <?php
@@ -369,7 +382,16 @@
 				foreach($user_data->user_certificate as $certificate)
 				{ ?>
                   <li><?php echo $certificate['qualification']; ?> , Verified: <?php echo $certificate['verified']; ?> <?php echo $certificate['date']; ?>
-                    <div class="btn-group pull-right"> <a class="btn btn-sm btn-small btn-primary" href="<?php echo base_url(); ?>list_user/add_certificate/<?php echo $user_data->user_unique_id; ?>/<?php echo $certificate['user_qualification_id']; ?>" data-target="#myModal" data-toggle="modal">Edit <i class="fa fa-edit"></i></a> <a class="btn btn-sm btn-small btn-primary" href="#" onclick="javascript:_delete('user_qualification','user_qualification_id',<?php echo $certificate['user_qualification_id']; ?>);">Delete <i class="fa fa-trash-o"></i></a></div>
+                    <div class="btn-group pull-right">
+                    <?php 
+					if($this->session->userdata('role_id') == '1' || in_array("edit_certificates",$this->arrAction))
+					{ ?><a class="btn btn-sm btn-small btn-primary" href="<?php echo base_url(); ?>list_user/add_certificate/<?php echo $user_data->user_unique_id; ?>/<?php echo $certificate['user_qualification_id']; ?>" data-target="#myModal" data-toggle="modal">Edit <i class="fa fa-edit"></i></a><?php
+					} ?>
+                    <?php 
+					if($this->session->userdata('role_id') == '1' || in_array("delete_certificates",$this->arrAction))
+					{ ?> <a class="btn btn-sm btn-small btn-primary" href="#" onclick="javascript:_delete('user_qualification','user_qualification_id',<?php echo $certificate['user_qualification_id']; ?>);">Delete <i class="fa fa-trash-o"></i></a><?php
+					} ?>
+                    </div>
                   </li>
                   <?php
 		  		}
@@ -382,7 +404,11 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="sub-title">Employment History:
-					<a href="<?php echo base_url(); ?>list_user/add_experience/<?php echo $user_data->user_unique_id; ?>" class="btn btn-sm btn-small btn-primary pull-right" data-target="#myModal" data-toggle="modal">Experience <i class="fa fa-plus"></i> </a> 
+					<?php 
+					if($this->session->userdata('role_id') == '1' || in_array("add_experience",$this->arrAction))
+					{ ?><a href="<?php echo base_url(); ?>list_user/add_experience/<?php echo $user_data->user_unique_id; ?>" class="btn btn-sm btn-small btn-primary pull-right" data-target="#myModal" data-toggle="modal">Experience <i class="fa fa-plus"></i> </a> 
+                    <?php
+					} ?>
 				</div>
                 <ul>
                   <?php
@@ -393,7 +419,16 @@
                   <li> Company: <?php echo $experience['company']; ?>, Position: <?php echo $experience['position']; ?> <br />
                     From: <?php echo $experience['start_date']; ?> To: <?php echo $experience['end_date']; ?> <br />
                     Reason for leaving: <?php echo $experience['departure_reason']; ?>
-                    <div class="btn-group pull-right"> <a class="btn btn-sm btn-small btn-primary" href="<?php echo base_url(); ?>list_user/add_experience/<?php echo $user_data->user_unique_id; ?>/<?php echo $experience['user_workhistory_id']; ?>" data-target="#myModal" data-toggle="modal">Edit <i class="fa fa-edit"></i></a> <a class="btn btn-sm btn-small btn-primary" href="#" onclick="javascript:_delete('user_workhistory','user_workhistory_id',<?php echo $experience['user_workhistory_id']; ?>);">Delete <i class="fa fa-trash-o"></i></a></div>
+                    <div class="btn-group pull-right">
+                    <?php 
+					if($this->session->userdata('role_id') == '1' || in_array("edit_employment_history",$this->arrAction))
+					{ ?><a class="btn btn-sm btn-small btn-primary" href="<?php echo base_url(); ?>list_user/add_experience/<?php echo $user_data->user_unique_id; ?>/<?php echo $experience['user_workhistory_id']; ?>" data-target="#myModal" data-toggle="modal">Edit <i class="fa fa-edit"></i></a><?php
+					} ?>
+                    <?php 
+					if($this->session->userdata('role_id') == '1' || in_array("delete_employment_history",$this->arrAction))
+					{ ?> <a class="btn btn-sm btn-small btn-primary" href="#" onclick="javascript:_delete('user_workhistory','user_workhistory_id',<?php echo $experience['user_workhistory_id']; ?>);">Delete <i class="fa fa-trash-o"></i></a><?php
+					} ?>
+                    </div>
                   </li>
                   <?php
 		  		}
@@ -407,7 +442,12 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="sub-title">Reference:
-					<a href="<?php echo base_url(); ?>list_user/add_reference/<?php echo $user_data->user_unique_id; ?>" class="btn btn-sm btn-small btn-primary pull-right" data-target="#myModal" data-toggle="modal">Reference <i class="fa fa-plus"></i> </a> 
+                	<?php 
+					if($this->session->userdata('role_id') == '1' || in_array("add_reference",$this->arrAction))
+					{ ?>
+					<a href="<?php echo base_url(); ?>list_user/add_reference/<?php echo $user_data->user_unique_id; ?>" class="btn btn-sm btn-small btn-primary pull-right" data-target="#myModal" data-toggle="modal">Reference <i class="fa fa-plus"></i> </a>
+                    <?php
+					} ?>
 				</div>
                 <ul>
                   <?php
@@ -418,7 +458,18 @@
                   <li> Company: <?php echo $cv_reference['company_name']; ?><br />
                     Referee Name: <?php echo $cv_reference['name']; ?><br />
                    Email: <?php echo $cv_reference['email']; ?>
-                    <div class="btn-group pull-right"> <a class="btn btn-sm btn-small btn-primary" href="<?php echo base_url(); ?>list_user/add_reference/<?php echo $user_data->user_unique_id; ?>/<?php echo $cv_reference['referance_id']; ?>" data-target="#myModal" data-toggle="modal">Edit <i class="fa fa-edit"></i></a> <a class="btn btn-sm btn-small btn-primary" href="#" onclick="javascript:_delete('user_cv_reference','referance_id',<?php echo $cv_reference['referance_id']; ?>);">Delete <i class="fa fa-trash-o"></i></a></div>
+                    <div class="btn-group pull-right">
+                    <?php 
+					if($this->session->userdata('role_id') == '1' || in_array("edit_reference",$this->arrAction))
+					{ ?><a class="btn btn-sm btn-small btn-primary" href="<?php echo base_url(); ?>list_user/add_reference/<?php echo $user_data->user_unique_id; ?>/<?php echo $cv_reference['referance_id']; ?>" data-target="#myModal" data-toggle="modal">Edit <i class="fa fa-edit"></i></a>
+                    <?php
+					} ?>
+                    <?php 
+					if($this->session->userdata('role_id') == '1' || in_array("delete_reference",$this->arrAction))
+					{ ?><a class="btn btn-sm btn-small btn-primary" href="#" onclick="javascript:_delete('user_cv_reference','referance_id',<?php echo $cv_reference['referance_id']; ?>);">Delete <i class="fa fa-trash-o"></i></a>
+                    <?php
+					} ?>
+                    </div>
                   </li>
                   <?php
 		  		}

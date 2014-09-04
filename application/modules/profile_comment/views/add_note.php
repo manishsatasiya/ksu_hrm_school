@@ -26,6 +26,24 @@ print form_open('profile_comment/add/'.$id, array('id' => 'add_comment_datatable
 		</div>
 		<div class="clear"></div>
 	</div>
+    <?php 
+	$pro_disabled = ''; $aca_disabled = '';
+	if(isset($rowdata->department) && $rowdata->department == 8){} else { $pro_disabled = 'disabled="disabled"'; }
+	if(isset($rowdata->department) && $rowdata->department == 3){} else { $aca_disabled = 'disabled="disabled"'; } ?>
+    <div class="row form-row">
+		<div class="col-md-6" id="professional_development_cat" style=" <?php if(isset($rowdata->department) && $rowdata->department == 8){} else { echo 'display:none;'; } ?>">
+			<div class="form_label2"><?php print form_label('Category', 'category'); ?></div>
+			<div class="input_box_thin"><?php  
+				print form_dropdown('category',$professional_development_cat_list,($rowdata)?$rowdata->category:'0','id="category" class="formselect" '.$pro_disabled.''); 
+			?></div>
+		</div>
+        <div class="col-md-6" id="academic_admin_cat" style=" <?php if(isset($rowdata->department) && $rowdata->department == 3){} else { echo 'display:none;'; } ?>">
+			<div class="form_label2"><?php print form_label('Category', 'category'); ?></div>
+			<div class="input_box_thin"><?php  
+				print form_dropdown('category',$academic_admin_cat_list,($rowdata)?$rowdata->category:'0','id="category" class="formselect" '.$aca_disabled.''); 
+			?></div>
+		</div>
+    </div>
     <div class="row form-row">
         <div class="col-md-6">
 			<div class="form_label2"><?php print form_label('Recommended Action', 'recommendation'); ?></div>

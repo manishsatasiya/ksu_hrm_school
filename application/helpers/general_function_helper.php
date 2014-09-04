@@ -1828,5 +1828,19 @@ function profile_comment_recommendation($id = null){
 	}
 	return $recommendation_arr;
 }
+function professional_development_cat($id = null){
+	$_arr = array(''=>'Select','1'=>'Full Observation', '2'=>'Buzz Observation','3'=>'PD Week','4'=>'Workshops');
+	if($id){
+		return (isset($_arr[$id])) ? $_arr[$id] : '';
+	}
+	return $_arr;
+}
+function academic_admin_cat($id = null){
+	$_arr = array(''=>'Select','5'=>'SMS', '6'=>'Cover','7'=>'Invigilation');
+	if($id){
+		return (isset($_arr[$id])) ? $_arr[$id] : '';
+	}
+	return $_arr;
+}
 /* End of file general_function_helper.php */
 /* Location: ./application/helpers/general_function_helper.php */ 

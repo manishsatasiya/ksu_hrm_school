@@ -91,7 +91,9 @@ class Profile_comment extends Private_Controller {
 	public function add($id = null){
     	$content_data['department_list'] = get_department_list();
     	$content_data['note_type_list'] = profile_comment_note_type();
-		$content_data['recommendation_list'] = profile_comment_recommendation();		
+		$content_data['recommendation_list'] = profile_comment_recommendation();
+		$content_data['professional_development_cat_list'] = professional_development_cat();
+		$content_data['academic_admin_cat_list'] = academic_admin_cat();		
     	$content_data['id'] = $id;
 
     	$rowdata = array();
@@ -105,6 +107,8 @@ class Profile_comment extends Private_Controller {
     		$department = $this->input->post('department');
 			$recommendation = $this->input->post('recommendation');
 			$show_to_employee = $this->input->post('show_to_employee');
+			$category = $this->input->post('category');
+			
 			$detail = $this->input->post('detail');
 			
 			$data = array();
@@ -113,6 +117,7 @@ class Profile_comment extends Private_Controller {
 			$data['department'] = $department;
 			$data['recommendation'] = $recommendation;
 			$data['show_to_employee'] = $show_to_employee;
+			$data['category'] = $category;
 			$data['detail'] = $detail;
 				
 			$error = "";

@@ -13,6 +13,12 @@
 		<div class="col-md-12">
 			<b>Department:</b><?php echo ($rowdata)?$rowdata->department_name:''; ?>
 		</div>
+        <?php if(isset($rowdata->category) && $rowdata->category != 0 && $rowdata->category != '') { ?>
+        <div class="col-md-12">
+			<b>Category:</b><?php echo ($rowdata)?academic_admin_cat($rowdata->category):''; ?><?php echo ($rowdata)?professional_development_cat($rowdata->category):''; ?>
+		</div>
+        <?php
+		 } ?>
         <div class="col-md-12">
 			<b>Recommended:</b><?php echo ($rowdata)?profile_comment_recommendation($rowdata->recommendation):''; ?>
 		</div>
