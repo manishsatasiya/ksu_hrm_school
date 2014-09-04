@@ -194,19 +194,21 @@ header("Expires: 0");
 									$temp_exam_mark = $course_classes->student_grade_data[$course_classes->section_id][$temp_grade_type_exam_id][$student_datas->student_uni_id]["exam_marks"];
 								}	
 							}
+							//echo $temp_exam_mark."<br>";
 								if($temp_exam_mark > 0)
 								{
 									$temp_exam_mark = round($temp_exam_mark,1);
-
+									//echo $temp_exam_mark."<br>";
 									$temp_total_exam_mark += $temp_exam_mark;
 								}
 							}	
-
+							//echo $temp_total_exam_mark."<br>";
 							$temp_percentage = round(($temp_total_exam_mark*$temp_grade_type_data["total_percentage"])/$temp_grade_type_data["total_markes"],2);
+							//echo $temp_percentage."<br>";
 							$total_percentage += $temp_percentage;	
 						}	
 					}
-
+					//echo $total_percentage."<br>";exit;
 			?>		
 				<tr>
 					<td><?php echo $student_datas->student_uni_id; ?></td>
@@ -218,16 +220,17 @@ header("Expires: 0");
 					$total_exam_mark = 0;
 					
 					$k = 1;
-					$exam_status = "";
-					$verified = "";
-					$lead_verified = "";
-					$verified_by = "";
-					$verified_date = "";
-					$created_by = "";
-					$submitted_date = "";
 					$grade_status_combination = "";
 					foreach ($arr_grade_exam as $grade_type_exam_id=>$grade_type_exam_data)
 					{
+						$exam_status = "";
+						$verified = "";
+						$lead_verified = "";
+						$verified_by = "";
+						$verified_date = "";
+						$created_by = "";
+						$submitted_date = "";
+						
 						$grade_entry_combination_3 = 'grade3['.$course_classes->section_id."_".$student_datas->student_uni_id."_".$grade_type_exam_id.']';
 						$grade_entry_combination_2 = 'grade2['.$course_classes->section_id."_".$student_datas->student_uni_id."_".$grade_type_exam_id.']';
 						$grade_entry_combination = 'grade['.$course_classes->section_id."_".$student_datas->student_uni_id."_".$grade_type_exam_id.']';
@@ -547,7 +550,12 @@ header("Expires: 0");
 				}
 			$j++;
 			}
-			
+			/*else
+			{
+			?>
+			No Student found in this class.Please ask to administrator.
+			<?php
+			}*/
 	}
 	else
 	{

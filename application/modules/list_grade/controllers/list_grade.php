@@ -902,7 +902,10 @@ $this->template->set_partial('sidebar', 'sidebar');
 				$course_class_id = $courseclasses->course_class_id;
 				$student_data = $this->list_student_class_model->get_class_wise_student($section_id);
 				if($student_data) $courseclasses->student = $student_data->result();
-				
+				else
+				{
+					$courseclasses->student = array();
+				}	
 				$student_grade_data = $this->grade_report_model->get_student_class_grades($section_id);
 				$courseclasses->student_grade_data = $student_grade_data;
 			}
