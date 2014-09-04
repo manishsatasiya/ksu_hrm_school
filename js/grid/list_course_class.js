@@ -90,15 +90,6 @@ $(document).ready( function () {
 				aoColumns: [
 						null,   
 						null,
-						/*{
-							tooltip: 'Click to select school year',
-							loadtext: 'loading...',
-							type: 'select',
-							onblur: 'cancel',
-							submit: 'Save',
-							loadurl: 'list_course_class/get_listbox/school_year',
-							loadtype: 'GET'
-						},*/
 						{
 							tooltip: 'Click to select course class',
 							loadtext: 'loading...',

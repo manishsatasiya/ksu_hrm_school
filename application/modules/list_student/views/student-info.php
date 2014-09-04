@@ -16,7 +16,7 @@
 	font-family:Arial, Helvetica, sans-serif;
 	font-weight:normal;
 	}
-.student-info h3 i { font-size:30px; margin-top:10px;}
+.student-info h3 i { font-size:70px; margin-top:10px;}
 .student-info .attend-tbl { float:left; width:88%; background:#9f9f9f;}
 .student-info table {}
 .student-info table tr { text-align:center; font-size:12px; background:none !important;}

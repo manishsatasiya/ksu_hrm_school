@@ -47,7 +47,7 @@ if (!function_exists('get_teacher_list')) {
     function get_teacher_list($campus_id=0) {
     	$ci =& get_instance();
 		$arrCampusPrivilages = get_user_campus_privilages();
-    	$ci->db->select('*,CONCAT_WS(" ",users.first_name,users.middle_name,users.middle_name2,users.last_name) AS staff_name',FALSE);
+    	$ci->db->select('*,CONCAT_WS(" ",trim(users.first_name),trim(users.middle_name),trim(users.middle_name2),trim(users.last_name)) AS staff_name',FALSE);
     	$ci->db->from('users');
     	$ci->db->join('school_campus','school_campus.campus_id = users.campus_id','left');  
     	$ci->db->join('user_roll','users.user_roll_id = user_roll.user_roll_id','left');    	
@@ -63,13 +63,14 @@ if (!function_exists('get_teacher_list')) {
 			$ci->db->where_in('users.campus_id',$arrCampusPrivilages);
 		}
 		
-		$ci->db->order_by('staff_name', 'ASC');	
+		$ci->db->order_by('CONCAT_WS("",trim(users.first_name),trim(users.middle_name),trim(users.middle_name2),trim(users.last_name))', 'ASC');	
     	$query = $ci->db->get();
+		//echo $ci->db->last_query();
     	$teacher_data = $query->result_array();
     	$teacher_arr = array();
     	$teacher_arr[0] = '--Select--';
     	foreach ($teacher_data as $teacher_datas){
-    		$teacher_arr[$teacher_datas['user_id']."j"] = $teacher_datas['staff_name'];    		
+    		$teacher_arr[$teacher_datas['user_id']."j"] = trim($teacher_datas['staff_name']);    		
     	}
         return $teacher_arr;
     }
