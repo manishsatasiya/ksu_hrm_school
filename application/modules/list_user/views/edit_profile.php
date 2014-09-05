@@ -949,12 +949,13 @@ print form_hidden('user_id', $user_data->user_unique_id);
                 <div class="grid-body ">
                   <div class="info-box">
                     <div class="row">
+                    <?php print form_open('list_user/edit_profile/'.$user_data->user_unique_id.'/6', array('id' => 'edit_profile','name'=>'edit_profile')) ."\r\n"; ?>
                       <div id="edit_rootwizard" class="col-md-12">
                         <?php
-                    if ($this->session->flashdata('message')) {
-                        print "<br><div class=\"alert alert-error\">". $this->session->flashdata('message') ."</div>";
-                    }
-                    ?>
+						if ($this->session->flashdata('message')) {
+							print "<br><div class=\"alert alert-error\">". $this->session->flashdata('message') ."</div>";
+						}
+						?>
                         <div class="form-wizard-steps">
                           <ul class="wizard-steps">
                             <li class="active" data-target="#step1"> <a href="#tab1" data-toggle="tab"> <span class="step">1</span> <span class="title">Personal & Contact Details</span> </a> </li>
@@ -970,8 +971,6 @@ print form_hidden('user_id', $user_data->user_unique_id);
                             <h4 class="semi-bold">Step 1 - <span class="light">Personal & Contact Details</span></h4>
                             <br>
 
-
-							<?php print form_open('list_user/edit_profile/'.$user_data->user_unique_id.'/6', array('id' => 'edit_profile','name'=>'edit_profile')) ."\r\n"; ?>
 							<div class="row form-row">		
                               <div class="col-md-3"> <?php print form_label('Name Title', 'title',array('class'=>'form-label')); ?> 
 							  <?php print form_dropdown('title',$name_title_list,($user_data)?$user_data->title:$this->session->flashdata('title'),'id="title" class="select2 form-control"'); ?>
@@ -1188,7 +1187,7 @@ print form_hidden('user_id', $user_data->user_unique_id);
                               </div>
                               <!--row 6.5 end-->
                             </div>
-                          </div>
+                          
                           <ul class=" wizard wizard-actions">
                               <li class="previous first" style="display:none;"><a href="javascript:;" class="btn">&nbsp;&nbsp;First&nbsp;&nbsp;</a></li>
                               <li class="previous"><a href="javascript:;" class="btn">&nbsp;&nbsp;Previous&nbsp;&nbsp;</a></li>
@@ -1198,12 +1197,9 @@ print form_hidden('user_id', $user_data->user_unique_id);
                                 <input type="submit" name="submit" id="submit" value="Save" class="btn btn-success"/>
                               </li>
                             </ul>
-                          <?php print form_close() ."\r\n"; ?>
-
-
-
-
+                          </div>                          
                         </div>
+                        <?php print form_close() ."\r\n"; ?>
                         </div>
                       </div>
                     </div>

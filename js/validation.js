@@ -1023,110 +1023,121 @@ $(document).ready(function() {
 		}
 	});
 	
-	//add_profile Validations
-	if($("#status").val() > 12)
-	{
-		var $validator = $("#add_profile").validate({
-		  rules: {
-			status: {
-		      required: true,
-		    }, 
-		    first_name: {
-		      required: true
-		    },
-			last_name: {
-		      required: true
-		    },
-			gender: {
-		      required: true,
-		    },
-			username: {
-		      required: true
-		    },
-			password: {
-		      required: true,
-		    },
-			password_confirm: {
-		      required: true,
-			  equalTo: "#password"
-		    },
-			user_roll_id: {
-		      required: true,
-		    },
-			system_roll_id: {
-		      required: true,
-		    },
-			returning: {
-		      required: true,
-		    },
-			contractor: {
-		      required: true,
-		    },
-			cell_phone: {
-		      required: true,
-		    }
-		  },
-		  messages: {
-			status: "Please select status",
-			first_name:"Please enter first name",
-			last_name:"Please enter last name",
-			gender:"Please select gender",
-			username:"Please enter User Name",
-			password:"Please enter login password",
-			confirm_password: {
-				required: "Please provide a password",
-				equalTo: "Please enter the same password"
-			},
-			user_roll_id:"Please select KSU role",
-			system_roll_id:"Please select System role",
-			returning:"Please select returning employee",
-			contractor:"Please select contracor",
-			cell_phone:"Please enter your mobile"
-		  },
-		  errorPlacement: function(label, element) {
-				$('<span class="arrow"></span>').insertBefore(element);
-				$('<span class="error"></span>').insertAfter(element).append(label)
-			}
-		});
-	}
-	else
-	{
-		var $validator = $("#add_profile").validate({
-			  rules: {
-				title: {
-				  required: true
-				},
-				first_name: {
-				  required: true
-				},
-				last_name: {
-				  required: true
-				},
-				gender: {
-				  required: true
-				},
-				contractor: {
-				  required: true
-				}
-			  },
-			  messages: {
-				title: "Please select title",
-				first_name:"Please enter first name",
-				last_name:"Please enter last anme",
-				gender:"Please select gender",
-				contractor:"Please select contracor"
-			  },
-			  errorPlacement: function(label, element) {
-					$('<span class="arrow"></span>').insertBefore(element);
-					$('<span class="error"></span>').insertAfter(element).append(label)
-				}
-			});
-	}
+	//add_profile Validations				
 	
+	/*$("select#status").change(function() {
+		if ($("select#status").val() > 12) {
+			removeRules(signupRules);
+			addRules(loginRules);
+		} else {        
+			removeRules(loginRules);
+			addRules(signupRules);
+	
+		}
+	});*/
 	$('#rootwizard').bootstrapWizard({
 	  		'tabClass': 'form-wizard',
-			onTabClick: function(tab, navigation, index) {return false;},
+			onTabClick: function(tab, navigation, index) { return false;},
 	  		'onNext': function(tab, navigation, index) {
+				$('#add_profile').removeData('validator');
+				$("#add_profile").find('input[type="text"],select').each(function(){
+					$(this).removeClass('error');
+				});
+				if($("#status").val() > 12)
+				{
+					var $validator = $("#add_profile").validate({
+					  rules: {
+						status: {
+						  required: true,
+						},
+						first_name: {
+							  required: true
+						},
+						last_name: {
+						  required: true
+						},
+						gender: {
+						  required: true,
+						},
+						username: {
+						  required: true
+						},
+						password: {
+						  required: true,
+						},
+						password_confirm: {
+						  required: true,
+						  equalTo: "#password"
+						},
+						user_roll_id: {
+						  comboboxNotNone: true
+						},
+						returning: {
+						  required: true,
+						},
+						contractor: {
+						  required: true,
+						},
+						cell_phone: {
+						  required: true,
+						}
+					  },
+					  messages: {
+						status: "Please select status",
+						first_name:"Please enter first name",
+						last_name:"Please enter last name",
+						gender:"Please select gender",
+						username:"Please enter User Name",
+						password:"Please enter login password",
+						confirm_password: {
+							required: "Please provide a password",
+							equalTo: "Please enter the same password"
+						},
+						user_roll_id:"Please select KSU role",
+						system_roll_id:"Please select System role",
+						returning:"Please select returning employee",
+						contractor:"Please select contracor",
+						cell_phone:"Please enter your mobile"
+					  },
+					  errorPlacement: function(label, element) {
+							$('<span class="arrow"></span>').insertBefore(element);
+							$('<span class="error"></span>').insertAfter(element).append(label)
+						}
+					});
+				}
+				else
+				{
+					var $validator = $("#add_profile").validate({
+						  rules: {
+							title: {
+							  required: true
+							},
+							first_name: {
+							  required: true
+							},
+							last_name: {
+							  required: true
+							},
+							gender: {
+							  required: true
+							},
+							contractor: {
+							  required: true
+							}
+						  },
+						  messages: {
+							title: "Please select title",
+							first_name:"Please enter first name",
+							last_name:"Please enter last anme",
+							gender:"Please select gender",
+							contractor:"Please select contracor"
+						  },
+						  errorPlacement: function(label, element) {
+								$('<span class="arrow"></span>').insertBefore(element);
+								$('<span class="error"></span>').insertAfter(element).append(label)
+							}
+						});
+				}
 				var $valid = $("#add_profile").valid();
 	  			if(!$valid) {
 	  				$validator.focusInvalid();
@@ -1164,7 +1175,7 @@ $(document).ready(function() {
 					equalTo: "#password"
 				},
 				user_roll_id: {
-				  required: true
+				  comboboxNotNone: true
 				},
 				contractor: {
 				  required: true
