@@ -46,7 +46,7 @@ class List_Teacher_Student_model extends CI_Model {
 						  users.email,
 						  users.user_id,
 						  change_by,
-						  (select count(*) from users_log where users_log.user_id=users.user_id) as log_cnt
+						  (select count(*) from users_log where users_log.user_id=users.user_id and profile_update = 0) as log_cnt
 						 ',FALSE);
     	$this->db->from('users');
 		$this->db->join('user_profile', 'user_profile.user_id = users.user_id','left');
@@ -968,6 +968,7 @@ SELECT `user_id`, `user_roll_id`, `username`, `password`, $section_id, `section_
 		$this->db->join('users', 'users.user_id = users_log.change_by','left');
 		$this->db->join('course_section', 'course_section.section_id = users_log.section_id','left');
 		$this->db->where('users_log.user_id', $user_id);
+		$this->db->where('users_log.profile_update', 0);
 		$this->db->order_by('users_log.change_date', 'DESC');
 		if($limit > 0)
 			$this->db->limit($limit);		

@@ -154,8 +154,8 @@ $this->template->set_partial('sidebar', 'sidebar');
 				}else{ 			
     				$row[] = $result_row["elsd_id"];  
 				}  			
-				if($result_row["change_by"] > 0){    				
-				$log_data = $this->list_teacher_student_model->get_user_log($result_row["user_id"],4);
+				if($result_row["change_by"] > 0 && $result_row["log_cnt"] > 0){    				
+				$log_data = $this->list_teacher_student_model->get_user_log($result_row["user_id"],3);
     				$strTooltip = '<table class="table no-more-tables prop-log-table">';
 					$strTooltip .= '<tr><th>Section</th><th>Update By</th><th>Date</th><th>Reason</th></tr>';
 					foreach($log_data->result_array() as $data1) {
@@ -404,9 +404,14 @@ $this->template->set_partial('sidebar', 'sidebar');
     		}
     	}
 		
-		if($columnName == "campus")
+		$reason = "";
+		if($columnName == "campus_name")
+		{
 			$columnName = "campus_id";
-    	
+			$reason = "Campus Updated";
+    	}
+		//save_users_log($id,$reason);
+		
 		set_activity_data_log($id,'Update','Teacher > List teacher','List teacher',$tablename,$whrid_column,$user_id='');
     	grid_update_data($whrid_column,$id,$columnName,$value,$tablename);
     	
