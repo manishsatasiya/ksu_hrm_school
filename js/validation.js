@@ -1023,22 +1023,11 @@ $(document).ready(function() {
 		}
 	});
 	
-	//add_profile Validations				
-	
-	/*$("select#status").change(function() {
-		if ($("select#status").val() > 12) {
-			removeRules(signupRules);
-			addRules(loginRules);
-		} else {        
-			removeRules(loginRules);
-			addRules(signupRules);
-	
-		}
-	});*/
 	$('#rootwizard').bootstrapWizard({
 	  		'tabClass': 'form-wizard',
 			onTabClick: function(tab, navigation, index) { return false;},
 	  		'onNext': function(tab, navigation, index) {
+				//add_profile Validations				
 				$('#add_profile').removeData('validator');
 				$("#add_profile").find('input[type="text"],select').each(function(){
 					$(this).removeClass('error');

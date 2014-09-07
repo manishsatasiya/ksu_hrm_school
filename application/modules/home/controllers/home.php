@@ -8,6 +8,7 @@ class Home extends Private_Controller {
     {
         parent::__construct();
 		$this->load->model('home_model');
+		//$this->load->model('employee_stats/employee_stats_model');
 		$this->load->model('list_school_campus/list_school_campus_model');
 		$this->load->model('list_role/list_role_model');
     }
@@ -42,62 +43,53 @@ class Home extends Private_Controller {
 			$content_data['count_course_class_of_teacher'] = $count_course_class_of_teacher;
 			$content_data['course_class_of_teacher_arr'] = $course_class_of_teacher_arr;
 		}elseif($template == 'homepage'){
-			$content_data['staff_count'] = $this->home_model->get_staff_count();
-			$content_data['pending_count'] = $this->home_model->get_pending_count();
-			$content_data['block_count'] = $this->home_model->get_block_count();
-			
-			$campus_arr = $this->list_school_campus_model->get_campus(0,0,"campus_id","asc",array(),true);
-			$campus_data_box = array();
-			if($campus_arr){
-				foreach($campus_arr->result_array() as $campus) {
-					$_campus_data_box = array();
-					$_campus_data_box['ksu_el'] = $this->home_model->get_teacher_count($campus['campus_id'],3,array(3),2);
-					$_campus_data_box['edex_el'] = $this->home_model->get_teacher_count($campus['campus_id'],2,array(3),2);
-					$_campus_data_box['iceat_el'] = $this->home_model->get_teacher_count($campus['campus_id'],1,array(3),2);
-					$_campus_data_box['total_el'] = $this->home_model->get_teacher_count($campus['campus_id'],false,array(3),2);
-					
-					$_campus_data_box['ksu_inl'] = $this->home_model->get_teacher_count($campus['campus_id'],3,array(3));
-					$_campus_data_box['edex_inl'] = $this->home_model->get_teacher_count($campus['campus_id'],2,array(3));
-					$_campus_data_box['iceat_inl'] = $this->home_model->get_teacher_count($campus['campus_id'],1,array(3));
-					$_campus_data_box['total_inl'] = $this->home_model->get_teacher_count($campus['campus_id'],false,array(3));
-					
-					$_campus_data_box['ksu_admin'] = $this->home_model->get_teacher_count($campus['campus_id'],3,'1,3,4',false);
-					$_campus_data_box['edex_admin'] = $this->home_model->get_teacher_count($campus['campus_id'],2,'1,3,4',false);
-					$_campus_data_box['iceat_admin'] = $this->home_model->get_teacher_count($campus['campus_id'],1,'1,3,4',false);
-					$_campus_data_box['total_admin'] = $this->home_model->get_teacher_count($campus['campus_id'],false,'1,3,4',false);
-					
-					$_campus_data_box['ksu_total'] = $this->home_model->get_teacher_count($campus['campus_id'],3,'1,4',false);
-					$_campus_data_box['edex_total'] = $this->home_model->get_teacher_count($campus['campus_id'],2,'1,4',false);
-					$_campus_data_box['iceat_total'] = $this->home_model->get_teacher_count($campus['campus_id'],1,'1,4',false);
-					$_campus_data_box['total_total'] = $this->home_model->get_teacher_count($campus['campus_id'],false,'1,4',false);
-					
-					$campus_data_box[$campus['campus_name']] = $_campus_data_box;
-				}
-			}
-			$content_data['campus_data_box'] = $campus_data_box;
-			
 			$content_data['total_male_teachers'] = $this->home_model->get_teacher_count(false,false,array(3),false);
 			$content_data['total_female_teachers'] = $this->home_model->get_teacher_count(false,false,array(3),false,'F');
-			$content_data['total_male_and_female_teachers'] = $this->home_model->get_teacher_count(false,false,array(3),false,false);
-			$content_data['total_male_and_female_admin'] = $this->home_model->get_teacher_count(false,false,'1,3,4',false,false);
+			
+			$content_data['total_male_staff'] = $this->home_model->get_teacher_count(false,false,'1,4',false);
+			$content_data['total_female_staff'] = $this->home_model->get_teacher_count(false,false,'1,4',false,'F');
 			$content_data['total_staff'] = $this->home_model->get_teacher_count(false,false,'1,4',false,false);
-			
-			$content_data['departure_stats'] = $this->home_model->departure_stats();
-			$content_data['new_users'] = $this->home_model->new_users();
-			
-			$content_data['total_ksu_employees'] = $this->home_model->get_teacher_count(false,3,'1,4',false,false);
-			$content_data['total_edex_employees'] = $this->home_model->get_teacher_count(false,2,'1,4',false,false);
-			$content_data['total_iceat_employees'] = $this->home_model->get_teacher_count(false,1,'1,4',false,false);
-			$content_data['total_employees'] = $this->home_model->get_teacher_count(false,false,'1,4',false,false);
-			
-			$content_data['nationality'] = $this->home_model->get_nationality();
-			$content_data['employee_state_month'] = $this->home_model->get_employee_state();
-			$content_data['employee_state_year'] = $this->home_model->get_employee_state(false);
 			
 			$content_data['student_all_count'] = $this->home_model->get_student_count(false,false);
 			$content_data['student_male_count'] = $this->home_model->get_student_count(false);
 			$content_data['student_female_count'] = $this->home_model->get_student_count(false,'F');
-			$content_data['latest_student'] = $this->home_model->get_latest_student();
+			
+			$campus_arr = $this->list_school_campus_model->get_campus(0,0,"campus_id","asc",array(),true);
+			$course_class = array();
+			if($campus_arr){
+				foreach($campus_arr->result_array() as $campus) {
+					$course_class[$campus['campus_name']] = $this->home_model->get_course_class_count($campus['campus_id']);
+				}
+			}
+			
+			$content_data['course_class'] = $course_class;
+			
+			$content_data['staff_count'] = $this->home_model->get_staff_count();
+			$content_data['employee_state_month'] = $this->home_model->get_employee_state();
+			$content_data['employee_state_year'] = $this->home_model->get_employee_state(false);
+			
+			$latest_student = array();
+			$latest_student_created = $this->home_model->get_latest_student();
+			$latest_student_updated = $this->home_model->get_latest_student('updated_date');
+			if($latest_student_created) {
+				foreach($latest_student_created->result_array() as $student){
+					$latest_student[$student['user_id']] = array('date'=>$student['created_date'],'student_uni_id'=>$student['student_uni_id'],'name'=>$student['first_name'].' '.$student['last_name']);
+				}
+			}
+			
+			if($latest_student_updated) {
+				foreach($latest_student_updated->result_array() as $_student){
+					$latest_student[$_student['user_id']] = array('date'=>$_student['updated_date'],'student_uni_id'=>$_student['student_uni_id'],'name'=>$_student['first_name'].' '.$_student['last_name']);
+				}
+			}		
+			uasort($latest_student, function($a, $b){
+				$ascending = false;
+				$d1 = strtotime($a['date']);
+				$d2 = strtotime($b['date']);
+				return $ascending ? ($d1 - $d2) : ($d2 - $d1);
+			});
+			
+			$content_data['latest_student'] = $latest_student;
 		}
         $this->template->set_theme(Settings_model::$db_config['default_theme']);
         $this->template->set_layout('school');

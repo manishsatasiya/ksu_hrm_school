@@ -279,17 +279,36 @@ class Home_model extends CI_Model {
 		return $count;
     }
 	
-	public function get_latest_student() {
+	public function get_latest_student($order_by = 'created_date') {
 		$this->db->select('users.*');
 		$this->db->from('users');
 		$this->db->where('users.user_roll_id',4);
-		$this->db->order_by('users.created_date', 'desc');
+		$this->db->order_by('users.'.$order_by, 'desc');
+		if($order_by == 'updated_date'){
+			$this->db->where('users.updated_date != "0000-00-00 00:00:00"');
+			//$this->db->where('users.updated_date != NULL');
+			//$this->db->where('users.updated_date != ""');
+		}	
 		$this->db->limit(3, 0);
 		$query = $this->db->get();
+		//echo $this->db->last_query();	
 		if($query->num_rows() > 0) {
     		return $query;
     	}
 	}
+	
+	public function get_course_class_count($campus) {
+		
+		$this->db->from('course_class');
+		//$this->db->join('user_profile','users.user_id=user_profile.user_id','left');
+		//$this->db->where_in('active',array(1,2));
+		
+		if($campus!=false)
+			$this->db->where('camps_id',$campus);
+		
+		$count = $this->db->count_all_results();
+		return $count;
+    }
 }
 
 /* End of file home_model.php */
