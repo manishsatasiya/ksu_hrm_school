@@ -1759,24 +1759,24 @@ function academic_admin_cat($id = null){
 	return $_arr;
 }
 function save_users_log($id,$reason) {
-		
-	$user_id = $this->session->userdata('user_id');
+	$ci =& get_instance();	
+	$user_id = $ci->session->userdata('user_id');
 	$change_date = date('Y-m-d H:i:s');
 	
-	$sql = "insert into users_log(`user_id`, `username`, `password`, `email`,`reason`,`change_by`, `change_date`)
-		    SELECT `user_id`, `username`, `password`, `email`,'$reason',$user_id,'$change_date' FROM `users` WHERE user_id =$id";
-	$this->db->query($sql);
-	$last_log_id =  $this->db->insert_id();  
+	$sql = "insert into users_log(`user_id`, `username`, `password`, `email`,`campus_id`,`reason`,`change_by`, `change_date`)
+		    SELECT `user_id`, `username`, `password`, `email`,`campus_id`,'$reason',$user_id,'$change_date' FROM `users` WHERE elsd_id = '$id'";
+	$ci->db->query($sql);
+	$last_log_id =  $ci->db->insert_id();  
 	
-	$user_id = $this->session->userdata('user_id');
+	$user_id = $ci->session->userdata('user_id');
 	$data = array('change_by' => $user_id,'change_date' => date('Y-m-d H:i:s'));
-	$this->db->where('user_id', $id);
-	$this->db->update('users', $data);
+	$ci->db->where('user_id', $id);
+	$ci->db->update('users', $data);
 	
-	if($this->db->affected_rows() == 1) {
-		return $last_log_id;
-	}
-	return false;
+	//if($ci->db->affected_rows() == 1) {
+		//return $last_log_id;
+	//}
+	return $last_log_id;
 }
 function get_user_status()
 {

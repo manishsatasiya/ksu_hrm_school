@@ -405,13 +405,31 @@ $this->template->set_partial('sidebar', 'sidebar');
     	}
 		
 		$reason = "";
+		$updated_column_data = array();
 		if($columnName == "campus_name")
 		{
 			$columnName = "campus_id";
+			$updated_column_data['campus_id_new'] = $value;
 			$reason = "Campus Updated";
     	}
-		//save_users_log($id,$reason);
-		
+		if($columnName == "username")
+		{
+			$updated_column_data['username_new'] = $value;
+			$reason = "Username Updated";
+    	}
+		if($columnName == "password")
+		{
+			$reason = "Password Updated";
+    	}
+		if($columnName == "email")
+		{
+			$updated_column_data['email_new'] = $value;
+			$reason = "Email Updated";
+    	}
+		$last_log_id = save_users_log($id,$reason);
+		if($last_log_id && !empty($updated_column_data)){
+			grid_data_updates($updated_column_data,'users_log','user_log_id',$last_log_id);
+		}
 		set_activity_data_log($id,'Update','Teacher > List teacher','List teacher',$tablename,$whrid_column,$user_id='');
     	grid_update_data($whrid_column,$id,$columnName,$value,$tablename);
     	
@@ -426,7 +444,8 @@ $this->template->set_partial('sidebar', 'sidebar');
 			
 			grid_update_data($whrid_column,$id,"campus",$value_campus,$tablename);
 			echo "success";
-		}		
+		}
+		
     }
 
     public function action_member($id, $offset, $order_by, $sort_order, $search) {
