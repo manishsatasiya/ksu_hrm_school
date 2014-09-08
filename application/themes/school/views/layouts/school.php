@@ -183,7 +183,7 @@ $(document).ready(function() {
 	<!-- BEGIN CORE TEMPLATE JS --> 
 	<script src="<?php print base_url(); ?>assets/js/core.js" type="text/javascript"></script> 
 	<!-- END CORE TEMPLATE JS --> 
-	<script type="text/javascript" src="<?php print base_url(); ?>js/jQuery/jq_functions.js"></script>
+	<script type="text/javascript" src="<?php print base_url(); ?>js/jQuery/jq_functions.js?t=1"></script>
 	<script type="text/javascript" src="<?php print base_url(); ?>js/custom.js"></script>
 	<script type="text/javascript" src="<?php print base_url(); ?>js/jquery.validate.js"></script>
 	<script type="text/javascript" src="<?php print base_url(); ?>js/validation.js?t=6"></script>
