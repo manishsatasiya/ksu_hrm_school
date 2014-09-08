@@ -1875,7 +1875,8 @@ $(document).ready(function() {
 		var formData = {
 			'status' 	: $('#status').val(),
 			'comment' 	: $('#comment').val(),
-			'user_id' 	: $('input[name=ori_user_id]').val()
+			'user_id' 	: $('input[name=ori_user_id]').val(),
+			'orig_status' 	: $('input[name=orig_status]').val()
 		};
 
 		// process the form

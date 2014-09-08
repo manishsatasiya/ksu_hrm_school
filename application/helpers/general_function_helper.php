@@ -34,7 +34,6 @@ if (!function_exists('get_ca_lead_teacher_list')) {
         return $teacher_arr;
     }
 }
-
 if (!function_exists('get_teacher_list')) {
     /**
      *
@@ -75,7 +74,6 @@ if (!function_exists('get_teacher_list')) {
         return $teacher_arr;
     }
 }
-
 if (!function_exists('get_student_list')) {
 	/**
 	 *
@@ -102,8 +100,6 @@ if (!function_exists('get_student_list')) {
 		return $student_arr;
 	}
 }
-
-
 if (!function_exists('get_other_user_list')) {
 	/**
 	 *
@@ -129,8 +125,6 @@ if (!function_exists('get_other_user_list')) {
 		return $student_arr;
 	}
 }
-
-
 if (!function_exists('get_school_year_list')) {
     /**
      *
@@ -161,7 +155,6 @@ if (!function_exists('get_school_year_list')) {
         return $school_year_arr;
     }
 }
-
 if (!function_exists('get_school_year_title')) {
     /**
      *
@@ -192,7 +185,6 @@ if (!function_exists('get_school_year_title')) {
         return $school_year_arr;
     }
 }
-
 if (!function_exists('get_school_list')) {
     /**
      *
@@ -221,7 +213,6 @@ if (!function_exists('get_school_list')) {
         return $school_arr;
     }
 }
-
 if (!function_exists('get_course_subject')) {
     /**
      *
@@ -250,7 +241,6 @@ if (!function_exists('get_course_subject')) {
         return $course_arr;
     }
 }
-
 if (!function_exists('get_campus')) {
     /**
      *
@@ -280,7 +270,6 @@ if (!function_exists('get_campus')) {
         return $campus_arr;
     }
 }
-
 if (!function_exists('get_campus_list')) {
     /**
      *
@@ -321,7 +310,6 @@ if (!function_exists('get_campus_list')) {
     	return $campus_arr;
     }
 }
-
 if (!function_exists('get_campus_name')) {
     function get_campus_name($where=array()) {
     	$ci =& get_instance();
@@ -341,7 +329,6 @@ if (!function_exists('get_campus_name')) {
         return $campus_arr;
     }
 }
-
 if (!function_exists('get_course')) {
     /**
      *
@@ -371,7 +358,6 @@ if (!function_exists('get_course')) {
         return $course_arr;
     }
 }
-
 if (!function_exists('get_course_category')) {
     /**
      *
@@ -431,7 +417,6 @@ if (!function_exists('get_student_class')) {
     }
 	
 }
-
 if (!function_exists('callback_combobox_check')) {
     /**
      *
@@ -494,8 +479,6 @@ if (!function_exists('not_access_for')) {
         }
     }
 }
-
-
 if (!function_exists('get_section')) {
 	/**
 	 *
@@ -525,13 +508,11 @@ if (!function_exists('get_section')) {
         return $section_arr;
     }
 }
-
 if (!function_exists('download_file')) {
 	function download_file($document_path,$file_name) {
 		// place this code inside a php file and call it f.e. "download.php"
 		$path = $document_path; // change the path to fit your websites document structure
 		$fullPath = $path.$file_name;
-
 		if ($fd = fopen ($fullPath, "r")) {
 			$fsize = filesize($fullPath);
 			$path_parts = pathinfo($fullPath);
@@ -556,7 +537,6 @@ if (!function_exists('download_file')) {
 		exit;
 	}
 }
-
 if (!function_exists('set_activity_log')) {
 	/**
 	 *
@@ -584,13 +564,10 @@ if (!function_exists('set_activity_log')) {
 				'user_ip' => $_SERVER['REMOTE_ADDR'],
 				'created_date' => date('Y-m-d H:i:s')
 		);
-
 		$ci->db->insert('user_activity_log', $data);
-
 		return true;
 	}
 }
-
 if (!function_exists('set_activity_data_log')) {
 	/**
 	 *
@@ -629,13 +606,10 @@ if (!function_exists('set_activity_data_log')) {
 				'primary_field' => $whrid_column,
 				'created_date' => date('Y-m-d H:i:s')
 		);
-
 		$ci->db->insert('user_activity_log', $data);
-
 		return true;
 	}
 }
-
 if (!function_exists('time_ago')) {
 	/**
 	 *
@@ -677,7 +651,6 @@ if (!function_exists('time_ago')) {
  
 	}
 }
-
 if (!function_exists('get_user_roll')) {
 	/**
 	 *
@@ -700,10 +673,8 @@ if (!function_exists('get_user_roll')) {
     		$user_roll_arr[$user_roll_datas['user_roll_id']] = $user_roll_datas['user_roll_name'];    		
     	}
         return $user_roll_arr;
-
 	}
 }
-
 if (!function_exists('get_course_class')) {
 	/**
 	 *
@@ -726,7 +697,6 @@ if (!function_exists('get_course_class')) {
 			$course_class_arr[$course_classes['course_class_id']] = $course_classes['section_title'];
 		}
 		return $course_class_arr;
-
 	}
 	
 	if (!function_exists('get_event')) {
@@ -795,6 +765,7 @@ if (!function_exists('get_course_class')) {
 				$action != "get_observations_json"  &&
 				$action != "get_user_existing_privilege"  &&
 				$action != "edit_partial_profile" &&
+				$action != "save_user_status" && 
 				$action != "view_grade_report_log"  && $cotroller != "list_enable_week" && $action != "add_user_privilege" 
 				&& $action != "get_profile_comment_json" 
 				&& $action != "delete" && $cotroller != "add_employee" && $cotroller != "list_course_class"
@@ -810,7 +781,6 @@ if (!function_exists('get_course_class')) {
 	}
 	
 }
-
 if (!function_exists('get_master_menu')) {
 	/**
 	 *
@@ -833,10 +803,8 @@ if (!function_exists('get_master_menu')) {
 			$menu_master_arr[$menu_parentes['menu_id']] = $menu_parentes['name'];
 		}
 		return $menu_master_arr;
-
 	}
 }
-
 if (!function_exists('get_master_all_menu')) {
 	/**
 	 *
@@ -869,10 +837,8 @@ if (!function_exists('get_master_all_menu')) {
 			}
 		}
 		return $menu_master_arr;
-
 	}
 }
-
 if (!function_exists('get_previlege_action')) {
 	/**
 	 *
@@ -923,10 +889,8 @@ if (!function_exists('get_previlege_action')) {
 			$i++;
 		}
 		return $menu_parent;
-
 	}
 }
-
 function get_rolewise_priviledge(){
 	$arrMenu = array();
 	$ci =& get_instance();
@@ -1006,7 +970,6 @@ function get_rolewise_priviledge(){
 	
 	return $arrMenu;
 }
-
 function get_priviledge_action($controller_name,$action=""){
 	
 	if($controller_name == "") return array();
@@ -1094,7 +1057,6 @@ function get_priviledge_action($controller_name,$action=""){
 	else
 		return $arrMenu;
 }
-
 if (!function_exists('get_other_user_roll')) {
 	/**
 	 *
@@ -1117,11 +1079,8 @@ if (!function_exists('get_other_user_roll')) {
 			$user_roll_arr[$user_roll_datas['user_roll_id']] = $user_roll_datas['user_roll_name'];
 		}
 		return $user_roll_arr;
-
 	}
 }
-
-
 if (!function_exists('hash_password')) {
     /**
      *
@@ -1136,17 +1095,14 @@ if (!function_exists('hash_password')) {
     	return hash_hmac('sha512', $password . $nonce, SITE_KEY);
     }
 }
-
 if (!function_exists('get_log_data_field_array')) {
 	
 	function get_log_data_field_array() {
 		$arrLogData = array();
-
 		$arrLogData["school_campus"] = array("campus_id"=>"ID",
 							"campus_name"=>"Campus Name",
 							"campus_location"=>"Campus Location"
 							);
-
 		$arrLogData["school_year"] = array("school_year_id"=>"ID",
 							"school_id"=>"University Name",
 							"school_year"=>"University Year",
@@ -1154,7 +1110,6 @@ if (!function_exists('get_log_data_field_array')) {
 							"school_type"=>"University Type",
 							"school_week"=>"University Week"
 							);
-
 		$arrLogData["users"] = array("user_id"=>"ID",
 								"username"=>"Username",
 								"password"=>"Password",
@@ -1176,24 +1131,19 @@ if (!function_exists('get_log_data_field_array')) {
 								"name_suffix"=>"Name Suffix",
 								"user_roll_id"=>"Role"
 							);
-
 		$arrLogData["course_category"] = array("category_id"=>"ID",
 							"category_title"=>"Category Title"
 							);
-
 		$arrLogData["courses"] = array("course_id"=>"ID",
 							"course_title"=>"Course Title",
 							"max_hours"=>"Max Hours"
 							);
-
 		$arrLogData["course_section"] = array("section_id"=>"ID",
 							"section_title"=>"Section"
 							);
-
 		$arrLogData["course_class_room"] = array("class_room_id"=>"ID",
 							"class_room_title"=>"Class Room"
 							);
-
 		$arrLogData["course_class"] = array("course_class_id"=>"ID",
 							"course_id"=>"Course Name",
 							"category_id"=>"Course Category",
@@ -1204,7 +1154,6 @@ if (!function_exists('get_log_data_field_array')) {
 							"shift"=>"Shift",
 							"school_year_id"=>"University Year Title"
 							);
-
 		$arrLogData["grade_type"] = array("grade_type_id"=>"ID",
 						"grade_type"=>"Type",
 						"total_markes"=>"Marks",
@@ -1212,24 +1161,20 @@ if (!function_exists('get_log_data_field_array')) {
 						"show_grade_range"=>"Show Grade Range",
 						"attendance_type"=>"Attandance Type"
 		);
-
 		$arrLogData["grade_type_exam"] = array("grade_type_exam_id"=>"ID",
 					"grade_type_id"=>"Type",
 					"exam_type_name"=>"Name",
 					"exam_marks"=>"Marks",
 					"exam_percentage"=>"Percentage"
 		);
-
 		$arrLogData["grade_range"] = array("grade_range_id"=>"ID",
 				"grade_min_range"=>"Min Range",
 				"grade_max_range"=>"Max Range",
 				"grade_name"=>"Grade"
 		);
-
 		$arrLogData["user_roll"] = array("user_roll_id"=>"ID",
 				"user_roll_name"=>"Role"
 		);
-
 		$arrLogData["user_roll"] = array("user_roll_id"=>"ID",
 				"user_roll_name"=>"Role"
 		);
@@ -1237,7 +1182,6 @@ if (!function_exists('get_log_data_field_array')) {
 		return $arrLogData;
 	}
 }
-
 function update_student_moved_attendace($id,$section_id)
 {
 	$ci =& get_instance();
@@ -1263,15 +1207,12 @@ function update_student_moved_attendace($id,$section_id)
 	}
 	//End here
 }
-
 function get_buildings() {
 	return array(''=>'Select','Humanities'=>'Humanities','Science'=>'Science','4'=>'4');
 }
-
 function get_track() {
 	return array(''=>'Select','Humanities'=>'Humanities','Science'=>'Science','Diploma'=>'Diploma');
 }
-
 function get_countries() {
 	$ci =& get_instance();
 	$ci->db->select('countries.*');
@@ -1284,9 +1225,7 @@ function get_countries() {
 		$countries_arr[$countries_datas['id']] = $countries_datas['country'];
 	}
 	return $countries_arr;
-
 }
-
 function get_nationality_list() {
 	$ci =& get_instance();
 	$ci->db->select('countries.*');
@@ -1302,9 +1241,7 @@ function get_nationality_list() {
 		$nationality_arr[$nationality_datas['id']] = $nationality_datas['nationality'];
 	}
 	return $nationality_arr;
-
 }
-
 function get_qualifications_list() {
 	$ci =& get_instance();
 	$ci->db->select('qualifications.*');
@@ -1319,7 +1256,6 @@ function get_qualifications_list() {
 	}
 	return $qualifications_arr;
 }
-
 function get_certificate_list() {
 	$ci =& get_instance();
 	$ci->db->select('qualifications.*');
@@ -1334,7 +1270,6 @@ function get_certificate_list() {
 	}
 	return $return_arr;
 }
-
 function get_school_setting() {
 	$ci =& get_instance();
 	$ci->db->select('school_year.*');
@@ -1367,7 +1302,6 @@ if (!function_exists('get_contractors')) {
         return $campus_arr;
     }
 }
-
 function get_profile_pic($user_id = 0) {
 	$ci =& get_instance();
 	$profile_pic = array('150'=> base_url()."images/noimage.jpg",'75'=> base_url()."images/noimage.jpg");
@@ -1400,7 +1334,6 @@ function get_profile_pic($user_id = 0) {
 		
 	return $profile_pic;	   
 }
-
 function getCertificateType($get_name = false){
 	if($get_name) {
 		return array(1=>"Photo",
@@ -1436,7 +1369,6 @@ function getCertificateType($get_name = false){
 											);
 	}	
 }
-
 function generateElsdId($gender){
 	$ci =& get_instance();
 	
@@ -1474,7 +1406,6 @@ function generateElsdId($gender){
 	}
 	return $ret;
 }
-
 function user_profile_status($type = "") 
 {
 		$ret = array();
@@ -1538,7 +1469,8 @@ function user_profile_status($type = "")
 		}		
 		else if($type == "newemployee")			 
 		{
-			$ret = array('3'=>$status_master_arr[3],//'AHR rejects employee (missing documents)',
+			$ret = array('1'=>$status_master_arr[1],//'New employee added by contractor',
+					     '3'=>$status_master_arr[3],//'AHR rejects employee (missing documents)',
 						 '5'=>$status_master_arr[5],//'Pending 1',
 						 '6'=>$status_master_arr[6],//'Pending 2',
 						 '7'=>$status_master_arr[7],//'Pending 3',
@@ -1578,17 +1510,14 @@ function user_profile_status($type = "")
 		
 		return $ret;
 }
-
 function get_interview_outcome()
 {
 	return array(''=>'Select Interview Outcome','1'=> 'Approved','2'=>'Rejected','3'=>'Pending');
 }
-
 function get_interview_type()
 {
-	return array(''=>'Select Interview Type','1'=> 'Face to face','2'=>'Skype','3'=>'Phone');
+	return array(''=>'Select Interview Type','1'=> 'Face to face','2'=>'Skype','3'=>'Phone','4'=>'SI','5'=>'DI');
 }
-
 function get_department_list() {
 		$ci =& get_instance();
 		$ci->db->select('*');
@@ -1603,7 +1532,6 @@ function get_department_list() {
 		}
 		return $student_arr;
 	}
-
 	
 function get_jobtitle_list() {
 		$ci =& get_instance();
@@ -1619,7 +1547,6 @@ function get_jobtitle_list() {
 		}
 		return $student_arr;
 	}
-
 function get_original_start_year_list() {
 		$arr[""] = '--Select--';
 		$arr["2007-08"] = '2007-08';
@@ -1645,21 +1572,18 @@ function get_name_title_list() {
 function list_dashboard_page(){
 	return array('Text'=>'Text','Normal'=>'Normal','Advance'=>'Advance');
 }
-
 function make_dp_date($date = ''){
 	if($date == '' || $date == '0000-00-00'){
 		return '';
 	}
 	return date('D, d M Y',strtotime($date));
 }
-
 function make_db_date($date = ''){
 	if($date == ''){
 		return '';
 	}
 	return date('Y-m-d',strtotime($date));
 }
-
 function get_line_manager_list() {
 	$arrActiveStatus = user_profile_status("activestaff");
 	$ci =& get_instance();
@@ -1682,7 +1606,6 @@ function get_line_manager_list() {
 	}
 	return $student_arr;
 }
-
 function get_interviewer_list() {
 	$arrActiveStatus = user_profile_status("activestaff");
 	$ci =& get_instance();
@@ -1706,7 +1629,6 @@ function get_interviewer_list() {
 	}
 	return $student_arr;
 }
-
 function get_campus_user_list() {
 	$ci =& get_instance();
 	$arrCampusPrivilages = get_user_campus_privilages();
@@ -1729,7 +1651,6 @@ function get_campus_user_list() {
 	}
 	return $student_arr;
 }
-
 function getTableField($table, $select_col, $where_col,$where_col_val)
 {
 	$ci =& get_instance();
@@ -1747,7 +1668,6 @@ function getTableField($table, $select_col, $where_col,$where_col_val)
 	}
 	return "";
 }
-
 function isLineManager()
 {
 	$ci =& get_instance();
@@ -1760,7 +1680,6 @@ function isLineManager()
 	$query = $ci->db->get();
 	return $query->num_rows();
 }
-
 function get_user_campus_privilages($where_user_id=0)
 {
 	$retArr = array();
@@ -1768,7 +1687,6 @@ function get_user_campus_privilages($where_user_id=0)
 	$ci =& get_instance();
 	if($ci->session->userdata('role_id') == 1)
 		return $retArr;
-
 	$user_id = $ci->session->userdata('user_id');
 	
 	if($where_user_id > 0)
@@ -1794,7 +1712,6 @@ function get_user_campus_privilages($where_user_id=0)
 	
 	return $retArr;
 }
-
 function get_user_campus_privilages_data($where_user_id=0)
 {
 	$retArr = array();
@@ -1802,7 +1719,6 @@ function get_user_campus_privilages_data($where_user_id=0)
 	$ci =& get_instance();
 	if($where_user_id == 0)
 		return $retArr;
-
 	$ci->db->select('campus_id');
 	$ci->db->from('user_campus_privilege');
 	$ci->db->where('user_id',$where_user_id);
@@ -1861,6 +1777,27 @@ function save_users_log($id,$reason) {
 		return $last_log_id;
 	}
 	return false;
+}
+function get_user_status()
+{
+	$retArr = array();
+	$status = 0;
+	$ci =& get_instance();
+	$user_id = $ci->session->userdata('user_id');
+	
+	$ci->db->select('status');
+	$ci->db->from('users');
+	$ci->db->where('user_id',$user_id);
+		
+	$query = $ci->db->get();
+	if($query->num_rows() > 0) 
+	{
+		foreach($query->result_array() AS $row)
+		{
+			$status = $row["status"];
+		}
+	}
+	return $status;
 }
 /* End of file general_function_helper.php */
 /* Location: ./application/helpers/general_function_helper.php */ 

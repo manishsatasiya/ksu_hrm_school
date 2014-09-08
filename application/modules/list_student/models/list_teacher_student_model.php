@@ -60,7 +60,7 @@ class List_Teacher_Student_model extends CI_Model {
 			$this->db->where_in('users.campus_id',$arrCampusPrivilages);
 		}
 		
-    	!empty($data) ? $this->db->like($data) : "";
+    	!empty($data) ? $this->db->or_like($data) : "";
 		
 		if($this->session->userdata('role_id') != 1 && $isLineManager == 1){
 			$this->db->where('users.coordinator',$this->session->userdata('user_id'));
@@ -77,7 +77,7 @@ class List_Teacher_Student_model extends CI_Model {
 			$this->db->limit($limit, $offset);
     
     	$query = $this->db->get();
-		
+		//echo $this->db->last_query();
 		if($limit == 0)
 			return $query->num_rows();
 			
@@ -137,6 +137,7 @@ class List_Teacher_Student_model extends CI_Model {
     }
 
 	public function get_staff_members($type="",$limit = 0, $offset = 0, $order_by = "username", $sort_order = "asc", $search_data) {
+		$loggedInUserStatus = get_user_status();
 		$arrCampusPrivilages = get_user_campus_privilages();
 		$isLineManager = isLineManager();
     	if (!empty($search_data)) {
@@ -252,7 +253,8 @@ class List_Teacher_Student_model extends CI_Model {
 			$this->db->where('users.coordinator',$this->session->userdata('user_id'));
 		}
 		
-		if($this->session->userdata('role_id') > 4 && $this->session->userdata('contractor') > 1){
+		
+		if($this->session->userdata('role_id') > 4 && $this->session->userdata('contractor') > 1 && $loggedInUserStatus == 20 && $type == "companyemployee"){
 			$this->db->where('user_profile.contractor',$this->session->userdata('contractor'));
 		}
 		
@@ -541,7 +543,7 @@ class List_Teacher_Student_model extends CI_Model {
 			$this->db->where_in('users.campus_id',$arrCampusPrivilages);
 		}
 		
-    	!empty($data) ? $this->db->like($data) : "";
+    	!empty($data) ? $this->db->or_like($data) : "";
 		
 		if($this->session->userdata('role_id') != 1 && $isLineManager == 1){
 			$this->db->where('users.coordinator',$this->session->userdata('user_id'));

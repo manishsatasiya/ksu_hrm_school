@@ -1051,7 +1051,7 @@ print form_hidden('user_id', $user_data->user_unique_id);
                             <h4 class="semi-bold">Step 2 - <span class="light">Job Details</span></h4>
                             <br>
 							<div class="row form-row">
-							  <div class="col-md-3"> <?php print form_label('Contractor', 'contractor',array('class'=>'form-label')); ?> <?php print form_dropdown('contractor',array(''=>'Select Contractor','1'=> 'ICEAT','2'=>'EdEx','3'=>'KSU'),($user_data)?$user_data->contractor:$this->session->flashdata('contractor'),'id="contractor" class="select2 form-control"'); ?> </div>
+							  <div class="col-md-3"> <?php print form_label('Contractor', 'contractor',array('class'=>'form-label')); ?> <?php print form_dropdown('contractor',array(''=>'Select Contractor','1'=> 'ICEAT','2'=>'EdEx','3'=>'KSU','4'=>'Al Hussan'),($user_data)?$user_data->contractor:$this->session->flashdata('contractor'),'id="contractor" class="select2 form-control"'); ?> </div>
                               <div class="col-md-3"> <?php print form_label('Campus Privilages', 'campus_privilages_id',array('class'=>'form-label')); ?> 
                               <?php
 							  print form_multiselect('campus_privilages[]',$campus_list,$campus_privilages,'id="multi" class="select2 form-control" placeholder="Select Campus"'); 
