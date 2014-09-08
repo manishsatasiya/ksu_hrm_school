@@ -21,7 +21,7 @@ $(function(){
 </script>
 </head>
 <body>
-<div class="demo2" style="width:800px;height:400px;"> <img src="<?php print base_url(); ?>assets/plugins/jquery-craftmap/dotted.jpg" class="imgMap" />
+<div class="demo2"> <img src="<?php print base_url(); ?>assets/plugins/jquery-craftmap/dotted.jpg" class="imgMap" />
 <?php 
 if($nationality) {
 	foreach($nationality->result_array() as $_nationality){
