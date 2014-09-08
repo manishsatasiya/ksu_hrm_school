@@ -82,12 +82,7 @@ class Home extends Private_Controller {
 					$latest_student[$_student['user_id']] = array('date'=>$_student['updated_date'],'student_uni_id'=>$_student['student_uni_id'],'name'=>$_student['first_name'].' '.$_student['last_name']);
 				}
 			}		
-			uasort($latest_student, function($a, $b){
-				$ascending = false;
-				$d1 = strtotime($a['date']);
-				$d2 = strtotime($b['date']);
-				return $ascending ? ($d1 - $d2) : ($d2 - $d1);
-			});
+			uasort($latest_student, array($this, 'ascendingCustomSort'));
 			
 			$content_data['latest_student'] = $latest_student;
 		}
@@ -102,6 +97,12 @@ class Home extends Private_Controller {
 		
     }
 	
+	public function ascendingCustomSort($a, $b){
+		$ascending = false;
+		$d1 = strtotime($a['date']);
+		$d2 = strtotime($b['date']);
+		return $ascending ? ($d1 - $d2) : ($d2 - $d1);
+	}
 	public function get_nationality_map() {
 		$content_data = array();
 		$content_data['country_to_display'] = array('UK','Ireland','America','Canada','Australia');

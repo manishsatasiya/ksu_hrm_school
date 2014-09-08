@@ -104,7 +104,7 @@
         <div class="col-md-8 col-vlg-8 m-b-20">
           <div class="row tiles-container " data-sync-height="true">
             <div class="col-md-7 col-vlg-8 col-sm-8 no-padding -height" >
-              <iframe class="craft-map-container" src="<?php print base_url(); ?>/employee_stats/get_nationality_map"></iframe>
+              <iframe class="craft-map-container" src="<?php print base_url(); ?>employee_stats/get_nationality_map"></iframe>
               <div class="clearfix"></div>
             </div>
             <div class="col-md-5 col-vlg-4 col-sm-4 no-padding" >
